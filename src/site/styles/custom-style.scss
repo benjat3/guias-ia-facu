@@ -1,13 +1,26 @@
+@import "https://raw.githubusercontent.com/lucas-haux/Nord/HEAD/theme.css";
+
 body {
-    /***
-      ADD YOUR CUSTOM STYLING HERE. (INSIDE THE body {...} section.)
-      IT WILL TAKE PRECEDENCE OVER THE STYLING IN THE STYLE.CSS FILE.
-   ***/
-    //  background-color: white;
-    //  .content {
-    //   font-size: 14px;
-    //  }
-    //  h1 {
-    //   color: black;
-    //  }
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  width: 100% !important;
+  min-height: 100vh !important;
+
+  main.content {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 860px !important;
+    width: 100% !important;
+    padding: 2rem 1.5rem !important;
+    float: none !important;
+    position: relative !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+
+  .empty-navbar {
+    display: none !important;
+  }
 }
