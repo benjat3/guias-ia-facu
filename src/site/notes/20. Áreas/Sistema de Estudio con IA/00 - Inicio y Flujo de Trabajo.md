@@ -4,7 +4,7 @@
 
 # 🚀 Sistema de Estudio Activo con IA: Flujo Completo
 
-Este sistema no busca que la IA te haga resúmenes pasivos ni te dé respuestas servidas. Su objetivo es aplicar los principios de la **ciencia del aprendizaje** (*active recall*, práctica intercalada, dificultades deseables y repetición espaciada) para estudiar materias técnicas de ingeniería minimizando el tiempo muerto y maximizando la retención.
+Este sistema no busca que la IA te haga resúmenes pasivos ni te dé respuestas servidas. Su objetivo es aplicar los principios de la **ciencia del aprendizaje** para estudiar materias técnicas de ingeniería minimizando el tiempo muerto y maximizando la retención.
 
 > [!TIP] 📌 Modelos de IA actualizados
 > Para no desactualizar esta guía con el paso del tiempo, consultá siempre la referencia rápida en:  
