@@ -2,6 +2,8 @@
 {"dg-publish":true,"permalink":"/20-areas/sistema-de-estudio-con-ia/00-inicio-y-flujo-de-trabajo/","title":"00 - Inicio y Flujo de Trabajo","tags":["guia","estudio-activo","workflow","ingenieria","gardenEntry"],"dg-note-properties":{"title":"00 - Inicio y Flujo de Trabajo","tags":["guia","estudio-activo","workflow","ingenieria","gardenEntry"]}}
 ---
 
+> 👨‍💻 **Desarrollado por Duilio** • Sistema de Estudio Universitario con IA
+---
 # 🚀 Sistema de Estudio Activo con IA: Flujo Completo
 
 Este sistema no busca que la IA te haga resúmenes pasivos ni te dé respuestas servidas. Su objetivo es aplicar los principios de la **ciencia del aprendizaje** para estudiar materias técnicas de ingeniería minimizando el tiempo muerto y maximizando la retención.
