@@ -100,7 +100,7 @@ El objetivo de esta fase es extraer un **mapa de ruta atómico** de la materia s
 > [!NOTE] 📸 Captura de referencia
 > 
 > ![Pasted image 20260913212906.png](/img/user/_assets/attachments/Pasted%20image%2020260913212906.png)
-> _
+> 
 > 
 >   
 
@@ -223,9 +223,9 @@ Una vez comprendido el tema, pasamos a automatizar el sistema de repaso espaciad
 
 > [!NOTE] 📸 Captura de referencia
 > 
-![Pasted image 20260913213301.png](/img/user/_assets/attachments/Pasted%20image%2020260913213301.png)
+>![Pasted image 20260913213301.png](/img/user/_assets/attachments/Pasted%20image%2020260913213301.png)
 > 
->   
+> 
 
 ## Fase 4: Importación y Optimización en Anki
 
