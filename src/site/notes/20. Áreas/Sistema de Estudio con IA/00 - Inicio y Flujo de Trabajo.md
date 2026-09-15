@@ -122,39 +122,80 @@ El tutor cognitivo se corre **directamente dentro de NotebookLM** y no en el cha
     
 - **Cero alucinaciones:** NotebookLM prioriza estrictamente la epistemología híbrida y el anclaje a las fuentes cargadas.
     
+ 
+### 2.2. Configuración del Tutor y Ejecución de la Sesión
+
+En NotebookLM el prompt del tutor no se envía como un mensaje común del chat; se inyecta en las directivas del sistema para que el modelo asuma ese rol de forma permanente en todas sus respuestas.
+
+  
+
+#### 1. Inyección del Prompt del Tutor
+
+1. **Abrir la configuración del cuaderno:**
+    
+      
+    
+    En la esquina superior derecha del panel de **Chat** de NotebookLM, hacé clic en el ícono de controles deslizantes (**Configurar cuaderno**).
+    
       
     
 
-### 2.2. Cómo ejecutar la sesión de estudio
+> [!NOTE] 📸 Captura de referencia: Acceso a Configurar cuaderno
+> 
+> ![Pasted image 20260915181739.png](/img/user/_assets/attachments/Pasted%20image%2020260915181739.png)
+> 
+>   
 
-1. En NotebookLM, abrí el chat del cuaderno y pegá completo el **[[20. Áreas/Sistema de Estudio con IA/02 - Tutor Personal Cognitivo\|02 - Tutor Personal Cognitivo]]**, completando el parámetro: `[TEMA A APRENDER]`.
+2. **Cargar directivas personalizadas:**
     
       
-    
-2. Esperá la respuesta de confirmación de la IA.
-    
-      
-    
-3. **Estrategia de lotes e intercalación (_Interleaving_):**
-    
-      
-    - No le envíes toda la checklist junta.
+    - En la ventana emergente _Configura el chat_, dentro de la sección **Define tu objetivo, estilo o rol de conversación**, seleccioná la opción **Personalizado**.
         
           
         
-    - Seleccioná **entre 4 y 8 ítems** de tu checklist de Obsidian y mandáselos en un bloque.
+    - Copiá el prompt completo de **[[20. Áreas/Sistema de Estudio con IA/02 - Tutor Personal Cognitivo\|02 - Tutor Personal Cognitivo]]** y pegalo dentro del cuadro de texto.
         
           
         
-    - **El poder de la intercalación:** Para que el aprendizaje sea sólido según la evidencia cognitiva, **mezclá ítems de teoría con problemas de aplicación**, o ítems de dos unidades distintas (ej: 2 ítems de la Unidad 1 y 2 de la Unidad 2). Podés agregarle en la consigna:
+    - En **Elige la longitud de la respuesta**, dejá seleccionada la opción **Predeterminado**.
         
           
         
-        > _"Acá tenés mi lote de 4 ítems: [pegás los ítems]. Intercalalos en el orden pedagógico más conveniente."_
-        > 
-        >   
+    - Hacé clic en el botón azul **Guardar** abajo a la derecha.
+        
+          
         
 
+> [!NOTE] 📸 Captura de referencia: Modo personalizado y guardado del prompt
+> 
+> ![Pasted image 20260915181756.png](/img/user/_assets/attachments/Pasted%20image%2020260915181756.png)
+> 
+>   
+
+#### 2. Estrategia de lotes e intercalación (_Interleaving_)
+
+Una vez guardadas las instrucciones, el chat aplicará la metodología de estudio activo automáticamente en cada mensaje.
+
+  
+
+1. **Envío por bloques reducidos:**
+    
+      
+    
+    No le envíes toda la checklist junta. Seleccioná **entre 4 y 8 ítems** de tu nota de Obsidian y mandáselos en un único mensaje de chat.
+    
+      
+    
+2. **El poder de la intercalación:**
+    
+      
+    
+    Para maximizar la retención a largo plazo, **mezclá ítems conceptuales con problemas prácticos de cálculo**, o conceptos de unidades distintas (por ejemplo: 2 ítems de la Unidad 1 y 2 de la Unidad 2). Podés indicarle en el mensaje:
+    
+      
+    
+    > _"Acá tenés mi lote de ítems: [pegás los ítems]. Intercalalos en el orden pedagógico más conveniente."_
+    > 
 ### 2.3. Manejo de solapamientos
 
 Como la IA no ve la checklist entera de una vez, a veces al explicar un concepto resolverá naturalmente un ítem que tenías anotado para más adelante. No pasa nada: en el siguiente lote que le mandes, simplemente agregale:
@@ -303,19 +344,61 @@ Todas las tarjetas entran inicialmente como tipo `Basic`. Las tarjetas que el pr
 > ![Pasted image 20260913214707.png](/img/user/_assets/attachments/Pasted%20image%2020260913214707.png)
 
 ---
+### 4.3. Sincronización crítica con AnkiWeb (PC y Teléfono) 
 
-### 4.3. Sincronización crítica con AnkiWeb
+> [!DANGER] ⛔ PUNTO CRÍTICO: No equivocarse de botón al sincronizar Al cambiar el tipo de nota, la base de datos exige una sincronización completa unidireccional. Un clic en el botón equivocado **sobreescribe la base con la versión vieja y borra todo el trabajo**.
+> 
+>   
 
-> [!DANGER] ⛔ PUNTO CRÍTICO: No equivocarse de botón
-> En cuanto aceptás la conversión, **NO hagas nada más en Anki** sin antes sincronizar. Un error en este paso puede borrarte las tarjetas nuevas o sobreescribir tu base local.
+#### 1. En la computadora (Anki de escritorio)
 
 1. En la ventana principal de Anki, hacé clic en **Sync** (Sincronizar).
-2. Aparecerá la ventana de conflicto entre dispositivos:
-   * **SELECCIONÁ EXCLUSIVAMENTE:** **`Upload to AnkiWeb`** (Subir a AnkiWeb).
-   * ❌ **NUNCA selecciones `Download from AnkiWeb`**, o descargarás la versión vieja de la nube y se perderán todas las tarjetas que acabás de importar y convertir.
+    
+      
+    
+2. En la ventana de conflicto entre dispositivos:
+    
+      
+    - **SELECCIONÁ EXCLUSIVAMENTE:** **`Upload to AnkiWeb`** (Subir a AnkiWeb).
+        
+          
+        
+    - ❌ **NUNCA selecciones `Download from AnkiWeb`**, o descargarás la versión anterior de la nube y perderás las tarjetas importadas.
+        
+          
+        
 
-> [!NOTE] 📸 Captura de referencia: Selección de Upload to AnkiWeb
-> ![Pasted image 20260913214729.png](/img/user/_assets/attachments/Pasted%20image%2020260913214729.png)
+> [!NOTE] 📸 Captura de referencia: Selección de Upload to AnkiWeb en PC ![Pasted image 20260913214729.png](/img/user/_assets/attachments/Pasted%20image%2020260913214729.png)
+> 
+>   
+
+#### 2. En el teléfono (AnkiDroid)
+
+Apenas abras la app en el celular y toques el botón de sincronizar en la barra superior, saltará el aviso de colecciones incompatibles:
+
+  
+
+1. Aparecerá el cartel: _"Seleccionar colección a mantener. Las colecciones no se pueden combinar. ¿Qué colección quieres mantener?"_.
+    
+      
+    
+2. **SELECCIONÁ EXCLUSIVAMENTE:** **`AnkiWeb`**.
+    
+      
+    - Esto descarga la versión actualizada con las nuevas tarjetas desde la nube a tu teléfono.
+        
+          
+        
+    - ❌ **NUNCA toques `AnkiDroid`**, porque subirías la base vieja del celular a la nube y destruirías todo lo que acabás de procesar en la PC.
+        
+          
+        
+
+> [!NOTE] 📸 Captura de referencia: Selección de AnkiWeb en AnkiDroid
+> 
+> ![Pasted image 20260915182435.png](/img/user/_assets/attachments/Pasted%20image%2020260915182435.png)
+> 
+>   
 
 ---
 
