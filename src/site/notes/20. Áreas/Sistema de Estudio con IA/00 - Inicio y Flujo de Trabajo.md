@@ -269,6 +269,8 @@ Una vez comprendido el tema, pasamos a automatizar el sistema de repaso espaciad
 > 
 
 ## Fase 4: Importación y Optimización en Anki
+> [!TIP] Prerrequisito
+> Obviamente tenés que tener Anki instalado en la compu *(yo no lo instalo porque ya lo tengo)*.
 
 Esta fase requiere precisión técnica para evitar errores de formato, desconfiguración de campos o pérdida de datos durante la sincronización.
 
