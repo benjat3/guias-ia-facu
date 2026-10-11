@@ -1,21 +1,27 @@
 ---
-{"dg-publish":true,"permalink":"/20-areas/sistema-de-estudio-con-ia/01-extractor-de-checklists/","title":"01 - Extractor de Checklists","tags":["prompts","checklist","obsidian"],"dg-note-properties":{"title":"01 - Extractor de Checklists","tags":["prompts","checklist","obsidian"]}}
+{"dg-publish":true,"permalink":"/20-areas/sistema-de-estudio-con-ia/01-extractor-de-checklists/","title":"01 - Extractor de Checklists","tags":["prompts","checklist","obsidian","notebooklm","gemini"],"dg-note-properties":{"title":"01 - Extractor de Checklists","tags":["prompts","checklist","obsidian","notebooklm","gemini"]}}
 ---
 
 
-# 📋 Extractor Curricular de Checklists Atómicas
+# 📋 Extractor Curricular de Checklists Atómicas (Estrategia de Fusión Cruzada)
 
-Este prompt audita los archivos de la cátedra cargados en tu cuaderno y genera el desglose temático en formato Markdown nativo (`- [ ]`) listo para pegar y usar en Obsidian.
+Este sistema audita los archivos de la cátedra cargados en tu cuaderno y genera el desglose temático en formato Markdown nativo (`- [ ]`), listo para pegar y usar en Obsidian.
 
-> [!IMPORTANT] 📌 Puntos críticos a recordar
-> * **Entorno y Modelo:** Correr en **[gemini.google.com](https://gemini.google.com)** abriendo el cuaderno de la materia. Modelo según **[[20. Áreas/Sistema de Estudio con IA/04 - Modelos Recomendados por Tarea\|04 - Modelos Recomendados por Tarea]]**.
-> * **De a una unidad por mensaje:** Nunca pidas varias unidades juntas; pedir de a una evita que el modelo resuma o saltee contenidos finos (Ver final del prompt con su Instrucción).
-> * **Regla de fuentes:** Solo procesa lo que subiste (diapositivas, TPs, parciales). No inventa preguntas de examen si no hay exámenes cargados.
-> * **Al terminar:** Copiá las casillas a tu nota de Obsidian y **borrá inmediatamente el chat de Gemini** para no arrastrar tokens ni degradar el contexto.
+> [!IMPORTANT] 📌 Flujo Táctico: Doble Extracción y Fusión (NotebookLM + Gemini Flash 3.8)
+> Para no depender de los sesgos de un solo modelo y capturar el 100% de los detalles finos, la extracción se realiza mediante una **validación cruzada**:
+> 
+> 1. **Extracción A (NotebookLM):** Corrés el *Prompt Extractor* en **[NotebookLM](https://notebook.google.com/)** para obtener la primera versión con anclaje directo a las fuentes.
+> 2. **Extracción B (Gemini Web):** Abrís tu cuaderno en **[gemini.google.com](https://gemini.google.com)** con el modelo **Gemini 3.8 Flash** y le pasás **el mismo Prompt Extractor** para que arme su propia versión independiente.
+> 3. **Fusión Definitiva (En el chat de Gemini Web):** En el mensaje siguiente, le pegás la checklist que te dio NotebookLM y le pedís que integre ambas versiones en una sola checklist maestra sin omisiones ni redundancias.
+> 
+> * **Regla de oro:** Procesá siempre **de a una unidad por vez**.
+> * **Al terminar la unidad:** Copiá la lista final consolidada a tu nota de Obsidian y **borrá el chat de Gemini Web** para liberar contexto.
 
 ---
 
-### 📋 El Prompt (Copiar tal cual)
+# 1️⃣ El Prompt Extractor (Usar en NotebookLM y en Gemini Web)
+
+Copiá este prompt tal cual y ejecutalo primero en NotebookLM y luego en Gemini Web indicando la unidad correspondiente:
 
 ```markdown
 # ROL Y OBJETIVO
@@ -72,5 +78,29 @@ Devolvé ÚNICAMENTE el bloque de código Markdown con las casillas, sin texto d
 
 ---
 
+# 2️⃣ El Prompt de Fusión y Consolidación (Gemini Web)
+
+Inmediatamente después de que Gemini Web termine de generar su propia checklist, respondé en ese **mismo chat** pegando este mensaje:
+
+```markdown
+# INSTRUCCIÓN DE FUSIÓN Y CONSOLIDACIÓN CURRICULAR
+
+Acá tenés la checklist que generó NotebookLM para esta misma unidad a partir de las mismas fuentes:
+
+---
+[PEGAR AQUÍ LA CHECKLIST GENERADA POR NOTEBOOKLM]
+---
+
+Tu objetivo es **integrar y fusionar tu versión con la de NotebookLM** para crear una **CHECKLIST MAESTRA DEFINITIVA**:
+
+1. **Fusión sin omisiones:** Si una versión detectó un detalle fino, caso de borde, tipo de ejercicio de TP o deducción que la otra pasó por alto, incorporalo.
+2. **Eliminación de redundancias:** Si ambas versiones incluyeron el mismo concepto con distinta redacción, unificalas eligiendo la formulación más atómica y precisa.
+3. **Estructura limpia:** Mantené el orden pedagógico real de la materia, encabezados claros (`#`, `##`) y casillas nativas (`- [ ]`).
+4. **Cero texto extra:** Devolvé ÚNICAMENTE el bloque de código Markdown consolidado, sin introducciones ni comentarios.
+```
+
+---
+
+## 🧭 Navegación
 *Volver a la guía general:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/00 - Inicio y Flujo de Trabajo\|00 - Inicio y Flujo de Trabajo]]**  
 *Siguiente herramienta:* ➡️ **[[20. Áreas/Sistema de Estudio con IA/02 - Tutor Personal Cognitivo\|02 - Tutor Personal Cognitivo]]**
