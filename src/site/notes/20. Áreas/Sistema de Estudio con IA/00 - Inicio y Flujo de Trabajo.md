@@ -308,7 +308,24 @@ Abrí el explorador (`B`), seleccioná una tarjeta convertida y seguí este fluj
    * Seleccioná la herramienta de rectángulo lateral y dibujá las máscaras tapando los puntos críticos indicados en el campo *Back Extra*.
 
 ---
+## 🛠️ Módulos de Apoyo, Fundamentos y Autoevaluación
 
+Más allá del flujo operativo de 5 pasos para estudiar temas nuevos, el sistema cuenta con tres herramientas transversales que sostienen la calidad del estudio a lo largo del cuatrimestre:
+
+### 🤖 1. Infraestructura de Modelos y Gestión de Cuotas (`[[05]]`)
+* **¿Para qué sirve?** Es tu **manual técnico de mantenimiento**. Los modelos de IA cambian constantemente de versión y límites. Esta página actúa como *fuente única de verdad* para saber qué modelo elegir en cada tarea (NotebookLM para minería, AI Studio para Anki, Claude/Gemini Flash para exámenes) sin agotar tus límites diarios gratuitos.
+* **¿Cuándo consultarla?** Al inicio del cuatrimestre para configurar tus entornos, o cada vez que sientas que un modelo empieza a responder peor o recortar código.  
+➡️ **Ver guía completa:** [[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]
+
+### 📚 2. Biblioteca de Ciencia del Aprendizaje (`[[06]]`)
+* **¿Para qué sirve?** Es el **fundamento teórico de todo el sistema**. Explica por qué los prompts están armados como están (por qué la IA no te da la respuesta servida, por qué los lotes se cambiaron por micro-pacing y por qué releer apuntes no sirve). Resume los 6 libros de psicología cognitiva y pedagogía técnica universitaria que sustentan el método.
+* **¿Cuándo consultarla?** Cuando quieras entender a fondo los mecanismos de la memoria de trabajo, la teoría de la carga cognitiva y la práctica deliberada, o cuando necesites adaptar el método a una materia atípica.  
+➡️ **Ver biblioteca:** [[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]
+
+### 🧭 3. Checklists de Autoevaluación Diagnóstica (`[[07]]`)
+* **¿Para qué sirve?** Es tu **prueba de honestidad antes del parcial**. Una suite de 4 listas de verificación diseñadas para auditar tus hábitos reales de estudio (o de docencia si sos ayudante). Su objetivo es destruir la *ilusión de competencia* (creer que sabés algo solo porque lo reconocés al leerlo) y comprobar si sos capaz de producir respuestas y deducciones desde cero en una hoja en blanco.
+* **¿Cuándo consultarla?** Entre 1 y 2 semanas antes de cada examen parcial o final, para detectar lagunas y saber si estás estudiando para *entender* o estudiando para *rendir*.  
+➡️ **Ver índice de checklists:** [[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]
 ## 🧭 Enlaces a las Herramientas del Sistema
 
 - 📋 **Paso 1:** [[20. Áreas/Sistema de Estudio con IA/01 - Extractor de Checklists\|01 - Extractor de Checklists]]
