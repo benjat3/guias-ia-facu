@@ -338,3 +338,20 @@ Más allá del flujo operativo de 5 pasos para estudiar temas nuevos, el sistema
 - 📚 **Fundamentos:** [[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]
 - 🧭 **Autoevaluación:** [[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]
 - 📜 **Historial de Mejoras:** [[20. Áreas/Sistema de Estudio con IA/99 - Historial de Versiones (Changelog)\|99 - Historial de Versiones (Changelog)]]
+
+
+## 🤝 Propósito del Proyecto, Comunidad y Contacto
+
+Este sistema nació durante mis cursadas en la facultad con un único objetivo: **ayudar a cualquier estudiante universitario, de forma 100% gratuita, a estudiar mejor y a integrar las herramientas de Inteligencia Artificial de forma inteligente y exigente**, lejos de la pereza intelectual y los resúmenes pasivos.
+
+### 🌐 Filosofía Libre y Abierta
+* **Compartilo sin restricciones:** Este material es libre y abierto. Si te sirvió, compartilo con tus compañeros, usalo en grupos de estudio o pasáselo a los ingresantes.
+* **Creá tu propia versión:** Sos totalmente libre de tomar estos prompts, adaptarlos a tu carrera (sea otra ingeniería, medicina, derecho o ciencias exactas), modificar las reglas o armar tu propio flujo de estudio.
+
+### 📬 Contacto y Feedback
+No tengo redes sociales; soy simplemente un estudiante de Ingeniería Mecánica que armó este entorno para estudiar mejor y quiso dejarlo documentado para los demás.
+
+Si tenés alguna duda sobre cómo implementar el sistema, encontraste algún error en los prompts o se te ocurre una mejora técnica para sumar:
+* ✉️ **Contacto:** [duiliobtorres@gmail.com](mailto:duiliobtorres@gmail.com)
+
+Todo feedback o sugerencia constructiva es más que bienvenido. ¡Éxitos!

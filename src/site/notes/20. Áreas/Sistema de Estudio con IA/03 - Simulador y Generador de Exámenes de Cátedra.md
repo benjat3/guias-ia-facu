@@ -253,7 +253,7 @@ Markdown simple; sin tablas, bloques de código ni introducción.
     * SIN ANTECEDENTE — TP PROCESADO: habilidad ENSEÑADA+TP cuyo TP ya fue procesado y ninguno pasó el filtro.
     * SIN ANTECEDENTE — TP NO PROCESADO: habilidad ENSEÑADA+TP cuya práctica está en TP aún no procesado.
     * SIN ANTECEDENTE — CANDIDATA A BANCO TEÓRICO: par (Habilidad + Desempeño) teórico [C]/[D]/[J]/[I]/[G] marcado ENSEÑADA, o con material teórico procesado, sin Bxx de ninguna fuente para ese par. Otro desempeño de la misma habilidad no cuenta.
-    * ANOMALÍA MAPA/BANCO: habilidad EVALUADA o RECURRENTE en el mapa sin Bxx de EXAMEN asociado. Advertí: sin Bxx de ninguna fuente, caerán a S-A en el generador salvo antecedente en banco teórico (Prompt 2B).
+    * ANOMALÍA MAPA/BANCO: habilidad EVALUADA o RECURRENTE en el mapa sin Bxx de EXAMEN asociado. Advertí: sin Bxx de ninguna fuente, caerán a S-A en el generador salvo antecedente en banco teórico (Prompt 3B).
 
 ## BANCO — FORMATO
 

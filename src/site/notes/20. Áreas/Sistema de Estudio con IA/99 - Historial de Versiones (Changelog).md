@@ -181,7 +181,7 @@ El sistema no utiliza un único prompt con parámetros variables para evitar que
 
 * **Opción A (CON hoja de fórmulas):**  
   * *Filosofía:* La fórmula es una **herramienta de análisis, no un objeto de memoria**.
-  * *Mecánica:* La fórmula compleja se coloca obligatoriamente en el **anverso** como dato. La tarjeta evalúa qué variable domina en extremos, qué pasa con $Y$ si se duplica $X$, o qué significa físicamente un exponente. Solo las definiciones elementales (rendimientos, diferencias de cota) admiten memoria directa.
+  * *Mecánica:* La fórmula compleja se coloca obligatoriamente en el **anverso** como dato. La tarjeta evalúa qué variable domina en extremos, qué pasa con $Y$ si se duplica $X$, o qué significa físicamente un exponente. Solo las definiciones elementales (rendimientos, diferencias de cota) admiten memoria directa. Admite un parámetro de entrada para definir si se evalúan o no demostraciones paso a paso.
 * **Opción B (SIN hoja de fórmulas):**  
   * *Filosofía:* El alumno debe ser capaz de **escribir la ecuación desde cero en el examen**.
   * *Mecánica:* Se exige la producción activa y limpia de la fórmula sin pistas en el anverso. Las hipótesis de validez se desacoplan en una tarjeta separada para no recargar la memoria. Admite un parámetro de entrada para definir si se evalúan o no demostraciones paso a paso.
