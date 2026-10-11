@@ -326,6 +326,8 @@ Más allá del flujo operativo de 5 pasos para estudiar temas nuevos, el sistema
 * **¿Para qué sirve?** Es tu **prueba de honestidad antes del parcial**. Una suite de 4 listas de verificación diseñadas para auditar tus hábitos reales de estudio (o de docencia si sos ayudante). Su objetivo es destruir la *ilusión de competencia* (creer que sabés algo solo porque lo reconocés al leerlo) y comprobar si sos capaz de producir respuestas y deducciones desde cero en una hoja en blanco.
 * **¿Cuándo consultarla?** Entre 1 y 2 semanas antes de cada examen parcial o final, para detectar lagunas y saber si estás estudiando para *entender* o estudiando para *rendir*.  
 ➡️ **Ver índice de checklists:** [[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]
+
+--- 
 ## 🧭 Enlaces a las Herramientas del Sistema
 
 - 📋 **Paso 1:** [[20. Áreas/Sistema de Estudio con IA/01 - Extractor de Checklists\|01 - Extractor de Checklists]]
