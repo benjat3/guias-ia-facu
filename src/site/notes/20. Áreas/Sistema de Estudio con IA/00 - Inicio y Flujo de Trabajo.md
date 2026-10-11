@@ -2,9 +2,34 @@
 {"dg-publish":true,"permalink":"/20-areas/sistema-de-estudio-con-ia/00-inicio-y-flujo-de-trabajo/","title":"⚡ Sistema de Estudio con IA • Duilio Torres","tags":["guia","estudio-activo","workflow","ingenieria","gardenEntry"],"dg-note-properties":{"title":"⚡ Sistema de Estudio con IA • Duilio Torres","tags":["guia","estudio-activo","workflow","ingenieria","gardenEntry"]}}
 ---
 
-> 👨‍💻 **Desarrollado por Duilio** • Sistema de Estudio Universitario con IA
+> 👨‍💻 **Desarrollado por Duilio** • Sistema de Estudio Universitario con IA (Desarrollado específicamente para Ingeniería Mecánica, pero se ajusta a todo)
 ---
 # 🚀 Sistema de Estudio Activo con IA: Flujo Completo
+
+> [!NOTE] 📌 Sobre este sistema, autoría e Inteligencia Artificial
+> Este sistema y su documentación fueron estructurados y redactados en gran parte con asistencia de inteligencia artificial, **a partir de mis propias ideas, metodología de estudio y experiencia directa en materias de ingeniería**. 
+> 
+> Todo el contenido, los prompts y los flujos de trabajo fueron **rigurosamente chequeados, probados y validados en cursadas reales**. No obstante, ninguna herramienta es infalible: contrastá siempre los resultados con el material oficial y las exigencias de tu cátedra. Lo que importa es que en el examen vas a estar solo.
+
+---
+
+## ⚡ Índice de Acceso Rápido
+
+Si ya conocés el sistema y querés ir directo a una herramienta o guía puntual:
+
+| Herramienta / Módulo | ¿Para qué sirve? | Enlace directo |
+|---|---|---|
+| **Fase 1: Extractor de Checklists** | Extrae el temario atómico de la cursada sin inventar nada. | ➡️ **[[20. Áreas/Sistema de Estudio con IA/01 - Extractor de Checklists\|01 - Extractor de Checklists]]** |
+| **Fase 2: Tutor Personal Cognitivo** | Estudio socrático con micro-pacing (1 consigna x turno). | ➡️ **[[20. Áreas/Sistema de Estudio con IA/02 - Tutor Personal Cognitivo\|02 - Tutor Personal Cognitivo]]** |
+| **Fase 3: Simulador de Exámenes** | Genera simulacros reales con la firma de tu profesor. | ➡️ **[[20. Áreas/Sistema de Estudio con IA/03 - Simulador y Generador de Exámenes de Cátedra\|03 - Simulador y Generador de Exámenes de Cátedra]]** |
+| **Fase 4: Generador de Anki** | Crea mazos CSV en Google AI Studio (con/sin fórmulas). | ➡️ **[[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|04 - Generador de Tarjetas de Anki]]** |
+| **Fase 5: Importación en Anki** | Tutorial paso a paso de CSV e Image Occlusion. | ➡️ [Ir a la sección de importación](#fase-5-importación-image-occlusion-y-repaso-en-anki) |
+| **Infraestructura de Modelos** | Matriz de qué IA usar según la tarea y gestión de cuotas. | ➡️ **[[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]** |
+| **Biblioteca de Aprendizaje** | Los 6 libros científicos que fundamentan este sistema. | ➡️ **[[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]** |
+| **Checklists de Autoevaluación** | Guías para auditar cómo estudiás antes del parcial. | ➡️ **[[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]** |
+| **Historial de Versiones** | Changelog con la evolución de prompts y decisiones. | ➡️ **[[20. Áreas/Sistema de Estudio con IA/99 - Historial de Versiones (Changelog)\|99 - Historial de Versiones (Changelog)]]** |
+
+---
 
 Este sistema no busca que la IA te haga resúmenes pasivos ni te dé respuestas servidas. Su objetivo es aplicar los principios de la **ciencia del aprendizaje** (recuperación activa, repetición espaciada, entrelazado y andamiaje cognitivo) para preparar materias técnicas de ingeniería minimizando el tiempo muerto y garantizando el estándar real de examen de la cátedra.
 
@@ -291,5 +316,7 @@ Abrí el explorador (`B`), seleccioná una tarjeta convertida y seguí este fluj
 - 🧠 **Paso 2:** [[20. Áreas/Sistema de Estudio con IA/02 - Tutor Personal Cognitivo\|02 - Tutor Personal Cognitivo]]
 - 🎯 **Paso 3:** [[20. Áreas/Sistema de Estudio con IA/03 - Simulador y Generador de Exámenes de Cátedra\|03 - Simulador y Generador de Exámenes de Cátedra]]
 - 🗂️ **Paso 4:** [[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|04 - Generador de Tarjetas de Anki]]
-- 🤖 **Referencia Técnica:** [[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]
+- 🤖 **Infraestructura:** [[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]
+- 📚 **Fundamentos:** [[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]
+- 🧭 **Autoevaluación:** [[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]
 - 📜 **Historial de Mejoras:** [[20. Áreas/Sistema de Estudio con IA/99 - Historial de Versiones (Changelog)\|99 - Historial de Versiones (Changelog)]]
