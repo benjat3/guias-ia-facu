@@ -83,4 +83,4 @@ Esta página actúa como **fuente única de verdad** para la elección de plataf
 
 ## 🧭 Navegación
 *Volver a la guía general:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/00 - Inicio y Flujo de Trabajo\|00 - Inicio y Flujo de Trabajo]]**  
-*Ver registro histórico de cambios:* ➡️ **[[99 - Historial de Versiones (Changelog)\|99 - Historial de Versiones (Changelog)]]**
+*Ver registro histórico de cambios:* ➡️ **[[20. Áreas/Sistema de Estudio con IA/99 - Historial de Versiones (Changelog)\|99 - Historial de Versiones (Changelog)]]**

@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/20-areas/sistema-de-estudio-con-ia/00-inicio-y-flujo-de-trabajo/","title":"00 - Inicio y Flujo de Trabajo","tags":["guia","estudio-activo","workflow","ingenieria","gardenEntry"],"dg-note-properties":{"title":"00 - Inicio y Flujo de Trabajo","tags":["guia","estudio-activo","workflow","ingenieria","gardenEntry"]}}
+{"dg-publish":true,"permalink":"/20-areas/sistema-de-estudio-con-ia/00-inicio-y-flujo-de-trabajo/","title":"⚡ Sistema de Estudio con IA • Duilio Torres","tags":["guia","estudio-activo","workflow","ingenieria","gardenEntry"],"dg-note-properties":{"title":"⚡ Sistema de Estudio con IA • Duilio Torres","tags":["guia","estudio-activo","workflow","ingenieria","gardenEntry"]}}
 ---
 
 > 👨‍💻 **Desarrollado por Duilio** • Sistema de Estudio Universitario con IA
@@ -292,4 +292,4 @@ Abrí el explorador (`B`), seleccioná una tarjeta convertida y seguí este fluj
 - 🎯 **Paso 3:** [[20. Áreas/Sistema de Estudio con IA/03 - Simulador y Generador de Exámenes de Cátedra\|03 - Simulador y Generador de Exámenes de Cátedra]]
 - 🗂️ **Paso 4:** [[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|04 - Generador de Tarjetas de Anki]]
 - 🤖 **Referencia Técnica:** [[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]
-- 📜 **Historial de Mejoras:** [[99 - Historial de Versiones (Changelog)\|99 - Historial de Versiones (Changelog)]]
+- 📜 **Historial de Mejoras:** [[20. Áreas/Sistema de Estudio con IA/99 - Historial de Versiones (Changelog)\|99 - Historial de Versiones (Changelog)]]
