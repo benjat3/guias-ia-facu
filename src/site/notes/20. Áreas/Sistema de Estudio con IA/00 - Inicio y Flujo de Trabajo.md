@@ -17,17 +17,16 @@
 
 Si ya conocés el sistema y querés ir directo a una herramienta o guía puntual:
 
-| Herramienta / Módulo | ¿Para qué sirve? | Enlace directo |
-|---|---|---|
-| **Fase 1: Extractor de Checklists** | Extrae el temario atómico de la cursada sin inventar nada. | ➡️ **[[20. Áreas/Sistema de Estudio con IA/01 - Extractor de Checklists\|01 - Extractor de Checklists]]** |
-| **Fase 2: Tutor Personal Cognitivo** | Estudio socrático con micro-pacing (1 consigna x turno). | ➡️ **[[20. Áreas/Sistema de Estudio con IA/02 - Tutor Personal Cognitivo\|02 - Tutor Personal Cognitivo]]** |
-| **Fase 3: Simulador de Exámenes** | Genera simulacros reales con la firma de tu profesor. | ➡️ **[[20. Áreas/Sistema de Estudio con IA/03 - Simulador y Generador de Exámenes de Cátedra\|03 - Simulador y Generador de Exámenes de Cátedra]]** |
-| **Fase 4: Generador de Anki** | Crea mazos CSV en Google AI Studio (con/sin fórmulas). | ➡️ **[[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|04 - Generador de Tarjetas de Anki]]** |
-| **Fase 5: Importación en Anki** | Tutorial paso a paso de CSV e Image Occlusion. | ➡️ [Ir a la sección de importación](#fase-5-importación-image-occlusion-y-repaso-en-anki) |
-| **Infraestructura de Modelos** | Matriz de qué IA usar según la tarea y gestión de cuotas. | ➡️ **[[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]** |
-| **Biblioteca de Aprendizaje** | Los 6 libros científicos que fundamentan este sistema. | ➡️ **[[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]** |
-| **Checklists de Autoevaluación** | Guías para auditar cómo estudiás antes del parcial. | ➡️ **[[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]** |
-| **Historial de Versiones** | Changelog con la evolución de prompts y decisiones. | ➡️ **[[20. Áreas/Sistema de Estudio con IA/99 - Historial de Versiones (Changelog)\|99 - Historial de Versiones (Changelog)]]** |
+| Herramienta / Módulo                 | ¿Para qué sirve?                                           | Enlace directo                                               |
+| ------------------------------------ | ---------------------------------------------------------- | ------------------------------------------------------------ |
+| **Fase 1: Extractor de Checklists**  | Extrae el temario atómico de la cursada sin inventar nada. | ➡️ **[[20. Áreas/Sistema de Estudio con IA/01 - Extractor de Checklists\|01 - Extractor de Checklists]]**                      |
+| **Fase 2: Tutor Personal Cognitivo** | Estudio socrático con micro-pacing (1 consigna x turno).   | ➡️ **[[20. Áreas/Sistema de Estudio con IA/02 - Tutor Personal Cognitivo\|02 - Tutor Personal Cognitivo]]**                     |
+| **Fase 3: Simulador de Exámenes**    | Genera simulacros reales con la firma de tu profesor.      | ➡️ **[[20. Áreas/Sistema de Estudio con IA/03 - Simulador y Generador de Exámenes de Cátedra\|03 - Simulador y Generador de Exámenes de Cátedra]]** |
+| **Fase 4: Generador de Anki**        | Crea mazos CSV en Google AI Studio (con/sin fórmulas).     | ➡️ **[[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|04 - Generador de Tarjetas de Anki]]**                |
+| **Infraestructura de Modelos**       | Matriz de qué IA usar según la tarea y gestión de cuotas.  | ➡️ **[[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]**               |
+| **Biblioteca de Aprendizaje**        | Los 6 libros científicos que fundamentan este sistema.     | ➡️ **[[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]**        |
+| **Checklists de Autoevaluación**     | Guías para auditar cómo estudiás antes del examen.         | ➡️ **[[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]**  |
+| **Historial de Versiones**           | Changelog con la evolución de prompts y decisiones.        | ➡️ **[[20. Áreas/Sistema de Estudio con IA/99 - Historial de Versiones (Changelog)\|99 - Historial de Versiones (Changelog)]]**           |
 
 ---
 

@@ -186,17 +186,63 @@ El sistema no utiliza un único prompt con parámetros variables para evitar que
   * *Filosofía:* El alumno debe ser capaz de **escribir la ecuación desde cero en el examen**.
   * *Mecánica:* Se exige la producción activa y limpia de la fórmula sin pistas en el anverso. Las hipótesis de validez se desacoplan en una tarjeta separada para no recargar la memoria. Admite un parámetro de entrada para definir si se evalúan o no demostraciones paso a paso.
 ---
+## 📚 6. Incorporación de la Biblioteca de Ciencia del Aprendizaje (Módulo Nuevo)
 
+### 🔍 Resumen del Módulo
+En la versión anterior, los fundamentos teóricos del sistema estaban implícitos en las reglas de los prompts, pero no existía una sección que documentara de dónde salían esas decisiones pedagógicas. 
+
+La **Versión 2 (Octubre 2026)** incorpora la página **`06 - Biblioteca de Ciencia del Aprendizaje`**, una selección curada de 6 obras clave sobre psicología cognitiva y didáctica técnica universitaria.
+
+---
+
+### 🏛️ Los 6 Pilares Bibliográficos del Sistema
+
+1. **Make It Stick (Brown, Roediger, McDaniel):** La base empírica de laboratorio que fundamenta la *recuperación activa*, el *espaciado* y por qué el estudio debe costar cognitivamente para generar retención a largo plazo.
+2. **How to Become a Straight-A Student (Cal Newport):** Guía táctica universitaria que aporta la distinción fundamental para ingeniería: cómo estudiar materias teóricas vs. materias de resolución numérica.
+3. **Peak (Anders Ericsson, Robert Pool):** El marco de la *Práctica Deliberada*, el diseño de representaciones mentales y la corrección de fallas raíz que estructura el sistema de tracking.
+4. **How I Wish I'd Taught Maths (Craig Barton):** Didáctica matemática dura, teoría de la carga cognitiva y el *Worked Example Effect* que inspiró las reglas de micro-pacing y ejemplos paralelos del Tutor V4.
+5. **Ultralearning (Scott Young):** Principio de *Transferencia Directa (Directness)* y ataque a subhabilidades que fundamenta el simulador forense de exámenes (Paso 3).
+6. **Powerful Teaching (Agarwal, Bain):** Herramientas de aula para calibrar la confianza del alumno frente a su desempeño real (matriz de andamiaje).
+
+---
+
+## 🧭 7. Incorporación de las Guías y Checklists de Autoevaluación (Módulo Nuevo)
+
+### 🔍 Resumen del Módulo
+Se agregó una suite de **4 guías de autoevaluación diagnóstica** organizadas a través de un índice central (**`07`**) para que el estudiante (o docente) audite con honestidad sus hábitos de estudio antes de rendir. 
+
+El objetivo es combatir la **ilusión de competencia** (creer que sabés un tema solo porque lo reconocés al leerlo) y asegurar que el entrenamiento apunte a *producir respuestas por cuenta propia sin ayuda*.
+
+---
+
+### 📑 Arquitectura de la Serie de Guías
+
+| Archivo    | Destinatario / Tipo de Materia            | Enfoque de Autoevaluación                                                                                                     |
+| ---------- | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| **`07.1`** | **Materias Mixtas (Teoría y Ejercicios)** | La guía principal para la mayoría de las materias de ingeniería: conecta la teoría con el planteo de problemas y deducciones. |
+| **`07.2`** | **Ejercicios y Resolución de Problemas**  | Materias de cálculo puro (Mecanismos, Estructuras, Álgebra): esquemas previos, planteo sin cuentas y patrones de error.       |
+| **`07.3`** | **Teoría y Demostraciones**               | Materias conceptuales (Termodinámica, Materiales): reconstrucción de demostraciones por tramos y preguntas de criterio.       |
+| **`07.4`** | **Docentes, Ayudantes y Tutores**         | Para quienes dan clases o consultas: actividades cortas en aula, feedback clínico y diseño de exámenes cronometrados justos.  |
+
+---
+
+### 💡 Innovación: La Regla de los Ítems con Estrella (★)
+Para evitar la parálisis por sobrecarga (cada guía tiene entre 30 y 40 ítems), el sistema introduce la **Regla de las Estrellas (★)**:
+* Identifica los **5 o 6 hábitos de mayor apalancamiento** (intentar sin mirar, espaciar temas viejos con nuevos, practicar en condiciones reales y rehacer lo fallado en otro día).
+* Permite que el alumno audite su estudio empezando solo por esos puntos críticos antes de intentar modificar toda su rutina.
 ## 📌 Conclusión y Estado del Sistema (V2 - Octubre 2026)
 
-Con estas cinco herramientas integradas, el sistema cubre el ciclo completo del aprendizaje técnico universitario:
-1. **Mapeo:** Extracción curricular sin lagunas ni invenciones (`01`).
+Con estos siete módulos integrados, el sistema cubre el ciclo completo del aprendizaje técnico universitario (desde la base científica hasta la rendición del examen):
+
+1. **Mapeo Curricular:** Extracción atómica de temas sin lagunas ni invenciones (`01`).
 2. **Comprensión Activa:** Destrucción socrática de errores conceptuales con micro-pacing (`02`).
 3. **Calibración Forense:** Exámenes de prueba con el formato y cuota matemática real de tu cátedra (`03`).
 4. **Retención a Largo Plazo:** Mazos de repetición espaciada quirúrgicos y sin fricción (`04`).
-5. **Infraestructura:** Optimización de cuotas y modelos de razonamiento (`05`).
+5. **Infraestructura de Modelos:** Optimización de cuotas, parámetros de razonamiento y plataformas (`05`).
+6. **Fundamentos Teóricos:** La base de literatura científica que justifica cada regla pedagógica (`06`).
+7. **Diagnóstico Metacognitivo:** Checklists para auditar tus hábitos reales antes del parcial (`07`).
 
-El objetivo final no es estudiar más horas, sino que cada minuto invertido frente a la pantalla tenga un retorno medible en comprensión y rendimiento de examen.
+El objetivo final no es estudiar más horas, sino que cada minuto invertido frente a la pantalla tenga un retorno medible en comprensión profunda y rendimiento de examen.
 
 ---
 
