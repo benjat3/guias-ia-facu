@@ -2,6 +2,7 @@
 {"dg-publish":true,"permalink":"/20-areas/sistema-de-estudio-con-ia/00-inicio-y-flujo-de-trabajo/","title":"Sistema de Estudio con IA • Duilio Torres","tags":["guia","estudio-activo","workflow","ingenieria","gardenEntry"],"dg-note-properties":{"title":"Sistema de Estudio con IA • Duilio Torres","tags":["guia","estudio-activo","workflow","ingenieria","gardenEntry"]}}
 ---
 
+
 > 👨‍💻 **Desarrollado por Duilio** • Sistema de Estudio Universitario con IA (Desarrollado específicamente para Ingeniería Mecánica, pero se ajusta a todo)
 ---
 # 🚀 Sistema de Estudio Activo con IA: Flujo Completo
@@ -11,7 +12,13 @@
 > 
 > Todo el contenido, los prompts y los flujos de trabajo fueron **rigurosamente chequeados, probados y validados en cursadas reales**. No obstante, ninguna herramienta es infalible: contrastá siempre los resultados con el material oficial y las exigencias de tu cátedra. Lo que importa es que en el examen vas a estar solo.
 
+> [!WARNING] ⚠️ ADVERTENCIA CRÍTICA (15/10/2026): Brecha de Modelos, Omisión Silenciosa y el Valor de NotebookLM
+> 1. **NotebookLM ha quedado rezagado en razonamiento:** Frente a motores modernos como **Gemini 3.8 Flash (Thinking: High)** —gratuito en Google AI Studio— o **Gemini Argon**, el modelo de NotebookLM ha perdido terreno. Hoy es notablemente más flojo para jerarquizar conceptos finos, estructurar checklists y redactar problemas de examen matemáticamente válidos.
+> 2. **Peligro de omisión silenciosa y pereza cognitiva:** Todo modelo de lenguaje tiende a la compresión perezosa si le pasás mucho material junto: resume de más, saltea variantes de TP y omite tablas o gráficos asegurando que "cubrió todo". **NotebookLM es especialmente propenso a saltear información sin avisar**. Nunca des por completa una extracción sin auditarla contra tus apuntes.
+> 3. **Por qué NotebookLM sigue siendo insustituible (El Repositorio Central):** A pesar de su menor capacidad de razonamiento, NotebookLM tiene una ventaja operativa imbatible: **te permite cargar una sola vez los 40 archivos de la cursada (diapositivas, libros, TPs, parciales y audios) y tenerlos siempre listos en un único cuaderno**. En cambio, en Google AI Studio, Gemini Web o Claude tenés la fricción de tener que buscar en tu PC y **subir a mano los PDFs específicos cada vez que abrís un chat nuevo** para no saturar el contexto. Además, NotebookLM ofrece **cuota ilimitada de mensajes** y **citas clickeables nativas**.
+
 ---
+
 
 ## ⚡ Índice de Acceso Rápido
 
@@ -41,46 +48,26 @@ Este sistema no busca que la IA te haga resúmenes pasivos ni te dé respuestas 
 
 ## 🗺️ Mapa Global del Flujo (Arquitectura de 5 Fases)
 
-```text
-       [ FUENTES DE LA CÁTEDRA ] (PDFs, PPTs, TPs, Exámenes anteriores)
-                                   │
-                                   ▼
-  ┌─────────────────────────────────────────────────────────────────┐
-  │ FASE 1: CHECKLIST ATÓMICA DE ESTUDIO                            │
-  │ • Entorno: NotebookLM + Gemini Web (Gemini 3.8 Flash)           │
-  │ • Objetivo: Extracción doble y fusión en Obsidian (- [ ])       │
-  └────────────────────────────────┬────────────────────────────────┘
-                                   │
-                                   ▼
-  ┌─────────────────────────────────────────────────────────────────┐
-  │ FASE 2: ESTUDIO ACTIVO CON EL TUTOR COGNITIVO                   │
-  │ • Entorno: NotebookLM (Directivas inyectadas vía Bypass)        │
-  │ • Objetivo: Micro-pacing socrático (1 idea x mensaje) y clínica │
-  └────────────────────────────────┬────────────────────────────────┘
-                                   │
-                                   ▼
-  ┌─────────────────────────────────────────────────────────────────┐
-  │ FASE 3: SIMULADOR Y GENERADOR DE EXÁMENES DE CÁTEDRA            │
-  │ • Minería (Pasos 1-3B): NotebookLM (mapa, banco y modelo)       │
-  │ • Generación (Paso 4): Gemini Flash High o Claude Sonnet 5.5    │
-  │ • Objetivo: Simulacros reales (Bucle interactivo o Pack listo)  │
-  └────────────────────────────────┬────────────────────────────────┘
-                                   │
-                                   ▼
-  ┌─────────────────────────────────────────────────────────────────┐
-  │ FASE 4: GENERACIÓN DE TARJETAS DE ANKI                          │
-  │ • Entorno: Google AI Studio (Thinking High + Media Res High)    │
-  │ • Objetivo: CSV automatizado (Con / Sin hoja de fórmulas)       │
-  └────────────────────────────────┬────────────────────────────────┘
-                                   │
-                                   ▼
-  ┌─────────────────────────────────────────────────────────────────┐
-  │ FASE 5: IMPORTACIÓN, IMAGE OCCLUSION Y REPASO ESPACIADO         │
-  │ • Entorno: Anki Desktop + AnkiDroid                             │
-  │ • Objetivo: Conversión visual de esquemas y sincronización nube │
-  └─────────────────────────────────────────────────────────────────┘
-```
+```mermaid
+flowchart TD
+    FUENTES["<b>FUENTES DE LA CÁTEDRA</b><br>(PDFs, PPTs, TPs, Exámenes anteriores)"]
+    
+    F1["<b>FASE 1: CHECKLIST ATÓMICA DE ESTUDIO</b><br>• Entorno: [Nivel: Alto Razonamiento] o NotebookLM<br>• Objetivo: Extracción secuencial en casillas (- [ ])"]
+    
+    F2["<b>FASE 2: ESTUDIO ACTIVO CON EL TUTOR COGNITIVO</b><br>• Entorno: NotebookLM o [Nivel: Alto Razonamiento]<br>• Objetivo: Micro-pacing socrático (1 idea x turno)"]
+    
+    F3["<b>FASE 3: SIMULADOR Y GENERADOR DE EXÁMENES</b><br>• Minería: NotebookLM (mapa, banco y modelo)<br>• Redacción: [Nivel: Alto Razonamiento]<br>• Objetivo: Simulacros reales (Bucle interactivo o Paquete)"]
+    
+    F4["<b>FASE 4: GENERACIÓN DE TARJETAS DE ANKI</b><br>• Entorno: Google AI Studio [Thinking High]<br>• Objetivo: CSV automatizado (Con / Sin fórmulas)"]
+    
+    F5["<b>FASE 5: IMPORTACIÓN, IMAGE OCCLUSION Y REPASO</b><br>• Entorno: Anki Desktop + AnkiDroid<br>• Objetivo: Oclusión visual de esquemas y sincronización"]
 
+    FUENTES --> F1
+    F1 --> F2
+    F2 --> F3
+    F3 --> F4
+    F4 --> F5
+```
 ---
 
 ## Fase 1: Carga de Fuentes y Checklist Curricular
