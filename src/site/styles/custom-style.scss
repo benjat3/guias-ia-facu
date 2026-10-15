@@ -34,3 +34,18 @@ body, h1, h2, h3, h4, h5, h6, p, li, .content, blockquote {
 p, li {
     font-size: 1.02rem !important;
 }
+/* ==========================================================================
+   📐 CENTRADO DE DIAGRAMAS MERMAID
+   ========================================================================== */
+.mermaid,
+.block-language-mermaid {
+  display: flex !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+.mermaid svg,
+.block-language-mermaid svg {
+  margin: 0 auto !important;
+}
+/* ========================================================================== */
