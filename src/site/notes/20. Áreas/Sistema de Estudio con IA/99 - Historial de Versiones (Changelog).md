@@ -3,256 +3,103 @@
 ---
 
 
-# 📜 Historial de Versiones y Registro de Cambios
 
-Este documento detalla la evolución técnica del sistema respecto a la versión anterior (Septiembre 2026), explicando qué cambió, por qué se modificó y cuál es el impacto concreto en el rendimiento de estudio.
+# 📜 Historial de Versiones y Registro de Cambios Técnicos
 
----
-
-## 🌐 1. Evolución del Sistema Completo y Arquitectura Global
-
-| Dimensión | Versión Anterior (V1 - Sep 2026) | Versión Actual (V2 - Oct 2026) | Impacto Práctico |
-|---|---|---|---|
-| **Estructura del Flujo** | 4 fases lineales (Checklist ➔ Tutor ➔ Anki ➔ Repaso). | **5 fases modulares integradas** (Checklist ➔ Tutor ➔ **Exámenes de Cátedra** ➔ Anki ➔ Repaso). | Cierra la brecha entre el estudio diario y el rendimiento bajo presión de examen real. |
-| **Simulación de Exámenes** | Inexistente (solo consignas aisladas en el tutor). | **Fase 3 completa dedicada:** Minería forense en NotebookLM y redacción de parciales reales. | Permite auto-evaluarse a ciegas o exportar simulacros listos con clave para compartir con compañeros. |
-| **Entorno para Tarjetas Anki** | Gemini Web (`gemini.google.com`). | **Google AI Studio** (`aistudio.google.com`). | Cero filtros comerciales, prompts guardados en *System Instructions* y mayor rigidez en el formato CSV. |
-| **Límite de Directivas en NotebookLM** | Restringido al tope nativo de 10.000 caracteres. | **Bypass descubierto:** Carga vía Gemini Web (`27k / 10k`). | Permite ejecutar un sistema pedagógico mucho más quirúrgico sin mutilar reglas de andamiaje. |
-| **Estrategia de Extracción** | Un solo pase en Gemini Web con cuaderno vinculado. | **Fusión cruzada en dos pases:** NotebookLM + Gemini Flash 3.8. | Elimina sesgos de un solo modelo y garantiza que no se omitan temas finos ni casos de TP. |
-| **Ritmo de Estudio del Tutor** | Procesamiento por lotes medianos (4 a 8 ítems juntos). | **Micro-pacing estricto** (1 sola consigna de 1 idea por turno). | Reduce la fatiga cognitiva, evita que la IA mezcle conceptos y asegura control clínico paso a paso. |
-| **Orquestación Multimodelo** | Dependencia casi exclusiva del ecosistema Gemini. | **Ecosistema Híbrido Optimizado:** NotebookLM (minería) + Flash 3.8 (Anki/Checklists) + Claude Sonnet 5.5 (redacción de exámenes). | Usa cada modelo en lo que es objetivamente mejor, maximizando cuotas gratuitas. |
+Este documento registra la evolución técnica, las pruebas descartadas y las mejoras pedagógicas de cada herramienta del sistema, explicando qué cambió, por qué se modificó y cómo impacta en el estudio real.
 
 ---
 
-### 🔑 Principales Hitos Arquitectónicos
+## 🌐 1. Evolución de la Arquitectura Global
 
-1. **Incorporación del Generador Forense de Exámenes:**
-   * En la versión anterior faltaba una herramienta para evaluar la integración global de la materia. Ahora el sistema audita parciales viejos, calcula recurrencias matemáticas reales ($n/N$), formaliza la "firma de evaluación" del profesor y genera simulacros hiperrealistas.
-2. **Desacople entre Minería y Redacción:**
-   * Se comprobó empíricamente que **NotebookLM es pésimo redactando exámenes completos** (alucina con facilidad al armar problemas nuevos). La arquitectura ahora separa la **minería de evidencia** (Pasos 1 al 3B en NotebookLM) de la **redacción final** (Paso 4 en Gemini Flash High o Claude Sonnet 5.5).
-3. **Migración técnica a Google AI Studio para Anki:**
-   * Gemini Web suele relajar instrucciones negativas por estar optimizado para usuarios casuales. Mover la generación de Anki a AI Studio permitió forzar *Thinking level: High*, *Media resolution: High* y guardar los prompts como presets permanentes en *System Instructions*.
-## 📋 2. Extractor de Checklists Atómicas
-
-### 🔍 Resumen del Cambio
-El prompt base **se mantuvo idéntico en su formulación y reglas** (demostró una eficacia altísima para evitar alucinaciones), pero se rediseñó por completo **su método de ejecución**, pasando de una extracción simple a una **estrategia de validación cruzada y fusión**.
-
----
-
-### ⚖️ Comparativa: Antes vs. Ahora
-
-| Aspecto | Versión Anterior (Sep 2026) | Versión Actual (Oct 2026) |
-|---|---|---|
-| **Prompt Base** | Mismo texto (regla de oro de cero invención, filtro de libros y formato `- [ ]`). | **Sin cambios:** Mismo prompt base conservado por su probada fidelidad documental. |
-| **Flujo de Ejecución** | **Pase único:** Se corría solo en Gemini Web con el cuaderno vinculado. | **Doble extracción independiente:** Se corre primero en NotebookLM y luego en Gemini Flash 3.8. |
-| **Control de Omisiones** | Manual (revisar a ojo si faltaba algo del PDF). | **Automatizado mediante Fusión:** Nuevo prompt auxiliar que cruza ambas versiones y genera la lista definitiva. |
-| **Riesgo de Sesgo** | Si el modelo resumía por pereza cognitiva, ese tema se perdía. | **Eliminado:** Lo que se le escapa a NotebookLM lo captura Gemini Flash, y viceversa. |
+| Dimensión | Versión Inicial (V1 - Sep 2026) | Versión Consolidada (V2 - Oct 2026) | Versión Definitiva (V2.2 - 15/10/2026) | Impacto Práctico en el Estudio |
+| :--- | :--- | :--- | :--- | :--- |
+| **Estructura del Flujo** | 4 fases lineales (Checklist ➔ Tutor ➔ Anki ➔ Repaso). | 5 fases modulares (+ Simulador de Exámenes). | **5 fases principales + 1 Módulo Satélite Opcional** (**[[20. Áreas/Sistema de Estudio con IA/01B - Extractor de Clases y Voz de la Cátedra\|01B - Extractor de Clases y Voz de la Cátedra]]**). | Cubre todo el ciclo: desde auditar clases grabadas hasta rendir simulacros y fijar en Anki. |
+| **Orquestación de Modelos** | Dependencia casi exclusiva del chat comercial de Gemini. | Ecosistema híbrido fijo (NotebookLM + Flash 3.8 + Sonnet 5.5). | **Desacople por Etiquetas Cognitivas:** `[Alto Razonamiento]` y `[Minería y Recuperación]`, centralizadas en **[[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]**. | El sistema no queda obsoleto cuando cambian las versiones de los modelos; mejor cuidado de cuotas. |
+| **Modelos de Alto Razonamiento** | Modelos generales sin razonamiento paso a paso (*Thinking off*). | Gemini 3.8 Flash High y Claude Sonnet 5.5 Medium. | **Gemini 3.8 Flash High** en AI Studio como estándar gratuito + incorporación de **Gemini Argon** (en pruebas para planes pagos). | Cálculos de balance físico confiables, cero alucinaciones en estados de tablas y LaTeX limpio. |
+| **Rol de NotebookLM** | Asumido como "cuota infinita" y apto para cualquier tarea. | Descubrimiento del bypass de 27k caracteres para el Tutor V4. | **Sinceramiento de límites:** Cuota muy amplia (no infinita), rezago en razonamiento y prohibición de redactar exámenes. | Se usa donde es imbatible: como biblioteca central de 40 archivos con citas clickeables. |
+| **Extracción de Checklists** | Un solo pase en Gemini Web con cuaderno vinculado. | Fusión cruzada en dos pases (NotebookLM + Gemini Web). | **Extractor Secuencial por Unidad:** Una sola unidad por turno en AI Studio / Argon con comando `Seguí`. | Se eliminó el trabajo doble de cruzar dos IAs y se erradicó la omisión silenciosa de temas. |
+| **Simulador de Exámenes** | Inexistente (solo preguntas sueltas en el tutor). | Suite forense V1.0 de 4 pasos. | **Suite Forense V2.2:** Denominador real $n/N$ por unidad, pre-cálculo físico de ejercicios gemelos, cero spoilers y paquetes en Ruta B. | Simulacros fieles a los parciales reales de la cátedra listos para resolver o exportar a PDF. |
+| **Generador de Anki** | Gemini Web comercial. | Google AI Studio (V2.1 con System Instructions y High/High). | **Anki V2.2:** Prohibición de comillas dobles `"`, LaTeX puro sin tags HTML adentro y campo `Back Extra` enriquecido en Image Occlusion. | Mazos CSV que importan sin errores ni fórmulas rotas en Anki Desktop y AnkiDroid. |
 
 ---
 
-### 🛠️ Novedad Operativa: El Prompt de Fusión y Consolidación
-* Se creó una **segunda instrucción encadenada** para usar dentro del chat de Gemini Web.
-* Tras generar su propia checklist, se le inyecta la versión obtenida en NotebookLM con la orden explícita de:
-  1. Integrar casos particulares o tipos de ejercicio que una versión haya pasado por alto.
-  2. Eliminar redundancias cuando ambas describan lo mismo con palabras distintas.
-  3. Devolver un único bloque Markdown limpio consolidado para Obsidian.
-## 🧠 3. Evolución del Tutor Personal Cognitivo (De V1 a V4)
+## 📋 2. Extractor de Checklists (`[[01 - Extractor de Checklists]]`)
 
-### 🔍 Resumen del Gran Salto Pedagógico
-En la versión anterior (**V2.2 - Septiembre 2026**), el tutor trabajaba por **lotes medianos (3 a 8 actividades agrupadas)** para lidiar con la latencia del chat. 
+### 🔍 Por qué se descartó la «Fusión de dos IAs» y se pasó al Motor Secuencial
+A principios de octubre se probó extraer una checklist en NotebookLM, otra en Gemini Web y unirlas con un tercer prompt. En la práctica se descartó por dos razones contundentes:
+1. **NotebookLM estructura mal las checklists** (hace resúmenes superficiales y saltea ejercicios de las guías), por lo que cruzarlo con Gemini solo daba trabajo extra sin aportar nada nuevo.
+2. **El conector de cuadernos de NotebookLM dentro de Gemini Web (`gemini.google.com`) falla al indexar archivos** e ignora PDFs enteros.
 
-Aunque era estable, la práctica real demostró que los lotes sobrecargaban la memoria de trabajo y permitían que la IA regalara pistas intermedias. La nueva **V4 (Octubre 2026)** introduce un cambio de paradigma radical: **Micro-pacing implacable** (una sola consigna corta por mensaje), protocolo **anti-fugas estricto**, soporte visual contextual y la ruptura del límite de caracteres mediante el **bypass de 27k**.
+La versión **V2.2 Secuencial** procesa **una sola unidad por mensaje** directamente en **Google AI Studio (`Gemini 3.8 Flash High`)** o **Gemini Argon** subiendo los PDFs desde la computadora:
 
----
-
-### ⏳ Línea de Tiempo Evolutiva de Versiones
-
-* **Familia V1 (V1.0 ➔ V1.2):** Versiones iniciales basadas en principios cognitivos teóricos puros (14 reglas). Foco en andamiaje, analogías y autoexplicación.
-* **Familia V2 (V2.0 ➔ V2.2):** Introducción de la *Epistemología Híbrida* y el **estudio por lotes** para NotebookLM. La V2.0 fue inestable; la V2.2 se convirtió en el estándar de la guía anterior.
-* **Familia V3 (V3.0 ➔ V3.1 Beta):** Primeras pruebas de **micro-pacing** y soporte visual con búsqueda en Google Imágenes.
-* **Versión V4 Actual (V4 Compacta <10k y V4 Quirúrgica ~27k):** La arquitectura definitiva. Incorpora verificación numérica obligatoria, reglas anti-pistas repetidas deliberadamente, y el cierre integrador de punta a punta.
+| Aspecto | Versión Anterior (Fusión Doble) | Versión Actual (V2.2 Secuencial) | Mejora Obtenida |
+| :--- | :--- | :--- | :--- |
+| **Entorno** | NotebookLM + Gemini Web conectado a cuaderno. | **Google AI Studio** o **Gemini Argon** (PDFs subidos desde la PC). | Lectura completa de todos los archivos sin el bug del conector de Gemini Web. |
+| **Ritmo de salida** | Pedir varias unidades juntas o fusionar borradores. | **Una unidad por turno** (`DESDE EL PRINCIPIO` ➔ `PAUSA` ➔ `'Seguí'`). | La IA dedica todo su espacio de respuesta a una sola unidad sin recortar los últimos temas. |
+| **Orden interno** | Seguía el orden desparejo de las diapositivas. | **Secuencia fija:** 1° Conceptos ➔ 2° Deducciones ➔ 3° Gráficos/Equipos ➔ 4° Arquetipos de TP. | Ordenado exactamente en la secuencia lógica en que se estudia la unidad. |
+| **Regla Anti-Spoiler** | Las casillas solían incluir la fórmula o la respuesta. | **Sin spoilers:** Indica qué relación dominar pero oculta la ecuación y el resultado. | Evita que la casilla te sople la respuesta antes de estudiarla con el Tutor Cognitivo. |
+| **Guías de TP** | Listaba cada ejercicio suelto o los omitía. | **Agrupación por arquetipo:** `(TP X: Ej. 1, 2 y 4)`. | Agrupa los ejercicios que se resuelven con el mismo modelo físico e indica cuáles son. |
 
 ---
 
-### ⚖️ Comparativa Detallada: V2.2 (Anterior) vs. V4 (Actual)
+## 🎙️ 3. Extractor de Clases y Voz de la Cátedra (`[[01B - Extractor de Clases y Voz de la Cátedra]]`)
 
-| Dimensión | Versión V2.2 (Sep 2026) | Versión V4 (Oct 2026) | Justificación del Cambio |
-|---|---|---|---|
-| **Ritmo de Interacción** | **Lotes dinámicos:** Bloques de 4 a 8 actividades por respuesta. | **Micro-pacing estricto:** 1 sola consigna de 1 idea por turno (al final del mensaje). | Los lotes diluían el esfuerzo activo; el micro-pacing obliga a pensar y justificar cada paso. |
-| **Tamaño de Prompt** | ~6.000 caracteres (dentro del límite nativo). | **Bifurcación Dual:**<br>• V4 Completa: **~27.200 caracteres** (vía bypass).<br>• V4 Compacta: **~9.900 caracteres** (plug & play). | La versión de 27k permite blindar el prompt contra todas las mañas y deslices del modelo. |
-| **Protocolo Anti-Fuga** | Pistas progresivas estándar. | **Tolerancia cero a pistas:** Prohibido usar "sabiendo que...", revelar variables intermedias o adjetivos delatores (ej: *"es inerte"*). | La IA tendía a soplar la respuesta dentro de la misma pregunta. |
-| **Recursos Visuales** | Sugerencia pasiva de "codificación dual". | **Línea `Visual:` obligatoria:**<br>1° Cita nativa a figuras del PDF.<br>2° Query exacta para Google Imágenes.<br>3° Mermaid/ASCII solo para flujos.<br>*(Ecuaciones y tablas no son visuales).* | Evita que el modelo mande a ver diapositivas que solo tienen texto o fórmulas. |
-| **Criterio de Dominio** | Se infería del historial acumulado de aciertos. | **Regla anti-ilusión de dominio:** Nada de lo explicado o corregido en la sesión pasa a "Dominado" ese mismo día (queda como "Visto con ayuda"). | Exige recuperación sin ayuda en una sesión posterior o en el *brain dump* para declarar dominio. |
-| **Verificación Numérica** | Corrección heurística estándar. | **Auditoría matemática previa:** El modelo debe derivar y recalcular el problema antes de marcar un error al alumno. | La IA marcaba errores conceptuales falsos por deslices aritméticos propios o diferencias de redondeo. |
-| **Citas a Fuentes** | Nombre de archivo y página en texto. | **Citas nativas clickeables de NotebookLM** (números en círculo). | Agiliza el contraste inmediato sin tener que buscar la página manualmente. |
-| **Cierre de Tema** | Práctica intercalada / Drills teóricos. | **Cierre Integrador:** Explicación abierta de punta a punta con palabras propias. | Los ejercicios intercalados por IA fallaban; la síntesis global propia demostró mucha más retención. |
+Para las materias que graban sus clases en video, la versión **V2 Compacta (Anti-Bucle)** solucionó los cuatro problemas técnicos que tenía la V1 inicial:
+1. **Eliminación de relojes y minutos inventados:** Como NotebookLM lee fragmentos de texto y no un reloj continuo, alucinaba los tiempos (`01:23:45`). Se reemplazaron por **números de bloque (`B1`, `B2`...), frases de inicio/cierre y citas clickeables**.
+2. **Freno a los bucles de recálculo:** Se quitaron los recuentos matemáticos obligatorios al final de cada turno que hacían que los modelos de razonamiento gastaran minutos enteros recalculando sumas.
+3. **Un renglón por idea con Cita Canónica:** Cuando el profesor repite una misma pauta en varias clases, los Pasos 3 y 4 conservan únicamente la cita textual más clara seguida de todas las coordenadas donde se repitió `(C1:E02[B1]; +C3:E09[B4])`, reduciendo un 70% el peso del archivo.
+4. **Limpieza de ruido:** Las preguntas mecánicas de despeje en el pizarrón y los avisos de fechas ya vencidas se filtran en las tandas para que `voz_catedra.md` llegue 100% limpio al Tutor.
 
 ---
 
-### 🛠️ Decisiones Críticas de Diseño (Lecciones de Mantenimiento)
+## 🧠 4. Tutor Personal Cognitivo (`[[02 - Tutor Personal Cognitivo]]`)
 
-1. **La Redundancia en el Prompt es Deliberada y Obligatoria:**
-   * En la V4 muchas reglas están escritas tres veces: en las *Reglas de Oro*, en el cuerpo temático y en el *Chequeo Final antes de Enviar*.  
-   * *Hallazgo:* Cuando una regla negativa (*"no regalar fórmulas"*, *"una sola consigna"*) se redacta una sola vez, el modelo la ignora al acumular contexto. Si se intenta "optimizar o acortar" el prompt deduplicando texto, el tutor se degrada.
-2. **Qué se eliminó respecto a versiones anteriores y por qué:**
-   * **El "Abogado del Diablo", "Pregunta propia" y "Analogías forzadas":** Casi nunca se disparaban en sesiones técnicas densas y consumían tokens de atención.
-   * **La práctica intercalada y espaciada automática:** El modelo no sabe gestionar los intervalos de tiempo en un chat. El espaciado ahora lo gestiona el propio estudiante abriendo las sesiones; la IA solo ejecuta el *Brain dump* inicial del `HANDOFF`.
-   * **Fase 3 completa:** Rara vez se llegaba a esa fase en la práctica; fue reemplazada con éxito por el *Cierre Integrador*.
-3. **Manejo de Teoría No Deducible:**
-   * En versiones anteriores la IA intentaba que el alumno "dedujera" cosas imposibles (nombres comerciales de válvulas, mandrilados, clasificaciones arbitrarias). En la V4, si el contenido no es deducible por lógica, **se prohíbe preguntar primero**: la IA debe dar un bloque mínimo de instrucción con cita y pedir recuperarlo después.
-## 🎯 4. Incorporación del Simulador y Generador de Exámenes de Cátedra (V1.0 - Módulo Nuevo)
+El Tutor consolidó su regla principal (**una sola consigna corta por turno**) y sumó la **Ruta BETA** para modelos de alto razonamiento junto a la **Ruta Estable** de NotebookLM:
 
-### 🔍 Resumen del Módulo
-En la versión anterior del sistema (**Septiembre 2026**), no existía una herramienta para simular parciales completos. La preparación para rendir dependía de hacer TPs en papel o del comando `Modo Examen` del tutor (que solo arrojaba consignas sueltas).
-
-La **Versión 1.0 (Octubre 2026)** introduce una suite completa de **ingeniería inversa forense** compuesta por una cadena de 4 prompts especializados (más un auxiliar teórico y un modificador de exportación), diseñada para replicar con exactitud matemática el estilo, la carga operativa y la cuota teoría/práctica de los exámenes reales de la cátedra.
+| Mejora Incorporada | Versiones Anteriores (V2 / V3) | Versión Actual (V4 Estable y Ruta Beta) | Impacto en el Estudio |
+| :--- | :--- | :--- | :--- |
+| **Límite de caracteres en NotebookLM** | Limitado a 10.000 caracteres. | **Bypass desde Gemini Web:** Permite guardar el prompt completo de 27.000 caracteres en NotebookLM. | El tutor sostiene todas las reglas durante sesiones largas sin olvidarse de auditar ni regalar pistas. |
+| **Control de cuentas y física** | Corrección superficial. | **Recálculo obligatorio y control físico:** Verifica unidades, límites de Carnot y segundo principio antes de dar el veredicto. | Evita que la IA te marque como errónea una cuenta que hiciste bien o te acepte resultados imposibles. |
+| **Corrección de errores** | Pasaba a otro ejercicio al fallar. | **Loop cerrado:** Te pide explicar por qué falló tu planteo o aplicar la corrección a un caso nuevo antes de avanzar. | Asegura que entendiste el error de fondo y no solo el resultado. |
+| **Regla de «Dominado»** | Marcaba "Dominado" en el primer acierto. | **Anti-ilusión de competencia:** Lo que aprendiste hoy con ayuda queda como `Visto con ayuda`; solo pasa a `Dominado` si lo resolvés solo en otra sesión. | Evita confiarte de más con temas que tenés frescos recién explicados. |
+| **Tabla de `HANDOFF`** | Resumen libre que perdía temas viejos. | **Tabla acumulativa con barras (`\|`) en bloque de código:** Conserva todos los ítems de sesiones anteriores. | Continuidad exacta de una semana a la otra sin perder el rastro de los temas flojos. |
 
 ---
 
-### 🏛️ Arquitectura de la Suite Forense (Cadena de Prompts)
+## 🎯 5. Simulador y Generador de Exámenes (`[[03 - Simulador y Generador de Exámenes de Cátedra]]`)
 
-| Componente | Prompt | Entorno | Insumo Documental | Salida Generada | Función Clave |
-|---|---|---|---|---|---|
-| **Paso 1** | **Mapa Curricular** | NotebookLM | Cursada + Parciales | `mapa.md` | Delimita el universo de habilidades y calcula la evidencia histórica matemática ($n/N$ exámenes donde apareció). |
-| **Paso 2** | **Banco Forense** | NotebookLM | Exámenes ➔ TPs + `mapa.md` | `banco.md` | **Barrera de orden dura:** Transcribe 100% de exámenes primero; luego filtra TPs que cubran variantes o zonas ciegas. |
-| **Paso 3** | **Modelo de Examen** | NotebookLM | Exámenes + Bancos | `modelo.md` (máx. 70 líneas) | Formaliza la "firma del profesor": cantidad de ejercicios, criterios de corrección y cuota operativa estricta de teoría/práctica. |
-| **Paso 3B** | **Banco Teórico** *(Opcional)* | NotebookLM | Apuntes + Modelo + Mapa | `banco_teoria.md` | Preguntas de práctica teórica con citas a apuntes. **Solo se usa si faltan parciales o la teoría es oral**; se saltea si hay parciales viejos. |
-| **Paso 4** | **Generador Secuencial** | Gemini Flash High / Claude Sonnet 5.5 | Todos los `.md` anteriores | Exámenes + Claves | Ensambla el simulacro, oculta el origen de los ejercicios durante la prueba y administra el registro adaptativo. |
-
----
-
-### 🚀 Innovaciones Técnicas Destacadas
-
-1. **Desacople entre Minería y Redacción:**
-   * *Hallazgo:* NotebookLM es el mejor entorno para indexar y catalogar fuentes, pero **es pésimo redactando exámenes y alucina con facilidad al balancear problemas numéricos completos.**
-   * *Solución:* Los Pasos 1, 2, 3 y 3B corren en NotebookLM (costo cero de cuota y cero invención); el Paso 4 traslada los archivos destilados a **Gemini 3.8 Flash (Thinking High)** o **Claude Sonnet 5.5 (Medium+)** para una redacción matemática impecable.
-
-2. **Doble Modalidad Operativa (Ruta A vs. Ruta B):**
-   * **Ruta A (Entrenamiento Personal Adaptativo):** Bucle de examen a ciegas ➔ resolución en papel bajo cronómetro ➔ `Corregir` ➔ `Clave` ➔ actualización de estados (`FRÁGIL`, `CORRECTO 1x`, `CONSOLIDADO`). Dos ejercicios literales nunca consolidan; se exige resolver problemas gemelos inéditos (`G-E` o `G-TP`).
-   * **Ruta B (Fábrica de Simulacros Autosuficientes / Modo Compartir):** Mediante la directiva especial (*Nota*), el modelo produce paquetes de examen cerrados con su resolución paso a paso (`Clave`) en el mismo mensaje, priorizando años recientes (2025/2026), sin habilidades redundantes y con bloques de LaTeX limpios para Obsidian, listos para exportar a PDF o enviar a compañeros de cursada.
-
-3. **Taxonomía Forense de Ejercicios:**
-   * El generador clasifica con precisión el ADN de cada problema:
-     * `L`: Literal de examen.
-     * `G-E`: Gemelo de examen (misma estructura y dificultad, datos inéditos).
-     * `G-TP`: Gemelo de TP adaptado al estilo y carga del examen.
-     * `G-TF`: Gemelo de preguntas explícitas del apunte teórico.
-     * `S-A`: Sin antecedente (diseñado desde el modelo cuando no hay ejercicios previos).
-## 🗂️ 5. Evolución del Generador de Tarjetas de Anki (De V1 a V2.1)
-
-### 🔍 Resumen de la Evolución
-El generador no nació con un marco pedagógico cerrado, sino de la necesidad práctica de **dejar de hacer tarjetas a mano para miles de conceptos de ingeniería**. 
-
-Las primeras versiones (**V1 y V1.1**) pecaban de extremos: o creaban "tarjetas Frankenstein" (respuestas con 5 incisos que hacían imposible autocalificarse con Bien/Otra vez) o generaban "anversos testamento" (preguntas larguísimas que tomaba más tiempo leer que responder). La serie **V2.0 y V2.1** resolvió estos vicios mediante una auditoría párrafo por párrafo, límites estrictos de lectura (< 5 segundos), separación de fórmulas operativas y la migración a **Google AI Studio**.
+Ajustes clave de la versión **V2.2**:
+1. **Porcentaje real por unidad ($n/N$ en `mapa.md`):** El total de exámenes $N$ se cuenta solo sobre los parciales que evalúan esa unidad (un 2.° Parcial no baja artificialmente el porcentaje de un tema del 1.° Parcial).
+2. **Orden estricto en `banco.md` y descarte compacto:** Obliga a transcribir el 100% de los exámenes reales antes de filtrar las guías de TP, y resume los ejercicios descartados en un solo renglón para no inflar el archivo.
+3. **Pre-cálculo físico en ejercicios gemelos (`Paso 4`):** La IA tiene prohibido inventar propiedades de tablas y debe resolver el problema en su razonamiento interno antes de mostrártelo para garantizar que no falten datos y el resultado tenga sentido físico.
+4. **Doble modalidad (`Ruta A` y `Ruta B`):**
+   * *Ruta A:* Simulacro a ciegas sin spoilers + comando `Corregir` con puntaje parcial por *error raíz y arrastre*.
+   * *Ruta B (`Paquete`):* Generación de simulacros completos (Enunciado + Clave paso a paso en LaTeX + Trazabilidad) sin repetir habilidades entre un examen y el siguiente.
 
 ---
 
-### ⏳ Línea de Tiempo de Versiones
+## 🗂️ 6. Generador de Tarjetas de Anki (`[[04 - Generador de Tarjetas de Anki]]`)
 
-* **Versión V1 (Primitiva):** Prompt genérico de atomización extrema. Agregaba etiquetas manuales al final (`Materia::Unidad::Tema`) y no distinguía el tipo de examen. Tendía a convertir cada oración en una tarjeta o a armar listas imposibles de repasar.
-* **Versión V1.1:** Primera bifurcación formal entre **CON hoja de fórmulas** y **SIN hoja de fórmulas**. Se agregaron los delimitadores de `[DIBUJAR EN PAPEL]` y `[CREAR IMAGE OCCLUSION]`. Sin embargo, las reglas anti-trivia descartaban clasificaciones útiles y dejaban "huecos silenciosos" en los apuntes.
-* **Versión V2.0 (Salto Arquitectónico Mayor - Sep 2026):** Reescritura total:
-  * Introducción del prefijo temático obligatorio `[Tema/Sistema - Foco]`.
-  * Regla de anversos de lectura rápida (< 5 segundos).
-  * Límite de agrupación lógica (tope orientativo de 3 elementos para evitar tarjetas Frankenstein).
-  * Auditoría oculta párrafo por párrafo para no dejar temas sin cubrir.
-* **Versión V2.1 Actual (Octubre 2026):** Refinamiento técnico y corrección de sintaxis:
-  * **Fix crítico de LaTeX puro:** Prohibición estricta de colocar etiquetas HTML (`<b>`, `<i>`, `<br>`) dentro o alrededor de delimitadores matemáticos (`\(...\)` y `\[...\]`), solucionando un bug recurrente de renderizado en Anki.
-  * **Migración operativa a Google AI Studio:** Presets en *System Instructions*, *Thinking level: High* y *Media resolution: High*.
-  * **Integración de comentarios de clase:** Soporte para agregar en el mensaje las advertencias orales del docente.
+Problemas reales de importación solucionados en la versión **V2.2**:
+
+| Problema que ocurría en Anki | Causa Técnica | Solución en V2.2 |
+| :--- | :--- | :--- |
+| **Anki mezclaba 5 tarjetas en una sola al importar** | Había comillas dobles (`"`) adentro del texto que abrían bloques multilínea en el CSV. | **Prohibición total de comillas dobles (`"`):** La IA usa únicamente comillas simples (`'...'`) o angulares (`«...»`). |
+| **Fórmulas rotas en el celular (`\( ... <b> ... \)`)** | La IA metía etiquetas HTML de negrita adentro de las fórmulas LaTeX. | **LaTeX 100% puro:** Prohibido usar `<b>`, `<i>` o `<br>` adentro de `\(...\)` y `\[...\]`. |
+| **En Image Occlusion solo figuraban nombres sueltos** | Al convertir la tarjeta, el campo `Back Extra` quedaba casi vacío. | **Reverso con función física:** Lista las 3 a 5 partes a tapar agregando en media línea qué hace cada componente. |
+| **Se perdían advertencias dichas en clase** | El prompt solo miraba el texto de la diapositiva. | **Campo para Voz de la Cátedra:** Prioridad máxima para transformar en tarjeta las trampas y unidades que anotes en el envío. |
 
 ---
 
-### ⚖️ Síntomas Críticos del Uso Real y Soluciones Implementadas
+## 📚 7. Biblioteca y Guías de Autoevaluación (`[[06 - Biblioteca de Ciencia del Aprendizaje|06]]` y `[[07 - Índice de Guías y Checklists de Aprendizaje|07]]`)
 
-| Problema Observado en el Mazo | Síntoma en el Estudio Diario | Causa en el Prompt Viejo | Solución Implementada en V2.0 / V2.1 |
-|---|---|---|---|
-| **Tarjetas Frankenstein** | Respuestas con 4 o 5 viñetas largas. Si fallabas una, no sabías si poner "Bien" o "Otra vez". | Reglas que pedían "cubrir todo" sin criterio de corte. | **Tope de 3 elementos:** Si los ítems no son una escala continua o causal directa, se parte en tarjetas independientes. |
-| **Anversos "Testamento"** | Consignas de 4 renglones; se perdía más tiempo leyendo el contexto que respondiendo. | "Contexto autosuficiente" mal interpretado por la IA. | **Regla de los 5 segundos:** Preguntas directas al hueso usando el prefijo `[Tema - Foco]`. |
-| **Descarte de Clasificaciones Útiles** | Faltaban rangos numéricos típicos y clasificaciones teóricas (que el profesor sí tomaba). | Reglas "anti-trivia" demasiado agresivas. | **Ajuste de Criterio:** Como en el examen no hay tablas ni catálogos, las clasificaciones y órdenes de magnitud **sí son evaluables**. |
-| **Huecos Silenciosos** | Secciones enteras de diapositivas sin ninguna tarjeta sin que el estudiante lo supiera. | Procesamiento superficial por bloques. | **Auditoría Párrafo por Párrafo:** La IA debe recorrer el apunte en orden antes de emitir la salida para no omitir nada. |
-| **Fórmulas Descartadas Injustamente** | Fórmulas operativas clave (ej: velocidad específica $n_s$) quedaban afuera por ser "derivadas". | Criterio de "fórmula fundamental" mal aplicado en materias sin formulario. | **Los Tres Niveles de Recuperación:** Se evalúa producción activa (memoria limpia), interpretación física o aplicación según el caso. |
-| **Bugs de Renderizado en Anki** | Fórmulas matemáticas que no cargaban o aparecían con código roto en la app móvil. | La IA metía `<b>` dentro de los delimitadores LaTeX de MathJax. | **Prohibición de HTML en LaTeX (V2.1):** LaTeX 100% puro; las negritas solo van en texto normal. |
+- **En [[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]:** Se incorporó *A Mind for Numbers* (Barbara Oakley) en el puesto #1 como lectura inicial ideal para ingeniería, seguida por *Make It Stick*, *How to Become a Straight-A Student*, *How I Wish I'd Taught Maths*, *Peak*, *Ultralearning* y *Powerful Teaching*.
+- **En [[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]:** Se organizaron las 4 checklists diagnósticas (**[[20. Áreas/Sistema de Estudio con IA/07.1 - Guía de Estudio - Teoría y Ejercicios\|07.1]]**, **[[20. Áreas/Sistema de Estudio con IA/07.2 - Guía de Estudio - Ejercicios y Problemas\|07.2]]**, **[[20. Áreas/Sistema de Estudio con IA/07.3 - Guía de Estudio - Teoría y Demostraciones\|07.3]]** y **[[20. Áreas/Sistema de Estudio con IA/07.4 - Guía de Enseñanza para Docentes y Tutores\|07.4]]**) destacando los **5 hábitos con estrella (★)** para quien quiere empezar a mejorar su forma de estudiar sin abrumarse.
 
 ---
 
-### 🛠️ Por qué Existen Dos Prompts Separados (CON vs. SIN Hoja)
-
-El sistema no utiliza un único prompt con parámetros variables para evitar que el modelo diluya las directivas de examen:
-
-* **Opción A (CON hoja de fórmulas):**  
-  * *Filosofía:* La fórmula es una **herramienta de análisis, no un objeto de memoria**.
-  * *Mecánica:* La fórmula compleja se coloca obligatoriamente en el **anverso** como dato. La tarjeta evalúa qué variable domina en extremos, qué pasa con $Y$ si se duplica $X$, o qué significa físicamente un exponente. Solo las definiciones elementales (rendimientos, diferencias de cota) admiten memoria directa. Admite un parámetro de entrada para definir si se evalúan o no demostraciones paso a paso.
-* **Opción B (SIN hoja de fórmulas):**  
-  * *Filosofía:* El alumno debe ser capaz de **escribir la ecuación desde cero en el examen**.
-  * *Mecánica:* Se exige la producción activa y limpia de la fórmula sin pistas en el anverso. Las hipótesis de validez se desacoplan en una tarjeta separada para no recargar la memoria. Admite un parámetro de entrada para definir si se evalúan o no demostraciones paso a paso.
----
-## 📚 6. Incorporación de la Biblioteca de Ciencia del Aprendizaje (Módulo Nuevo)
-
-### 🔍 Resumen del Módulo
-En la versión anterior, los fundamentos teóricos del sistema estaban implícitos en las reglas de los prompts, pero no existía una sección que documentara de dónde salían esas decisiones pedagógicas. 
-
-La **Versión 2 (Octubre 2026)** incorpora la página **`06 - Biblioteca de Ciencia del Aprendizaje`**, una selección curada de 6 obras clave sobre psicología cognitiva y didáctica técnica universitaria.
-
----
-
-### 🏛️ Los 6 Pilares Bibliográficos del Sistema
-
-1. **Make It Stick (Brown, Roediger, McDaniel):** La base empírica de laboratorio que fundamenta la *recuperación activa*, el *espaciado* y por qué el estudio debe costar cognitivamente para generar retención a largo plazo.
-2. **How to Become a Straight-A Student (Cal Newport):** Guía táctica universitaria que aporta la distinción fundamental para ingeniería: cómo estudiar materias teóricas vs. materias de resolución numérica.
-3. **Peak (Anders Ericsson, Robert Pool):** El marco de la *Práctica Deliberada*, el diseño de representaciones mentales y la corrección de fallas raíz que estructura el sistema de tracking.
-4. **How I Wish I'd Taught Maths (Craig Barton):** Didáctica matemática dura, teoría de la carga cognitiva y el *Worked Example Effect* que inspiró las reglas de micro-pacing y ejemplos paralelos del Tutor V4.
-5. **Ultralearning (Scott Young):** Principio de *Transferencia Directa (Directness)* y ataque a subhabilidades que fundamenta el simulador forense de exámenes (Paso 3).
-6. **Powerful Teaching (Agarwal, Bain):** Herramientas de aula para calibrar la confianza del alumno frente a su desempeño real (matriz de andamiaje).
-
----
-
-## 🧭 7. Incorporación de las Guías y Checklists de Autoevaluación (Módulo Nuevo)
-
-### 🔍 Resumen del Módulo
-Se agregó una suite de **4 guías de autoevaluación diagnóstica** organizadas a través de un índice central (**`07`**) para que el estudiante (o docente) audite con honestidad sus hábitos de estudio antes de rendir. 
-
-El objetivo es combatir la **ilusión de competencia** (creer que sabés un tema solo porque lo reconocés al leerlo) y asegurar que el entrenamiento apunte a *producir respuestas por cuenta propia sin ayuda*.
-
----
-
-### 📑 Arquitectura de la Serie de Guías
-
-| Archivo    | Destinatario / Tipo de Materia            | Enfoque de Autoevaluación                                                                                                     |
-| ---------- | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| **`07.1`** | **Materias Mixtas (Teoría y Ejercicios)** | La guía principal para la mayoría de las materias de ingeniería: conecta la teoría con el planteo de problemas y deducciones. |
-| **`07.2`** | **Ejercicios y Resolución de Problemas**  | Materias de cálculo puro (Mecanismos, Estructuras, Álgebra): esquemas previos, planteo sin cuentas y patrones de error.       |
-| **`07.3`** | **Teoría y Demostraciones**               | Materias conceptuales (Termodinámica, Materiales): reconstrucción de demostraciones por tramos y preguntas de criterio.       |
-| **`07.4`** | **Docentes, Ayudantes y Tutores**         | Para quienes dan clases o consultas: actividades cortas en aula, feedback clínico y diseño de exámenes cronometrados justos.  |
-
----
-
-### 💡 Innovación: La Regla de los Ítems con Estrella (★)
-Para evitar la parálisis por sobrecarga (cada guía tiene entre 30 y 40 ítems), el sistema introduce la **Regla de las Estrellas (★)**:
-* Identifica los **5 o 6 hábitos de mayor apalancamiento** (intentar sin mirar, espaciar temas viejos con nuevos, practicar en condiciones reales y rehacer lo fallado en otro día).
-* Permite que el alumno audite su estudio empezando solo por esos puntos críticos antes de intentar modificar toda su rutina.
-## 📌 Conclusión y Estado del Sistema (V2 - Octubre 2026)
-
-Con estos siete módulos integrados, el sistema cubre el ciclo completo del aprendizaje técnico universitario (desde la base científica hasta la rendición del examen):
-
-1. **Mapeo Curricular:** Extracción atómica de temas sin lagunas ni invenciones (`01`).
-2. **Comprensión Activa:** Destrucción socrática de errores conceptuales con micro-pacing (`02`).
-3. **Calibración Forense:** Exámenes de prueba con el formato y cuota matemática real de tu cátedra (`03`).
-4. **Retención a Largo Plazo:** Mazos de repetición espaciada quirúrgicos y sin fricción (`04`).
-5. **Infraestructura de Modelos:** Optimización de cuotas, parámetros de razonamiento y plataformas (`05`).
-6. **Fundamentos Teóricos:** La base de literatura científica que justifica cada regla pedagógica (`06`).
-7. **Diagnóstico Metacognitivo:** Checklists para auditar tus hábitos reales antes del parcial (`07`).
-
-El objetivo final no es estudiar más horas, sino que cada minuto invertido frente a la pantalla tenga un retorno medible en comprensión profunda y rendimiento de examen.
-
----
-
-## 🧭 Mapa de Navegación del Sistema
-
-* 🏠 **Página Principal:** [[20. Áreas/Sistema de Estudio con IA/00 - Inicio y Flujo de Trabajo\|00 - Inicio y Flujo de Trabajo]]
-* 📋 **Fase 1 (Checklists):** [[20. Áreas/Sistema de Estudio con IA/01 - Extractor de Checklists\|01 - Extractor de Checklists]]
-* 🧠 **Fase 2 (Tutoría Activa):** [[20. Áreas/Sistema de Estudio con IA/02 - Tutor Personal Cognitivo\|02 - Tutor Personal Cognitivo]]
-* 🎯 **Fase 3 (Simulacros de Examen):** [[20. Áreas/Sistema de Estudio con IA/03 - Simulador y Generador de Exámenes de Cátedra\|03 - Simulador y Generador de Exámenes de Cátedra]]
-* 🗂️ **Fase 4 (Tarjetas de Anki):** [[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|04 - Generador de Tarjetas de Anki]]
-* 🤖 **Infraestructura y Modelos:** [[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]
-* 📚 **Fundamentos Científicos:** [[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]
-* 🧭 **Guías de Autoevaluación:** [[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]
+## 🧭 Navegación
+*Volver al inicio del sistema:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/00 - Inicio y Flujo de Trabajo\|00 - Inicio y Flujo de Trabajo]]**  
+*Consultar infraestructura de modelos:* 🤖 **[[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]**  
+*Ir a las guías de autoevaluación:* 🧭 **[[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]**

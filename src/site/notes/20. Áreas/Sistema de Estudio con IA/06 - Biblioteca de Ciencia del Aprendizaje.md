@@ -3,74 +3,83 @@
 ---
 
 
+
 # 📚 Biblioteca de Ciencia del Aprendizaje para Ingeniería
 
-Esta no es una lista de libros genéricos de "autoayuda" o "productividad". Es una selección rigurosa de **ciencia cognitiva, pedagogía técnica y adquisición de habilidades**, elegida específicamente para estudiantes de ingeniería y ciencias aplicadas.
+Esta no es una lista de libros genéricos de autoayuda o productividad. Es una selección rigurosa de **ciencia cognitiva, psicología del aprendizaje y pedagogía técnica universitaria**, elegida específicamente para estudiantes de ingeniería y ciencias aplicadas.
 
-Cada uno de estos libros aportó los fundamentos teóricos detrás de los prompts, las reglas de andamiaje y la arquitectura de este sistema de estudio.
+Cada uno de estos 7 libros aportó los fundamentos teóricos detrás de las reglas de andamiaje, el micro-pacing, las matrices de calibración y la arquitectura de prompts de este sistema. Están ordenados en una **ruta progresiva de lectura**: desde el cambio de mentalidad en la trinchera técnica, pasando por la evidencia de laboratorio más dura, hasta las tácticas de examen y la maestría deliberada.
 
 ---
 
 ## 📊 Matriz de Lectura Rápida
 
-| # | Libro | Autor(es) | Enfoque Central | Por qué le sirve a un estudiante de ingeniería |
-|---|---|---|---|---|
-| **1** | **Make It Stick** | Brown, Roediger, McDaniel | Ciencia de la memoria y recuperación activa. | Es la base empírica de todo: destruye el mito de releer y fundamenta el uso de Anki y el tutor. |
-| **2** | **How to Become a Straight-A Student** | Cal Newport | Táctica y supervivencia académica universitaria. | Hace la distinción clave entre cómo estudiar materias teóricas vs. materias técnicas de resolución numérica. |
-| **3** | **Peak** | Anders Ericsson, Robert Pool | Práctica deliberada y representaciones mentales. | Te da el marco macro para estructurar tus sesiones de resolución de problemas con feedback inmediato. |
-| **4** | **How I Wish I'd Taught Maths** | Craig Barton | Didáctica matemática y carga cognitiva. | Oro puro para entender cómo aprender deducciones, teoremas y evitar sobrecargar la memoria de trabajo. |
-| **5** | **Ultralearning** | Scott Young | Proyectos de aprendizaje intensivo autodidacta. | Aborda la "transferencia directa" y el ataque quirúrgico a subhabilidades que los libros académicos omiten. |
-| **6** | **Powerful Teaching** | Pooja Agarwal, Patrice Bain | Herramientas pedagógicas de recuperación. | Diseñado para docentes, pero ofrece dinámicas clínicas para autoevaluarse y andamiar conceptos difíciles. |
+| # | Libro | Autor(es) | Enfoque Central | Por qué es clave para un estudiante de ingeniería |
+| :---: | :--- | :--- | :--- | :--- |
+| **🥇 1** | **A Mind for Numbers** | **Barbara Oakley** | Neurobiología del aprendizaje en ciencias exactas y resolución de problemas. | **La puerta de entrada #1:** Escrito por una ingeniera; explica los modos enfocado/difuso, el troceo (*chunking*) y destruye la ilusión de competencia. |
+| **🥈 2** | **Make It Stick** | Peter Brown, Henry Roediger, Mark McDaniel | Ciencia empírica de la memoria y la recuperación activa. | **La base científica de todo:** Demuestra en laboratorio que aprender requiere esfuerzo cognitivo (*dificultades deseables*) y prohíbe el repaso pasivo. |
+| **🥉 3** | **How to Become a Straight-A Student** | Cal Newport | Táctica y supervivencia académica universitaria de alto rendimiento. | **La distinción operativa:** Explica cómo cambia radicalmente la preparación entre materias teóricas vs. materias técnicas de problemas numéricos. |
+| **4** | **How I Wish I'd Taught Maths** | Craig Barton | Teoría de la Carga Cognitiva y didáctica matemática aplicada. | **Didáctica de trinchera:** Aborda el efecto del ejemplo resuelto, cómo aprender deducciones complejas y cómo evitar saturar la memoria de trabajo. |
+| **5** | **Peak** | Anders Ericsson, Robert Pool | Práctica deliberada y representaciones mentales expertas. | **Superar mesetas:** Enseña a no conformarse con hacer ejercicios fáciles, atacar la "falla raíz" y modelar problemas difíciles bajo presión. |
+| **6** | **Ultralearning** | Scott Young | Estrategias de adquisición acelerada y agresiva de habilidades. | **Transferencia directa (*Directness*):** Fundamenta por qué hay que practicar haciendo exactamente lo mismo que te van a exigir en el examen. |
+| **7** | **Powerful Teaching** | Pooja Agarwal, Patrice Bain | Herramientas pedagógicas de recuperación y metacognición. | **Calibración clínica:** Enseña a medir la brecha entre la confianza subjetiva (sentir que sabés) y el desempeño real (producir la respuesta). |
 
 ---
 
 ## 🔍 Análisis Detallado por Libro
 
-### 🥇 1. *Make It Stick: The Science of Successful Learning*
-* **Autores:** Peter C. Brown, Henry L. Roediger III, Mark A. McDaniel.
-* **El Núcleo:** Es la biblia moderna del aprendizaje basado en evidencia. Desmonta las técnicas intuitivas que la mayoría de los estudiantes usan (releer apuntes, resaltar en colores, hacer resúmenes pasivos) y demuestra mediante estudios de laboratorio que **aprender duele cognitivamente**: la retención a largo plazo es proporcional al esfuerzo requerido para recuperar la información (*Dificultades Deseables*).
-* **Vínculo con el Sistema:** Es el motor detrás de la prohibición de que la IA te explique antes de que vos intentes, del uso de Anki y de la práctica intercalada.
-* **💡 Guía de lectura rápida:** Es un libro denso y largo. Si no tenés tiempo de leerlo entero durante el cursado, **andá directo al Capítulo 8**: es un resumen ejecutivo perfecto con consejos prácticos para estudiantes.
+### 🥇 1. *A Mind for Numbers: How to Excel at Math and Science*
+- **Autora:** Barbara Oakley, PhD, PE.
+- **El Núcleo:** Escrito por una profesora de ingeniería que reprobó matemáticas en la secundaria y terminó doctorándose en ingeniería de sistemas. Es el manual por excelencia sobre cómo el cerebro humano lidia con la abstracción matemática y los sistemas físicos. Introduce la alternancia biológica entre el **Modo Enfocado** (atención concentrada y lineal) y el **Modo Difuso** (conexiones neuronales amplias en segundo plano), la construcción de **bloques de conocimiento (*chunks*)** y cómo desactivar el **Efecto Einstellung** (quedar atrapado en un camino de resolución erróneo por inercia mental).
+- **Por qué es el libro #1 para Ingeniería:** Habla exactamente el idioma de nuestra facultad (cálculo, física, diagramas de cuerpo libre, balances térmicos). Explica por qué mirar un ejercicio resuelto por el profesor en el pizarrón genera la trampa más costosa de la carrera: la **ilusión de competencia** (creer que lo sabés hacer solo porque entendés la explicación del docente, para luego quedarte en blanco frente a la hoja vacía del parcial).
 
 ---
 
-### 🥈 2. *How to Become a Straight-A Student*
-* **Autor:** Cal Newport.
-* **El Núcleo:** Una guía de supervivencia táctica universitaria basada en entrevistas a los mejores promedios de universidades de élite. Aunque quedó un poco desactualizado en cuanto a herramientas tecnológicas (se escribió antes del auge de la IA y ciertas apps), los principios subyacentes son eternos.
-* **Por qué es clave para Ingeniería:** Newport hace una división fundamental que casi ningún libro generalista hace: **no se estudia igual para historia que para cálculo**. Explica cómo encarar materias técnicas basadas en problemas (conjuntos de ejercicios, análisis de variables) frente a materias conceptuales/teóricas.
+### 🥈 2. *Make It Stick: The Science of Successful Learning*
+- **Autores:** Peter C. Brown, Henry L. Roediger III, Mark A. McDaniel.
+- **El Núcleo:** La biblia moderna del aprendizaje basado en evidencia empírica. Destruye con datos de laboratorio las tres técnicas intuitivas que usa el 90% de los estudiantes universitarios: releer apuntes, subrayar en colores y hacer resúmenes pasivos de la bibliografía. Demuestra que **aprender debe doler cognitivamente para fijarse**: la retención a largo plazo es directamente proporcional al esfuerzo requerido para extraer la información de la memoria (*Dificultades Deseables*).
+- **Por qué es clave para Ingeniería:** Demuestra que memorizar una fórmula leyéndola 10 veces crea una familiaridad engañosa que se desintegra en el examen. La única forma de consolidar deducciones y criterios de modelado es forzar la **recuperación activa** desde cero en una hoja en blanco.
+- **💡 Guía de lectura rápida:** Es un texto denso y con mucho paper científico. Si estás en pleno cuatrimestre y tenés poco tiempo, **andá directo al Capítulo 8**: es un resumen ejecutivo perfecto con consejos prácticos para aplicar de inmediato.
 
 ---
 
-### 🥉 3. *Peak: Secrets from the New Science of Expertise*
-* **Autores:** Anders Ericsson, Robert Pool.
-* **El Núcleo:** Ericsson (el investigador detrás del concepto original de *Práctica Deliberada*) demuestra que la maestría no proviene de acumular horas repitiendo lo que ya sabés hacer, sino de operar constantemente en el borde de tu zona de confort, construyendo **representaciones mentales complejas** con feedback correctivo inmediato.
-* **Por qué es clave para Ingeniería:** Resolver 50 ejercicios fáciles no te prepara para un parcial. *Peak* te enseña a identificar tu "falla raíz" y diseñar micro-ejercicios focalizados para corregir esa limitación técnica puntual.
+### 🥉 3. *How to Become a Straight-A Student*
+- **Autor:** Cal Newport.
+- **El Núcleo:** Un manual táctico de supervivencia universitaria escrito tras auditar los hábitos de estudio de los mejores promedios de universidades de élite (MIT, Harvard, Stanford). Desmitifica las maratones de estudio de 12 horas seguidas a base de café y demuestra cómo el trabajo concentrado de alta intensidad en bloques cortos rinde el triple sin quemar la cabeza.
+- **Por qué es clave para Ingeniería:** Newport hace una distinción operativa fundamental que casi ningún autor generalista comprende: **no se estudia igual para materias de desarrollo conceptual que para materias técnicas de problemas numéricos**. Detalla un flujo exacto para destripar guías de trabajos prácticos (*problem sets*), catalogar arquetipos de ejercicios y aislar las variables difíciles.
 
 ---
 
 ### 📐 4. *How I Wish I'd Taught Maths*
-* **Autor:** Craig Barton.
-* **El Núcleo:** Escrito por un profesor de matemática escéptico que descubrió la Teoría de la Carga Cognitiva y la investigación en educación matemática. Aunque está redactado para docentes, es una de las lecturas más enriquecedoras que puede hacer un estudiante técnico.
-* **Por qué es clave para Ingeniería:** Trata a fondo el *Efecto del Ejemplo Resuelto* (*Worked Example Effect*), cómo comparar casos contrastantes, por qué la memorización de convenciones no debe mezclarse con deducciones profundas y cómo detectar sutilezas en diagramas vectoriales o ecuaciones.
-* **Vínculo con el Sistema:** Las reglas del Tutor V4 de dar ejemplos resueltos con datos distintos, separar la convención del concepto y el micro-pacing vienen directamente de los principios de Barton.
+- **Autor:** Craig Barton.
+- **El Núcleo:** Escrito por un profesor de matemáticas de secundaria y universidad que descubrió la **Teoría de la Carga Cognitiva** (John Sweller) y la investigación didáctica moderna. Aunque está pensado para docentes, es una de las lecturas más enriquecedoras que puede hacer un estudiante técnico que quiere entender cómo aprende su propio cerebro matemático.
+- **Por qué es clave para Ingeniería:** Analiza a fondo el **Efecto del Ejemplo Resuelto (*Worked Example Effect*)**: por qué tirarse de cabeza a resolver un problema hipercomplejo sin un modelo mental previo satura la memoria de trabajo con álgebra mecánica y bloquea la comprensión de la física subyacente. Explica magistralmente cómo comparar ejemplos contrastantes, cómo estudiar deducciones matemáticas y por qué las convenciones arbitrarias (signos, ejes, notaciones) jamás deben evaluarse de la misma manera que los principios físicos.
 
 ---
 
-### ⚡ 5. *Ultralearning*
-* **Autor:** Scott Young.
-* **El Núcleo:** Relata la metodología que usó el autor para completar el currículo de Ciencias de la Computación del MIT en un año de forma autodidacta. No tiene el rigor científico de *Make It Stick*, pero compensa con agresividad práctica.
-* **Por qué es clave para Ingeniería:** Introduce conceptos vitales como la **Transferencia Directa (*Directness*)** (estudiar haciendo exactamente lo que el examen te va a pedir hacer, en vez de rodeos teóricos) y el **Desglose de Subhabilidades** (desarmar una metodología compleja en partes aisladas).
+### 🧗 5. *Peak: Secrets from the New Science of Expertise*
+- **Autores:** Anders Ericsson, Robert Pool.
+- **El Núcleo:** Anders Ericsson (el mayor investigador mundial sobre la adquisición de destrezas y creador del concepto original de *Práctica Deliberada*) demuestra que la maestría no surge de acumular miles de horas repitiendo lo que ya sabés hacer, sino de operar conscientemente en el borde incómodo de tu zona de confort, construyendo **representaciones mentales complejas** respaldadas por feedback correctivo inmediato.
+- **Por qué es clave para Ingeniería:** Resolver 50 ejercicios fáciles de una guía no te prepara para un parcial. Te da una falsa sensación de productividad pero te deja indefenso ante la primera vuelta de tuerca. *Peak* enseña a identificar tu **"falla raíz"** (ese paso algebraico, esa hipótesis omitida o ese mal trazado de diagrama que arruina el problema) y diseñar micro-prácticas focalizadas para destrabar esa debilidad técnica.
 
 ---
 
-### 👩‍🏫 6. *Powerful Teaching: Unleash the Science of Learning*
-* **Autores:** Pooja K. Agarwal, Patrice M. Bain.
-* **El Núcleo:** Lleva la teoría científica de *Make It Stick* a la trinchera del aula. Está enfocado en docentes, pero sus cuatro "herramientas de poder" (*Retrieval Practice, Spaced Practice, Interleaving, Feedback-Driven Metacognition*) son aplicables de forma individual.
-* **Por qué es clave para Ingeniería:** Detalla cómo calibrar la confianza del estudiante frente a su desempeño real (la ilusión de competencia) y cómo usar mini-quizzes de bajo riesgo para detectar lagunas antes de que exploten en un parcial.
-* **Vínculo con el Sistema:** La matriz de calibración del Tutor Cognitivo (desempeño real vs. confianza 1-5) toma sus bases metodológicas de las investigaciones de Agarwal.
+### ⚡ 6. *Ultralearning*
+- **Autor:** Scott Young.
+- **El Núcleo:** Relata la metodología con la que el autor completó de forma autodidacta el currículo completo de Ciencias de la Computación del MIT en un solo año. No tiene la densidad académica de *Make It Stick*, pero aporta una agresividad táctica incomparable para encarar materias complejas en poco tiempo.
+- **Por qué es clave para Ingeniería:** Introduce dos principios que estructuran nuestra preparación para parciales:
+  1. **Transferencia Directa (*Directness*):** Estudiar haciendo **exactamente** la actividad que vas a tener que rendir. Si el examen es a mano, con calculadora estándar, contra reloj y sin apuntes, estudiar mirando la pantalla de la computadora o usando software no te entrena para rendir.
+  2. **Ataque a Subhabilidades (*Drills*):** Desarmar un procedimiento largo (como resolver un ciclo termodinámico o calcular una viga hiperestática) en sus eslabones independientes para entrenar por separado el eslabón débil antes de volver a integrarlo.
+
+---
+
+### 👩‍🏫 7. *Powerful Teaching: Unleash the Science of Learning*
+- **Autoras:** Pooja K. Agarwal, Patrice M. Bain.
+- **El Núcleo:** Traslada la ciencia cognitiva del laboratorio directamente a la práctica del aula. Aunque su público principal son docentes, sus cuatro "herramientas de poder" (*Retrieval Practice, Spaced Practice, Interleaving, Feedback-Driven Metacognition*) ofrecen dinámicas clínicas ideales para que un estudiante universitario audite su propio aprendizaje.
+- **Por qué es clave para Ingeniería:** Profundiza en la **calibración metacognitiva**: cómo medir con honestidad la brecha entre la confianza subjetiva (*"creo que me va a ir bárbaro"*) y el desempeño objetivo frente a la hoja en blanco. Enseña a utilizar evaluaciones de bajo riesgo para detectar huecos antes de que exploten en un examen sumativo.
 
 ---
 
 ## 🧭 Navegación
-*Volver a Modelos:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]**  
-*Siguiente sección:* ➡️ **[[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]**
+*Volver a Modelos e Infraestructura:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]**  
+*Siguiente sección (Guías de Estudio):* ➡️ **[[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]**

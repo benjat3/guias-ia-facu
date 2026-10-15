@@ -3,109 +3,128 @@
 ---
 
 
-> 👨‍💻 **Desarrollado por Duilio** • Sistema de Estudio Universitario con IA (Desarrollado específicamente para Ingeniería Mecánica, pero se ajusta a todo)
+
+> 👨‍💻 **Desarrollado por Duilio** • Sistema de Estudio Universitario con IA (Pensado para Ingeniería Mecánica, adaptable a cualquier carrera)
+
 ---
+
 # 🚀 Sistema de Estudio Activo con IA: Flujo Completo
 
-> [!NOTE] 📌 Sobre este sistema, autoría e Inteligencia Artificial
-> Este sistema y su documentación fueron estructurados y redactados en gran parte con asistencia de inteligencia artificial, **a partir de mis propias ideas, metodología de estudio y experiencia directa en materias de ingeniería**. 
-> 
-> Todo el contenido, los prompts y los flujos de trabajo fueron **rigurosamente chequeados, probados y validados en cursadas reales**. No obstante, ninguna herramienta es infalible: contrastá siempre los resultados con el material oficial y las exigencias de tu cátedra. Lo que importa es que en el examen vas a estar solo.
+Este sistema no busca que la IA te haga resúmenes pasivos ni te resuelva las guías mientras mirás la pantalla. Su objetivo es usar la Inteligencia Artificial para aplicar la **ciencia del aprendizaje** (recuperación activa, práctica deliberada y repetición espaciada) preparando materias universitarias exigentes en menos tiempo y con el nivel real que toman en los exámenes de tu cátedra.
 
-> [!WARNING] ⚠️ ADVERTENCIA CRÍTICA (15/10/2026): Brecha de Modelos, Omisión Silenciosa y el Valor de NotebookLM
-> 1. **NotebookLM ha quedado rezagado en razonamiento:** Frente a motores modernos como **Gemini 3.8 Flash (Thinking: High)** —gratuito en Google AI Studio— o **Gemini Argon**, el modelo de NotebookLM ha perdido terreno. Hoy es notablemente más flojo para jerarquizar conceptos finos, estructurar checklists y redactar problemas de examen matemáticamente válidos.
-> 2. **Peligro de omisión silenciosa y pereza cognitiva:** Todo modelo de lenguaje tiende a la compresión perezosa si le pasás mucho material junto: resume de más, saltea variantes de TP y omite tablas o gráficos asegurando que "cubrió todo". **NotebookLM es especialmente propenso a saltear información sin avisar**. Nunca des por completa una extracción sin auditarla contra tus apuntes.
-> 3. **Por qué NotebookLM sigue siendo insustituible (El Repositorio Central):** A pesar de su menor capacidad de razonamiento, NotebookLM tiene una ventaja operativa imbatible: **te permite cargar una sola vez los 40 archivos de la cursada (diapositivas, libros, TPs, parciales y audios) y tenerlos siempre listos en un único cuaderno**. En cambio, en Google AI Studio, Gemini Web o Claude tenés la fricción de tener que buscar en tu PC y **subir a mano los PDFs específicos cada vez que abrís un chat nuevo** para no saturar el contexto. Además, NotebookLM ofrece **cuota ilimitada de mensajes** y **citas clickeables nativas**.
+### ¿Cómo funciona si empezás desde cero?
+En lugar de usar un chat genérico, dividimos el estudio de cada unidad en **5 fases conectadas**:
+1. **Armás tu hoja de ruta (`Fase 1`):** La IA lee los apuntes y guías de la unidad y te arma una lista de control (*checklist*) con todo lo que tenés que saber explicar, deducir o calcular.
+2. **Estudiás pensando (`Fase 2`):** Cargás un ítem de esa lista en el **Tutor Cognitivo**. No te da sermones largos: te hace **una sola pregunta corta por turno**, espera tu respuesta, corrige tus errores y te guía con pistas hasta que dominás el tema.
+3. **Practicás como en el parcial (`Fase 3`):** El **Simulador de Exámenes** analiza los parciales viejos de tus profesores y te genera simulacros nuevos con la misma dificultad y estilo.
+4. **Fijás en la memoria a largo plazo (`Fases 4 y 5`):** Convertís las fórmulas, condiciones de validez y esquemas clave en tarjetas de **Anki** para repasarlos en pocos minutos desde el celular.
+
+> [!NOTE] 📌 Sobre la autoría y el uso responsable de IA
+> Este sistema y su documentación fueron estructurados y redactados en gran parte con asistencia de inteligencia artificial, **a partir de mis propias ideas, metodología de estudio y experiencia directa en materias de ingeniería**.
+> 
+> Todo el contenido, los prompts y los flujos de trabajo fueron **rigurosamente chequeados y probados en cursadas reales**. Sin embargo, ninguna IA es infalible: contrastá siempre cada resultado con los apuntes oficiales de tu cátedra. En el examen vas a estar solo.
 
 ---
-
 
 ## ⚡ Índice de Acceso Rápido
 
-Si ya conocés el sistema y querés ir directo a una herramienta o guía puntual:
-
-| Herramienta / Módulo                 | ¿Para qué sirve?                                           | Enlace directo                                               |
-| ------------------------------------ | ---------------------------------------------------------- | ------------------------------------------------------------ |
-| **Fase 1: Extractor de Checklists**  | Extrae el temario atómico de la cursada sin inventar nada. | ➡️ **[[20. Áreas/Sistema de Estudio con IA/01 - Extractor de Checklists\|01 - Extractor de Checklists]]**                      |
-| **Fase 2: Tutor Personal Cognitivo** | Estudio socrático con micro-pacing (1 consigna x turno).   | ➡️ **[[20. Áreas/Sistema de Estudio con IA/02 - Tutor Personal Cognitivo\|02 - Tutor Personal Cognitivo]]**                     |
-| **Fase 3: Simulador de Exámenes**    | Genera simulacros reales con la firma de tu profesor.      | ➡️ **[[20. Áreas/Sistema de Estudio con IA/03 - Simulador y Generador de Exámenes de Cátedra\|03 - Simulador y Generador de Exámenes de Cátedra]]** |
-| **Fase 4: Generador de Anki**        | Crea mazos CSV en Google AI Studio (con/sin fórmulas).     | ➡️ **[[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|04 - Generador de Tarjetas de Anki]]**                |
-| **Infraestructura de Modelos**       | Matriz de qué IA usar según la tarea y gestión de cuotas.  | ➡️ **[[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]**               |
-| **Biblioteca de Aprendizaje**        | Los 6 libros científicos que fundamentan este sistema.     | ➡️ **[[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]**        |
-| **Checklists de Autoevaluación**     | Guías para auditar cómo estudiás antes del examen.         | ➡️ **[[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]**  |
-| **Historial de Versiones**           | Changelog con la evolución de prompts y decisiones.        | ➡️ **[[20. Áreas/Sistema de Estudio con IA/99 - Historial de Versiones (Changelog)\|99 - Historial de Versiones (Changelog)]]**           |
-
----
-
-Este sistema no busca que la IA te haga resúmenes pasivos ni te dé respuestas servidas. Su objetivo es aplicar los principios de la **ciencia del aprendizaje** (recuperación activa, repetición espaciada, entrelazado y andamiaje cognitivo) para preparar materias técnicas de ingeniería minimizando el tiempo muerto y garantizando el estándar real de examen de la cátedra.
-
-> [!TIP] 📌 Modelos de IA actualizados y gestión de cuotas
-> Para no desactualizar esta guía con el paso del tiempo, consultá siempre la referencia rápida en:  
-> ➡️ **[[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]**  
-> *(Ahí figura qué entorno y modelo usar según el tipo de procesamiento y consumo de cuota).*
+| Herramienta / Módulo | Entorno Recomendado | ¿Para qué sirve? | Enlace directo |
+| :--- | :--- | :--- | :--- |
+| **Fase 1: Extractor de Checklists** | `AI Studio (Gratis)` o `Argon` `[Alto Razonamiento]` | Extrae el temario completo de la cursada unidad por unidad sin spoilers. | ➡️ **[[20. Áreas/Sistema de Estudio con IA/01 - Extractor de Checklists\|01 - Extractor de Checklists]]** |
+| **Módulo Satélite: Voz de la Cátedra** *(Opcional)* | `NotebookLM` `[Minería]` ➔ `AI Studio` `[Alto Razonamiento]` | Audita clases grabadas (videos/audios) y extrae qué entra, trampas y criterios del profesor. | ➡️ **[[20. Áreas/Sistema de Estudio con IA/01B - Extractor de Clases y Voz de la Cátedra\|01B - Extractor de Clases y Voz de la Cátedra]]** |
+| **Fase 2: Tutor Personal Cognitivo** | `NotebookLM` `[Minería]` o `AI Studio` `[Alto Razonamiento]` | Estudio socrático paso a paso (1 consigna corta por turno) sin regalar soluciones. | ➡️ **[[20. Áreas/Sistema de Estudio con IA/02 - Tutor Personal Cognitivo\|02 - Tutor Personal Cognitivo]]** |
+| **Fase 3: Simulador de Exámenes** | `NotebookLM` (Banco) + `AI Studio / Claude / Argon` (Generador) | Analiza parciales viejos de tu cátedra y genera simulacros reales con clave de corrección. | ➡️ **[[20. Áreas/Sistema de Estudio con IA/03 - Simulador y Generador de Exámenes de Cátedra\|03 - Simulador y Generador de Exámenes de Cátedra]]** |
+| **Fase 4: Generador de Anki** | `Google AI Studio` `[Alto Razonamiento]` | Crea mazos de tarjetas listas para importar (para exámenes con o sin hoja de fórmulas). | ➡️ **[[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|04 - Generador de Tarjetas de Anki]]** |
+| **Infraestructura de Modelos** | *Guía técnica* | Qué IA gratuita o paga elegir para cada tarea y cómo cuidar las cuotas de uso. | ➡️ **[[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]** |
+| **Biblioteca de Aprendizaje** | *Fundamentos* | Los 7 libros científicos que explican por qué este método funciona. | ➡️ **[[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]** |
+| **Checklists de Autoevaluación** | *Diagnóstico* | 4 guías rápidas para auditar tus hábitos de estudio (o de docencia) antes del parcial. | ➡️ **[[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]** |
+| **Historial de Versiones** | *Changelog* | Registro técnico de mejoras, pruebas y evolución de los prompts. | ➡️ **[[20. Áreas/Sistema de Estudio con IA/99 - Historial de Versiones (Changelog)\|99 - Historial de Versiones (Changelog)]]** |
 
 ---
 
-## 🗺️ Mapa Global del Flujo (Arquitectura de 5 Fases)
+> [!WARNING] ⚠️ Reglas de Oro sobre las IAs que usamos (Actualizado 15/10/2026)
+> Para no frustrarte con errores de la IA, tené presentes estas 3 reglas prácticas (explicadas a fondo en **[[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]**):
+> 1. **NotebookLM es tu biblioteca central, pero se quedó atrás en razonamiento:** Su gran ventaja es que te deja subir de una sola vez los 40 archivos de la materia (apuntes, libros, TPs, parciales y videos) con **citas clickeables** y una **cuota diaria sumamente amplia** (ya no es infinita, pero es casi imposible agotarla estudiando). Sin embargo, frente a modelos modernos de **`[Nivel: Alto Razonamiento]`**, hoy resume de más, saltea temas sin avisar (*omisión silenciosa*) y falla al inventar problemas matemáticos.
+> 2. **Google AI Studio (100% Gratuito) es tu motor de precisión:** Para extraer checklists, generar exámenes o crear tarjetas de Anki, usamos **Gemini 3.8 Flash** configurado en `Thinking level: High` dentro de Google AI Studio (o **Gemini Argon** si tenés plan pago), subiendo a mano los PDFs de la unidad que vas a trabajar.
+> 3. **PROHIBIDO usar el conector de cuadernos dentro de Gemini Web (`gemini.google.com`):** La barra lateral de Gemini Web que conecta con NotebookLM tiene un bug grave e ignora la mayoría de los archivos del cuaderno. Cuando uses modelos de **`[Nivel: Alto Razonamiento]`**, subí siempre los PDFs directamente desde tu computadora.
+
+---
+
+## 🗺️ Mapa Global del Flujo (5 Fases + Módulo Opcional)
 
 ```mermaid
 flowchart TD
-    FUENTES["<b>FUENTES DE LA CÁTEDRA</b><br>(PDFs, PPTs, TPs, Exámenes anteriores)"]
+    FUENTES["<b>FUENTES DE LA CÁTEDRA</b><br>(PDFs, Diapositivas, Guías de TP, Exámenes viejos)"]
+    VIDEOS["<b>CLASES GRABADAS (OPCIONAL)</b><br>(Videos de Zoom, Meet, Teams o YouTube)"]
+    VOZ["<b>MÓDULO SATÉLITE OPCIONAL</b><br><b>01B - Voz de la Cátedra</b><br>Extrae alcance, criterios y trampas<br><code>voz_catedra.md</code>"]
     
-    F1["<b>FASE 1: CHECKLIST ATÓMICA DE ESTUDIO</b><br>• Entorno: [Nivel: Alto Razonamiento] o NotebookLM<br>• Objetivo: Extracción secuencial en casillas (- [ ])"]
-    
-    F2["<b>FASE 2: ESTUDIO ACTIVO CON EL TUTOR COGNITIVO</b><br>• Entorno: NotebookLM o [Nivel: Alto Razonamiento]<br>• Objetivo: Micro-pacing socrático (1 idea x turno)"]
-    
-    F3["<b>FASE 3: SIMULADOR Y GENERADOR DE EXÁMENES</b><br>• Minería: NotebookLM (mapa, banco y modelo)<br>• Redacción: [Nivel: Alto Razonamiento]<br>• Objetivo: Simulacros reales (Bucle interactivo o Paquete)"]
-    
-    F4["<b>FASE 4: GENERACIÓN DE TARJETAS DE ANKI</b><br>• Entorno: Google AI Studio [Thinking High]<br>• Objetivo: CSV automatizado (Con / Sin fórmulas)"]
-    
-    F5["<b>FASE 5: IMPORTACIÓN, IMAGE OCCLUSION Y REPASO</b><br>• Entorno: Anki Desktop + AnkiDroid<br>• Objetivo: Oclusión visual de esquemas y sincronización"]
+    F1["<b>FASE 1: CHECKLIST DE ESTUDIO (01)</b><br>• Entorno: [Nivel: Alto Razonamiento] (AI Studio / Argon)<br>• Objetivo: Temario secuencial unidad por unidad (- [ ])"]
+    F2["<b>FASE 2: TUTOR PERSONAL COGNITIVO (02)</b><br>• Entorno: NotebookLM [Minería] o AI Studio [Alto Razonamiento]<br>• Objetivo: Estudio activo (1 pregunta corta por turno)"]
+    F3["<b>FASE 3: SIMULADOR DE EXÁMENES (03)</b><br>• Banco en [Minería] ➔ Simulacros en [Alto Razonamiento]<br>• Objetivo: Parciales de práctica fieles a tu cátedra"]
+    F4["<b>FASE 4: GENERADOR DE ANKI (04)</b><br>• Entorno: Google AI Studio [Nivel: Alto Razonamiento]<br>• Objetivo: Tarjetas CSV (Con / Sin hoja de fórmulas)"]
+    F5["<b>FASE 5: IMPORTACIÓN Y REPASO EN ANKI</b><br>• Entorno: Anki Desktop + AnkiDroid<br>• Objetivo: Tapar esquemas (Image Occlusion) y repaso diario"]
 
     FUENTES --> F1
+    VIDEOS -.-> VOZ
+    VOZ -.->|"Aporta qué entra y qué no"| F1
+    VOZ -.->|"Aporta criterios y trampas"| F2
+    VOZ -.->|"Aporta pautas del profesor"| F3
+    VOZ -.->|"Prioriza errores típicos"| F4
+    
     F1 --> F2
     F2 --> F3
     F3 --> F4
     F4 --> F5
 ```
+
 ---
 
-## Fase 1: Carga de Fuentes y Checklist Curricular
+## Fase 1: Carga de Fuentes y Checklist de la Materia
 
-El objetivo de esta fase es extraer un **mapa de ruta atómico** de la materia sin omitir temas ni inventar contenidos fuera de programa, mediante una estrategia de validación cruzada.
+El objetivo de este primer paso es armar el **mapa completo de cada unidad** en casillas de verificación (`- [ ]`), sin que la IA omita temas ni te revele las respuestas antes de estudiar.
 
-### 1.1. Carga de fuentes en NotebookLM
-1. Creá un cuaderno en **[NotebookLM](https://notebook.google.com/)** con el nombre de la materia (ej: *Mantenimiento Mecánico*).
-2. Subí **todo el material oficial**: diapositivas de clase, guías de trabajos prácticos, apuntes teóricos y, fundamentalmente, exámenes parciales y finales de años anteriores.
+### 1.1. Armá tu biblioteca general en NotebookLM
+1. Creá un cuaderno gratuito en **[NotebookLM](https://notebook.google.com/)** con el nombre de la materia (ej: *Termodinámica Técnica*).
+2. Subí **todo el material de la cursada**: programa, diapositivas, apuntes teóricos, guías de TP y parciales/finales de años anteriores. Este cuaderno será tu repositorio central para el resto del cuatrimestre.
 
-### 1.2. Extracción y Fusión de la Checklist
-Para no depender de los sesgos de una sola interfaz, ejecutamos una **fusión en dos pasos**:
-1. **Extracción A (NotebookLM):** En el chat de tu cuaderno, pegá el prompt de **[[20. Áreas/Sistema de Estudio con IA/01 - Extractor de Checklists\|01 - Extractor de Checklists]]** indicando la unidad a procesar. NotebookLM generará el desglose inicial anclado a tus fuentes.
-2. **Extracción B (Gemini Web):** Abrí **[gemini.google.com](https://gemini.google.com)**, seleccioná ese mismo cuaderno en la barra lateral con el modelo **Gemini 3.8 Flash** y corré **el mismo prompt extractor**.
-3. **Fusión definitiva:** Inmediatamente después de que Gemini Web genere su versión, pegale la checklist de NotebookLM con el prompt de fusión (provisto en la guía). Gemini integrará ambas en una **checklist maestra consolidada** sin omisiones ni redundancias.
-4. Repetí el proceso de a una unidad por vez y pegá las casillas (`- [ ]`) en tu nota de Obsidian.
-
-> [!DANGER] ⚠️ REGLA CRÍTICA: Borrar el chat en Gemini Web
-> Apenas termines de extraer y fusionar las checklists de la materia, **borrá este chat en gemini.google.com**. Arrastrar todo ese historial contamina el contexto para tareas posteriores.
+### 1.2. Extraé la Checklist unidad por unidad (En Google AI Studio)
+Para que la IA no resuma de más ni se saltee ejercicios, la lista de temas se extrae **de a una unidad por turno** en un motor de **`[Nivel: Alto Razonamiento]`**:
+1. Abrí **[Google AI Studio](https://aistudio.google.com/)** con el modelo **Gemini 3.8 Flash** (activando `Thinking level: High` y `Media resolution: High` en el panel derecho) o **Gemini Argon**.
+2. Subí desde tu PC los archivos PDF del **Programa** y de la **Unidad 1** (teoría, guía de TP y exámenes).
+3. Pegá el prompt de **[[20. Áreas/Sistema de Estudio con IA/01 - Extractor de Checklists\|01 - Extractor de Checklists]]**. La IA va a generar las casillas `- [ ]` de la Unidad 1 ordenadas por conceptos, deducciones, gráficos y tipos de problemas `(TP X: Ej. N, M)`, y se detendrá automáticamente.
+4. Copiá el bloque a tu nota de Obsidian, subí los PDFs de la Unidad 2 y escribí **`Seguí`** para recibir la siguiente unidad con el mismo nivel de detalle.
 
 > [!NOTE] 📸 Captura de referencia: Extracción curricular
 > ![Pasted image 20260913212906.png](/img/user/_assets/attachments/Pasted%20image%2020260913212906.png)
 
 ---
 
+## 🎙️ Módulo Satélite Opcional: Extractor de Clases y «Voz de la Cátedra»
+
+> [!IMPORTANT] 📌 100% Opcional
+> Este módulo aplica **únicamente si tu cátedra graba las clases** (Zoom, Meet, Teams o YouTube) y tenés los videos o audios. Si no tenés clases grabadas, pasá directo a la **Fase 2**.
+
+Si tenés las grabaciones, los prompts de **[[20. Áreas/Sistema de Estudio con IA/01B - Extractor de Clases y Voz de la Cátedra\|01B - Extractor de Clases y Voz de la Cátedra]]** escanean lo que dice el profesor en clase y arman un documento compacto (`voz_catedra.md`) con citas exactas sobre:
+- Qué temas entran y cuáles **no entran** en el parcial.
+- Qué fórmulas hay que saber demostrar y cuáles solo aplicar.
+- Qué errores típicos advierte en el pizarrón y qué unidades o diagramas exige al corregir.
+
+Ese archivo `voz_catedra.md` se suma luego al Tutor, al Simulador de Exámenes y a Anki para estudiar enfocado en lo que realmente evalúa tu docente.
+
+---
+
 ## Fase 2: Estudio Activo con el Tutor Cognitivo
 
-Acá ocurre la construcción del razonamiento y la detección quirúrgica de lagunas conceptuales.
+Acá es donde aprendés los temas desde cero o resolvés las guías de TP. Podés ver todas las opciones y prompts en **[[20. Áreas/Sistema de Estudio con IA/02 - Tutor Personal Cognitivo\|02 - Tutor Personal Cognitivo]]**.
 
-### 2.1. ¿Por qué usamos NotebookLM y no un chat convencional?
-* **Cuota inagotable:** Una sesión socrática profunda consume entre 40 y 80 interacciones. En chats comerciales agotarías tu límite en 20 minutos; en NotebookLM el costo es nulo.
-* **Micro-pacing estricto:** El tutor no te da clases magistrales ni bloques largos de consignas; te plantea **una sola consigna corta a la vez**, exige que vos produzcas la primera respuesta y evalúa cada una de tus frases con tono clínico.
-* **Cero alucinaciones teóricas:** Toda la teoría sale estrictamente de tus archivos con citas nativas clickeables.
+### 2.1. Dos formas de usar el Tutor
+- **Ruta Estable en NotebookLM (`[Nivel: Minería y Recuperación]`):** Es la más cómoda para estudiar todos los días porque ya tenés todos los archivos cargados en un solo lugar, tenés **citas clickeables** que te abren la diapositiva exacta y una cuota amplísima para charlar durante horas. Podés usar el prompt compacto (<10.000 caracteres) o el **Prompt Extendido de 27.000 caracteres** mediante el truco de configuración que vemos abajo.
+- **Ruta BETA en Google AI Studio (`[Nivel: Alto Razonamiento]`):** Ideal para días de cálculo pesado o deducciones complejas donde necesitás que la IA no falle en física ni en matemática. Solo requiere subir a mano los 2 o 3 PDFs del tema que vas a estudiar hoy.
 
-### 2.2. Configuración del Tutor: El Bypass de 10.000 Caracteres
-NotebookLM tiene un límite nativo de 10.000 caracteres en sus directivas de chat. Para cargar el **Prompt Quirúrgico V4 completo de más de 27.000 caracteres** (disponible en **[[20. Áreas/Sistema de Estudio con IA/02 - Tutor Personal Cognitivo\|02 - Tutor Personal Cognitivo]]**), usamos el puente de sincronización desde Gemini Web:
+### 2.2. Cómo cargar el Prompt Extendido (27k caracteres) en NotebookLM
+El cuadro de configuración de NotebookLM corta los textos a los 10.000 caracteres. Para guardar el **Prompt Completo de 27.000 caracteres**, usamos la interfaz de Gemini Web únicamente como puente de guardado (para estudiar seguís usando la web de NotebookLM):
 
-1. **Abrir el cuaderno desde Gemini:** Entrá a **[gemini.google.com](https://gemini.google.com)** y seleccioná el cuaderno en la barra lateral izquierda.
+1. **Abrir el cuaderno desde Gemini:** Entrá a **[gemini.google.com](https://gemini.google.com)** y hacé clic en tu cuaderno en la barra lateral izquierda.
    > [!NOTE] 📸 Acceso al Notebook desde Gemini
    > ![Pasted image 20261011145307.png](/img/user/_assets/attachments/Pasted%20image%2020261011145307.png)
 
@@ -113,20 +132,19 @@ NotebookLM tiene un límite nativo de 10.000 caracteres en sus directivas de cha
    > [!NOTE] 📸 Menú de opciones del cuaderno
    > ![Pasted image 20261011145315.png](/img/user/_assets/attachments/Pasted%20image%2020261011145315.png)
 
-3. **Pegar el prompt y guardar:** Pegá las directivas completas de 27k caracteres en el campo **Instructions** y hacé clic en **Save**.
+3. **Pegar el prompt y guardar:** Pegá el prompt de 27k caracteres en **Instructions** y presioná **Save**.
    > [!NOTE] 📸 Guardado de directivas sin límite
    > ![Pasted image 20261011145351.png](/img/user/_assets/attachments/Pasted%20image%2020261011145351.png)
 
-4. **Verificación en NotebookLM:** Al abrir el cuaderno en **[notebook.google.com](https://notebook.google.com/)**, el contador de *Configure Chat* mostrará **`27236 / 10000`** en violeta.
-   > [!WARNING] ⚠️ No tocar nada en esta ventana
-   > El sistema ya cargó las 27k directivas y las ejecuta completas. Cerrá la ventana con la cruz (`X`) para no disparar el recorte de texto del navegador.
+4. **Verificar en NotebookLM:** Volvé a **[notebook.google.com](https://notebook.google.com/)**. En *Configure Chat* vas a ver **`27236 / 10000`** en violeta.
+   > [!WARNING] ⚠️ Cerrá esa ventana con la cruz (`X`)
+   > No edites ni toques nada adentro de esa ventana en NotebookLM para que el navegador no recorte el texto. El prompt de 27k ya quedó activo.
    > ![Pasted image 20261011145342.png](/img/user/_assets/attachments/Pasted%20image%2020261011145342.png)
 
-### 2.3. Dinámica de la Sesión de Estudio
-1. **Apertura:** Al activar el tutor, indicale tu tema/checklist, tu base previa y la profundidad deseada (`Baja`, `Media` o `Alta`).
-2. **Ciclo de aprendizaje:** La IA te pedirá predecir o deducir conceptos antes de explicarte nada. Si fallás, te dará pistas progresivas o ejemplos paralelos con otros datos, **protegiendo tu ejercicio original intacto**.
-3. **Cierre e integración:** Tras resolver un problema complejo, te exigirá explicar de punta a punta con tus palabras qué hiciste y por qué antes de declarar un ítem como "Dominado".
-4. **Cierre de sesión:** Escribí `Cerrar unidad` para obtener el bloque `HANDOFF`. Copialo en Obsidian y pegalo en la sesión siguiente para activar el *brain dump* inicial.
+### 2.3. Cómo es una sesión de estudio
+1. **Arranque:** Le pegás una casilla de tu checklist (`- [ ]`), le indicás la profundidad (`Baja`, `Media` o `Alta`) y si en el examen te dejan usar hoja de fórmulas.
+2. **Una pregunta por turno:** La IA nunca te tira un resumen largo. Te hace una pregunta corta o te pide plantear el primer paso del problema. Si te trabás, te da pistas graduales o te muestra un ejemplo parecido con otros números para no arruinarte tu ejercicio.
+3. **Cierre y continuidad (`HANDOFF`):** Cuando terminás el tema, te pide explicarlo de punta a punta con tus palabras. Al escribir `Cerrar unidad`, te entrega un bloque resumen (`HANDOFF`) para guardar en Obsidian y pegarlo en tu próxima sesión de estudio.
 
 > [!NOTE] 📸 Captura de referencia: Sesión de tutoría activa
 > ![Pasted image 20260913213142.png](/img/user/_assets/attachments/Pasted%20image%2020260913213142.png)
@@ -135,54 +153,46 @@ NotebookLM tiene un límite nativo de 10.000 caracteres en sus directivas de cha
 
 ## Fase 3: Simulador y Generador de Exámenes de Cátedra
 
-Esta fase implementa una **ingeniería inversa documental** para evaluar tu dominio bajo condiciones reales de evaluación. Ver guía completa en **[[20. Áreas/Sistema de Estudio con IA/03 - Simulador y Generador de Exámenes de Cátedra\|03 - Simulador y Generador de Exámenes de Cátedra]]**.
+Cuando ya estudiaste las unidades, esta fase analiza los exámenes viejos de tu materia para tomarte simulacros idénticos a los reales. Todos los prompts están en **[[20. Áreas/Sistema de Estudio con IA/03 - Simulador y Generador de Exámenes de Cátedra\|03 - Simulador y Generador de Exámenes de Cátedra]]**.
 
-### 3.1. Fase de Minería Forense (En NotebookLM)
-Corrés los prompts 1, 2 y 3 dentro de NotebookLM:
-1. **`mapa.md` (Paso 1):** Extrae todas las habilidades evaluables y calcula la recurrencia histórica real ($n/N$ parciales donde apareció).
-2. **`banco.md` (Paso 2):** Transcribe el 100% de los exámenes históricos para fijar el estándar docente y filtra selectivamente ejercicios de TP que cubran variantes o zonas ciegas (usando `mapa.md`).
-3. **`modelo.md` (Paso 3):** Formaliza la firma de evaluación del profesor (cuota teoría/práctica, duración, estilo y criterios de corrección).
-4. *`banco_teoria.md` (Paso 3B - Opcional):* Usalo **únicamente** si casi no tenés parciales viejos con preguntas teóricas o si la cátedra evalúa la teoría en coloquios orales. Si ya tenés suficientes exámenes pasados, **saltealo**.
+### 3.1. Extracción del ADN del examen (Pasos 1 a 3)
+1. **`mapa.md` (Paso 1 en `AI Studio` - `[Alto Razonamiento]`):** Subís los apuntes de la unidad y los parciales viejos. La IA lista todas las habilidades evaluables y calcula cuántas veces se tomó cada una en la historia de la cátedra.
+2. **`banco.md` (Paso 2 en `NotebookLM` - `[Minería]`):** Como en NotebookLM ya tenés todos los exámenes cargados, lo usás para transcribir el 100% de los parciales viejos y sumar solo 1 o 2 ejercicios clave de las guías de TP que cubran temas nunca tomados.
+3. **`modelo.md` (Paso 3 en `AI Studio` - `[Alto Razonamiento]`):** Le pegás el mapa y el banco, y la IA resume en 70 líneas el estilo exacto de tu profesor (cuánto vale la teoría vs. la práctica, cómo redacta los incisos y qué errores descuentan puntos). *(Si casi no tenés parciales viejos con teoría, existe un Paso 3B opcional para cubrir preguntas teóricas).*
 
-### 3.2. Fase de Ensamblado y Redacción (Gemini Flash High o Claude Sonnet 5.5)
-**NotebookLM es pésimo redactando exámenes completos y alucina con facilidad.** Por eso, descargás los archivos `.md` anteriores y los llevás a un LLM de razonamiento avanzado fuera de NotebookLM:
-* **Gemini 3.8 Flash (Thinking High)** en Gemini Web o AI Studio.
-* **Claude Sonnet 5.5 (Razonamiento Medium+)** en Claude.ai.
-
-Elegís una de dos modalidades:
-* **Ruta A (Entrenamiento Adaptativo):** Rendís a ciegas en el chat, resolvés en papel con cronómetro, usás el comando `Corregir` y la IA actualiza tu estado de aprendizaje (`FRÁGIL`, `CORRECTO 1x`, `CONSOLIDADO`).
-* **Ruta B (Fábrica de Paquetes Autosuficientes):** Usás la directiva *Nota* para que ensamble parciales completos con su resolución paso a paso (`Clave`) en el mismo mensaje, priorizando años recientes (2025/2026), sin redundancias y con ecuaciones en LaTeX listas para exportar a PDF y compartir con compañeros.
+### 3.2. Generación de Simulacros (Paso 4 en `[Alto Razonamiento]`)
+Con esos tres archivos `.md`, abrís un chat en **Google AI Studio (Gemini 3.8 Flash High)**, **Claude Sonnet 5.5** o **Gemini Argon** *(nunca uses NotebookLM acá porque falla en las cuentas)* y elegís cómo practicar:
+- **Ruta A (Rendir a ciegas con corrección):** Pedís un `Examen`, lo resolvés en papel con cronómetro y usás el comando `Corregir`. La IA revisa tus cuentas paso a paso y, si te equivocaste en el inciso `a)` pero hiciste bien el planteo del `b)`, te considera el procedimiento por *arrastre* como hace un profesor real.
+- **Ruta B (Paquetes listos para imprimir o compartir):** Usás el comando `Paquete` y la IA te genera en un solo mensaje el **Enunciado limpio + Resolución paso a paso en LaTeX + Trazabilidad**, listo para exportar a PDF y pasarle a tus compañeros.
 
 ---
 
 ## Fase 4: Generación de Tarjetas de Anki
 
-Una vez comprendido el tema, pasamos a automatizar el sistema de repetición espaciada. Consultá los prompts en **[[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|04 - Generador de Tarjetas de Anki]]**.
+Para no olvidarte las fórmulas, unidades o conceptos de las primeras unidades cuando llegás al parcial, creamos tarjetas de repaso espaciado con **[[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|04 - Generador de Tarjetas de Anki]]**.
 
-### 4.1. Entorno de Trabajo: Google AI Studio
-Se utiliza **[Google AI Studio](https://aistudio.google.com/prompts/new_chat)** en lugar de Gemini Web convencional por su precisión técnica para desarrolladores:
+### 4.1. Configuración única en Google AI Studio
+Usamos **[Google AI Studio](https://aistudio.google.com/prompts/new_chat)** porque es gratuito, permite guardar el prompt fijo y lee gráficos o subíndices chicos con máxima nitidez:
 
-1. **Desactivar chat temporal:** Asegurá tus chats desmarcando *Temporary chat*.
+1. **Desactivar chat temporal:** Desmarcá *Temporary chat* para que tus chats queden guardados en Google Drive.
    > [!NOTE] 📸 Desactivar chat temporal
    > ![Pasted image 20261011150316.png](/img/user/_assets/attachments/Pasted%20image%2020261011150316.png)
 
-2. **Seleccionar el Modelo:** Elegí `Gemini 3.8 Flash` en el panel lateral derecho.
+2. **Elegir el modelo:** Seleccioná `Gemini 3.8 Flash` en la columna derecha.
    > [!NOTE] 📸 Selección del modelo y acceso a System Instructions
    > ![Pasted image 20261011150326.png](/img/user/_assets/attachments/Pasted%20image%2020261011150326.png)
 
-3. **Guardar el Prompt como System Instruction:** Creá un preset permanente para no tener que copiar el prompt en cada mensaje.
+3. **Guardar el prompt fijo en System Instructions:** Creá una instrucción con el prompt **CON hoja de fórmulas** (que no te pide memorizar ecuaciones largas, sino entender cómo varían) o **SIN hoja de fórmulas** (que te entrena para escribir las ecuaciones de memoria).
    > [!NOTE] 📸 Creación y guardado de instrucciones del sistema
    > ![Pasted image 20261011150337.png](/img/user/_assets/attachments/Pasted%20image%2020261011150337.png)  
    > ![Pasted image 20261011150344.png](/img/user/_assets/attachments/Pasted%20image%2020261011150344.png)
 
-4. **Calibración obligatoria en High:** Configurá **Thinking level: High** y **Media resolution: High** para garantizar deducción profunda y visión nítida de subíndices o diagramas.
+4. **Poner Thinking y Media Resolution en High:** Así la IA analiza bien el apunte y lee con nitidez los diagramas de las diapositivas.
    > [!NOTE] 📸 Calibración en High (Thinking y Media Resolution)
    > ![Pasted image 20261011150350.png](/img/user/_assets/attachments/Pasted%20image%2020261011150350.png)
 
-### 4.2. Preparación del Envío
-1. **Elección de modalidad:** Seleccioná si la materia es **CON hoja de fórmulas** (prohíbe memorizar ecuaciones complejas y evalúa sensibilidad física o límites) o **SIN hoja de fórmulas** (evalúa producción matemática activa desde cero).
-2. **Densidad de lote:** Enviá bloques de **4 a 6 diapositivas** o **1 a 2 páginas de apunte** por mensaje.
-3. **Comentarios de clase:** Podés sumar al mensaje tus propias notas sobre lo que el profesor remarcó verbalmente en clase para que la IA lo integre en las tarjetas.
+### 4.2. Envío de apuntes por lotes cortos
+Enviá de a **4 a 6 diapositivas** (o **1 a 2 páginas de apunte**) por mensaje, sumando si querés comentarios que haya dicho el profesor en clase. La IA te devolverá un bloque de código CSV listo para copiar.
 
 > [!NOTE] 📸 Captura de referencia: Generación de mazos en bloque CSV
 > ![Pasted image 20260913213301.png](/img/user/_assets/attachments/Pasted%20image%2020260913213301.png)
@@ -192,153 +202,89 @@ Se utiliza **[Google AI Studio](https://aistudio.google.com/prompts/new_chat)** 
 ## Fase 5: Importación, Image Occlusion y Repaso en Anki
 
 > [!TIP] Prerrequisito
-> Tenés que tener Anki de escritorio instalado en tu computadora y la app móvil (AnkiDroid o AnkiMobile) configurada con tu cuenta de AnkiWeb (_yo no lo descargo porque ya lo tengo_)
+> Instalá **Anki** en tu computadora (gratuito en [apps.ankiweb.net](https://apps.ankiweb.net/)) y la app en tu celular (**AnkiDroid** en Android o **AnkiMobile** en iOS) vinculadas con la misma cuenta gratuita de AnkiWeb.
 
----
-
-### 5.1. Guardado e importación inicial del archivo
-
-1. **Crear el archivo:**
-   * Copiá el bloque de código CSV crudo devuelto por la IA.
-   * Pegalo en un editor de texto plano (Bloc de notas, VS Code) y guardalo como `.csv` o `.txt` (ej: `tarjetas_unidad_1.csv`).
-2. **Abrir el asistente de importación:**
-   * En Anki Desktop, andá a: **File ➔ Import...** y seleccioná el archivo guardado.
-3. **Configuración de opciones:**
-   * **Field separator (guessed):** `Semicolon` (Punto y coma).
-   * **Allow HTML in fields:** **ACTIVADO** (interruptor en azul).
+### 5.1. Guardar e importar el archivo CSV
+1. Copiá el bloque CSV que te dio la IA, pegalo en el Bloc de notas y guardalo como `.csv` o `.txt` (ej: `unidad_1.csv`).
+2. En Anki de PC, andá a **File ➔ Import...** y elegí el archivo.
+3. Verificá estas opciones:
+   * **Field separator:** `Semicolon` (Punto y coma).
+   * **Allow HTML in fields:** **ACTIVADO** (en azul).
    * **Note Type:** `Basic`.
-   * **Deck:** Elegí el mazo de tu materia.
-   * **Existing notes:** `Update`.
-   * **Match scope:** `Note Type`.
+   * **Deck:** El mazo de tu materia.
 
 > [!NOTE] 📸 Captura de referencia: Configuración de archivo y opciones
 > ![Pasted image 20260913214554.png](/img/user/_assets/attachments/Pasted%20image%2020260913214554.png)
 
-4. **Mapeo de campos (Field mapping):**
-   * **Front:** `1: [Pregunta...]` (Columna 1).
-   * **Back:** `2: [Respuesta...]` (Columna 2).
-   * **Tags:** `(Nothing)`.
-   * Hacé clic en **Import**.
+4. En **Field mapping**, dejá `Front` en la columna 1, `Back` en la columna 2, `Tags` en `(Nothing)` y hacé clic en **Import**.
 
 > [!NOTE] 📸 Captura de referencia: Mapeo de campos (Field mapping)
 > ![Pasted image 20260913214609.png](/img/user/_assets/attachments/Pasted%20image%2020260913214609.png)
 
 ---
 
-### 5.2. Conversión por lotes a Image Occlusion
+### 5.2. Pasar esquemas y dibujos a Image Occlusion
+Cuando el apunte tiene un corte de un equipo o un ciclo con partes para identificar, la IA crea tarjetas que empiezan con `[CREAR IMAGE OCCLUSION]`. Para agregarles la imagen y tapar sus nombres:
 
-Las tarjetas rotuladas como `[CREAR IMAGE OCCLUSION]` necesitan convertirse al tipo nativo de oclusión para tapar diagramas.
-
-1. **Filtrar en el Explorador:**
-   * Presioná **Browse** (tecla `B`) en Anki.
-   * En la barra de búsqueda escribí: `[CREAR IMAGE OCCLUSION]` y presioná Enter.
-   * Seleccioná todas las notas resultantes (`Ctrl + A`).
-2. **Cambiar el tipo de nota:**
-   * Hacé clic derecho: **Notes ➔ Change Note Type...**
-   * Cambiá de `Basic` ➔ a `Image Occlusion`.
-3. **Configuración de campos:**
-   * `(Nothing)` ➔ **Occlusion**
-   * `(Nothing)` ➔ **Image**
+1. Abrí el explorador de Anki (**Browse** o tecla `B`), buscá `[CREAR IMAGE OCCLUSION]` y seleccioná todas (`Ctrl + A`).
+2. Hacé clic derecho ➔ **Notes ➔ Change Note Type...** y cambiá de `Basic` a `Image Occlusion`.
+3. Mapeá los campos así y guardá (**Save**):
    * `Front` ➔ **Header**
-   * `Back` ➔ **Back Extra**
-   * `(Nothing)` ➔ **Comments**
-   * Hacé clic en **Save**.
+   * `Back` ➔ **Back Extra** *(acá te queda anotado qué partes tenés que tapar y qué función cumple cada una)*.
+   * El resto dejalo en `(Nothing)`.
 
 > [!NOTE] 📸 Captura de referencia: Mapeo para cambio de tipo de nota
 > ![Pasted image 20260913214656.png](/img/user/_assets/attachments/Pasted%20image%2020260913214656.png)
 
-4. **Confirmación de reescritura:**
-   * Aceptá la advertencia de subida completa (*full upload*) haciendo clic en **Yes**.
+4. Confirmá el aviso haciendo clic en **Yes**.
 
 > [!NOTE] 📸 Captura de referencia: Confirmación de subida completa
 > ![Pasted image 20260913214707.png](/img/user/_assets/attachments/Pasted%20image%2020260913214707.png)
 
 ---
 
-### 5.3. Sincronización crítica con AnkiWeb (PC y Teléfono)
+### 5.3. Sincronización segura entre PC y Celular
 
-> [!DANGER] ⛔ PUNTO CRÍTICO: No equivocarse de botón al sincronizar
-> Al cambiar el tipo de nota, la base de datos exige una sincronización completa unidireccional. Un clic en el botón equivocado sobreescribe la base con la versión vieja y borra todo el trabajo.
+> [!DANGER] ⛔ Cuidado al sincronizar después de cambiar el tipo de nota
+> Cuando convertís tarjetas a *Image Occlusion*, Anki te pregunta qué base de datos querés conservar. Si tocás el botón equivocado, borrás lo que acabás de importar.
 
-#### 1. En la computadora (Anki Desktop)
-* Hacé clic en **Sync** (Sincronizar).
-* En la ventana de conflicto entre dispositivos: **SELECCIONÁ EXCLUSIVAMENTE `Upload to AnkiWeb`** (Subir a AnkiWeb).  
-* ❌ *NUNCA selecciones `Download from AnkiWeb`.*
+1. **Primero en tu PC (Anki Desktop):** Presioná **Sync** y elegí siempre **`Upload to AnkiWeb`** (Subir a AnkiWeb).
+   > [!NOTE] 📸 Captura de referencia: Selección de Upload to AnkiWeb en PC
+   > ![Pasted image 20260913214729.png](/img/user/_assets/attachments/Pasted%20image%2020260913214729.png)
 
-> [!NOTE] 📸 Captura de referencia: Selección de Upload to AnkiWeb en PC
-> ![Pasted image 20260913214729.png](/img/user/_assets/attachments/Pasted%20image%2020260913214729.png)
-
-#### 2. En el teléfono (AnkiDroid)
-* Al abrir la app y presionar sincronizar, aparecerá el cartel de colecciones incompatibles.
-* **SELECCIONÁ EXCLUSIVAMENTE `AnkiWeb`**. Esto descarga la versión nueva desde la nube a tu teléfono.  
-* ❌ *NUNCA toques `AnkiDroid`, o subirás la base vieja del celular y destruirás lo hecho en la PC.*
-
-> [!NOTE] 📸 Captura de referencia: Selección de AnkiWeb en AnkiDroid
-> ![Pasted image 20260915182435.png](/img/user/_assets/attachments/Pasted%20image%2020260915182435.png)
+2. **Después en tu celular (AnkiDroid):** Presioná sincronizar y elegí **`AnkiWeb`** (para descargar a tu teléfono lo que subiste desde la PC).
+   > [!NOTE] 📸 Captura de referencia: Selección de AnkiWeb en AnkiDroid
+   > ![Pasted image 20260915182435.png](/img/user/_assets/attachments/Pasted%20image%2020260915182435.png)
 
 ---
 
-### 5.4. Oclusión visual de diagramas y esquemas
+### 5.4. Pegar la imagen y tapar las partes
 
-Abrí el explorador (`B`), seleccioná una tarjeta convertida y seguí este flujo:
+En el explorador (`B`) de tu PC, hacé clic en cada tarjeta de `[CREAR IMAGE OCCLUSION]`:
 
 > [!NOTE] 📸 Captura de referencia: Botones de control del editor de oclusión
 > ![Pasted image 20260913215126.png](/img/user/_assets/attachments/Pasted%20image%2020260913215126.png)
 
-1. **Uso de los botones superiores:**
-   * **Primer botón (Ver / Ocultar texto):** Permite limpiar el campo **Header** (borrá la leyenda `[CREAR IMAGE OCCLUSION]` y dejá el nombre limpio del equipo/proceso). El campo **Back Extra** conservalo, ya que te lista qué variables o partes te pide tapar el prompt.
-   * **Segundo botón (Reseteo de imagen):** Hacé clic para eliminar la imagen rota que Anki crea por defecto al convertir de tipo `Basic`. Aparecerá el lienzo en blanco listo para recibir la captura.
-2. **Pegar y resolver el bug visual:**
-   * Copiá la imagen de la diapositiva (`Win + Shift + S`) y pegala en el lienzo (`Ctrl + V`).
-   * *Si la interfaz se congela o no podés dibujar rectángulos:* Hacé clic dos veces en el **primer botón** (ocultar y mostrar texto). Esto refresca la ventana inmediatamente.
-3. **Tapar etiquetas:**
-   * Seleccioná la herramienta de rectángulo lateral y dibujá las máscaras tapando los puntos críticos indicados en el campo *Back Extra*.
+1. **Botón 1 (Texto):** Borrá el cartel `[CREAR IMAGE OCCLUSION]` del título para que quede limpio, y mirá en **Back Extra** qué partes te indica tapar la IA.
+2. **Botón 2 (Resetear imagen):** Tocá el segundo ícono para limpiar el lienzo en blanco.
+3. **Pegar captura y tapar:** Sacale una captura a la figura de tu apunte (`Win + Shift + S`), pegala con `Ctrl + V` y dibujá rectángulos sobre los nombres a ocultar. *(Tip: si al pegar la imagen no te deja dibujar rectángulos, tocá dos veces el Botón 1 para refrescar la ventana).*
 
 ---
-## 🛠️ Módulos de Apoyo, Fundamentos y Autoevaluación
 
-Más allá del flujo operativo de 5 pasos para estudiar temas nuevos, el sistema cuenta con tres herramientas transversales que sostienen la calidad del estudio a lo largo del cuatrimestre:
+## 🛠️ Guías Complementarias del Sistema
 
-### 🤖 1. Infraestructura de Modelos y Gestión de Cuotas (`[[05]]`)
-* **¿Para qué sirve?** Es tu **manual técnico de mantenimiento**. Los modelos de IA cambian constantemente de versión y límites. Esta página actúa como *fuente única de verdad* para saber qué modelo elegir en cada tarea (NotebookLM para minería, AI Studio para Anki, Claude/Gemini Flash para exámenes) sin agotar tus límites diarios gratuitos.
-* **¿Cuándo consultarla?** Al inicio del cuatrimestre para configurar tus entornos, o cada vez que sientas que un modelo empieza a responder peor o recortar código.  
-➡️ **Ver guía completa:** [[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]
+Además de las herramientas paso a paso, tenés tres secciones de consulta para mejorar tu forma de estudiar:
 
-### 📚 2. Biblioteca de Ciencia del Aprendizaje (`[[06]]`)
-* **¿Para qué sirve?** Es el **fundamento teórico de todo el sistema**. Explica por qué los prompts están armados como están (por qué la IA no te da la respuesta servida, por qué los lotes se cambiaron por micro-pacing y por qué releer apuntes no sirve). Resume los 6 libros de psicología cognitiva y pedagogía técnica universitaria que sustentan el método.
-* **¿Cuándo consultarla?** Cuando quieras entender a fondo los mecanismos de la memoria de trabajo, la teoría de la carga cognitiva y la práctica deliberada, o cuando necesites adaptar el método a una materia atípica.  
-➡️ **Ver biblioteca:** [[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]
+- 🤖 **[[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]**: Guía actualizada sobre qué modelo de IA elegir en cada paso y cómo cuidar tus límites de uso gratuitos o pagos.
+- 📚 **[[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]**: Resumen de los 7 libros científicos (encabezados por *A Mind for Numbers* de Barbara Oakley) que explican cómo funciona la memoria y la resolución de problemas en ingeniería.
+- 🧭 **[[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]**: 4 checklists de autoevaluación para revisar tus hábitos de estudio unas semanas antes del parcial y evitar la *ilusión de competencia* (sentir que sabés el tema solo porque entendés el apunte al leerlo).
+- 📜 **[[20. Áreas/Sistema de Estudio con IA/99 - Historial de Versiones (Changelog)\|99 - Historial de Versiones (Changelog)]]**: Registro técnico de todas las actualizaciones y mejoras de los prompts.
 
-### 🧭 3. Checklists de Autoevaluación Diagnóstica (`[[07]]`)
-* **¿Para qué sirve?** Es tu **prueba de honestidad antes del parcial**. Una suite de 4 listas de verificación diseñadas para auditar tus hábitos reales de estudio (o de docencia si sos ayudante). Su objetivo es destruir la *ilusión de competencia* (creer que sabés algo solo porque lo reconocés al leerlo) y comprobar si sos capaz de producir respuestas y deducciones desde cero en una hoja en blanco.
-* **¿Cuándo consultarla?** Entre 1 y 2 semanas antes de cada examen parcial o final, para detectar lagunas y saber si estás estudiando para *entender* o estudiando para *rendir*.  
-➡️ **Ver índice de checklists:** [[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]
+---
 
---- 
-## 🧭 Enlaces a las Herramientas del Sistema
+## 🤝 Propósito del Proyecto y Contacto
 
-- 📋 **Paso 1:** [[20. Áreas/Sistema de Estudio con IA/01 - Extractor de Checklists\|01 - Extractor de Checklists]]
-- 🧠 **Paso 2:** [[20. Áreas/Sistema de Estudio con IA/02 - Tutor Personal Cognitivo\|02 - Tutor Personal Cognitivo]]
-- 🎯 **Paso 3:** [[20. Áreas/Sistema de Estudio con IA/03 - Simulador y Generador de Exámenes de Cátedra\|03 - Simulador y Generador de Exámenes de Cátedra]]
-- 🗂️ **Paso 4:** [[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|04 - Generador de Tarjetas de Anki]]
-- 🤖 **Infraestructura:** [[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]
-- 📚 **Fundamentos:** [[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]
-- 🧭 **Autoevaluación:** [[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]
-- 📜 **Historial de Mejoras:** [[20. Áreas/Sistema de Estudio con IA/99 - Historial de Versiones (Changelog)\|99 - Historial de Versiones (Changelog)]]
+Armé este sistema durante mis cursadas de Ingeniería Mecánica con una sola idea: **ayudar de forma 100% gratuita a cualquier estudiante universitario a estudiar mejor**, usando la IA para pensar más y no para pensar menos.
 
-
-## 🤝 Propósito del Proyecto, Comunidad y Contacto
-
-Este sistema nació durante mis cursadas en la facultad con un único objetivo: **ayudar a cualquier estudiante universitario, de forma 100% gratuita, a estudiar mejor y a integrar las herramientas de Inteligencia Artificial de forma inteligente y exigente**, lejos de la pereza intelectual y los resúmenes pasivos.
-
-### 🌐 Filosofía Libre y Abierta
-* **Compartilo sin restricciones:** Este material es libre y abierto. Si te sirvió, compartilo con tus compañeros, usalo en grupos de estudio o pasáselo a los ingresantes.
-* **Creá tu propia versión:** Sos totalmente libre de tomar estos prompts, adaptarlos a tu carrera (sea otra ingeniería, medicina, derecho o ciencias exactas), modificar las reglas o armar tu propio flujo de estudio.
-
-### 📬 Contacto y Feedback
-No tengo redes sociales; soy simplemente un estudiante de Ingeniería Mecánica que armó este entorno para estudiar mejor y quiso dejarlo documentado para los demás.
-
-Si tenés alguna duda sobre cómo implementar el sistema, encontraste algún error en los prompts o se te ocurre una mejora técnica para sumar:
-* ✉️ **Contacto:** [duiliobtorres@gmail.com](mailto:duiliobtorres@gmail.com)
-
-Todo feedback o sugerencia constructiva es más que bienvenido. ¡Éxitos!
+- **Libre y abierto:** Compartilo con tus compañeros, usalo en grupos de estudio o adaptá los prompts a tu propia carrera (sea otra ingeniería, ciencias exactas, medicina o derecho).
+- **Contacto y sugerencias:** No uso redes sociales, pero si tenés alguna duda implementando el flujo, encontraste algún error o querés sugerir una mejora, escribime a **[duiliobtorres@gmail.com](mailto:duiliobtorres@gmail.com)**. ¡Muchos éxitos!
