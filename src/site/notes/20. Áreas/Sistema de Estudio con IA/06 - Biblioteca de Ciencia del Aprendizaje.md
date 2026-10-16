@@ -82,4 +82,5 @@ Cada uno de estos 7 libros aportó los fundamentos teóricos detrás de las regl
 
 ## 🧭 Navegación
 *Volver a Modelos e Infraestructura:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]**  
-*Siguiente sección (Guías de Estudio):* ➡️ **[[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]**
+*Siguiente sección (Guías de Autoevaluación):* ➡️ **[[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]**  
+*Ver cómo aplicar estos 7 libros en papel (sin configurar IA):* 📝 **[[20. Áreas/Sistema de Estudio con IA/08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)\|08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)]]**
