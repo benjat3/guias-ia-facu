@@ -9,28 +9,50 @@
 Como los modelos de Inteligencia Artificial cambian de nombre, versión y límites cada pocos meses, esta página centraliza **qué herramienta gratuita o paga conviene usar en cada paso del sistema**.
 
 En lugar de atar las guías a un nombre comercial fijo, dividimos las tareas del sistema en **dos niveles cognitivos**:
-
 ```mermaid
 flowchart TD
-    subgraph AR["<b>[Nivel: Alto Razonamiento]</b><br><i>Donde importa la precisión matemática y no saltear temas</i>"]
+    T1["01 - Extractor de Checklists"]
+    T1B_P3["01B - Voz de la Cátedra (Pasos 3 y 4)"]
+    T2_B["02 - Tutor Cognitivo (Ruta Beta)"]
+    T3_A["03 - Simulador de Exámenes (Pasos 1, 3 y 4)"]
+    T4["04 - Generador de Tarjetas de Anki"]
+
+    subgraph AR [" "]
+        direction TB
+        H_AR["🧠 <b>[Nivel: Alto Razonamiento]</b><br><i>Donde importa la precisión matemática y no saltear temas</i>"]
+        
         M1["<b>🥇 Gemini 3.8 Flash (Thinking: High)</b><br>(Google AI Studio • 100% Gratuito • El estándar del sistema)"]
         M2["<b>✍️ Claude Sonnet 5.5 (Razonamiento Medium)</b><br>(Claude.ai • Excelente alternativa para redactar exámenes)"]
         M3["<b>💎 Gemini Argon</b><br>(Plan Pago Pro/Ultra • Muy potente pero consume cuota rápido)"]
+
+        H_AR --> M1
+        H_AR --> M2
+        H_AR --> M3
     end
 
-    subgraph MR["<b>[Nivel: Minería y Recuperación]</b><br><i>Donde importa tener 40 archivos juntos sin subirlos cada vez</i>"]
+    T1 --> H_AR
+    T1B_P3 --> H_AR
+    T2_B --> H_AR
+    T3_A --> H_AR
+    T4 --> H_AR
+```
+```mermaid
+flowchart TD
+    T1B_P1["01B - Voz de la Cátedra (Pasos 1 y 2: Videos)"]
+    T2_E["02 - Tutor Cognitivo (Ruta Estable diaria)"]
+    T3_B["03 - Simulador de Exámenes (Paso 2: Banco)"]
+
+    subgraph MR [" "]
+        direction TB
+        H_MR["📚 <b>[Nivel: Minería y Recuperación]</b><br><i>Donde importa tener 40 archivos juntos sin subirlos cada vez</i>"]
         N1["<b>📚 NotebookLM Nativo</b><br>(Gratuito • Citas clickeables • Cuota diaria amplísima)"]
+        
+        H_MR --> N1
     end
 
-    T1["01 - Extractor de Checklists"] --> AR
-    T1B_P3["01B - Voz de la Cátedra (Pasos 3 y 4)"] --> AR
-    T2_B["02 - Tutor Cognitivo (Ruta Beta)"] --> AR
-    T3_A["03 - Simulador de Exámenes (Pasos 1, 3 y 4)"] --> AR
-    T4["04 - Generador de Tarjetas de Anki"] --> AR
-
-    T1B_P1["01B - Voz de la Cátedra (Pasos 1 y 2: Videos)"] --> MR
-    T2_E["02 - Tutor Cognitivo (Ruta Estable diaria)"] --> MR
-    T3_B["03 - Simulador de Exámenes (Paso 2: Banco)"] --> MR
+    T1B_P1 --> H_MR
+    T2_E --> H_MR
+    T3_B --> H_MR
 ```
 
 ---
