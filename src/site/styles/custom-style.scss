@@ -65,7 +65,25 @@ pre.mermaid {
   stroke: #6b4fa2 !important;
   stroke-width: 1.5px !important;
 }
+/* ==========================================================================
+   2.1. Cajas de subgrafos / agrupadores (Clusters)
+   ========================================================================== */
+.mermaid .cluster rect {
+  fill: #130d21 !important;           /* Fondo violeta muy oscuro acorde al tema */
+  stroke: #48356d !important;         /* Borde sutil */
+  stroke-width: 1.5px !important;
+  rx: 10px !important;                /* Bordes redondeados */
+}
 
+/* Texto del título de los subgrafos */
+.mermaid .cluster text,
+.mermaid .cluster .cluster-label span,
+.mermaid .cluster .nodeLabel,
+.mermaid .cluster span {
+  fill: #d8ccee !important;
+  color: #d8ccee !important;
+  font-weight: 500 !important;
+}
 /* 3. Texto claro legible sobre fondo oscuro */
 .mermaid .node .label,
 .mermaid .nodeLabel,
