@@ -40,8 +40,9 @@ Cada guía tiene entre 30 y 40 ítems, pero **no intentes cambiar todo de golpe*
 ---
 
 ## 🧭 Navegación
-*Volver al inicio del sistema:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/00 - Inicio y Flujo de Trabajo\|00 - Inicio y Flujo de Trabajo]]**  
-*Volver a la biblioteca:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]**  
-*Ir a la guía principal de ingeniería:* ➡️ **[[20. Áreas/Sistema de Estudio con IA/07.1 - Guía de Estudio - Teoría y Ejercicios\|07.1 - Guía de Estudio - Teoría y Ejercicios]]**  
-*Ir al sistema paso a paso en papel (sin configurar IA):* 📝 **[[20. Áreas/Sistema de Estudio con IA/08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)\|08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)]]**  
+
+*Volver al inicio del sistema:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/00 - Inicio y Flujo de Trabajo\|00 - Inicio y Flujo de Trabajo]]**
+*Volver a la biblioteca:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]**
+*Ir a la guía principal de ingeniería:* ➡️ **[[20. Áreas/Sistema de Estudio con IA/07.1 - Guía de Estudio - Teoría y Ejercicios\|07.1 - Guía de Estudio - Teoría y Ejercicios]]**
+*Ir al sistema paso a paso en papel (sin configurar IA):* 📝 **[[20. Áreas/Sistema de Estudio con IA/08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)\|08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)]]**
 *Ver el historial técnico de versiones:* 📜 **[[20. Áreas/Sistema de Estudio con IA/99 - Historial de Versiones (Changelog)\|99 - Historial de Versiones (Changelog)]]**

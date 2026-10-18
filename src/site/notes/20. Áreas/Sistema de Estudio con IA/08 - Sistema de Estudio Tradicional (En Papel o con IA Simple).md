@@ -73,6 +73,7 @@ En *A Mind for Numbers*, Barbara Oakley explica que el enemigo número uno del e
 Para destruir esa ilusión, separá tu estudio en dos dinámicas activas. En ambas vale la misma regla: **no alcanza con reproducir los pasos; tenés que poder decir por qué se hace cada uno y bajo qué hipótesis vale** (escribilo al margen o decilo en voz alta).
 
 ### A. Para estudiar Teoría y Demostraciones (Hoja en Blanco y Tramos)
+
 1. **Evitá copiar y releer:**
    No pases el apunte en limpio con colores. Leé una sección corta tratando de entender el *porqué* físico, **cerrá el cuaderno**, agarrá una hoja borrador y **escribí o dibujá todo lo que te acuerdes desde cero** (definición, gráfico con sus ejes rotulados, ecuación y cuándo vale). Recién cuando te vacíes, abrí el apunte y corregite con otro color. Sí sirve armar un mapa o resumen *de memoria y con tus palabras*.
    * *Regla de calibración:* Para que esto funcione, el esfuerzo tiene que costar, pero ser posible con lo que ya sabés, y terminar con corrección. Si no te sale absolutamente nada, no es esfuerzo útil: bajá un escalón (mirá una pista o el ejemplo) y volvé a intentar.
@@ -83,6 +84,7 @@ Para destruir esa ilusión, separá tu estudio en dos dinámicas activas. En amb
    * Tapá la hoja y reconstruila en limpio. Si te trabás en el escalón 3, espiá **solo ese renglón** y seguí solo hasta el final. Ponete un **✓** en los tramos que salieron y una **✗** donde espiaste. Al día siguiente, practicá solo los que tenían **✗**.
 
 ### B. Para resolver la Guía de Trabajos Prácticos
+
 1. **La técnica del «Ejemplo Resuelto Tapado» (*Craig Barton*):**
    Cuando el tema es nuevo, no te tires a ciegas ni copies la receta cambiando los números. Agarrá el primer ejemplo resuelto de la clase o del libro, leé línea por línea preguntándote *"¿por qué puso este signo?, ¿de dónde sacó este dato?"*. Una vez que lo entendiste, **tapalo por completo y resolvelo vos solo en una hoja en blanco**. Si no podés resolverlo después de haberlo estudiado, todavía necesitás practicarlo: revisá dónde te trabaste y volvé a intentarlo sin mirar.
    * *Si el tema es muy nuevo (opcional):* Antes de ir al problema completo solo, hacé un escalón intermedio: el mismo ejemplo con los últimos pasos en blanco para que los completes vos.
@@ -102,6 +104,7 @@ Para destruir esa ilusión, separá tu estudio en dos dinámicas activas. En amb
 Si no querés usar programas de tarjetas como Anki, necesitás dos herramientas en papel que cumplen una función parecida en la mitad de tiempo *(con la condición de volver a ellas en días distintos, no una sola vez)*:
 
 ### 1. El «Formulario Razonado» de 1 Carilla por Unidad
+
 No hagas una lista muda de ecuaciones sueltas ($Q = A \cdot v$), porque en el parcial el profesor te cambia una condición y aplicás una fórmula donde no vale. Armá una sola carilla A4 por unidad con este formato de tres columnas:
 
 | Ecuación / Relación | Hipótesis obligatorias (¿Cuándo vale?) | Trampa típica / Unidades / Gráfico |
@@ -112,6 +115,7 @@ No hagas una lista muda de ecuaciones sueltas ($Q = A \cdot v$), porque en el pa
 - **Si el examen es CON hoja de fórmulas:** Esa misma carilla (limpia según lo que permita tu cátedra) ya es el machete legal perfecto para llevar al parcial.
 
 ### 2. La Bitácora de «Fallas Raíz» *(inspirada en la práctica deliberada de Anders Ericsson)*
+
 Dedicá la última hoja de tu cuaderno a anotar **cada ejercicio o pregunta teórica donde te trabaste o te dio mal**, pero prohibido anotar solo *"hacer de nuevo el Ej. 7"*. Anotá en un renglón **cuál fue tu falla raíz**:
 - `[TP3 - Ej. 4]` *Olvidé pasar la temperatura a Kelvin antes de meterla en gases ideales.*
 - `[TP4 - Ej. 8]` *Puse mal el signo del trabajo de expansión porque no declaré mi convención al principio.*
@@ -150,13 +154,19 @@ Si querés apoyarte en cualquier chat de IA gratuito mientras estudiás en papel
 
 1. **Nunca le pidas «Resolveme este ejercicio»:**
    Si le sacás una foto al enunciado y leés cómo lo resuelve la IA, te estás robando el entrenamiento. Escribile siempre:
+
    > *"Estoy intentando resolver este problema: [pegar enunciado]. Yo planteé esto: [contarle qué pensaste o subir foto de tu hoja]. **No me des la resolución ni el resultado final**: decime únicamente si mi planteo físico es correcto o dame una sola pista, una a la vez, para el paso donde me trabé."*
+
 2. **Usala para destrabar el significado físico:**
    Cuando el apunte tire una ecuación que parece imposible, preguntale:
+
    > *"Explicame con intuición física para ingeniería mecánica qué representa cada término de esta ecuación, bajo qué hipótesis vale y dame un ejemplo real donde falle."*
+
 3. **Pedile que te arme un «problema gemelo»:**
    Cuando por fin pudiste destrabar un ejercicio difícil mirando la resolución de la cátedra, comprobalo en el acto:
+
    > *"Acabo de entender cómo se resuelve este ejercicio: [pegar ejercicio]. Inventame un problema parecido que se resuelva con la misma lógica física pero cambiando la configuración o invirtiendo qué es dato y qué es incógnita, sin darme la solución. Esperá a que yo lo resuelva para corregirme."*
+
 4. **Desconfiá siempre de sus cuentas y convenciones, y dale tus apuntes:**
    Las IAs pueden equivocarse en despejes, interpolación de tablas, signos de calor/trabajo y unidades. **Si tenés los apuntes de la cátedra, adjuntalos o pegá el fragmento relevante**, pedile que se base en ellos y que te diga de qué parte lo sacó; si algo no está en los apuntes, que lo aclare. Desconfiá si te dice que tu planteo está bien sin dudar *(las IAs tienden a darte la razón)*, y verificá vos las cuentas. La verdad final sobre signos, hipótesis y definiciones siempre la tienen el apunte y los resueltos oficiales de tu cátedra.
 
@@ -174,7 +184,8 @@ Si estudiás en papel, el complemento directo de este sistema son las **4 Checkl
 ---
 
 ## 🧭 Navegación
-*Volver al inicio general:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/00 - Inicio y Flujo de Trabajo\|00 - Inicio y Flujo de Trabajo]]**  
-*Ver los 7 libros que fundamentan este método:* 📚 **[[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]**  
-*Ir a las checklists de autoevaluación:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]**  
+
+*Volver al inicio general:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/00 - Inicio y Flujo de Trabajo\|00 - Inicio y Flujo de Trabajo]]**
+*Ver los 7 libros que fundamentan este método:* 📚 **[[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]**
+*Ir a las checklists de autoevaluación:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]**
 *Siguiente sección (Historial Técnico):* ➡️ **[[20. Áreas/Sistema de Estudio con IA/99 - Historial de Versiones (Changelog)\|99 - Historial de Versiones (Changelog)]]**

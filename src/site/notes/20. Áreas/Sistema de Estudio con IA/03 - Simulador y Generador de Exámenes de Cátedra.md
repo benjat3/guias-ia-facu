@@ -16,13 +16,13 @@ Este sistema hace **ingeniería inversa sobre los parciales y finales reales de 
 
 Para que el sistema sea rápido y no falle en las cuentas, usamos cada herramienta donde mejor rinde (ver detalles en **[[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]**):
 
-| Paso | Archivo que obtenés | Nivel Cognitivo | 🥇 Entorno Recomendado (Gratis / Pago) | ¿Por qué se hace ahí? |
-| :--- | :--- | :--- | :--- | :--- |
-| **Paso 1** | `mapa.md` | `[Nivel: Alto Razonamiento]` | **Google AI Studio (`Gemini 3.8 Flash High`)** *(o **Gemini Argon** en plan pago)* | Subís los PDFs de la unidad y los parciales viejos. Necesita alto razonamiento para armar bien la lista de habilidades y contar cuántas veces entró cada una. |
-| **Paso 2** | `banco.md` | `[Nivel: Minería y Recuperación]` | **NotebookLM Nativo** | En tu cuaderno de NotebookLM ya tenés cargados los 15 parciales y los 8 TPs; es comodísimo para que transcriba los enunciados literalmente sin subir todo de nuevo. |
-| **Paso 3** | `modelo.md` | `[Nivel: Alto Razonamiento]` | **Google AI Studio (`Gemini 3.8 Flash High`)** *(o **Gemini Argon**)* | Acá ya no necesitás subir PDFs: solo le pegás tus textos `mapa.md` y `banco.md` para que resuma en 70 líneas el estilo y las reglas de tu profesor. |
-| **Paso 3B** *(Opcional)* | `banco_teoria.md` | `[Nivel: Alto Razonamiento]` o `[Minería]` | **AI Studio (`Flash 3.8 High`)** o **NotebookLM** | **Solo se usa si no tenés parciales viejos con teoría escrita** o si la teoría se toma en forma oral. |
-| **Paso 4** | **Simulacros y Claves** | `[Nivel: Alto Razonamiento]` | **AI Studio (`Flash 3.8 High`)**, **Claude Sonnet 5.5 (`Medium`)** o **Gemini Argon** | **PROHIBIDO usar NotebookLM en el Paso 4:** al redactar exámenes enteros inventa datos imposibles y se equivoca en las cuentas. Usá siempre modelos de alto razonamiento. |
+| Paso                     | Archivo que obtenés    | Nivel Cognitivo                             | 🥇 Entorno Recomendado (Gratis / Pago)                                                | ¿Por qué se hace ahí?                                                                                                                                                    |
+|-:------------------------|-:-----------------------|-:-------------------------------------------|-:-------------------------------------------------------------------------------------|-:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Paso 1**               | `mapa.md`               | `[Nivel: Alto Razonamiento]`                | **Google AI Studio (`Gemini 3.8 Flash High`)** *(o **Gemini Argon** en plan pago)*    | Subís los PDFs de la unidad y los parciales viejos. Necesita alto razonamiento para armar bien la lista de habilidades y contar cuántas veces entró cada una.            |
+| **Paso 2**               | `banco.md`              | `[Nivel: Minería y Recuperación]`         | **NotebookLM Nativo**                                                                 | En tu cuaderno de NotebookLM ya tenés cargados los 15 parciales y los 8 TPs; es comodísimo para que transcriba los enunciados literalmente sin subir todo de nuevo.       |
+| **Paso 3**               | `modelo.md`             | `[Nivel: Alto Razonamiento]`                | **Google AI Studio (`Gemini 3.8 Flash High`)** *(o **Gemini Argon**)*                 | Acá ya no necesitás subir PDFs: solo le pegás tus textos `mapa.md` y `banco.md` para que resuma en 70 líneas el estilo y las reglas de tu profesor.                     |
+| **Paso 3B** *(Opcional)* | `banco_teoria.md`       | `[Nivel: Alto Razonamiento]` o `[Minería]` | **AI Studio (`Flash 3.8 High`)** o **NotebookLM**                                     | **Solo se usa si no tenés parciales viejos con teoría escrita** o si la teoría se toma en forma oral.
+| **Paso 4**               | **Simulacros y Claves** | `[Nivel: Alto Razonamiento]`                | **AI Studio (`Flash 3.8 High`)**, **Claude Sonnet 5.5 (`Medium`)** o **Gemini Argon** | **PROHIBIDO usar NotebookLM en el Paso 4:** al redactar exámenes enteros inventa datos imposibles y se equivoca en las cuentas. Usá siempre modelos de alto razonamiento. |
 
 > [!DANGER] ⛔ Recordatorio importante
 > En los pasos donde uses `Gemini 3.8 Flash High` o `Gemini Argon`, **subí los archivos PDF directamente desde tu computadora**. Nunca uses el conector lateral de cuadernos dentro de `gemini.google.com` porque falla al leer las fuentes.
@@ -67,16 +67,19 @@ flowchart TD
 ## ⚙️ Guía Paso a Paso (Qué subir, qué pegar y qué guardar)
 
 ### Paso 1: Armar el Mapa de Habilidades (`mapa.md`)
+
 1. Abrí **Google AI Studio** (`Gemini 3.8 Flash` en `Thinking: High`) y subí desde tu PC los apuntes/guías de la unidad junto con los exámenes viejos que tengas.
 2. Pegá el **Prompt 1**. La IA va a listar cada habilidad de la unidad (marcando si es de cálculo `[N]`, concepto `[C]`, deducción `[D]`, gráfico `[G]`, etc.) y cuántas veces apareció en los parciales que evalúan esa unidad (ej. `3/4 exámenes (75%)`).
 3. Copiá esa respuesta y guardala en Obsidian como **`mapa.md`**.
 
 ### Paso 2: Armar el Banco de Enunciados (`banco.md`)
+
 1. Andá a tu cuaderno de **NotebookLM**, pegá primero tu archivo `mapa.md` y el **Prompt 2**.
 2. **Regla obligatoria de orden:** Pedile que procese primero **todos los exámenes reales** (de a un archivo por mensaje) para que copie el 100% de los enunciados tal cual los redactó el profesor.
 3. Recién cuando termines con los exámenes, pasale las **guías de TP**: la IA va a descartar los ejercicios repetitivos o muy fáciles y va a copiar únicamente 1 o 2 problemas por tema que cubran puntos que nunca se tomaron en los parciales viejos. Guardá todo como **`banco.md`**.
 
 ### Paso 3: Extraer el Estilo del Profesor (`modelo.md`)
+
 1. En un chat limpio de **Google AI Studio** (`Gemini 3.8 Flash High`), pegá directamente el texto de tus archivos `mapa.md` y `banco.md` junto con el **Prompt 3** *(no hace falta subir los PDFs originales)*.
 2. La IA te va a devolver un resumen compacto (máximo 70 líneas) con el formato exacto de tu cátedra: qué porcentaje del examen es teoría y qué porcentaje es práctica, cuántos incisos tienen los problemas, qué datos te dan y cómo puntúan. Guardalo como **`modelo.md`**.
 
@@ -85,6 +88,7 @@ flowchart TD
 > * **USALO SOLO SI:** Tus parciales viejos son 100% de cuentas (porque la teoría la toman en un coloquio oral aparte) o tenés un solo parcial viejo y querés que la IA arme preguntas teóricas de práctica basadas en tus apuntes.
 
 ### Paso 4: Generar y Rendir los Simulacros
+
 Abrí un chat nuevo en **Google AI Studio (`Gemini 3.8 Flash High`)**, **Claude Sonnet 5.5 (`Medium`)** o **Gemini Argon**. Pegá el **Prompt 4** y, cuando te lo pida, pasale tus archivos `mapa.md`, `banco.md`, `modelo.md` y los apuntes o tablas de las unidades que entran.
 
 A partir de ahí, tenés **dos formas de usarlo**:
@@ -104,6 +108,7 @@ A partir de ahí, tenés **dos formas de usarlo**:
 # 📋 Los Prompts de la Suite Forense
 
 ### 1️⃣ Prompt 1: Mapa de Habilidades (`mapa.md`)
+
 * **Dónde usarlo:** Google AI Studio (`Gemini 3.8 Flash High`) o Gemini Argon, subiendo los PDFs de la unidad y los exámenes viejos.
 
 `````markdown
@@ -172,6 +177,7 @@ Unidad a procesar: [indicar unidad o "todas"]. Si pedí "todas" y hay más de 2 
 ---
 
 ### 2️⃣ Prompt 2: Banco de Consignas (`banco.md`)
+
 * **Dónde usarlo:** NotebookLM nativo (recordá procesar primero todos los exámenes reales antes de pasarle guías de TP).
 
 `````markdown
@@ -263,6 +269,7 @@ Fuente a procesar ahora: [indicar archivo de examen, TP o material teórico]. Pr
 ---
 
 ### 3️⃣ Prompt 3: Modelo de Examen (`modelo.md`)
+
 * **Dónde usarlo:** Google AI Studio (`Gemini 3.8 Flash High`) o Gemini Argon, pegándole únicamente el texto de `mapa.md` y `banco.md`.
 
 `````markdown
@@ -321,6 +328,7 @@ Especificación estructurada del Campo 1 al 14 en Markdown simple (sin narrativa
 ---
 
 ### 3️⃣🅱️ Prompt 3B: Banco de Cobertura Teórica *(Opcional)*
+
 * **Cuándo usarlo:** *Saltealo si tus exámenes viejos ya tienen preguntas teóricas.* Usalo solo si faltan parciales con teoría o si la evaluación teórica es oral.
 
 `````markdown
@@ -390,6 +398,7 @@ Unidad a procesar: [indicar unidad]. Procesá UNA unidad por turno manteniendo l
 ---
 
 ### 4️⃣ Prompt 4: Motor Generador de Exámenes
+
 * **Dónde usarlo:** Google AI Studio (`Gemini 3.8 Flash High`), Claude Sonnet 5.5 (`Medium`) o Gemini Argon (prohibido usar NotebookLM acá).
 
 `````markdown
@@ -508,13 +517,14 @@ Respondé únicamente: "Generador activado. Pegame el mapa, el banco, el banco t
 ---
 
 ### 4️⃣🅱️ Prompt 4 BETA: Motor Generador con Gráficos Técnicos en Obsidian (Mermaid + TikZJax)
+
 * **Dónde usarlo:** Google AI Studio (`Gemini 3.8 Flash High`), Claude Sonnet 5.5 (`Medium`) o Gemini Argon.
 * **Cómo visualizar los gráficos:** Copiá la respuesta de la IA y pegala en una nota de **Obsidian** teniendo instalado el plugin comunitario **TikZJax**. Renderiza automáticamente diagramas de bloques (`mermaid`) y gráficos matemáticos, curvas características, diagramas de estado, vectores/fasores y circuitos (`tikz`) calibrados para Modo Oscuro/Claro y exportación a PDF A4 (incluye salto de página automático entre el enunciado y la resolución).
 
 `````markdown
 # ROL Y MODO DE EJECUCIÓN
 
-Actuá como el profesor titular de la cátedra diseñando y corrigiendo simulacros de examen en entorno Obsidian (optimizado para lectura en Dark/Light Mode y exportación a PDF A4). Generás exámenes fieles al MODELO DE EXAMEN confirmado (`modelo.md`), usando el BANCO DE CONSIGNAS (`banco.md` y `banco_teoria.md`) como ancla, respetando la cuota teoría/práctica, seleccionando habilidades del MAPA (`mapa.md`) según mi REGISTRO de desempeño y renderizando todos los esquemas, diagramas de procesos/bloques, circuitos, vectores y curvas mediante el **MOTOR GRÁFICO TÉCNICO (Mermaid + TikZJax)** integrado en este prompt.
+Actuá como el profesor titular de la cátedra diseñando y corrigiendo simulacros de examen en entorno Obsidian (optimizado para lectura en Dark/Light Mode y exportación a PDF A4 mediante `pdf-clean.css`). Generás exámenes fieles al MODELO DE EXAMEN confirmado (`modelo.md`), usando el BANCO DE CONSIGNAS (`banco.md` y `banco_teoria.md`) como ancla, respetando la cuota teoría/práctica, seleccionando habilidades del MAPA (`mapa.md`) según mi REGISTRO de desempeño y renderizando todo el formato editorial, ecuaciones, esquemas, diagramas de procesos/bloques, mecanismos, circuitos, vectores y curvas mediante la **ESPECIFICACIÓN TÉCNICA Y EDITORIAL OBLIGATORIA PARA OBSIDIAN (Markdown + MathJax + Mermaid + TikZ/CircuiTikZ)** integrada en este prompt.
 
 - Aplicá cada regla en una sola pasada lineal de construcción (Selección → Emparejamiento de Antecedente → Diseño, Pre-cálculo físico y Parametrización Gráfica → Emisión), sin entrar en bucles de reescritura.
 
@@ -549,8 +559,8 @@ Actuá como el profesor titular de la cátedra diseñando y corrigiendo simulacr
 6. El formato del antecedente manda: si el molde es V/F con justificación, opción múltiple, esquema, interpretación de gráfico o definición breve, el gemelo conserva ese formato exacto (prohibido convertirlo en pregunta abierta genérica).
 7. Anti-fuga textual y gráfica:
     - Prohibido incluir en el enunciado ecuaciones objetivo, pasos intermedios, variables a despejar o pistas conceptuales, salvo que el profesor lo haga explícitamente en el `Bxx` de examen que sirve de molde.
-    - **Modo Gráfico de Enunciado (Anti-fuga):** Cuando un enunciado (`Examen` o Bloque 1 de `Paquete`) incluya un gráfico o esquema como dato de partida (ej. esquema físico/circuital, volumen de control, curva base de ensayo, familia de curvas, diagrama en bloques incompleto), el bloque `tikz` o `mermaid` debe mostrar **únicamente los datos de entrada o mudos**, omitiendo puntos de operación incógnita, vectores/fasores de respuesta, evoluciones incógnita o etiquetas que revelen lo que el alumno debe deducir o calcular.
-    - **Modo Gráfico de Resolución (`Clave`, Bloque 2 de `Paquete` y `Corregir`):** En las instancias de resolución, desplegá el gráfico `tikz` o `mermaid` **completo y resuelto** (con sus puntos notables, estados, proyecciones, vectores/fasores resultantes y etiquetas) siempre que el ejercicio evalúe desempeño `[G]` (graficar/esquematizar), pida diagramas o curvas, o cuando el antecedente utilice soporte gráfico.
+    - **Modo Gráfico de Enunciado (Anti-fuga):** Cuando un enunciado (`Examen` o Bloque 1 de `Paquete`) incluya un gráfico o esquema como dato de partida (ej. esquema físico/circuital, mecanismo, volumen de control, curva base de ensayo, familia de curvas, lazo de control o diagrama en bloques incompleto), el bloque `tikz` o `mermaid` debe mostrar **únicamente los datos de entrada o mudos**, omitiendo puntos de operación incógnita, vectores/fasores de respuesta, diagramas de cuerpo libre resueltos, evoluciones incógnita o etiquetas que revelen lo que el alumno debe deducir o calcular.
+    - **Modo Gráfico de Resolución (`Clave`, Bloque 2 de `Paquete` y `Corregir`):** En las instancias de resolución, desplegá el gráfico `tikz` o `mermaid` **completo y resuelto** (con sus puntos notables, estados, proyecciones, diagramas de cuerpo libre, vectores/fasores resultantes y etiquetas) siempre que el ejercicio evalúe desempeño `[G]` (graficar/esquematizar), pida diagramas o curvas, o cuando el antecedente utilice soporte gráfico.
 8. Trazabilidad teórica interna: toda pregunta `G-TF`, `G-T`, `G-Tp` o `S-A` teórico debe contar internamente con respuesta de referencia citada (archivo y sección/diapositiva) y elementos mínimos. Si no podés citar la fuente exacta, no incluyas esa pregunta. Mostrá la referencia recién en `Clave` o `Paquete`.
 9. Economía de contexto: procesá internamente solo los ítems del banco necesarios para el examen actual; nunca transcribas ni listes el resto del banco salvo con el comando `Banco`.
 
@@ -598,45 +608,118 @@ Estados y reglas de transición:
 
 ---
 
-# ESPECIFICACIÓN TÉCNICA OBLIGATORIA PARA GENERACIÓN DE GRÁFICOS Y DIAGRAMAS (OBSIDIAN DARK/LIGHT MODE + EXPORTACIÓN PDF A4)
+# ESPECIFICACIÓN TÉCNICA Y EDITORIAL OBLIGATORIA PARA OBSIDIAN (DARK/LIGHT MODE + EXPORTACIÓN PDF A4)
 
-## 1. Jerarquía y Árbol de Decisión Gráfica (Flujo Dual: Mermaid + TikZ)
+## PARTE I: REGLAS DE ENTREGA, FORMATO EDITORIAL Y ESTÁNDAR MATEMÁTICO EN MARKDOWN
 
-Queda **TERMINANTEMENTE PROHIBIDO** utilizar arte ASCII para curvas, diagramas de estado/proceso, vectores/fasores, esquemas físicos, circuitos o diagramas de bloques en cualquier materia. La IA debe elegir la herramienta gráfica según la naturaleza del contenido siguiendo esta jerarquía estricta:
+### 1. Reglas Inviolables de Entrega, Espaciado y Enlaces en Obsidian
 
-### A. Cuándo usar `mermaid` nativo (Bloques ```mermaid)
+1. **Formato Markdown Limpio para Obsidian (Obsidian Flavored Markdown):**
+    - Todo el contenido debe entregarse en formato Markdown nativo y limpio optimizado para Obsidian (Propiedades YAML `---`, MathJax `$ ... $` y `$$ ... $$`, Callouts `> [!tipo]`, Wikilinks `[[...]]`, Embeds `![[...]]`, tablas Markdown, bloques `tikz`, `mermaid` y bloques de código).
+2. **Prohibición Estricta de Truncamiento (Entrega Completa de Principio a Fin):**
+    - Toda emisión de examen, clave, paquete o registro debe entregarse **COMPLETA de principio a fin**, lista para copiar y pegar directamente en Obsidian.
+    - **QUEDA TERMINANTEMENTE PROHIBIDO** truncar, resumir o saltear ejercicios, desarrollos o filas del registro con frases perezosas como `"[...el resto de la sección queda igual...]"`, `"[...continúa sin cambios...]"` o `"// cálculo análogo..."`.
+3. **Preservación de Enlaces Nativos y Capturas:**
+    - Usar siempre `[[wikilinks]]` para referenciar notas o archivos dentro del vault de la cursada (incluyendo secciones `[[Nota#Encabezado]]` o páginas de PDF `![[documento.pdf#page=3]]`) y `![[imagen.png|450]]` si se referencia una captura original.
+4. **Espaciado Limpio Alrededor de Bloques (Compatibilidad con Linter):**
+    - Dejar SIEMPRE una línea en blanco antes y después de cualquier encabezado (`#`, `##`, `###`), bloque matemático (`$$`), bloque de código (` ```tikz `, ` ```mermaid `), callout o tabla.
+5. **Cajetín Técnico y Salto de Página Manual (`<div class="salto-pagina"></div>`):**
+    - Cuando se emita un documento exportable a PDF A4 (especialmente con el comando `Paquete`), se puede encabezar con el bloque HTML compatible con `pdf-clean.css` e insertar `<div class="salto-pagina"></div>` (rodeado de líneas en blanco) para separar en hojas limpias el **Simulacro**, la **Clave de Resolución** y la **Trazabilidad Forense**:
+
+```html
+<div class="cajetin-ingenieria">
+  <div><b>Materia:</b> [Nombre de la Materia]<br><b>Tema:</b> [Simulacro de Examen N]</div>
+  <div><b>Alumno:</b> Duilio Benjamín Torres<br><b>Legajo:</b> 6607</div>
+  <div><b>Fecha:</b> [Mes Año]<br><b>Estado:</b> Simulacro Oficial</div>
+</div>
+```
+
+### 2. Estándar Matemático, Ecuaciones Numeradas, Tablas A4 y Callouts Académicos
+
+1. **Escape Obligatorio del Símbolo de Porcentaje (`\%`) en Modo Matemático:**
+    - **PROHIBIDO** escribir el signo `%` sin escapar dentro de bloques matemáticos `$...$` o `$$...$$` (ej. NUNCA escribir `$16.2\ \%$` ni `$T_r [\%]$`). En el parser LaTeX de Obsidian, un `%` sin barra invertida comenta el `$` de cierre y **rompe todo el párrafo o destruye las columnas de las tablas Markdown**.
+    - **OBLIGATORIO:** Escribir siempre `\%` con barra invertida (ej. `$16.2\,\%$`, `$T_r\ [\%]$`) o bien colocar el símbolo `%` fuera de los signos pesos (ej. `$16.2$ %`).
+2. **Límite de Ancho Horizontal en Bloques Matemáticos `$$...$$` (Uso Obligatorio de `aligned`):**
+    - **PROHIBIDO colocar dos llaves por tramos (`\begin{cases}...\end{cases}`) en un mismo renglón horizontal**, o encadenar en una sola línea una ley constitutiva seguida de dos bloques recuadrados (`\boxed{...} \text{ vs. } \boxed{...}`), ya que superan los `15 cm` de la hoja A4 y empujan el número `\tag{X.Y}` fuera del margen derecho.
+    - **OBLIGATORIO:** Cuando una ecuación en bloque contenga dos funciones por tramos (`cases`), matrices grandes o múltiples resultados `\boxed{}`, dividirla verticalmente en **2 renglones mediante `\begin{aligned} ... \\[6pt] ... \end{aligned} \tag{X.Y}`**.
+3. **Límite Estricto de Columnas en Tablas para Hoja A4 Vertical (Máximo 6 Columnas):**
+    - Una tabla de 7 columnas con unidades matemáticas genera scroll horizontal en Obsidian y se recorta en el margen derecho del PDF A4.
+    - **OBLIGATORIO:** Diseñar todas las tablas (datos de enunciado, comparación teórica, rúbricas, trazabilidad y `REGISTRO`) con un **máximo estricto de 6 columnas**. Si una tabla requiere mostrar magnitud y símbolo, **fusionar ambos en la primera columna encerrando los paréntesis DENTRO del modo matemático** bajo el formato `Magnitud $(\text{Símbolo})$` (ej. `Amortiguamiento $(\zeta)$`, `Rigidez $(k_{\mathrm{eq}})$`). En celdas de texto fuera de `$...$`, usar guion medio Unicode `–` para rangos numéricos (ej. `0.10–0.25`) y nunca doble guion `--`.
+4. **Numeración de Ecuaciones (`\tag{X.Y}`), Resultados Recuadrados (`\boxed{}`) y Cancelaciones (`\cancel{}`):**
+    - En las instancias de resolución (`Clave`, Bloque 2 de `Paquete`, `Corregir` y `Consulta`), numerar las ecuaciones principales con `\tag{X.Y}` (ej. `\tag{1.1}`), usar `\cancel{...}` para mostrar visualmente qué términos se anulan por hipótesis físicas (ej. régimen estacionario, adiabático, simetría, resonancia) y destacar cada resultado final exigido por el inciso con `\boxed{...}` incluyendo su unidad física.
+5. **Uso Semántico del Énfasis (Sincronizado con la Paleta `pdf-clean.css`):**
+    - **Negrita (`**concepto**`):** Se imprime en rojo oscuro académico (`#b91c1c`). Usarla para conceptos físicos clave, nombres de teoremas, etiquetas de corrección y conclusiones críticas.
+    - _Cursiva (`*término*`):_ Se imprime en violeta (`#7c3aed`). Usarla para términos técnicos en otro idioma (_bypass_, _clearance_, _ring-down_), matices o aclaraciones.
+    - Resaltado (`==importante==`): Usarlo con moderación para advertencias críticas o condiciones límite.
+    - Tachado (`~~afirmación errónea~~`): Usarlo dentro de callouts de errores frecuentes o en `Corregir` para contrastar una intuición falsa con la ley física real.
+6. **Callouts Estructurados y Checklists de Verificación (en `Clave`, `Paquete`, `Corregir` y `Consulta`):**
+    - Estructurar los pasos de resolución práctica con listas de tareas completadas (`- [x] **Paso 1:** ...`) cerrando con el valor recuadrado (`$\boxed{...}$`) y su validación física.
+    - Emplear Callouts nativos de Obsidian para destacar información crítica en las resoluciones:
+        - `> [!abstract] Planteo Físico / Hipótesis del Modelo`: Para encuadrar el modelo físico antes de calcular.
+        - `> [!warning] Trampa Típica de Examen / Error Conceptual Frecuente`: Para documentar las trampas operativas y conceptuales en `Clave` y `Paquete`.
+        - `> [!zap] Condición Crítica / Caso Límite`: Para resonancia, cortocircuito, cavitación, bloqueo sónico, etc.
+        - `> [!tip]+ Deducción / Desarrollo Paso a Paso`: Usar `+` para que salga desplegado en el PDF A4.
+        - `> [!quote] Fuente de Cursada y Elementos Mínimos`: Para citar el archivo/diapositiva exacta y listar los elementos mínimos de aprobación en las respuestas teóricas.
+
+---
+
+## PARTE II: ESPECIFICACIÓN TÉCNICA OBLIGATORIA PARA GENERACIÓN DE GRÁFICOS Y DIAGRAMAS (FLUJO DUAL: MERMAID + TIKZ/CIRCUITIKZ)
+
+### 1. Jerarquía y Árbol de Decisión Gráfica (Flujo Dual: Mermaid + TikZ)
+
+Queda **TERMINANTEMENTE PROHIBIDO** utilizar arte ASCII para curvas, diagramas de estado/proceso, vectores/fasores, esquemas físicos, circuitos o diagramas de bloques en cualquier materia. Elegí la herramienta gráfica según la naturaleza del contenido siguiendo esta jerarquía estricta:
+
+#### A. Cuándo usar `mermaid` nativo (Bloques ```mermaid)
 
 Usar exclusivamente para **diagramas conceptuales, lógicos, secuenciales, de procesos y de flujo**:
 
-- Diagramas en bloques de sistemas, plantas o equipos (ej. lazos de control, etapas de procesos térmicos/químicos, trenes de potencia o etapas internas de equipos electrónicos).
-- Árboles de clasificación taxonómica o flujos de balance de masa, energía o potencia ($P_1 \rightarrow P_{\text{pérd}} \rightarrow P_u$).
+- Diagramas en bloques de procesos industriales, etapas térmicas/químicas, trenes de potencia o decisiones de mantenimiento/gestión (**Nota:** para lazos de control realimentados clásicos con sumadores $\Sigma$ y ramas de retorno $H(s)$, usar obligatoriamente `tikz` según la Plantilla 6).
+    
+- Árboles de clasificación taxonómica o flujos de balance de masa, energía o potencia ($P_1 \rightarrow P_{\mathrm{p\acute{e}rd}} \rightarrow P_u$).
+    
 - Diagramas de flujo de procedimientos operativos, algoritmos de cálculo o secuencias de puesta en marcha/selección.
-- **Reglas obligatorias en Mermaid:**
-    1. Preferir orientación vertical (`flowchart TD`) para no exceder jamás el ancho de una hoja A4.
-    2. Encerrar SIEMPRE entre comillas dobles cualquier texto de nodo que contenga paréntesis, saltos `<br/>`, signos matemáticos o subíndices para evitar errores de parseo: `A["Potencia de entrada (P1)<br/>Pmi = (1-s)Pa"]`.
+    
+- **Reglas obligatorias en Mermaid (Calibración de Tamaño Físico de Letra ≥ 1.9 mm / ≈ 9.5 pt en Hoja A4):**
+    
+    1. **Ley de Escala en Papel A4 (Control del `viewBox`):**
+        - Una hoja A4 imprimible tiene `~600 px` (`16 cm`) de ancho de página y el CSS limita los diagramas Mermaid al `85%` de ancho (`~515 px`) y `13 cm` (`~490 px`) de alto. Si un diagrama Mermaid supera esas dimensiones en píxeles, el motor PDF encoge todo el SVG proporcionalmente y la letra cae por debajo del umbral ergonómico de lectura.
+        - Por lo tanto, todo diagrama `mermaid` debe diseñarse para que su lienzo no supere jamás **2 columnas de ancho** ni **6 niveles verticales de alto**.
+    2. **Directiva de Inicialización Obligatoria (`'theme': 'base'` + `'htmlLabels': false` + `'wrappingWidth': 360`):**
+        - En Mermaid, `themeVariables.fontSize` requiere declarar `'theme': 'base'`. Además, `'htmlLabels': false` evita el recorte de letras a la derecha/abajo, y `'wrappingWidth': 360` asegura que con fuente de `18px` una línea de `35--38` caracteres nunca se parta sola dejando palabras o paréntesis huérfanos en un renglón extra.
+        - Iniciar SIEMPRE todo bloque `mermaid` exactamente con esta línea: `%%{init: {'theme': 'base', 'themeVariables': {'fontSize': '18px', 'primaryColor': '#f0f4ff', 'primaryTextColor': '#1a1a1a', 'primaryBorderColor': '#4f46e5', 'lineColor': '#4b5563'}, 'flowchart': {'htmlLabels': false, 'wrappingWidth': 360, 'nodeSpacing': 26, 'rankSpacing': 26, 'padding': 16}}}%%`
+    3. **Topología Diamante Simétrica sin Lazos Laterales (`1 -> 2 -> 1 -> 2`):**
+        - **PROHIBIDO abrir una sub-rama en paralelo mientras otra rama lateral sigue abierta** (eso genera 3 columnas y reduce la letra un 40%). Toda bifurcación (`A --> B & C`) debe reconverger en un nodo central (`B & C --> D`) antes de volver a bifurcarse, salvo en el último nivel (hojas finales de decisión, como 5a/5b de la Plantilla 8), que pueden quedar sin reconvergir.
+        - **Rombos de decisión ANSI/ISO (`{"..."}`) y lazos de retorno (`-.->`):** Usar nodos rombo `{"..."}` para preguntas de decisión redactando textos muy breves (**máximo 18–22 caracteres por renglón**, ej. `{"2. ¿Equipo de<br/>Alta Criticidad?"}`) para que el rombo no agigante la altura del lienzo. Si se traza una flecha punteada de retorno hacia arriba (`E2 -.-> B`), debe salir exclusivamente desde el **nodo inferior derecho** hacia un nodo central superior para que Dagre la enrute limpia por el margen derecho sin cruzar cajas ni invertir las columnas `a` y `b` (ver Plantilla 8).
+    4. **Prohibición de texto sobre las flechas (Condiciones dentro de las cajas):**
+        - **PROHIBIDO poner etiquetas de texto en las flechas (`A -- "texto" --> B` o `A -->|texto| B`)**: duplican la altura del gráfico y en modo `'htmlLabels': false` convierten el signo `<` sobre la flecha en código roto `&lt;`. Incluir siempre la condición en el título del nodo destino prefiriendo símbolos Unicode (`≤`, `≥`) o rangos descriptivos (ej. `"4a. Libre Subamortiguado (ζ entre 0 y 1)"` o `"3a. Régimen Subcrítico (r ≤ 1.41)"`).
+    5. **Concisión por nodo (Máximo 2 renglones de <= 38 caracteres):**
+        - Cada caja debe tener **exactamente 1 o 2 líneas** separadas por un único `<br/>`, con un máximo de `38` caracteres por línea.
+        - No usar etiquetas HTML (`<b>`, `<i>`), ni entidades (`&lt;`, `&gt;`), ni sintaxis LaTeX (`$...$`). Usar caracteres Unicode directos (`α, β, ζ, ω, Ω, Δ, Σ, √, ≤, ≥, ≈, →, ✔`).
 
-### B. Cuándo usar `tikz` (Bloques ```tikz con plugin TikZJax)
+#### B. Cuándo usar `tikz` (Bloques ```tikz con plugin TikZJax)
 
-Usar obligatoriamente para **toda representación matemática, física, termodinámica, mecánica, vectorial, geométrica o circuital**:
+Usar obligatoriamente para **toda representación matemática, física, termodinámica, mecánica, vectorial, geométrica, de control o circuital**:
 
-- **Funciones, diagramas de estado y curvas cartesianas:** Diagramas termodinámicos ($P\text{-}v, T\text{-}s, h\text{-}s$), curvas características de máquinas/bombas/motores ($T(n), I(n), H(Q)$), familias de cargas, perfiles de velocidad/temperatura, respuestas temporales/frecuenciales y curvas de protección ($t\text{-}I$).
+- **Funciones, diagramas de estado y curvas cartesianas:** Diagramas termodinámicos ($P$-$v$, $T$-$s$, $h$-$s$), curvas características de máquinas/bombas/motores ($T(n), I(n), H(Q)$), familias de cargas, perfiles de velocidad/temperatura, respuestas temporales/frecuenciales y curvas de protección ($t$-$I$).
 - **Diagramas vectoriales y fasoriales:** Diagramas de cuerpo libre, polígonos de fuerzas/velocidades, círculos de Mohr, triángulos de Kapp, Efecto Ferranti y diagramas fasoriales.
-- **Esquemas físicos, constructivos, de proceso y eléctricos:** Volúmenes de control, esquemas mecánicos, circuitos equivalentes, ensayos de laboratorio, borneras, esquemas de potencia/comando y conexionados.
+- **Esquemas físicos, constructivos, de proceso, de control y eléctricos:** Volúmenes de control, esquemas mecánicos, lazos de control realimentados con sumadores $\Sigma$, circuitos equivalentes, ensayos de laboratorio, borneras, esquemas de potencia/comando y conexionados.
+- **Simbología mecánica avanzada:** Para esquemas de vibraciones, estática y mecanismos en TikZ, cargar `\usetikzlibrary{decorations.pathmorphing, arrows.meta, calc}` antes de `\begin{document}`. Usar `decoration={coil}` para resortes helicoidales reales y un bucle `\foreach` de trazos diagonales grises (`\foreach \x in {...} \draw[gray!70, line width=0.8pt] (\x, 0) -- (\x-0.22, -0.25);`) para empotramientos fijos o suelos (**PROHIBIDO** usar `pattern=north east lines` porque el motor SVG de TikZJax lo vuelve invisible en Modo Oscuro; ver Plantilla 5).
+- **Circuitos eléctricos normalizados:** Para circuitos eléctricos con componentes normalizados (fuentes, resistencias, inductancias, capacitores, transformadores), cargar `\usepackage{circuitikz}` antes de `\begin{document}` y usar `\begin{circuitikz}...\end{circuitikz}` en lugar de `tikzpicture`. Las reglas de dark mode, escapes LaTeX, escala y anti-colisión siguen aplicando igual.
 
-### C. Cláusula de Último Recurso (Arte ASCII)
+#### C. Cláusula de Último Recurso (Arte ASCII)
 
 El arte ASCII está **bloqueado por defecto**. Solo podrá utilizarse como último recurso extremo si una representación específica resulta técnicamente imposible de construir tanto en `tikz` como en `mermaid`.
 
 ---
 
-## 2. Regla de Paginación y Límite de Ancho Físico para PDF (Hoja A4 Vertical)
+### 2. Regla de Paginación y Límite de Ancho Físico para PDF (Hoja A4 Vertical)
 
 Una hoja A4 vertical tiene un ancho imprimible máximo de **`15.0 cm` a `16.0 cm`**. Si un lienzo supera ese ancho, se recortará al exportar a PDF. Por lo tanto, **NUNCA se deben colocar 3 o más gráficos medianos/grandes en una misma fila horizontal**.
 
 Aplicar obligatoriamente la siguiente **Regla de Distribución en Filas (`xshift` e `yshift`)**:
 
-1. **1 solo gráfico grande:** Centrado, ancho de ejes entre `7 cm` y `11 cm`, `scale=1.15` a `1.2`.
-2. **2 subgráficos medianos:** En 1 fila horizontal (`xshift=0cm` y `xshift=7.8cm` o `8.0cm`), `scale=1.1`.
+1. **1 solo gráfico grande:** Centrado, ancho de ejes entre `7 cm` y `11 cm`, `scale=1.1` a `1.2`.
+2. **2 subgráficos medianos:** En 1 fila horizontal (`xshift=0cm` y `xshift=7.8cm` o `8.0cm`), `scale=1.1` (si el subgráfico derecho tiene semieje negativo $x < 0$, como el Círculo de Mohr, usar `xshift=8.6cm` a `9.0cm`).
 3. **3 subgráficos medianos:** En **2 filas (disposición piramidal 2+1)**:
     - Fila 1 (arriba): Subgráfico (a) en `[xshift=0cm, yshift=0cm]` y Subgráfico (b) en `[xshift=8.0cm, yshift=0cm]`.
     - Fila 2 (abajo, centrado): Subgráfico (c) en `[xshift=4.0cm, yshift=-6.2cm]`.
@@ -645,31 +728,39 @@ Aplicar obligatoriamente la siguiente **Regla de Distribución en Filas (`xshift
 
 ---
 
-## 3. Regla de Contraste en Modo Oscuro de Obsidian (Dark Mode Inversion)
+### 3. Regla de Contraste en Modo Oscuro de Obsidian (Dark Mode Inversion)
 
 En el Modo Oscuro de Obsidian, el motor de TikZJax invierte automáticamente el color `black` a blanco y el color `white` (`fill=white`) a gris oscuro de fondo, pero **NO invierte colores mezclados o pasteles** (como `fill=cyan!10`, `fill=gray!10`, `fill=orange!15`, `fill=red!10`). Si se rellena una figura con un color pastel (`fill=cyan!10`), el fondo queda blanco brillante mientras que el texto negro en su interior se invierte a blanco, volviéndose **totalmente ilegible (blanco sobre blanco)**.
 
 Por lo tanto, es **OBLIGATORIO** cumplir estas reglas de color y relleno:
 
 1. **PROHIBIDO usar rellenos pastel o grises (`fill=...!10`, `fill=...!15`, `fill=gray!...`)** en rectángulos, círculos, bloques o cajas que contengan texto o símbolos en su interior.
-2. **Usar SIEMPRE `fill=white` con borde coloreado grueso:**
-    - Ejemplo correcto: `\draw[line width=1.5pt, cyan!80!black, fill=white] (1.5, 0.3) rectangle (2.5, 1.0) node[midway, font=\small\bfseries] {$KM_1$};`
-    - En **Modo Oscuro**, TikZJax convierte automáticamente `fill=white` en fondo oscuro y el texto por defecto en blanco nítido.
+2. **Usar SIEMPRE `fill=white` con borde coloreado grueso y `text=black`:**
+    - Ejemplo correcto: `\draw[line width=1.5pt, cyan!80!black, fill=white] (1.5, 0.3) rectangle (2.5, 1.0) node[midway, text=black, font=\small\bfseries] {$KM_1$};`
+    - En **Modo Oscuro**, TikZJax convierte automáticamente `fill=white` en fondo oscuro y `text=black` en blanco nítido.
     - En **Modo Claro / Exportación PDF**, `fill=white` se mantiene blanco puro con texto negro nítido, tapando limpiamente cualquier línea que pase por detrás.
 3. **Dimensionamiento holgado de cajas con ecuaciones:**
     - Si un rectángulo contiene únicamente el símbolo (`$R_1$`, `$jX_1$`, `$Q_1$`), colocar su valor numérico fuera de la caja (`below=3pt` o `above=3pt`).
-    - Si un rectángulo contiene una fórmula completa (ej. `$jX_{cc1} = j(X_{d1} + a^2 X_{d2})$`), darle un ancho mínimo de **`3.5 cm`** para que el texto jamás toque ni desborde los bordes laterales de la caja.
+    - Si un rectángulo de circuito contiene una fórmula completa en una línea (ej. `$jX_{cc1} = j(X_{d1} + a^2 X_{d2})$`), darle un ancho mínimo de **`3.5 cm`** para que el texto jamás toque ni desborde los bordes laterales de la caja.
+4. **Cajas con Texto o Ecuaciones Multilínea (Auto-ajuste, Padding y `text=black` Obligatorios):**
+    - **PROHIBIDO usar `\draw (...) rectangle (...) node[midway]` para bloques conceptuales o cajas con más de una línea de texto/ecuaciones:** Calcular coordenadas fijas a mano provoca que las fórmulas queden apretadas o desborden los límites laterales y verticales del rectángulo.
+    - **Usar SIEMPRE nodos auto-ajustables (`\node[draw=..., fill=white]`) con `inner xsep` e `inner ysep` explícitos:** De este modo, TikZ calcula la caja envolvente exacta alrededor del texto ya compilado y garantiza un margen interno ("padding") uniforme e inviolable:
+        - Ejemplo canónico: `\node[draw=cyan!80!black, line width=1.5pt, fill=white, text=black, inner xsep=10pt, inner ysep=7pt, align=center, font=\small] (A) at (0,0) {\textbf{T\'itulo}\\[3pt]$Ecuaci\'on$};`
+    - **Fijar SIEMPRE `text=black` dentro de cajas con `fill=white`:** En TikZ, si un comando tiene color de borde (ej. `violet` o `red`), el texto interno puede heredar ese color y perder contraste en Modo Oscuro. Al forzar `text=black`, en Modo Claro se ve negro puro y en Modo Oscuro TikZJax lo invierte automáticamente a blanco brillante uniforme.
+    - **Jerarquía de fuentes dentro de cajas:** Si el gráfico tiene 3 cajas en una misma fila horizontal (máximo permitido para hoja A4, solo si cada caja mide ≤ 4 cm de ancho), usar obligatoriamente `font=\small` (o `\footnotesize` en fórmulas largas) dentro de los nodos y separar los renglones con `\\[3pt]` o `\\[4pt]` para que las fracciones (`\frac`) o sumatorias (`\sum`) jamás se toquen entre sí ni se acerquen al borde.
+    - **Conexión de flechas mediante anclajes de nodo:** Conectar las cajas usando sus anclajes geométricos (`(A.south) -- (B.north)`) en lugar de coordenadas numéricas fijas.
+    - **Separación horizontal mínima entre cajas vecinas (`gap >= 0.7 cm`):** Como los nodos auto-ajustables crecen horizontalmente según la longitud de su texto más el `inner xsep`, al colocar 2 cajas de texto largo (varias palabras o fórmulas) en una misma fila sus centros deben separarse al menos `7.8 cm` a `8.2 cm` entre sí (ej. `x = 2.7` y `x = 10.7`), o bien fijar un `text width` explícito (ej. `text width=5.2cm`), garantizando que jamás se toquen ni se solapen sus bordes laterales. Para cajas cortas (≤ 4 cm de ancho, como los bloques de un lazo de control de la Plantilla 6) basta una separación de ≥ 0.7 cm entre bordes.
 
 ---
 
-## 4. Prevención de Fallos de Compilación en TikZJax (Sintaxis LaTeX Pura)
+### 4. Prevención de Fallos de Compilación en TikZJax (Sintaxis LaTeX Pura)
 
 El compilador TeX de TikZJax carga únicamente LaTeX base y TikZ, **SIN el paquete `amsmath`** y **SIN soporte UTF-8 directo**. Un solo comando inválido impide que se renderice todo el bloque. Cumplir estrictamente:
 
 1. **PROHIBIDO usar `\text{...}`, `\dfrac{...}` o `\tfrac{...}`:**
     - Estos comandos pertenecen a `amsmath` y **rompen instantáneamente la compilación en TikZJax**.
-    - _Cómo escribir letras rectas en modo matemático:_ Usar `\mathrm{...}` (ej. `$\mathrm{Y}$`, `$I_{\mathrm{Y}}(n)$`, `$T_{\mathrm{Y}}(n)$`, `$\mathrm{kJ/kg}$`).
-    - _Cómo combinar variables matemáticas con unidades, palabras o guiones:_ Cerrar el modo matemático `$ ... $` antes del texto o guion:
+    - _Cómo escribir letras rectas en modo matemático:_ Usar `\mathrm{...}` (ej. `$\mathrm{Y}$`, `$I_{\mathrm{Y}}(n)$`, `$T_{\mathrm{Y}}(n)$`, `$\mathrm{kJ/kg}$`, `$T_{\mathrm{arr}}$`).
+    - _Cómo combinar variables matemáticas con unidades, palabras o guiones:_ Cerrar el modo matemático `$...$` antes del texto o guion:
         - **Incorrecto (rompe TikZJax):** `{$n\text{ [rpm]}$}`, `{($\text{Y-}\Delta$)}`, `{$95\text{-}96$}`
         - **Correcto:** `{$n$ [rpm]}`, `{($\mathrm{Y}$-$\Delta$)}`, `{$95$--$96$}`
 2. **PROHIBIDO escribir tildes, eñes, grados o guiones largos en crudo (UTF-8):**
@@ -677,71 +768,80 @@ El compilador TeX de TikZJax carga únicamente LaTeX base y TikZ, **SIN el paque
     - **OBLIGATORIO usar escapes LaTeX:** Escribir `\'a, \'e, \'i, \'o, \'u, \~n`, `$^\circ$` y `---` (para raya/guion largo de título) o `--` (para rangos numéricos como `95--96`).
 3. **Alineación a columna cero de los delimitadores de código:**
     - Tanto la línea de apertura ` ```tikz ` (o ` ```mermaid `) como la de cierre ` ``` ` deben escribirse **sin espacios de sangría a la izquierda** (columna 0) y separadas por una línea en blanco respecto de listas numeradas o viñetas, evitando que el parser de Markdown falle al cerrar el bloque.
-4. **Envoltura obligatoria:** Todo bloque ```tikz debe iniciar exactamente con `\begin{document}` y cerrar con `\end{document}`.
+4. **Envoltura obligatoria:** Todo bloque ```tikz debe contener `\begin{document}` (precedido, si corresponde, solo por las directivas permitidas) y cerrar con `\end{document}`. Únicas directivas permitidas antes de `\begin{document}`: `\usetikzlibrary{decorations.pathmorphing, arrows.meta, calc}` (para esquemas mecánicos, resortes y empotramientos) y `\usepackage{circuitikz}` (para circuitos eléctricos normalizados).
 
 ---
 
-## 5. Escala, Tipografía, Rigor Matemático y Reglas Anti-Colisión
+### 5. Escala, Tipografía, Rigor Matemático y Reglas Anti-Colisión
 
 1. **Escala y Tamaños de Fuente (PROHIBIDO usar `\tiny` o `\scriptscriptstyle`):**
-    - Escala global: `scale=1.08` a `1.15` con `every node/.style={font=\normalsize}`.
-    - Títulos de cada gráfico: `font=\large\bfseries`, siempre multilínea con `align=center` y `\\`.
+    - Escala global: `scale=1.08` a `1.2` con `every node/.style={font=\normalsize}`.
+    - Títulos de cada gráfico: `font=\large\bfseries`, preferentemente multilínea (se admite una sola línea si cabe en el ancho útil, como en las Plantillas 1, 4, 6 y 7) con `align=center` y `\\`.
     - Subtítulos explicativos: `font=\normalsize, text=gray!80`.
     - Etiquetas principales ($\vec{U}_2, \vec{U}_{20}, \vec{I}_2, T_m, T_r, n_s$): `font=\normalsize`.
     - Etiquetas secundarias, numeración de bornes o caídas internas ($I_2 R_{cc}, jI_2 X_{cc}, \varphi_2$): `font=\small`.
-2. **Coherencia Matemática Exacta entre `plot` y Puntos Notables (`\filldraw`):**
-    - Usar obligatoriamente `domain=..., samples=60, smooth, variable=\x` y `plot ({\x}, {expresión})`, encerrando `{\x}` entre llaves y usando multiplicación explícita (`\x * \x` en vez de `\x^2`).
-    - **Verificación de coincidencia de puntos:** Antes de dibujar un punto notable con `\filldraw (x_0, y_0) circle`, evaluar algebraicamente la función del `plot` en `x = x_0` para garantizar que $y_0 = f(x_0)$ y el punto quede apoyado exactamente sobre la curva trazada (ej. verificar que en $x=0$ la curva valga exactamente $y_0 = T_{\text{arr}}$).
+2. **Coherencia Matemática Exacta entre `plot`, Puntos Notables (`\filldraw`) y Arcos:**
+    - Usar obligatoriamente `domain=..., samples=40` a `65, smooth, variable=\x` y `plot ({\x}, {expresión})`, encerrando `{\x}` entre llaves y usando multiplicación explícita (`\x * \x` en vez de `\x^2`).
+    - **Verificación de coincidencia de puntos:** Antes de dibujar un punto notable con `\filldraw (x_0, y_0) circle`, evaluar algebraicamente la función del `plot` en `x = x_0` para garantizar que $y_0 = f(x_0)$ y el punto quede apoyado exactamente sobre la curva trazada (ej. verificar que en $x=0$ la curva valga exactamente $y_0 = T_{\mathrm{arr}}$).
+    - **Arcos circulares centrados en el origen:** En TikZ, `(x,y) arc (a:b:R)` interpreta `(x,y)` como el punto inicial del arco y no como su centro. Para que un arco de radio $R$ centrado en `(0,0)` pase exactamente por la punta de un vector de módulo $R$, iniciar siempre el arco en coordenadas polares exactas `(a:R) arc (a:b:R)` (ej. `(-18:3.5) arc (-18:26:3.5)` en la Plantilla 3).
 3. **Reglas Estrictas Anti-Colisión:**
-    - **Despegue Título vs. Eje Vertical:** La etiqueta del eje vertical $Y$ debe ubicarse SIEMPRE a la izquierda de la punta de la flecha (`node[left=4pt]`), nunca `above`. El título del gráfico debe ubicarse al menos `0.8 cm` por encima del extremo superior del eje $Y$ (ej. si el eje llega a `y=3.8`, el título va en `y=4.6`).
+    - **Despegue Título vs. Eje Vertical y Contraste de Ejes (`text=black`):** Cuando los ejes coordenados se tracen en gris (`\draw[->, gray!60]`), es **OBLIGATORIO agregar `text=black`** en el nodo de la etiqueta del eje (ej. `node[left=4pt, text=black] {$T$ [N$\cdot$m]}` y `node[right=4pt, text=black] {$n$ [rpm]}`) para que el texto no herede el gris pálido de la línea. Además, la etiqueta del eje vertical $Y$ debe ubicarse SIEMPRE a la izquierda de la punta de la flecha (`node[left=4pt, text=black]`), nunca `above`, y el título del gráfico debe ubicarse al menos `0.6 cm` (preferible 0.8 cm) por encima del extremo superior del eje $Y$ (ej. si el eje llega a `y=3.8`, el título va en `y=4.4` a `4.6`).
     - **Prohibición de etiquetas en el punto de cruce:** Las etiquetas de las curvas ($T_m$, $T_r$, $I$) NUNCA deben colocarse donde las curvas se cruzan ni pisando otra curva. Deben ubicarse en zonas despejadas (ej. $T_m$ sobre su cresta máxima con `above=3pt` y $T_r$ por debajo de su trazo con `below=3pt`), dejando la intersección libre para el rótulo del punto de operación (`Pto. Estable`).
     - **Anclajes opuestos para marcas cercanas en un mismo eje:** Cuando dos valores sobre un eje estén próximos (como $950$ y $1000\ (n_s)$, o $1440$ y $1500$), usar anclajes opuestos: `below left=1pt` para el primero y `below right=2pt` para el segundo.
-    - **Vectores/fasores cercanos:** Si dos vectores que salen del origen tienen ángulos cercanos (como $\vec{U}_{20}$ e $\vec{I}_2$ en carga capacitiva), colocar la etiqueta del más largo cerca de su punta (`near end, above left=1pt`) para no chocar con el más corto.
+    - **Vectores/fasores cercanos y posicionamiento explícito `\node at (x,y)`:** En zonas densas (vectores con ángulos cercanos como $\vec{U}_{20}$ e $\vec{I}_2$, triángulos de caída $I_2 R_{cc} + jI_2 X_{cc}$ o entradas a sumadores $\Sigma$), **PROHIBIDO usar `node[pos=...]` o `near end` al final de un comando `\draw` en zonas densas**; en flechas aisladas se admite `midway` o `near end` (Plantillas 1, 5, 6 y 7) (TikZ lo ignora y apila el texto sobre la punta de la flecha). Posicionar siempre esas etiquetas mediante un comando independiente `\node[...] at (x, y) {...}` calculando la coordenada exacta del hueco libre (ver Plantillas 3c y 6).
+    - **Abanicos de Curvas y Prohibición de Cruce de Punteros Guía:**
+        1. **Prohibición de texto entre curvas:** Nunca colocar etiquetas en la franja interior entre dos curvas cercanas.
+        2. **Ley de Frontera Exterior (Punteros sin Cruce):** Una flecha indicadora (`\draw[<-]`) **JAMÁS debe cruzar otra curva para llegar a la suya**. La curva inferior del haz (ej. _Soderberg_) debe señalarse desde la cavidad vacía **inferior** (`below`); las curvas superiores (ej. _Gerber_ y _Langer_) deben señalarse desde el espacio abierto **superior derecho** (`above right`), y la curva intermedia (_Goodman_) debe señalarse en el tramo final derecho donde las demás rectas ya se separaron o cortaron el eje.
+        3. **Control del Ancho Horizontal de Etiquetas (`align=center` con `\\`):** Una etiqueta de una sola línea como `"Q(140, 195) Seguro"` mide `~3.0 cm` de ancho y atraviesa rectas vecinas. Cuando se etiquete un punto interior (como $Q$ o una línea de carga), dividir siempre el texto en **2 renglones cortos** (`align=center` o `align=left` con `\\`, ej. `{$Q(140, 195)$\\{\footnotesize Pto. Seguro}}`) para reducir su ancho físico a la mitad (`< 1.5 cm`) y verificar analíticamente que el intervalo horizontal $[x_{\mathrm{nodo}}, x_{\mathrm{nodo}} + 1.5\text{ cm}]$ no intersecte la ecuación de ninguna recta vecina.
+    - **Declaración Explícita de `text=color` en Nodos con Colores Mezclados:** En TikZJax, al usar colores compuestos con `!` (como `cyan!85!black`, `teal!90!black` u `orange!90!black`), escribir solo `\node[cyan!85!black]` puede hacer que el texto se imprima en negro por defecto. Con colores simples (`cyan`, `teal`, `red`) funciona sin `text=` (Plantillas 2 y 4), aunque se recomienda declararlo. Es **OBLIGATORIO** escribir explícitamente `text=color` dentro de las opciones del nodo (ej. `node[above=2pt, text=cyan!85!black, font=\small\bfseries]`).
+    - **Subgráficos en Paralelo con Coordenadas Negativas (ej. Círculo de Mohr o Ejes Simétricos):** Si el Subgráfico (b) a la derecha posee ejes que se extienden hacia valores negativos ($x < 0$, como el semieje negativo de tensiones en el Círculo de Mohr), usar un desplazamiento mínimo `xshift=8.6cm` a `9.0cm` y títulos cortos para que el extremo izquierdo del Subgráfico (b) jamás se acerque a las flechas o títulos del Subgráfico (a).
+    - **Punteros en Curvas Cerradas (Elipses de Von Mises, Círculos o Ciclos Termodinámicos):** Cuando se etiquete un punto interior cercano al borde de una curva cerrada (como el estado tensional dentro de la elipse de Von Mises), la flecha guía (`\draw[<-]`) debe sacar el texto completamente **fuera del radio exterior de la figura cerrada** (`r > R_{\max}`) o bien ubicarlo cerca del origen despejado, verificando que el texto jamás pise el perímetro de la curva.
 
 ---
 
-## 6. Plantillas Canónicas Verificadas (Ejemplos de Sintaxis y Estilo)
+### 6. Plantillas Canónicas Verificadas (Ejemplos de Sintaxis y Estilo)
 
-### Plantilla 1: Esquemas y Bloques con Cajas `fill=white` (Compatible Dark/Light Mode)
+#### Plantilla 1: Esquemas y Bloques con Cajas `fill=white` de Ancho >= 3.5 cm (Compatible Dark/Light Mode)
 
 ```tikz
 \begin{document}
 \begin{tikzpicture}[>=latex, scale=1.12, every node/.style={font=\normalsize}]
 
-  \node[align=center, font=\large\bfseries] at (5.3, 3.1) {Circuito Equivalente Aproximado Referido al Primario (AT)};
+  \node[align=center, font=\large\bfseries] at (5.5, 3.1) {Circuito Equivalente Aproximado Referido al Primario (AT)};
 
   \filldraw[black] (0, 2.0) circle (2pt);
   \filldraw[black] (0, 0.0) circle (2pt);
-  \draw[<->, line width=1.2pt, cyan] (0, 0.15) -- (0, 1.85) node[midway, left=4pt] {$\vec{U}_1$};
+  \draw[<->, line width=1.2pt, cyan] (0, 0.15) -- (0, 1.85) node[midway, left=4pt, text=cyan] {$\vec{U}_1$};
 
-  \draw[->, line width=1.5pt, teal] (0.3, 2.0) -- (2.0, 2.0) node[midway, above=3pt] {$\vec{I}_1 \approx \vec{I}'_2 = \vec{I}_2 / a$};
-  \draw[line width=1.4pt] (0, 2.0) -- (2.3, 2.0);
+  \draw[line width=1.4pt] (0, 2.0) -- (0.3, 2.0);
+  \draw[->, line width=1.6pt, teal] (0.3, 2.0) -- (1.9, 2.0) node[midway, above=3pt, text=teal] {$\vec{I}_1 \approx \vec{I}'_2 = \vec{I}_2 / a$};
+  \draw[line width=1.4pt] (1.9, 2.0) -- (2.2, 2.0);
 
-  \draw[line width=1.5pt, red, fill=white] (2.3, 1.68) rectangle (5.2, 2.32) node[midway, font=\small\bfseries] {$R_{cc1} = R_1 + a^2 R_2$};
-  \draw[line width=1.4pt] (5.2, 2.0) -- (5.8, 2.0);
+  \draw[line width=1.5pt, red, fill=white] (2.2, 1.68) rectangle (5.7, 2.32) node[midway, text=black, font=\small\bfseries] {$R_{cc1} = R_1 + a^2 R_2$};
+  \draw[line width=1.4pt] (5.7, 2.0) -- (6.3, 2.0);
 
-  \draw[line width=1.5pt, violet, fill=white] (5.8, 1.68) rectangle (9.3, 2.32) node[midway, font=\small\bfseries] {$jX_{cc1} = j(X_{d1} + a^2 X_{d2})$};
-  \draw[line width=1.4pt] (9.3, 2.0) -- (10.5, 2.0);
-  \draw[line width=1.4pt] (0, 0.0) -- (10.5, 0.0);
+  \draw[line width=1.5pt, violet, fill=white] (6.3, 1.68) rectangle (9.8, 2.32) node[midway, text=black, font=\small\bfseries] {$jX_{cc1} = j(X_{d1} + a^2 X_{d2})$};
+  \draw[line width=1.4pt] (9.8, 2.0) -- (11.0, 2.0);
+  \draw[line width=1.4pt] (0, 0.0) -- (11.0, 0.0);
 
-  \filldraw[black] (10.5, 2.0) circle (2pt);
-  \filldraw[black] (10.5, 0.0) circle (2pt);
-  \draw[<->, line width=1.2pt, orange] (10.5, 0.15) -- (10.5, 1.85) node[midway, right=4pt] {$\vec{U}'_2 = a \cdot \vec{U}_2$};
+  \filldraw[black] (11.0, 2.0) circle (2pt);
+  \filldraw[black] (11.0, 0.0) circle (2pt);
+  \draw[<->, line width=1.2pt, orange] (11.0, 0.15) -- (11.0, 1.85) node[midway, right=4pt, text=orange] {$\vec{U}'_2 = a \cdot \vec{U}_2$};
 
 \end{tikzpicture}
 \end{document}
 ```
 
-### Plantilla 2: Curvas Matemáticas Calibradas con Puntos Exactos (`\mathrm{Y}$-$\Delta`)
+#### Plantilla 2: Curvas Matemáticas Calibradas con Puntos Exactos ($\mathrm{Y}$-$\Delta$)
 
 ```tikz
 \begin{document}
 \begin{tikzpicture}[>=latex, scale=1.15, every node/.style={font=\normalsize}]
 
-  \node[align=center, font=\large\bfseries] at (3.2, 4.9) {Arranque Estrella-Tri\'angulo ($\mathrm{Y}$-$\Delta$): Curvas $T(n)$ e $I(n)$\\{\normalsize (Conmutaci\'on \'optima a $n = 950$ rpm)}};
+  \node[align=center, font=\large\bfseries] at (3.2, 4.9) {Arranque Estrella-Tri\'angulo ($\mathrm{Y}$-$\Delta$): Curvas de Par $T(n)$\\{\normalsize (Conmutaci\'on \'optima a $n = 950$ rpm)}};
 
-  \draw[->, gray!60, line width=0.9pt] (0,0) -- (6.2,0) node[right=4pt] {$n$ [rpm]};
-  \draw[->, gray!60, line width=0.9pt] (0,0) -- (0,4.1) node[left=4pt] {$T$ [N$\cdot$m] / $I$ [A]};
+  \draw[->, gray!60, line width=0.9pt] (0,0) -- (6.2,0) node[right=4pt, text=black] {$n$ [rpm]};
+  \draw[->, gray!60, line width=0.9pt] (0,0) -- (0,4.1) node[left=4pt, text=black] {$T$ [N$\cdot$m]};
   \node[below left=2pt] at (0,0) {$0$};
 
   \draw[line width=2.0pt, cyan, domain=0:5, samples=65, smooth, variable=\x]
@@ -754,11 +854,11 @@ El compilador TeX de TikZJax carga únicamente LaTeX base y TikZ, **SIN el paque
   \node[teal, above=2pt, font=\small] at (3.3, 1.05) {$T_{\mathrm{Y}}(n)$};
   \node[left=3pt, font=\small, text=teal] at (0, 0.88) {$84$ N$\cdot$m};
 
-  \draw[line width=1.5pt, red] (0, 0.60) -- (5.3, 0.60) node[right=3pt, font=\small] {$T_r = 60$ N$\cdot$m};
+  \draw[line width=1.5pt, red] (0, 0.60) -- (5.3, 0.60) node[right=3pt, font=\small, text=red] {$T_r = 60$ N$\cdot$m};
 
   \draw[->, line width=1.6pt, red!80!black] (4.75, 0.65) -- (4.75, 1.92);
   \filldraw[red!80!black] (4.75, 0.65) circle (2.2pt);
-  \filldraw[red!80!black] (4.75, 1.95) circle (2.2pt) node[left=4pt, font=\small] {Salto a $\Delta$};
+  \filldraw[red!80!black] (4.75, 1.95) circle (2.2pt) node[left=4pt, font=\small, text=red!80!black] {Salto a $\Delta$};
 
   \draw[dotted, gray!80, line width=0.9pt] (4.75, 0) -- (4.75, 0.65);
   \node[below left=1pt, font=\small, text=red!80!black] at (4.72, 0) {$950$};
@@ -768,7 +868,7 @@ El compilador TeX de TikZJax carga únicamente LaTeX base y TikZ, **SIN el paque
 \end{document}
 ```
 
-### Plantilla 3: Vectores / Fasores en Disposición A4 (2 arriba + 1 centrado abajo)
+#### Plantilla 3: Vectores / Fasores en Disposición A4 (2 arriba + 1 centrado abajo)
 
 ```tikz
 \begin{document}
@@ -780,12 +880,14 @@ El compilador TeX de TikZJax carga únicamente LaTeX base y TikZ, **SIN el paque
     \node[align=center, text=gray!80, font=\normalsize] at (2.3, 2.8) {$U_{20} \approx U_2$\\{\small (Ca\'ida leve)}};
     \draw[->, gray!60, line width=0.8pt] (-0.4,0) -- (5.0,0);
     \draw[->, gray!60, line width=0.8pt] (0,-1.6) -- (0,2.1);
-    \draw[dashed, gray!80, line width=0.9pt] (3.5, -1.0) arc (-16:26:3.5);
-    \draw[->, line width=2.0pt, cyan] (0,0) -- (3.5,0) node[midway, below=3pt] {$\vec{U}_2$};
-    \draw[->, line width=1.4pt, teal] (0,-0.25) -- (1.8,-0.25) node[midway, below=2pt] {$\vec{I}_2$};
-    \draw[->, line width=1.4pt, red] (3.5,0) -- (4.0,0) node[midway, below=2pt, font=\small] {$I_2 R_{cc}$};
-    \draw[->, line width=1.5pt, violet] (4.0,0) -- (4.0,1.4) node[midway, right=2pt, font=\small] {$jI_2 X_{cc}$};
-    \draw[->, line width=2.0pt, orange] (0,0) -- (4.0,1.4) node[midway, above left=2pt] {$\vec{U}_{20}$};
+    \draw[dashed, gray!80, line width=0.9pt] (-16:3.5) arc (-16:26:3.5);
+    \draw[->, line width=2.0pt, cyan] (0,0) -- (3.5,0);
+    \node[below=3pt, text=cyan] at (2.55, 0) {$\vec{U}_2$};
+    \draw[->, line width=1.4pt, teal] (0,-0.25) -- (1.8,-0.25) node[midway, below=2pt, text=teal] {$\vec{I}_2$};
+    \draw[->, line width=1.4pt, red] (3.5,0) -- (4.05,0);
+    \node[below right=1pt, font=\small, text=red] at (3.65, 0) {$I_2 R_{cc}$};
+    \draw[->, line width=1.5pt, violet] (4.05,0) -- (4.05,1.4) node[midway, right=2pt, font=\small, text=violet] {$jI_2 X_{cc}$};
+    \draw[->, line width=2.0pt, orange] (0,0) -- (4.05,1.4) node[midway, above left=2pt, text=orange] {$\vec{U}_{20}$};
   \end{scope}
 
   % FILA 1 - DERECHA
@@ -794,13 +896,13 @@ El compilador TeX de TikZJax carga únicamente LaTeX base y TikZ, **SIN el paque
     \node[align=center, text=gray!80, font=\normalsize] at (2.3, 2.8) {$U_{20} \gg U_2$\\{\small (P\'esima regulaci\'on)}};
     \draw[->, gray!60, line width=0.8pt] (-0.4,0) -- (5.2,0);
     \draw[->, gray!60, line width=0.8pt] (0,-1.6) -- (0,2.1);
-    \draw[dashed, gray!80, line width=0.9pt] (3.3, -1.1) arc (-18:24:3.5);
-    \draw[->, line width=2.0pt, cyan] (0,0) -- (3.5,0) node[midway, below=3pt] {$\vec{U}_2$};
-    \draw[->, line width=1.4pt, teal] (0,0) -- (-36.87:1.8) node[below right=1pt] {$\vec{I}_2$};
-    \draw[->, thin, orange] (0.8,0) arc (0:-36.87:0.8) node[midway, right, font=\small] {$\varphi_2$};
-    \draw[->, line width=1.4pt, red] (3.5,0) -- (3.9,-0.3) node[below=2pt, font=\small] {$I_2 R_{cc}$};
-    \draw[->, line width=1.5pt, violet] (3.9,-0.3) -- (4.74,0.82) node[midway, right=2pt, font=\small] {$jI_2 X_{cc}$};
-    \draw[->, line width=2.0pt, orange] (0,0) -- (4.74,0.82) node[midway, above left=2pt] {$\vec{U}_{20}$};
+    \draw[dashed, gray!80, line width=0.9pt] (-18:3.5) arc (-18:24:3.5);
+    \draw[->, line width=2.0pt, cyan] (0,0) -- (3.5,0) node[midway, below=3pt, text=cyan] {$\vec{U}_2$};
+    \draw[->, line width=1.4pt, teal] (0,0) -- (-36.87:1.8) node[below right=1pt, text=teal] {$\vec{I}_2$};
+    \draw[->, thin, orange] (0.8,0) arc (0:-36.87:0.8) node[midway, right, font=\small, text=orange] {$\varphi_2$};
+    \draw[->, line width=1.4pt, red] (3.5,0) -- (3.9,-0.3) node[below=2pt, font=\small, text=red] {$I_2 R_{cc}$};
+    \draw[->, line width=1.5pt, violet] (3.9,-0.3) -- (4.74,0.82) node[midway, right=2pt, font=\small, text=violet] {$jI_2 X_{cc}$};
+    \draw[->, line width=2.0pt, orange] (0,0) -- (4.74,0.82) node[midway, above left=2pt, text=orange] {$\vec{U}_{20}$};
   \end{scope}
 
   % FILA 2 - CENTRADO ABAJO
@@ -809,20 +911,23 @@ El compilador TeX de TikZJax carga únicamente LaTeX base y TikZ, **SIN el paque
     \node[align=center, text=gray!80, font=\normalsize] at (2.3, 2.8) {$U_2 > U_{20}$\\{\small (Regulaci\'on $< 0$)}};
     \draw[->, gray!60, line width=0.8pt] (-0.4,0) -- (5.0,0);
     \draw[->, gray!60, line width=0.8pt] (0,-1.6) -- (0,2.1);
-    \draw[dashed, gray!80, line width=0.9pt] (3.3, -1.1) arc (-18:26:3.5);
-    \draw[->, line width=2.0pt, cyan] (0,0) -- (3.5,0) node[midway, below=3pt] {$\vec{U}_2$};
-    \draw[->, line width=1.4pt, teal] (0,0) -- (53.13:1.8) node[above left=1pt] {$\vec{I}_2$};
-    \draw[->, thin, orange] (0.8,0) arc (0:53.13:0.8) node[midway, right, font=\small] {$\varphi_2$};
-    \draw[->, line width=1.4pt, red] (3.5,0) -- (3.8,0.4) node[right=2pt, font=\small] {$I_2 R_{cc}$};
-    \draw[->, line width=1.5pt, violet] (3.8,0.4) -- (2.68,1.24) node[above right=1pt, font=\small] {$jI_2 X_{cc}$};
-    \draw[->, line width=2.0pt, orange] (0,0) -- (2.68,1.24) node[near end, above left=1pt] {$\vec{U}_{20}$};
+    \draw[dashed, gray!80, line width=0.9pt] (-18:3.5) arc (-18:26:3.5);
+    \draw[->, line width=2.0pt, cyan] (0,0) -- (3.5,0) node[midway, below=3pt, text=cyan] {$\vec{U}_2$};
+    \draw[->, line width=1.4pt, teal] (0,0) -- (53.13:1.8) node[above left=1pt, text=teal] {$\vec{I}_2$};
+    \draw[->, thin, orange] (0.85,0) arc (0:53.13:0.85);
+    \node[font=\small, text=orange] at (0.78, 0.70) {$\varphi_2$};
+    \draw[->, line width=1.4pt, red] (3.5,0) -- (3.8,0.4) node[right=2pt, font=\small, text=red] {$I_2 R_{cc}$};
+    \draw[->, line width=1.5pt, violet] (3.8,0.4) -- (2.68,1.24);
+    \node[font=\small, text=violet] at (4.05, 1.05) {$jI_2 X_{cc}$};
+    \draw[->, line width=2.0pt, orange] (0,0) -- (2.68,1.24);
+    \node[text=orange] at (1.75, 1.22) {$\vec{U}_{20}$};
   \end{scope}
 
 \end{tikzpicture}
 \end{document}
 ```
 
-### Plantilla 4: Intersección de Funciones Matemáticas y Punto de Operación en TikZ
+#### Plantilla 4: Intersección de Funciones Matemáticas y Punto de Operación en TikZ
 
 ```tikz
 \begin{document}
@@ -832,33 +937,178 @@ El compilador TeX de TikZJax carga únicamente LaTeX base y TikZ, **SIN el paque
   \node[align=center, font=\large\bfseries] at (3.0, 4.6) {Caracter\'istica Par-Velocidad y Punto Estable};
   
   % Ejes (etiqueta de T a la izquierda de la flecha para no chocar con el titulo)
-  \draw[->, gray!60, line width=0.9pt] (0,0) -- (6.0,0) node[right=4pt] {$n$ [rpm]};
-  \draw[->, gray!60, line width=0.9pt] (0,0) -- (0,3.8) node[left=4pt] {$T$ [N$\cdot$m]};
+  \draw[->, gray!60, line width=0.9pt] (0,0) -- (6.0,0) node[right=4pt, text=black] {$n$ [rpm]};
+  \draw[->, gray!60, line width=0.9pt] (0,0) -- (0,3.8) node[left=4pt, text=black] {$T$ [N$\cdot$m]};
   \node[below left=2pt] at (0,0) {$0$};
   
   % Curva Par Motor Tm (Formula de Kloss exacta)
   \draw[line width=2.0pt, cyan, domain=0:5, samples=60, smooth, variable=\x] 
     plot ({\x}, {1.792 * (1 - 0.2*\x) / ((1 - 0.2*\x)*(1 - 0.2*\x) + 0.0784)});
   % Etiqueta Tm sobre la cresta maxima despejada
-  \node[cyan, above=3pt] at (3.6, 3.2) {$T_m$};
+  \node[text=cyan, above=3pt] at (3.6, 3.2) {$T_m$};
   
   % Curva Par Resistente cuadratica Tr
   \draw[line width=1.5pt, red, dashed, domain=0:5.2, samples=40, smooth, variable=\x] 
     plot ({\x}, {0.6 + 0.0706 * \x * \x});
   % Etiqueta Tr en el tramo medio despejado (lejos del cruce)
-  \node[red, below right=2pt] at (2.2, 0.95) {$T_r$};
+  \node[text=red, below right=2pt] at (2.2, 0.95) {$T_r$};
     
   % Puntos notables sin colision
-  \filldraw[orange] (0, 1.66) circle (2.2pt) node[left=4pt, font=\small] {$T_{arr}$};
-  \filldraw[teal] (4.50, 2.03) circle (2.5pt) node[right=6pt, font=\small] {Pto. Estable};
+  \filldraw[orange] (0, 1.66) circle (2.2pt) node[left=4pt, font=\small, text=orange] {$T_{\mathrm{arr}}$};
+  \filldraw[teal] (4.50, 2.03) circle (2.5pt) node[right=6pt, font=\small, text=teal] {Pto. Estable};
   
   % Proyeccion al eje X con anclajes opuestos para no pisarse con ns
   \draw[dotted, gray!80, line width=0.9pt] (4.50, 0) -- (4.50, 2.03);
   \node[below left=1pt, font=\small, text=teal] at (4.50, 0) {$n_N$};
-  \node[below right=2pt, font=\normalsize] at (5.0, 0) {$n_s$};
+  \node[below right=2pt, font=\small] at (5.0, 0) {$n_s$};
 
 \end{tikzpicture}
 \end{document}
+```
+
+#### Plantilla 5: Mecanismos, Diseño Mecánico y Vibraciones (Esquema Físico + DCL con `\foreach` y `coil`)
+
+```tikz
+\usetikzlibrary{decorations.pathmorphing, arrows.meta, calc}
+\begin{document}
+\begin{tikzpicture}[>=latex, scale=1.12, every node/.style={font=\normalsize}]
+
+  % SUBGRAFICO A: MODELO FISICO
+  \begin{scope}[xshift=0cm, yshift=0cm]
+    \node[align=center, font=\large\bfseries] at (2.5, 4.8) {a) Modelo F\'isico ($1$ GDL)};
+
+    % Empotramiento fijo con rayado diagonal real (100% visible en Dark/Light Mode)
+    \draw[line width=1.4pt] (0.5, 0) -- (4.5, 0);
+    \foreach \x in {0.7, 1.0, 1.3, 1.6, 1.9, 2.2, 2.5, 2.8, 3.1, 3.4, 3.7, 4.0, 4.3} {
+      \draw[gray!70, line width=0.8pt] (\x, 0) -- (\x-0.22, -0.25);
+    }
+
+    % Resorte helicoidal k
+    \draw[line width=1.4pt, cyan, decorate, decoration={coil, aspect=0.45, segment length=6pt, amplitude=6pt, pre length=8pt, post length=8pt}] (1.5, 0) -- (1.5, 2.1) node[midway, left=10pt, text=cyan] {$k$};
+
+    % Amortiguador viscoso c
+    \draw[line width=1.4pt, teal] (3.5, 0) -- (3.5, 0.85);
+    \draw[line width=1.4pt, teal] (3.18, 1.40) -- (3.18, 0.85) -- (3.82, 0.85) -- (3.82, 1.40);
+    \draw[line width=1.6pt, teal] (3.28, 1.15) -- (3.72, 1.15);
+    \draw[line width=1.4pt, teal] (3.5, 1.15) -- (3.5, 2.1);
+    \node[right=10pt, text=teal] at (3.65, 1.10) {$c$};
+
+    % Masa m con fill=white y text=black
+    \draw[line width=1.6pt, orange, fill=white] (0.9, 2.1) rectangle (4.1, 3.0) node[midway, text=black, font=\bfseries] {Masa $m$};
+
+    % Fuerza externa F(t) despejada del titulo y coordenada x(t)
+    \draw[->, line width=1.6pt, red] (2.5, 3.0) -- (2.5, 3.8) node[above=2pt, text=red] {$F(t)$};
+    \draw[dashed, gray!70, line width=0.9pt] (4.1, 2.55) -- (4.8, 2.55);
+    \draw[->, line width=1.3pt, violet] (4.65, 2.55) -- (4.65, 3.45) node[right=3pt, text=violet] {$x(t)$};
+  \end{scope}
+
+  % SUBGRAFICO B: DIAGRAMA DE CUERPO LIBRE (DCL)
+  \begin{scope}[xshift=7.8cm, yshift=0cm]
+    \node[align=center, font=\large\bfseries] at (2.5, 4.8) {b) Diagrama de Cuerpo Libre};
+
+    % Bloque de masa aislado
+    \draw[line width=1.6pt, orange, fill=white] (1.0, 1.7) rectangle (4.0, 2.7) node[midway, text=black, font=\bfseries] {$m$};
+
+    % Fuerzas actuantes despejadas
+    \draw[->, line width=1.6pt, red] (2.5, 2.7) -- (2.5, 3.8) node[above=2pt, text=red] {$F(t)$};
+    \draw[->, line width=1.5pt, cyan] (1.45, 1.7) -- (1.45, 0.5) node[below=2pt, text=cyan] {$k x$};
+    \draw[->, line width=1.5pt, teal] (2.50, 1.7) -- (2.50, 0.5) node[below=2pt, text=teal] {$c \dot{x}$};
+    \draw[->, line width=1.5pt, violet] (3.55, 1.7) -- (3.55, 0.5) node[below=2pt, text=violet] {$m \ddot{x}$};
+  \end{scope}
+
+\end{tikzpicture}
+\end{document}
+```
+
+#### Plantilla 6: Dinámica de Sistemas de Control y Electrónica Industrial (Lazo Realimentado Clásico)
+
+```tikz
+\begin{document}
+\begin{tikzpicture}[>=latex, scale=1.1, every node/.style={font=\normalsize}]
+
+  \node[align=center, font=\large\bfseries] at (5.6, 3.4) {Estructura Can\'onica de un Sistema de Control en Lazo Cerrado};
+
+  % Referencia R(s) y Sumador
+  \draw[->, line width=1.4pt, cyan] (0, 2.0) -- (1.25, 2.0);
+  \node[above=3pt, text=cyan] at (0.50, 2.0) {$R(s)$};
+  \node[draw, circle, fill=white, text=black, line width=1.3pt, minimum size=0.65cm, inner sep=0pt] (sum) at (1.6, 2.0) {$\Sigma$};
+  \node[above left=1pt, font=\small] at (sum.west) {$+$};
+  \node[below left=1pt, font=\small] at (sum.south) {$-$};
+
+  % Bloques directos auto-ajustables
+  \node[draw=cyan!85!black, line width=1.5pt, fill=white, text=black, inner xsep=10pt, inner ysep=6pt, align=center, font=\small] (Gc) at (4.2, 2.0) {\textbf{Controlador}\\[2pt]$G_c(s)$};
+  \node[draw=teal!90!black, line width=1.5pt, fill=white, text=black, inner xsep=12pt, inner ysep=6pt, align=center, font=\small] (Gp) at (8.0, 2.0) {\textbf{Planta / Proceso}\\[2pt]$G_p(s)$};
+
+  % Conexiones de linea directa mediante anclajes
+  \draw[->, line width=1.3pt] (sum.east) -- (Gc.west) node[midway, above=3pt, font=\small] {$E(s)$};
+  \draw[->, line width=1.3pt] (Gc.east) -- (Gp.west) node[midway, above=3pt, font=\small] {$U(s)$};
+  \draw[->, line width=1.4pt, orange] (Gp.east) -- (11.3, 2.0) node[near end, above=3pt, text=orange] {$Y(s)$};
+
+  % Lazo de realimentacion H(s)
+  \filldraw (10.2, 2.0) circle (2pt);
+  \node[draw=violet, line width=1.5pt, fill=white, text=black, inner xsep=12pt, inner ysep=6pt, align=center, font=\small] (H) at (6.1, 0.3) {\textbf{Sensor / Medici\'on } $H(s)$};
+  \draw[->, line width=1.3pt] (10.2, 2.0) -- (10.2, 0.3) -- (H.east);
+  \draw[->, line width=1.3pt] (H.west) -- (1.6, 0.3) -- (sum.south);
+  \node[left=4pt, font=\small] at (1.6, 0.95) {$B(s)$};
+
+\end{tikzpicture}
+\end{document}
+```
+
+#### Plantilla 7: Máquinas Térmicas, Transferencia y Materiales (Campana Termodinámica $T$-$s$ y Ciclo Rankine)
+
+```tikz
+\begin{document}
+\begin{tikzpicture}[>=latex, scale=1.15, every node/.style={font=\normalsize}]
+
+  \node[align=center, font=\large\bfseries] at (3.2, 4.4) {Diagrama $T$-$s$: Ciclo Rankine con Sobrecalentamiento};
+
+  % Ejes coordenados
+  \draw[->, gray!60, line width=0.9pt] (0,0) -- (6.3,0) node[right=4pt, text=black] {$s$ [$\mathrm{kJ/(kg\cdot K)}$]};
+  \draw[->, gray!60, line width=0.9pt] (0,0) -- (0,3.8) node[left=4pt, text=black] {$T$ [$^\circ\mathrm{C}$]};
+  \node[below left=2pt] at (0,0) {$0$};
+
+  % Campana de saturacion analitica exacta: y = 3.4 * exp(-0.28 * (x - 3.0)^2)
+  \draw[line width=1.5pt, gray!75, domain=0.6:5.4, samples=65, smooth, variable=\x]
+    plot ({\x}, {3.4 * exp(-0.28 * (\x - 3.0) * (\x - 3.0))});
+  \filldraw[gray!80] (3.0, 3.4) circle (1.8pt) node[above=2pt, font=\small, text=gray!80] {Pto. Cr\'itico};
+
+  % Trazo del Ciclo Rankine (1 -> 2 -> 2' -> 3' -> 3 -> 4 -> 1)
+  \draw[->, line width=1.8pt, cyan] (1.10, 1.24) -- (1.10, 1.65);
+  \draw[->, line width=1.8pt, red] (1.10, 1.65) -- (1.80, 2.27);
+  \draw[->, line width=1.8pt, red] (1.80, 2.27) -- (4.20, 2.27) node[midway, above=2pt, font=\small, text=red] {$q_{\mathrm{in}}$ ($P = \mathrm{cte}$)};
+  \draw[->, line width=1.8pt, red] (4.20, 2.27) -- (4.90, 3.25);
+  \draw[->, line width=1.8pt, orange] (4.90, 3.25) -- (4.90, 1.24) node[midway, right=4pt, font=\small, text=orange] {$w_t$};
+  \draw[->, line width=1.8pt, teal] (4.90, 1.24) -- (1.10, 1.24) node[midway, below=3pt, font=\small, text=teal] {$q_{\mathrm{out}}$};
+
+  % Puntos de estado con etiquetas despejadas de la campana gris
+  \filldraw[cyan] (1.10, 1.24) circle (2.2pt) node[left=5pt, font=\small, text=cyan] {$1$};
+  \filldraw[cyan] (1.10, 1.65) circle (2.2pt) node[above left=2pt, font=\small, text=cyan] {$2$};
+  \filldraw[red] (1.80, 2.27) circle (2.0pt) node[above left=1pt, font=\small, text=red] {$2'$};
+  \filldraw[red] (4.20, 2.27) circle (2.0pt) node[above left=1pt, font=\small, text=red] {$3'$};
+  \filldraw[orange] (4.90, 3.25) circle (2.2pt) node[above right=2pt, font=\small, text=orange] {$3$};
+  \filldraw[teal] (4.90, 1.24) circle (2.2pt) node[above right=3pt, font=\small, text=teal] {$4$};
+
+  % Proyeccion de entropia constante s3 = s4
+  \draw[dotted, gray!80, line width=0.9pt] (4.90, 0) -- (4.90, 1.24);
+  \node[below=2pt, font=\small] at (4.90, 0) {$s_3 = s_4$};
+
+\end{tikzpicture}
+\end{document}
+```
+
+#### Plantilla 8: Gestión, Mantenimiento y Procedimientos de Diseño (Mermaid Topología Diamante A4)
+
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'fontSize': '18px', 'primaryColor': '#f0f4ff', 'primaryTextColor': '#1a1a1a', 'primaryBorderColor': '#4f46e5', 'lineColor': '#4b5563'}, 'flowchart': {'htmlLabels': false, 'wrappingWidth': 360, 'nodeSpacing': 26, 'rankSpacing': 26, 'padding': 16}}}%%
+flowchart TD
+    A["1. Relevamiento de Carga y Servicio<br/>(Potencia, velocidad n y criticidad)"] --> B{"2. ¿Equipo de<br/>Alta Criticidad?"}
+    B --> C1["3a. Sí (Severidad Alta)<br/>Mantenimiento Predictivo / Monitoreo"]
+    B --> C2["3b. No (Severidad Baja)<br/>Mantenimiento Preventivo Sistemático"]
+    C1 & C2 --> D{"4. ¿Confiabilidad<br/>D ≥ 98 %?"}
+    D --> E1["5a. Sí Cumple (D ≥ 98 %)<br/>Aprobar plan e instrumentar equipo ✔"]
+    D --> E2["5b. No Cumple (D < 98 %)<br/>Rediseñar con redundancia en paralelo"]
+    E2 -.-> B
 ```
 
 ---
@@ -867,23 +1117,23 @@ El compilador TeX de TikZJax carga únicamente LaTeX base y TikZ, **SIN el paque
 
 Al ejecutar `Examen` (Modo a ciegas, cero spoilers):
 
-1. `EXAMEN`: encabezado oficial (duración, puntaje total, condición de aprobación y material permitido según `modelo.md`; dividido en Teoría / Práctica si el modelo lo hace). Enunciados limpios con sus datos, unidades, puntajes por ejercicio/inciso (usando LaTeX `$...$` y `$$...$$`) y gráficos de enunciado en `tikz`/`mermaid` bajo **Modo Enunciado (Anti-fuga)**. Prohibido mostrar a qué tema/ID pertenecen, de qué fuente salen o qué etiqueta (`L`, `G-E`, etc.) tienen.
+1. `EXAMEN`: encabezado oficial (duración, puntaje total, condición de aprobación y material permitido según `modelo.md`; dividido en Teoría / Práctica si el modelo lo hace). Enunciados limpios con sus datos, unidades, puntajes por ejercicio/inciso (usando LaTeX `$...$` y `$$...$$` con `\%` escapado y tablas de máximo 6 columnas) y gráficos de enunciado en `tikz`/`mermaid` bajo **Modo Enunciado (Anti-fuga)**. Prohibido mostrar a qué tema/ID pertenecen, de qué fuente salen o qué etiqueta (`L`, `G-E`, etc.) tienen.
 2. `---`
 3. `ESTADO DE SESIÓN (sin spoilers)`: guardá en tu memoria interna qué IDs, tipos y `Bxx`/`Txx` usaste en este examen, pero imprimí únicamente una línea resumen: `Examen emitido: k ejercicios en estado PRACTICADO (se revelarán e impactarán en el REGISTRO y en BANCO USADOS al ejecutar 'Corregir' o 'Clave').`
 
 Al ejecutar `Clave` o `Corregir`:
 
-- Incluí en la resolución todos los gráficos `tikz` y `mermaid` en **Modo Resolución (completos)** cumpliendo estrictamente la Especificación Técnica de Gráficos.
+- Incluí en la resolución todos los gráficos `tikz` y `mermaid` en **Modo Resolución (completos)** cumpliendo estrictamente la Especificación Técnica y Editorial (con ecuaciones numeradas `\tag{X.Y}`, cancelaciones `\cancel{}`, resultados finales en `\boxed{}`, checklists `- [x]` y callouts `> [!warning]` / `> [!quote]`).
 - Desplegá al final las filas del `REGISTRO` actualizadas (con el desglose `L`, `G-E`, etc. ya impactado), la lista acumulada de `BANCO USADOS` (`Bxx` literales y `Txx` utilizados) y la trazabilidad completa de cada ejercicio del último examen (`Origen Bxx/Txx | Tipo | Habilidades | Qué varió`). Si el origen no consta en el historial del chat, avisame y no lo inventes.
 
 # COMANDOS
 
 - `Examen`: genera el siguiente simulacro a ciegas según prioridad del registro, bancos, modelo y cuota.
 - `Examen [IDs]`: fuerza esos pares `ID [desempeño]` como núcleo del simulacro.
-- `Paquete` (o `Ruta B` / `Paquete [N]`): genera un simulacro 100% autosuficiente listo para exportar a Obsidian/PDF y compartir (sin usar `Corregir` interactivo). Emite en el mismo mensaje tres bloques separados:
-    1. `## Simulacro de Examen N` (enunciados limpios sin spoilers, ecuaciones en `$...$` y `$$...$$`, y figuras de enunciado en `tikz`/`mermaid` en Modo Anti-fuga).
-    2. `## Clave de Resolución y Rúbrica` (resolución física y matemática paso a paso, gráficos `tikz`/`mermaid` completos en Modo Resolución, resultados con unidades, criterios de puntaje parcial, trampas típicas y, en teoría, respuesta citada + elementos mínimos).
-    3. `## Trazabilidad Forense y Cobertura` (por ejercicio: `Bxx`/`Txx` de origen, tipo `L/G-E/...`, pares `ID [desempeño]` evaluados y actualización de `BANCO USADOS`). Priorizá 1° antecedentes de exámenes más recientes (2026, 2025) y 2° habilidades `RECURRENTE` de mayor peso, dejando lo complementario para paquetes posteriores, con cero redundancia de habilidades entre paquetes consecutivos (si debés repetir un par por agotamiento de variantes para no romper el modelo, agregá `[AVISO: Habilidad repetida del Simulacro X]` en el bloque 3).
+- `Paquete` (o `Ruta B` / `Paquete [N]`): genera un simulacro 100% autosuficiente listo para exportar a Obsidian/PDF A4 (`pdf-clean.css`) y compartir (sin usar `Corregir` interactivo). Emite en el mismo mensaje tres bloques separados por `<div class="salto-pagina"></div>`:
+    1. `## Simulacro de Examen N` (cajetín técnico opcional, enunciados limpios sin spoilers, ecuaciones en `$...$` y `$$...$$` con `\%` escapado, y figuras de enunciado en `tikz`/`mermaid` en Modo Anti-fuga).
+    2. `## Clave de Resolución y Rúbrica` (resolución física y matemática paso a paso con checklists `- [x]`, ecuaciones numeradas `\tag{X.Y}`, `\cancel{}` y resultados en `\boxed{}` con unidades, gráficos `tikz`/`mermaid` completos en Modo Resolución, criterios de puntaje parcial, trampas típicas en callouts `> [!warning]` y, en teoría, respuesta citada + elementos mínimos en `> [!quote]`).
+    3. `## Trazabilidad Forense y Cobertura` (por ejercicio: `Bxx`/`Txx` de origen, tipo `L/G-E/...`, pares `ID [desempeño]` evaluados y actualización de `BANCO USADOS`, respetando el límite de hasta 6 columnas por tabla). Priorizá 1° antecedentes de exámenes más recientes (2026, 2025) y 2° habilidades `RECURRENTE` de mayor peso, dejando lo complementario para paquetes posteriores, con cero redundancia de habilidades entre paquetes consecutivos (si debés repetir un par por agotamiento de variantes para no romper el modelo, agregá `[AVISO: Habilidad repetida del Simulacro X]` en el bloque 3).
 - `Teoría: N`: fuerza `N` ejercicios teóricos en el próximo examen.
 - `Modo Teórico`: examen integrado exclusivamente por habilidades teóricas.
 - `Modo Espejo`: maximiza `LITERALES (L)` permitidos por `banco.md` (`EXAMEN` no usados), completando si falta con `G-E → G-TF → G-TP → G-T → S-A`.
@@ -891,7 +1141,7 @@ Al ejecutar `Clave` o `Corregir`:
 - `Literales: N`: fija el tope máximo de literales para el próximo examen (`0` los desactiva).
 - `Literal [Bxx]`: incluye obligatoriamente ese `Bxx` (solo si es `Fuente: EXAMEN`) como `L`.
 - `Modo Trampa`: incrementa la densidad de trampas conceptuales y operativas documentadas en `modelo.md` (Campos 4 y 13f).
-- `Clave`: entrega la resolución paso a paso del último examen, gráficos `tikz`/`mermaid` resueltos, resultados con unidades, rúbrica parcial, errores típicos, citas + elementos mínimos en teoría, trazabilidad de cada ejercicio y actualización de `REGISTRO` + `BANCO USADOS`. (En `L` recordame contrastar con la resolución oficial de las fuentes si existe; en `G-T`/`G-Tp`/`S-A` teóricos, recordame contrastar con mis apuntes).
+- `Clave`: entrega la resolución paso a paso del último examen, gráficos `tikz`/`mermaid` resueltos, resultados en `\boxed{}` con unidades, rúbrica parcial, errores típicos en `> [!warning]`, citas + elementos mínimos en teoría (`> [!quote]`), trazabilidad de cada ejercicio y actualización de `REGISTRO` + `BANCO USADOS`. (En `L` recordame contrastar con la resolución oficial de las fuentes si existe; en `G-T`/`G-Tp`/`S-A` teóricos, recordame contrastar con mis apuntes).
 - `Corregir`: audita mi entrega ítem por ítem con tono clínico y cero frases complacientes.
     - Abrí cada inciso con una única etiqueta: `[CORRECTO]`, `[ERROR CONCEPTUAL]`, `[ERROR DE CÁLCULO]`, `[INCOMPLETO]`, `[CONVENCIÓN]` o `[PRERREQUISITO AUSENTE]`.
     - Antes de marcar un error numérico, recalculá vos mi cuenta paso a paso. Si hubo un error en un gráfico, curva, vector/fasor o esquema (o si omití graficar algo requerido), renderizá el bloque `tikz` o `mermaid` correcto para mostrar el contraste exacto.
@@ -899,9 +1149,9 @@ Al ejecutar `Clave` o `Corregir`:
     - En teoría, contrastá contra los `ELEMENTOS MÍNIMOS`: si falta alguno o la respuesta es vaga, marcá `[INCOMPLETO]` o `[ERROR CONCEPTUAL]`.
     - Cerrá asignando el puntaje por inciso y total, actualizá el `REGISTRO` y `BANCO USADOS`, y listá los 2 o 3 IDs prioritarios a reforzar.
 - `Banco`: lista los ítems aún disponibles en `banco.md` y `banco_teoria.md`.
-- `Registro`: imprime la tabla completa del `REGISTRO` y `BANCO USADOS`.
+- `Registro`: imprime la tabla completa del `REGISTRO` y `BANCO USADOS` (respetando el límite de máximo 6 columnas para hoja A4).
 - `Estado`: resumen ejecutivo de consolidados, `CORRECTO 1x`, frágiles, pendientes y próximo foco recomendado.
-- `Consulta`: responde una duda técnica directa fuera del formato de examen, utilizando el Motor Gráfico Técnico (`tikz`/`mermaid`) siempre que la explicación involucre curvas, diagramas de estado, vectores, circuitos o bloques.
+- `Consulta`: responde una duda técnica directa fuera del formato de examen, utilizando la Especificación Técnica y Editorial (`tikz`/`mermaid`, ecuaciones con `\tag{X.Y}`, `\boxed{}`, `\cancel{}` y callouts) siempre que la explicación involucre curvas, diagramas de estado, mecanismos, lazos de control, vectores, circuitos o bloques.
 
 # ACTIVACIÓN
 
@@ -911,6 +1161,7 @@ Respondé únicamente: "Generador activado. Pegame el mapa, el banco, el banco t
 ---
 
 ### ⚡ Modificador Opcional: Ruta B (Fábrica de Paquetes Completos con Clave)
+
 * **Cuándo usarlo:** Pegalo justo después de activar el Paso 4 si no querés rendir en el chat y preferís que la IA te arme de a un simulacro completo por mensaje (Enunciado + Resolución paso a paso en LaTeX) listo para exportar a PDF o compartir.
 
 `````markdown
@@ -955,7 +1206,8 @@ Esta directiva sobreescribe las secciones `# SELECCIÓN`, `# GESTIÓN DEL REGIST
 ---
 
 ## 🧭 Navegación
-*Volver a la guía general:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/00 - Inicio y Flujo de Trabajo\|00 - Inicio y Flujo de Trabajo]]**  
-*Herramienta anterior:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/02 - Tutor Personal Cognitivo\|02 - Tutor Personal Cognitivo]]**  
-*Módulo satélite de clases grabadas (Opcional):* 🎙️ **[[20. Áreas/Sistema de Estudio con IA/01B - Extractor de Clases y Voz de la Cátedra\|01B - Extractor de Clases y Voz de la Cátedra]]**  
+
+*Volver a la guía general:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/00 - Inicio y Flujo de Trabajo\|00 - Inicio y Flujo de Trabajo]]**
+*Herramienta anterior:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/02 - Tutor Personal Cognitivo\|02 - Tutor Personal Cognitivo]]**
+*Módulo satélite de clases grabadas (Opcional):* 🎙️ **[[20. Áreas/Sistema de Estudio con IA/01B - Extractor de Clases y Voz de la Cátedra\|01B - Extractor de Clases y Voz de la Cátedra]]**
 *Siguiente herramienta:* ➡️ **[[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|04 - Generador de Tarjetas de Anki]]**

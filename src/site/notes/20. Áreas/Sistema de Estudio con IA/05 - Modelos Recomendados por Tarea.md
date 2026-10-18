@@ -9,6 +9,7 @@
 Como los modelos de Inteligencia Artificial cambian de nombre, versión y límites cada pocos meses, esta página centraliza **qué herramienta gratuita o paga conviene usar en cada paso del sistema**.
 
 En lugar de atar las guías a un nombre comercial fijo, dividimos las tareas del sistema en **dos niveles cognitivos**:
+
 ```mermaid
 flowchart TD
     T1["01 - Extractor de Checklists"]
@@ -36,6 +37,7 @@ flowchart TD
     T3_A --> H_AR
     T4 --> H_AR
 ```
+
 ```mermaid
 flowchart TD
     T1B_P1["01B - Voz de la Cátedra (Pasos 1 y 2: Videos)"]
@@ -88,6 +90,7 @@ Hoy existe una diferencia grande entre la **comodidad** de NotebookLM y la **int
 ## 🔍 Detalle de cada Motor y Cómo Cuidar tus Cuotas
 
 ### 🥇 1. Gemini 3.8 Flash (`Thinking: High`) en Google AI Studio — *El Caballo de Batalla Gratuito*
+
 - **Acceso:** 100% gratuito entrando con tu cuenta de Google en **[aistudio.google.com](https://aistudio.google.com/)**.
 - **Por qué en AI Studio y no en la web común de Gemini:**
   1. Es el entorno para desarrolladores: responde de forma directa y técnica, sin filtros comerciales que acorten o simplifiquen los prompts largos.
@@ -96,20 +99,24 @@ Hoy existe una diferencia grande entre la **comodidad** de NotebookLM y la **int
   4. Sus límites diarios gratuitos son amplísimos; podés estudiar todo el cuatrimestre sin pagar un centavo.
 
 ### 📚 2. NotebookLM Nativo — *Tu Biblioteca Central*
+
 - **Acceso:** Gratuito en **[notebook.google.com](https://notebook.google.com/)**.
 - **Para qué es imbatible:** Para tener cargados todos los archivos de la materia en un solo lugar, escuchar clases grabadas en el Paso 1 de **[[20. Áreas/Sistema de Estudio con IA/01B - Extractor de Clases y Voz de la Cátedra\|Módulo 01B]]**, transcribir exámenes viejos en el Paso 2 de **[[20. Áreas/Sistema de Estudio con IA/03 - Simulador y Generador de Exámenes de Cátedra\|Módulo 03]]** y tener sesiones largas de preguntas y respuestas con el Tutor.
 
 ### ✍️ 3. Claude Sonnet 5.5 (`Razonamiento: Medium`) — *Especialista en Exámenes y LaTeX*
+
 - **Acceso:** Plan gratuito (con límite corto de mensajes cada 5 horas) o plan Pro en **Claude.ai**.
 - **Dónde brilla:** En el **Paso 4 del Simulador de Exámenes**. Redacta enunciados con tono universitario impecable y casi nunca comete errores de sintaxis en fórmulas LaTeX.
 - **Cómo no quemar la cuota:** Si lo usás con el razonamiento en *High* o *Max*, agotás tu límite en un par de mensajes. Configuralo siempre en **`Medium`**, que alcanza de sobra para validar balances físicos sin quedarte sin mensajes.
 
 ### 💎 4. Gemini Argon — *El Motor de Frontera (Solo Planes Pagos)*
+
 - **Acceso:** Exclusivo para usuarios con suscripción paga de Google (AI Pro / Ultra).
 - **Estado actual y rendimiento:** Aunque todavía lo estoy terminando de testear en cursadas completas, en las pruebas que hice demostró ser **lo más potente que vi hasta hoy**, superando tanto a Claude Sonnet 5.5 como a Flash 3.8 High en estructuración de mapas y resolución de problemas complejos.
 - **El gran cuidado (Consume muchísima cuota):** Es un modelo pesado que devora tu límite de tokens a una velocidad altísima. Si tenés plan pago, **no lo desperdicies en charlas largas del Tutor ni copiando enunciados**: reservalo como un bisturí para tareas puntuales de 1 o 2 mensajes, como armar el `mapa.md` o generar los paquetes finales de examen en el **[[20. Áreas/Sistema de Estudio con IA/03 - Simulador y Generador de Exámenes de Cátedra\|Módulo 03]]** y las checklists de materias troncales en el **[[20. Áreas/Sistema de Estudio con IA/01 - Extractor de Checklists\|Módulo 01]]**.
 
 ### ⛔ Modelos que NO tenés que usar en este sistema
+
 - **Gemini Pro 3.1:** Rinde peor que `Gemini 3.8 Flash (Thinking: High)`, tiende a resumir las checklists por pereza y suele meter errores de comillas en los archivos CSV de Anki.
 - **Gemini Flash-Lite:** Es demasiado básico para seguir las reglas de estos prompts; inventa datos y rompe los formatos.
 
@@ -121,6 +128,7 @@ Hoy existe una diferencia grande entre la **comodidad** de NotebookLM y la **int
 ---
 
 ## 🧭 Navegación
-*Volver a la herramienta anterior:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|04 - Generador de Tarjetas de Anki]]**  
-*Módulo satélite de clases grabadas:* 🎙️ **[[20. Áreas/Sistema de Estudio con IA/01B - Extractor de Clases y Voz de la Cátedra\|01B - Extractor de Clases y Voz de la Cátedra]]**  
+
+*Volver a la herramienta anterior:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|04 - Generador de Tarjetas de Anki]]**
+*Módulo satélite de clases grabadas:* 🎙️ **[[20. Áreas/Sistema de Estudio con IA/01B - Extractor de Clases y Voz de la Cátedra\|01B - Extractor de Clases y Voz de la Cátedra]]**
 *Ir a la biblioteca de fundamentos:* ➡️ **[[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]**

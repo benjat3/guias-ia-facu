@@ -13,6 +13,7 @@
 Este sistema no busca que la IA te haga resúmenes pasivos ni te resuelva las guías mientras mirás la pantalla. Su objetivo es usar la Inteligencia Artificial para aplicar la **ciencia del aprendizaje** (recuperación activa, práctica deliberada y repetición espaciada) preparando materias universitarias exigentes en menos tiempo y con el nivel real que toman en los exámenes de tu cátedra.
 
 ### ¿Cómo funciona si empezás desde cero?
+
 En lugar de usar un chat genérico, dividimos el estudio de cada unidad en **5 fases conectadas**:
 1. **Armás tu hoja de ruta (`Fase 1`):** La IA lee los apuntes y guías de la unidad y te arma una lista de control (*checklist*) con todo lo que tenés que saber explicar, deducir o calcular.
 2. **Estudiás pensando (`Fase 2`):** Cargás un ítem de esa lista en el **Tutor Cognitivo**. No te da sermones largos: te hace **una sola pregunta corta por turno**, espera tu respuesta, corrige tus errores y te guía con pistas hasta que dominás el tema.
@@ -24,7 +25,7 @@ En lugar de usar un chat genérico, dividimos el estudio de cada unidad en **5 f
 
 > [!NOTE] 📌 Sobre la autoría y el uso responsable de IA
 > Este sistema y su documentación fueron estructurados y redactados en gran parte con asistencia de inteligencia artificial, **a partir de mis propias ideas, metodología de estudio y experiencia directa en materias de ingeniería**.
-> 
+>
 > Todo el contenido, los prompts y los flujos de trabajo fueron **rigurosamente chequeados y probados en cursadas reales**. Sin embargo, ninguna IA es infalible: contrastá siempre cada resultado con los apuntes oficiales de tu cátedra. En el examen vas a estar solo.
 
 ---
@@ -88,10 +89,12 @@ flowchart TD
 El objetivo de este primer paso es armar el **mapa completo de cada unidad** en casillas de verificación (`- [ ]`), sin que la IA omita temas ni te revele las respuestas antes de estudiar.
 
 ### 1.1. Armá tu biblioteca general en NotebookLM
+
 1. Creá un cuaderno gratuito en **[NotebookLM](https://notebook.google.com/)** con el nombre de la materia (ej: *Termodinámica Técnica*).
 2. Subí **todo el material de la cursada**: programa, diapositivas, apuntes teóricos, guías de TP y parciales/finales de años anteriores. Este cuaderno será tu repositorio central para el resto del cuatrimestre.
 
 ### 1.2. Extraé la Checklist unidad por unidad (En Google AI Studio)
+
 Para que la IA no resuma de más ni se saltee ejercicios, la lista de temas se extrae **de a una unidad por turno** en un motor de **`[Nivel: Alto Razonamiento]`**:
 1. Abrí **[Google AI Studio](https://aistudio.google.com/)** con el modelo **Gemini 3.8 Flash** (activando `Thinking level: High` y `Media resolution: High` en el panel derecho) o **Gemini Argon**.
 2. Subí desde tu PC los archivos PDF del **Programa** y de la **Unidad 1** (teoría, guía de TP y exámenes).
@@ -122,30 +125,37 @@ Ese archivo `voz_catedra.md` se suma luego al Tutor, al Simulador de Exámenes y
 Acá es donde aprendés los temas desde cero o resolvés las guías de TP. Podés ver todas las opciones y prompts en **[[20. Áreas/Sistema de Estudio con IA/02 - Tutor Personal Cognitivo\|02 - Tutor Personal Cognitivo]]**.
 
 ### 2.1. Dos formas de usar el Tutor
+
 - **Ruta Estable en NotebookLM (`[Nivel: Minería y Recuperación]`):** Es la más cómoda para estudiar todos los días porque ya tenés todos los archivos cargados en un solo lugar, tenés **citas clickeables** que te abren la diapositiva exacta y una cuota amplísima para charlar durante horas. Podés usar el prompt compacto (<10.000 caracteres) o el **Prompt Extendido de 27.000 caracteres** mediante el truco de configuración que vemos abajo.
 - **Ruta BETA en Google AI Studio (`[Nivel: Alto Razonamiento]`):** Ideal para días de cálculo pesado o deducciones complejas donde necesitás que la IA no falle en física ni en matemática. Solo requiere subir a mano los 2 o 3 PDFs del tema que vas a estudiar hoy.
 
 ### 2.2. Cómo cargar el Prompt Extendido (27k caracteres) en NotebookLM
+
 El cuadro de configuración de NotebookLM corta los textos a los 10.000 caracteres. Para guardar el **Prompt Completo de 27.000 caracteres**, usamos la interfaz de Gemini Web únicamente como puente de guardado (para estudiar seguís usando la web de NotebookLM):
 
 1. **Abrir el cuaderno desde Gemini:** Entrá a **[gemini.google.com](https://gemini.google.com)** y hacé clic en tu cuaderno en la barra lateral izquierda.
+
    > [!NOTE] 📸 Acceso al Notebook desde Gemini
    > ![Pasted image 20261011145307.png](/img/user/_assets/attachments/Pasted%20image%2020261011145307.png)
 
 2. **Entrar a Notebook Settings:** Hacé clic en los tres puntos (`...`) arriba a la derecha.
+
    > [!NOTE] 📸 Menú de opciones del cuaderno
    > ![Pasted image 20261011145315.png](/img/user/_assets/attachments/Pasted%20image%2020261011145315.png)
 
 3. **Pegar el prompt y guardar:** Pegá el prompt de 27k caracteres en **Instructions** y presioná **Save**.
+
    > [!NOTE] 📸 Guardado de directivas sin límite
    > ![Pasted image 20261011145351.png](/img/user/_assets/attachments/Pasted%20image%2020261011145351.png)
 
 4. **Verificar en NotebookLM:** Volvé a **[notebook.google.com](https://notebook.google.com/)**. En *Configure Chat* vas a ver **`27236 / 10000`** en violeta.
+
    > [!WARNING] ⚠️ Cerrá esa ventana con la cruz (`X`)
    > No edites ni toques nada adentro de esa ventana en NotebookLM para que el navegador no recorte el texto. El prompt de 27k ya quedó activo.
    > ![Pasted image 20261011145342.png](/img/user/_assets/attachments/Pasted%20image%2020261011145342.png)
 
 ### 2.3. Cómo es una sesión de estudio
+
 1. **Arranque:** Le pegás una casilla de tu checklist (`- [ ]`), le indicás la profundidad (`Baja`, `Media` o `Alta`) y si en el examen te dejan usar hoja de fórmulas.
 2. **Una pregunta por turno:** La IA nunca te tira un resumen largo. Te hace una pregunta corta o te pide plantear el primer paso del problema. Si te trabás, te da pistas graduales o te muestra un ejemplo parecido con otros números para no arruinarte tu ejercicio.
 3. **Cierre y continuidad (`HANDOFF`):** Cuando terminás el tema, te pide explicarlo de punta a punta con tus palabras. Al escribir `Cerrar unidad`, te entrega un bloque resumen (`HANDOFF`) para guardar en Obsidian y pegarlo en tu próxima sesión de estudio.
@@ -160,11 +170,13 @@ El cuadro de configuración de NotebookLM corta los textos a los 10.000 caracter
 Cuando ya estudiaste las unidades, esta fase analiza los exámenes viejos de tu materia para tomarte simulacros idénticos a los reales. Todos los prompts están en **[[20. Áreas/Sistema de Estudio con IA/03 - Simulador y Generador de Exámenes de Cátedra\|03 - Simulador y Generador de Exámenes de Cátedra]]**.
 
 ### 3.1. Extracción del ADN del examen (Pasos 1 a 3)
+
 1. **`mapa.md` (Paso 1 en `AI Studio` - `[Alto Razonamiento]`):** Subís los apuntes de la unidad y los parciales viejos. La IA lista todas las habilidades evaluables y calcula cuántas veces se tomó cada una en la historia de la cátedra.
 2. **`banco.md` (Paso 2 en `NotebookLM` - `[Minería]`):** Como en NotebookLM ya tenés todos los exámenes cargados, lo usás para transcribir el 100% de los parciales viejos y sumar solo 1 o 2 ejercicios clave de las guías de TP que cubran temas nunca tomados.
 3. **`modelo.md` (Paso 3 en `AI Studio` - `[Alto Razonamiento]`):** Le pegás el mapa y el banco, y la IA resume en 70 líneas el estilo exacto de tu profesor (cuánto vale la teoría vs. la práctica, cómo redacta los incisos y qué errores descuentan puntos). *(Si casi no tenés parciales viejos con teoría, existe un Paso 3B opcional para cubrir preguntas teóricas).*
 
 ### 3.2. Generación de Simulacros (Paso 4 en `[Alto Razonamiento]`)
+
 Con esos tres archivos `.md`, abrís un chat en **Google AI Studio (Gemini 3.8 Flash High)**, **Claude Sonnet 5.5** o **Gemini Argon** *(nunca uses NotebookLM acá porque falla en las cuentas)* y elegís cómo practicar:
 - **Ruta A (Rendir a ciegas con corrección):** Pedís un `Examen`, lo resolvés en papel con cronómetro y usás el comando `Corregir`. La IA revisa tus cuentas paso a paso y, si te equivocaste en el inciso `a)` pero hiciste bien el planteo del `b)`, te considera el procedimiento por *arrastre* como hace un profesor real.
 - **Ruta B (Paquetes listos para imprimir o compartir):** Usás el comando `Paquete` y la IA te genera en un solo mensaje el **Enunciado limpio + Resolución paso a paso en LaTeX + Trazabilidad**, listo para exportar a PDF y pasarle a tus compañeros.
@@ -176,26 +188,32 @@ Con esos tres archivos `.md`, abrís un chat en **Google AI Studio (Gemini 3.8 F
 Para no olvidarte las fórmulas, unidades o conceptos de las primeras unidades cuando llegás al parcial, creamos tarjetas de repaso espaciado con **[[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|04 - Generador de Tarjetas de Anki]]**.
 
 ### 4.1. Configuración única en Google AI Studio
+
 Usamos **[Google AI Studio](https://aistudio.google.com/prompts/new_chat)** porque es gratuito, permite guardar el prompt fijo y lee gráficos o subíndices chicos con máxima nitidez:
 
 1. **Desactivar chat temporal:** Desmarcá *Temporary chat* para que tus chats queden guardados en Google Drive.
+
    > [!NOTE] 📸 Desactivar chat temporal
    > ![Pasted image 20261011150316.png](/img/user/_assets/attachments/Pasted%20image%2020261011150316.png)
 
 2. **Elegir el modelo:** Seleccioná `Gemini 3.8 Flash` en la columna derecha.
+
    > [!NOTE] 📸 Selección del modelo y acceso a System Instructions
    > ![Pasted image 20261011150326.png](/img/user/_assets/attachments/Pasted%20image%2020261011150326.png)
 
 3. **Guardar el prompt fijo en System Instructions:** Creá una instrucción con el prompt **CON hoja de fórmulas** (que no te pide memorizar ecuaciones largas, sino entender cómo varían) o **SIN hoja de fórmulas** (que te entrena para escribir las ecuaciones de memoria).
+
    > [!NOTE] 📸 Creación y guardado de instrucciones del sistema
    > ![Pasted image 20261011150337.png](/img/user/_assets/attachments/Pasted%20image%2020261011150337.png)  
    > ![Pasted image 20261011150344.png](/img/user/_assets/attachments/Pasted%20image%2020261011150344.png)
 
 4. **Poner Thinking y Media Resolution en High:** Así la IA analiza bien el apunte y lee con nitidez los diagramas de las diapositivas.
+
    > [!NOTE] 📸 Calibración en High (Thinking y Media Resolution)
    > ![Pasted image 20261011150350.png](/img/user/_assets/attachments/Pasted%20image%2020261011150350.png)
 
 ### 4.2. Envío de apuntes por lotes cortos
+
 Enviá de a **4 a 6 diapositivas** (o **1 a 2 páginas de apunte**) por mensaje, sumando si querés comentarios que haya dicho el profesor en clase. La IA te devolverá un bloque de código CSV listo para copiar.
 
 > [!NOTE] 📸 Captura de referencia: Generación de mazos en bloque CSV
@@ -209,6 +227,7 @@ Enviá de a **4 a 6 diapositivas** (o **1 a 2 páginas de apunte**) por mensaje,
 > Instalá **Anki** en tu computadora (gratuito en [apps.ankiweb.net](https://apps.ankiweb.net/)) y la app en tu celular (**AnkiDroid** en Android o **AnkiMobile** en iOS) vinculadas con la misma cuenta gratuita de AnkiWeb.
 
 ### 5.1. Guardar e importar el archivo CSV
+
 1. Copiá el bloque CSV que te dio la IA, pegalo en el Bloc de notas y guardalo como `.csv` o `.txt` (ej: `unidad_1.csv`).
 2. En Anki de PC, andá a **File ➔ Import...** y elegí el archivo.
 3. Verificá estas opciones:
@@ -228,6 +247,7 @@ Enviá de a **4 a 6 diapositivas** (o **1 a 2 páginas de apunte**) por mensaje,
 ---
 
 ### 5.2. Pasar esquemas y dibujos a Image Occlusion
+
 Cuando el apunte tiene un corte de un equipo o un ciclo con partes para identificar, la IA crea tarjetas que empiezan con `[CREAR IMAGE OCCLUSION]`. Para agregarles la imagen y tapar sus nombres:
 
 1. Abrí el explorador de Anki (**Browse** o tecla `B`), buscá `[CREAR IMAGE OCCLUSION]` y seleccioná todas (`Ctrl + A`).
@@ -253,10 +273,12 @@ Cuando el apunte tiene un corte de un equipo o un ciclo con partes para identifi
 > Cuando convertís tarjetas a *Image Occlusion*, Anki te pregunta qué base de datos querés conservar. Si tocás el botón equivocado, borrás lo que acabás de importar.
 
 1. **Primero en tu PC (Anki Desktop):** Presioná **Sync** y elegí siempre **`Upload to AnkiWeb`** (Subir a AnkiWeb).
+
    > [!NOTE] 📸 Captura de referencia: Selección de Upload to AnkiWeb en PC
    > ![Pasted image 20260913214729.png](/img/user/_assets/attachments/Pasted%20image%2020260913214729.png)
 
 2. **Después en tu celular (AnkiDroid):** Presioná sincronizar y elegí **`AnkiWeb`** (para descargar a tu teléfono lo que subiste desde la PC).
+
    > [!NOTE] 📸 Captura de referencia: Selección de AnkiWeb en AnkiDroid
    > ![Pasted image 20260915182435.png](/img/user/_assets/attachments/Pasted%20image%2020260915182435.png)
 

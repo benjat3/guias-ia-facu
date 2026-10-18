@@ -105,6 +105,7 @@ Para que puedas buscar rápido antes del parcial y la IA nunca invente que algo 
 ## 📋 Los Prompts del Sistema
 
 ### 1️⃣ Prompt 1: Extracción por Video
+
 * **Dónde usarlo:** En NotebookLM (dejando marcada **una sola clase** en la barra de fuentes) o en Google AI Studio.
 * **Cómo avanzar:** Escribí **`Seguí`** cada 4 bloques hasta llegar al *Cierre de la Clase*.
 
@@ -178,6 +179,7 @@ CIERRE DE LA CLASE (emitir recién al terminar el último bloque de la fuente):
 ---
 
 ### 2️⃣ Prompt 2A: Auditoría de Puntos Ciegos
+
 * **Dónde usarlo:** En el mismo chat donde recién terminaste el Prompt 1.
 * **Qué guardar:** Copiá el resultado del Prompt 1 + esta Auditoría 2A en un solo archivo llamado `ext_ClaseXX.md`.
 
@@ -202,6 +204,7 @@ Al terminar (o si tras revisar la fuente completa no hay ninguna omisión, en cu
 ---
 
 ### 2️⃣🅱️ Prompt 2B: Verificación Independiente *(Opcional - Solo Clases Críticas)*
+
 * **Cuándo usarlo:** Solo si querés auditar al máximo una clase de repaso pre-parcial comparando dos extracciones hechas por separado.
 
 `````markdown
@@ -242,6 +245,7 @@ Comprobaciones fáticas: ~N (rango entre 1 y 2)
 ---
 
 ### 3️⃣ Prompt 3: Consolidación por Tanda (3 a 4 clases)
+
 * **Dónde usarlo:** En Google AI Studio (`Gemini 3.8 Flash High`), Gemini Argon o NotebookLM, pegando juntas las extracciones de 3 o 4 clases de la misma unidad.
 * **Cómo avanzar:** Entrega la Parte 1 ➔ escribís **`Seguí`** ➔ entrega la Parte 2. Guardalo como `reg_TandaN.md`.
 
@@ -286,6 +290,7 @@ PARTE 2 (emitir recién cuando yo escriba `Seguí`):
 ---
 
 ### 4️⃣ Prompt 4: Consolidación Final (`voz_catedra.md`)
+
 * **Dónde usarlo:** En Google AI Studio (`Gemini 3.8 Flash High`) o Gemini Argon, subiendo únicamente los archivos `reg_TandaN.md` del paso anterior.
 * **Cómo avanzar:** Se completa en 3 partes (escribiendo dos veces **`Seguí`**). Guardá el resultado final como `voz_catedra.md`.
 
@@ -341,5 +346,6 @@ ENTREGA 3 (emitir al recibir el segundo `Seguí`):
 ---
 
 ## 🧭 Navegación
-*Volver al inicio:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/00 - Inicio y Flujo de Trabajo\|00 - Inicio y Flujo de Trabajo]]**  
+
+*Volver al inicio:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/00 - Inicio y Flujo de Trabajo\|00 - Inicio y Flujo de Trabajo]]**
 *Ir al Paso 1 del flujo:* ➡️ **[[20. Áreas/Sistema de Estudio con IA/01 - Extractor de Checklists\|01 - Extractor de Checklists]]**

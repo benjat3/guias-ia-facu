@@ -21,18 +21,21 @@ Esta herramienta lee tus apuntes o diapositivas y genera mazos de **Anki** listo
 Entrá a **[aistudio.google.com/prompts/new_chat](https://aistudio.google.com/prompts/new_chat)** y configurá tu cuenta en 4 pasos:
 
 ### 1. Desactivá el chat temporal
+
 Para que tus mazos queden guardados automáticamente en tu Google Drive, desmarcá el botón **Temporary chat**.
 
 > [!NOTE] 📸 Desactivar chat temporal
 > ![Pasted image 20261011150316.png](/img/user/_assets/attachments/Pasted%20image%2020261011150316.png)
 
 ### 2. Elegí el modelo `Gemini 3.8 Flash`
+
 En la barra de configuración de la derecha (*Run settings*), seleccioná **`Gemini 3.8 Flash`**.
 
 > [!NOTE] 📸 Selección del modelo y acceso a System Instructions
 > ![Pasted image 20261011150326.png](/img/user/_assets/attachments/Pasted%20image%2020261011150326.png)
 
 ### 3. Guardá el Prompt dentro de «System Instructions»
+
 1. Hacé clic en **System instructions** arriba a la derecha.
 2. Tocá **+ Create new instruction** y ponele un título claro: podés guardarte uno llamado **`Anki - CON hoja de fórmulas`** (Opción A) y otro llamado **`Anki - SIN hoja de fórmulas`** (Opción B).
 3. Pegá el prompt correspondiente de esta página y cerrá la ventana. Ya te queda guardado para elegirlo con un clic en cualquier materia.
@@ -42,6 +45,7 @@ En la barra de configuración de la derecha (*Run settings*), seleccioná **`Gem
 > ![Pasted image 20261011150344.png](/img/user/_assets/attachments/Pasted%20image%2020261011150344.png)
 
 ### 4. Poné «Thinking level» y «Media resolution» en High
+
 En esa misma barra derecha, ajustá estos dos controles en **`High`**:
 - **Thinking level:** `High` *(hace que la IA revise todo el apunte párrafo por párrafo antes de armar las tarjetas)*.
 - **Media resolution** (adentro de *Advanced settings*): `High` *(fundamental para que lea bien los subíndices de las fórmulas y los gráficos en capturas de diapositivas)*.
@@ -67,6 +71,7 @@ Una vez que tenés elegido tu preset en *System Instructions*, en el cuadro de c
 ---
 
 ## 📘 Opción A: Materias CON hoja de fórmulas en el examen
+
 - **Cuándo usarlo:** Cuando en el parcial te dejan tener una hoja de fórmulas o formulario.
 - **Qué hace:** **Prohíbe** hacerte memorizar ecuaciones largas. Pone la fórmula escrita en la pregunta como dato y te evalúa qué significa cada término, en qué unidades hay que meter las variables o qué pasa con el resultado si se duplica un parámetro.
 
@@ -180,6 +185,7 @@ Notas de clase / Voz de la cátedra (opcional):
 ---
 
 ## 📕 Opción B: Materias SIN hoja de fórmulas en el examen
+
 - **Cuándo usarlo:** Cuando tenés que escribir las fórmulas o deducciones de memoria frente a una hoja en blanco.
 - **Qué hace:** Te pide escribir la ecuación exacta desde cero (sin darte pistas en la pregunta) y separa las hipótesis de validez en otra tarjeta distinta para que sean rápidas de repasar.
 
@@ -305,7 +311,8 @@ Notas de clase / Voz de la cátedra (opcional):
 ---
 
 ## 🧭 Navegación
-*Volver a la guía general (y ver el tutorial de importación en Fase 5):* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/00 - Inicio y Flujo de Trabajo\|00 - Inicio y Flujo de Trabajo]]**  
-*Herramienta anterior:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/03 - Simulador y Generador de Exámenes de Cátedra\|03 - Simulador y Generador de Exámenes de Cátedra]]**  
-*Módulo satélite de clases grabadas (Opcional):* 🎙️ **[[20. Áreas/Sistema de Estudio con IA/01B - Extractor de Clases y Voz de la Cátedra\|01B - Extractor de Clases y Voz de la Cátedra]]**  
+
+*Volver a la guía general (y ver el tutorial de importación en Fase 5):* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/00 - Inicio y Flujo de Trabajo\|00 - Inicio y Flujo de Trabajo]]**
+*Herramienta anterior:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/03 - Simulador y Generador de Exámenes de Cátedra\|03 - Simulador y Generador de Exámenes de Cátedra]]**
+*Módulo satélite de clases grabadas (Opcional):* 🎙️ **[[20. Áreas/Sistema de Estudio con IA/01B - Extractor de Clases y Voz de la Cátedra\|01B - Extractor de Clases y Voz de la Cátedra]]**
 *Siguiente sección (Infraestructura de Modelos):* ➡️ **[[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]**

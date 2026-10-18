@@ -49,6 +49,7 @@ Si tu cátedra graba las clases y armaste el archivo `voz_catedra.md` con **[[20
 Esta versión está diseñada para correr en **[Google AI Studio](https://aistudio.google.com/)** con **Gemini 3.8 Flash** (`Thinking level: High` y `Media resolution: High`) o en **Gemini Argon**.
 
 ### 📂 Cómo saber qué 2 o 3 PDFs subir sin revolver toda tu carpeta
+
 Para no saturar el chat de AI Studio subiendo los 40 archivos de la materia, podés preguntarle en 10 segundos a tu cuaderno de NotebookLM qué archivos puntuales necesitás abrir hoy con este mini-prompt:
 
 ```markdown
@@ -387,24 +388,28 @@ El cuadro de configuración de NotebookLM (*Configure Chat*) tiene un tope visua
 ### 🛠️ Paso a paso (se hace una sola vez por cuaderno)
 
 #### 1. Abrí el cuaderno desde Gemini Web
+
 Entrá a **[gemini.google.com](https://gemini.google.com)**, buscá la sección **Notebooks** en la barra izquierda y hacé clic sobre el cuaderno de tu materia. *(Nota: aunque el conector de Gemini Web falla para chatear con PDFs, sirve perfecto para guardar esta configuración en el cuaderno).*
 
 > [!NOTE] 📸 Acceso al Notebook desde Gemini
 > ![Pasted image 20261011145307.png](/img/user/_assets/attachments/Pasted%20image%2020261011145307.png)
 
 #### 2. Entrá a Notebook Settings
+
 Hacé clic en los **tres puntos verticales (`...`)** arriba a la derecha y elegí **Notebook settings**.
 
 > [!NOTE] 📸 Menú de opciones del cuaderno
 > ![Pasted image 20261011145315.png](/img/user/_assets/attachments/Pasted%20image%2020261011145315.png)
 
 #### 3. Pegá el Prompt Opción A y guardá
+
 Pegá el **Prompt Opción A (~27k caracteres)** en el cuadro **Instructions** y hacé clic en **Save**.
 
 > [!NOTE] 📸 Guardado de directivas sin límite
 > ![Pasted image 20261011145351.png](/img/user/_assets/attachments/Pasted%20image%2020261011145351.png)
 
 #### 4. Volvé a NotebookLM para estudiar
+
 Entrá a **[notebook.google.com](https://notebook.google.com/)** y abrí tu cuaderno. Si mirás en *Configure Chat*, vas a ver que dice **`27236 / 10000`** en violeta.
 
 > [!WARNING] ⚠️ ¡No toques nada adentro de esa ventana en NotebookLM!
@@ -418,6 +423,7 @@ Entrá a **[notebook.google.com](https://notebook.google.com/)** y abrí tu cuad
 ## 📋 Los Prompts para NotebookLM
 
 ### ⚡ Opción A: Tutor Quirúrgico Extendido (~27.000 caracteres)
+
 *Recomendado para NotebookLM aplicando el Bypass de arriba.*
 
 `````markdown
@@ -605,6 +611,7 @@ Si entendiste todo, respondé únicamente: "Tutor cognitivo de [TEMA A APRENDER]
 ---
 
 ### ⚡ Opción B: Tutor Estándar Compacto (<10.000 caracteres)
+
 *Para pegar directo en `Configure Chat ➔ Custom` dentro de NotebookLM sin hacer el Bypass.*
 
 `````markdown
@@ -722,6 +729,7 @@ En cualquier momento de la charla con el Tutor podés escribir estos comandos co
 ---
 
 ## 🧭 Navegación
-*Volver a la herramienta anterior:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/01 - Extractor de Checklists\|01 - Extractor de Checklists]]**  
-*Módulo satélite de clases grabadas (Opcional):* 🎙️ **[[20. Áreas/Sistema de Estudio con IA/01B - Extractor de Clases y Voz de la Cátedra\|01B - Extractor de Clases y Voz de la Cátedra]]**  
+
+*Volver a la herramienta anterior:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/01 - Extractor de Checklists\|01 - Extractor de Checklists]]**
+*Módulo satélite de clases grabadas (Opcional):* 🎙️ **[[20. Áreas/Sistema de Estudio con IA/01B - Extractor de Clases y Voz de la Cátedra\|01B - Extractor de Clases y Voz de la Cátedra]]**
 *Siguiente herramienta:* ➡️ **[[20. Áreas/Sistema de Estudio con IA/03 - Simulador y Generador de Exámenes de Cátedra\|03 - Simulador y Generador de Exámenes de Cátedra]]**

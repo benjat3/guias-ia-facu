@@ -27,6 +27,7 @@ Este documento registra la evolución técnica, las pruebas descartadas y las me
 ## 📋 2. Extractor de Checklists (`[[01 - Extractor de Checklists]]`)
 
 ### 🔍 Por qué se descartó la «Fusión de dos IAs» y se pasó al Motor Secuencial
+
 A principios de octubre se probó extraer una checklist en NotebookLM, otra en Gemini Web y unirlas con un tercer prompt. En la práctica se descartó por dos razones contundentes:
 1. **NotebookLM estructura mal las checklists** (hace resúmenes superficiales y saltea ejercicios de las guías), por lo que cruzarlo con Gemini solo daba trabajo extra sin aportar nada nuevo.
 2. **El conector de cuadernos de NotebookLM dentro de Gemini Web (`gemini.google.com`) falla al indexar archivos** e ignora PDFs enteros.
@@ -97,9 +98,11 @@ Problemas reales de importación solucionados en la versión **V2.2**:
 - **En [[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]:** Se incorporó *A Mind for Numbers* (Barbara Oakley) en el puesto #1 como lectura inicial ideal para ingeniería, seguida por *Make It Stick*, *How to Become a Straight-A Student*, *How I Wish I'd Taught Maths*, *Peak*, *Ultralearning* y *Powerful Teaching*.
 - **En [[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]:** Se organizaron las 4 checklists diagnósticas (**[[20. Áreas/Sistema de Estudio con IA/07.1 - Guía de Estudio - Teoría y Ejercicios\|07.1]]**, **[[20. Áreas/Sistema de Estudio con IA/07.2 - Guía de Estudio - Ejercicios y Problemas\|07.2]]**, **[[20. Áreas/Sistema de Estudio con IA/07.3 - Guía de Estudio - Teoría y Demostraciones\|07.3]]** y **[[20. Áreas/Sistema de Estudio con IA/07.4 - Guía de Enseñanza para Docentes y Tutores\|07.4]]**) destacando los **5 hábitos con estrella (★)** para quien quiere empezar a mejorar su forma de estudiar sin abrumarse.
 - **[[20. Áreas/Sistema de Estudio con IA/08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)\|08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)]]**: Incorporación del flujo 100% analógico en 4 pasos (Mapa en 1 carilla, Ejemplo tapado y deducciones por tramos, Formulario razonado + Bitácora de fallas clasificadas, e Intercalado + Simulacro) junto con las 4 reglas para usar chats de IA comunes sin prompts complejos.
+
 ---
 
 ## 🧭 Navegación
-*Volver al inicio del sistema:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/00 - Inicio y Flujo de Trabajo\|00 - Inicio y Flujo de Trabajo]]**  
-*Consultar infraestructura de modelos:* 🤖 **[[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]**  
+
+*Volver al inicio del sistema:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/00 - Inicio y Flujo de Trabajo\|00 - Inicio y Flujo de Trabajo]]**
+*Consultar infraestructura de modelos:* 🤖 **[[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]**
 *Ir a las guías de autoevaluación:* 🧭 **[[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]**
