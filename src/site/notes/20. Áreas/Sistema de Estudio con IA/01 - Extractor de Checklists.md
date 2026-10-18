@@ -129,24 +129,11 @@ Devolvé el checklist de la unidad activa dentro de un bloque de código Markdow
 ## Práctica de Exámenes Reales (Unidad [X]) *(Omitir por completo si no hay exámenes cargados para esta unidad)*
 - [ ] [Problema o pregunta de examen: sistema analizado e incógnitas/demanda sin spoilers (Nombre exacto del Examen: Ej. N)]
 ```
-
 # CONTROL DE RITMO Y EJECUCIÓN (UNIDAD POR UNIDAD)
-
 1. **Una sola unidad por mensaje:** Prohibido procesar dos o más unidades en el mismo turno para evitar compresión u omisiones.
-    
-      
-    
 2. **Criterio de inicio:**
-    
-      
     - Si en `Unidad o tema a procesar` (abajo) dice `DESDE EL PRINCIPIO` (o lo dejé en blanco), relevá internamente todas las unidades de las fuentes, empezá directamente por la **Unidad 1** (la primera en el orden estandarizado) y emití su checklist completa.
-        
-          
-        
-    - Si especifiqué una unidad, archivo o tema concreto, procesá únicamente ese.
-        
-          
-        
+    - Si especifiqué una unidad, archivo o tema concreto, procesá únicamente ese.  
 3. **Pausa y continuación automática:**  
     - Inmediatamente debajo del cierre del bloque de código Markdown, escribí una única línea de control indicando el progreso y qué sigue:  
         `PAUSA: Unidad [X] completada (Unidades detectadas en las fuentes: 1 a [N]). Escribí 'Seguí' para procesar la Unidad [X+1]: [Nombre de la Unidad X+1].`

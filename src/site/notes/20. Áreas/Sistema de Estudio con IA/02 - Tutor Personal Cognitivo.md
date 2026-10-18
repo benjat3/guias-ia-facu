@@ -52,11 +52,29 @@ Esta versión está diseñada para correr en **[Google AI Studio](https://aistud
 Para no saturar el chat de AI Studio subiendo los 40 archivos de la materia, podés preguntarle en 10 segundos a tu cuaderno de NotebookLM qué archivos puntuales necesitás abrir hoy con este mini-prompt:
 
 ```markdown
-Voy a estudiar en otro entorno este tema / ejercicio: [ESCRIBIR TEMA O PEGAR CASILLA DE LA CHECKLIST].
-Revisá todas las fuentes del cuaderno y listame ÚNICAMENTE los nombres exactos de los archivos que contienen la teoría, las tablas, los ejercicios de TP y los parciales relacionados con este punto, divididos en:
-1. IMPRESCINDIBLES (los archivos que sí o sí necesito tener abiertos para cubrir el 100% del tema).
-2. COMPLEMENTARIOS (solo si agregan algún caso particular).
-Sé exacto con los nombres de archivo. No me expliques el tema.
+Voy a exportar contexto hacia otro LLM que ya domina la teoría general de la materia.
+
+**Parámetros**
+
+- **Tema / archivos base:** [ej: Simulacro de Examen 1, 2 y 3]
+- **Objetivo en destino:** [RESOLVER: enunciados, datos de entrada y criterios duros | ESTUDIAR: lo anterior, más resoluciones modelo, desarrollos paso a paso y pautas de corrección]
+
+**Procedimiento**
+
+1. **Punto de partida:** Tomá como base los archivos nombrados en el parámetro Tema. Si el Tema no nombra archivos, identificá los que contienen los enunciados y decilo en una frase.
+2. **Evaluación diferencial:** Revisá el resto de las fuentes del cuaderno e incluí un archivo adicional ÚNICAMENTE si cumple al menos una de estas condiciones:
+    - (a) Contiene enunciados, datos numéricos, tablas, curvas o esquemas necesarios que NO están transcriptos en los archivos ya seleccionados.
+    - (b) Contiene criterios de corrección, convenciones o pautas de la cátedra necesarios para el objetivo.
+3. **Duplicados y formato:** Si dos archivos contienen la misma información útil, elegí el formato que un LLM procese con menos pérdida (texto/Markdown antes que PDF escaneado o imagen). Mantené el otro solo si tiene tablas, curvas o figuras que la transcripción omitió. Enunciado y resolución del mismo ejercicio cuentan como información distinta, no como duplicado.
+4. **Sin especulación:** No incluyas ningún archivo «por si acaso». Si no aporta un dato o pauta concreta bajo (a) o (b), descartalo.
+
+**Salida**
+
+- **IMPRESCINDIBLES:** archivos base y fuentes adicionales sin los cuales faltarían datos o pautas necesarios para el objetivo.
+- **COMPLEMENTARIOS:** solo variantes o datos puntuales no cubiertos arriba. Agregá entre paréntesis, en una sola frase, qué dato concreto aportan.
+- **NO VERIFICADOS:** archivos que, por su título o por referencias en los archivos base, probablemente contengan datos necesarios, pero cuyo contenido no pudiste leer. Agregá entre paréntesis un motivo breve (ej: PDF escaneado sin texto reconocible).
+
+**Restricciones:** Excluí toda teoría general (libros, diapositivas estándar). Nombres de archivo exactos, tal como figuran en el cuaderno. Solo la lista; los únicos textos permitidos son el paréntesis de COMPLEMENTARIOS y el de NO VERIFICADOS. Sin introducciones ni explicaciones conceptuales.
 ```
 
 Con esa lista, buscás únicamente esos **2 o 3 PDFs en tu computadora** y los arrastrás al chat de Google AI Studio junto con el siguiente prompt.
