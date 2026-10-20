@@ -53,6 +53,8 @@
     initSmartPrompts();
     initInteractiveChecklists();
     initPageTOC();
+    initFloatingLayoutSync();
+    initMermaidEnhancements();
     initImageLightbox();
   }
 
@@ -110,7 +112,7 @@
   }
 
   /* ==========================================================================
-     AUXILIAR: EXTRACCIÓN DE PLANTILLAS TIKZ PARA PREVISUALIZACIÓN VECTORIAL
+     AUXILIAR: EXTRACCIÓN Y MOTOR VECTORIAL SVG DE PLANTILLAS TIKZ
      ========================================================================== */
   function extractTikzTemplates(rawText, langName) {
     const results = [];
@@ -155,6 +157,436 @@
       return trimmed;
     }
     return '\\begin{document}\n' + trimmed + '\n\\end{document}';
+  }
+
+  function svgDefsBlock(prefix) {
+    const colors = [
+      { id: 'blk', hex: '#0f172a' },
+      { id: 'gry', hex: '#64748b' },
+      { id: 'cyn', hex: '#0891b2' },
+      { id: 'tel', hex: '#0d9488' },
+      { id: 'red', hex: '#dc2626' },
+      { id: 'drd', hex: '#b91c1c' },
+      { id: 'vio', hex: '#7c3aed' },
+      { id: 'org', hex: '#ea580c' }
+    ];
+    let defs = '<defs>';
+    colors.forEach(function(c) {
+      defs += '<marker id="' + prefix + '-arr-' + c.id + '" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">';
+      defs += '<path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="' + c.hex + '"/></marker>';
+    });
+    defs += '</defs>';
+    return defs;
+  }
+
+  function buildCurvePath(minX, maxX, samples, fn, tx, ty) {
+    let d = '';
+    for (let i = 0; i <= samples; i++) {
+      const x = minX + (maxX - minX) * (i / samples);
+      const y = fn(x);
+      const sx = tx(x).toFixed(2);
+      const sy = ty(y).toFixed(2);
+      d += (i === 0 ? 'M ' : ' L ') + sx + ' ' + sy;
+    }
+    return d;
+  }
+
+  function buildCoilPath(x0, y1, y2, turns, amp, prePx, postPx) {
+    const dir = y2 >= y1 ? 1 : -1;
+    const startY = y1 + dir * prePx;
+    const endY = y2 - dir * postPx;
+    const span = endY - startY;
+    const steps = turns * 16;
+    let d = 'M ' + x0.toFixed(1) + ' ' + y1.toFixed(1) + ' L ' + x0.toFixed(1) + ' ' + startY.toFixed(1);
+    for (let i = 1; i <= steps; i++) {
+      const t = i / steps;
+      const py = startY + span * t;
+      const px = x0 + Math.sin(t * turns * 2 * Math.PI) * amp;
+      d += ' L ' + px.toFixed(2) + ' ' + py.toFixed(2);
+    }
+    d += ' L ' + x0.toFixed(1) + ' ' + y2.toFixed(1);
+    return d;
+  }
+
+  function renderTikzTemplateSvg(code, idx) {
+    const pfx = 'tkz' + idx;
+    const defs = svgDefsBlock(pfx);
+    const fontFamily = "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+
+    // PLANTILLA 1: Circuito Equivalente Aproximado Referido al Primario (AT)
+    if (code.indexOf('Circuito Equivalente Aproximado') !== -1) {
+      const S = 56, ox = 88, oy = 185;
+      const tx = function(x) { return ox + x * S; };
+      const ty = function(y) { return oy - y * S; };
+      return `
+        <svg viewBox="0 0 820 225" width="780" xmlns="http://www.w3.org/2000/svg" style="font-family:${fontFamily};">
+          ${defs}
+          <text x="${tx(5.5)}" y="${ty(3.05)}" text-anchor="middle" font-size="15.5" font-weight="700" fill="#0f172a">Circuito Equivalente Aproximado Referido al Primario (AT)</text>
+          <circle cx="${tx(0)}" cy="${ty(2.0)}" r="3.8" fill="#0f172a"/>
+          <circle cx="${tx(0)}" cy="${ty(0.0)}" r="3.8" fill="#0f172a"/>
+          <line x1="${tx(0)}" y1="${ty(0.18)}" x2="${tx(0)}" y2="${ty(1.82)}" stroke="#0891b2" stroke-width="2" marker-start="url(#${pfx}-arr-cyn)" marker-end="url(#${pfx}-arr-cyn)"/>
+          <text x="${tx(0) - 12}" y="${ty(1.0) + 5}" text-anchor="end" font-size="14" font-weight="600" font-style="italic" fill="#0891b2">U⃗<tspan dy="3" font-size="10.5" font-style="normal">1</tspan></text>
+
+          <line x1="${tx(0)}" y1="${ty(2.0)}" x2="${tx(0.3)}" y2="${ty(2.0)}" stroke="#0f172a" stroke-width="2.2"/>
+          <line x1="${tx(0.3)}" y1="${ty(2.0)}" x2="${tx(1.9)}" y2="${ty(2.0)}" stroke="#0d9488" stroke-width="2.5" marker-end="url(#${pfx}-arr-tel)"/>
+          <text x="${tx(1.1)}" y="${ty(2.0) - 10}" text-anchor="middle" font-size="13.5" font-weight="600" fill="#0d9488">I⃗<tspan dy="3" font-size="10">1</tspan><tspan dy="-3"> ≈ I⃗'₂ = I⃗₂ / a</tspan></text>
+          <line x1="${tx(1.9)}" y1="${ty(2.0)}" x2="${tx(2.2)}" y2="${ty(2.0)}" stroke="#0f172a" stroke-width="2.2"/>
+
+          <rect x="${tx(2.2)}" y="${ty(2.34)}" width="${(5.7 - 2.2) * S}" height="${0.68 * S}" rx="4" fill="#ffffff" stroke="#dc2626" stroke-width="2.3"/>
+          <text x="${tx(3.95)}" y="${ty(2.0) + 5}" text-anchor="middle" font-size="13.5" font-weight="700" fill="#0f172a">R<tspan dy="3" font-size="10">cc1</tspan><tspan dy="-3"> = R</tspan><tspan dy="3" font-size="10">1</tspan><tspan dy="-3"> + a² R</tspan><tspan dy="3" font-size="10">2</tspan></text>
+
+          <line x1="${tx(5.7)}" y1="${ty(2.0)}" x2="${tx(6.3)}" y2="${ty(2.0)}" stroke="#0f172a" stroke-width="2.2"/>
+
+          <rect x="${tx(6.3)}" y="${ty(2.34)}" width="${(9.8 - 6.3) * S}" height="${0.68 * S}" rx="4" fill="#ffffff" stroke="#7c3aed" stroke-width="2.3"/>
+          <text x="${tx(8.05)}" y="${ty(2.0) + 5}" text-anchor="middle" font-size="13.5" font-weight="700" fill="#0f172a">jX<tspan dy="3" font-size="10">cc1</tspan><tspan dy="-3"> = j(X</tspan><tspan dy="3" font-size="10">d1</tspan><tspan dy="-3"> + a² X</tspan><tspan dy="3" font-size="10">d2</tspan><tspan dy="-3">)</tspan></text>
+
+          <line x1="${tx(9.8)}" y1="${ty(2.0)}" x2="${tx(11.0)}" y2="${ty(2.0)}" stroke="#0f172a" stroke-width="2.2"/>
+          <line x1="${tx(0)}" y1="${ty(0.0)}" x2="${tx(11.0)}" y2="${ty(0.0)}" stroke="#0f172a" stroke-width="2.2"/>
+
+          <circle cx="${tx(11.0)}" cy="${ty(2.0)}" r="3.8" fill="#0f172a"/>
+          <circle cx="${tx(11.0)}" cy="${ty(0.0)}" r="3.8" fill="#0f172a"/>
+          <line x1="${tx(11.0)}" y1="${ty(0.18)}" x2="${tx(11.0)}" y2="${ty(1.82)}" stroke="#ea580c" stroke-width="2" marker-start="url(#${pfx}-arr-org)" marker-end="url(#${pfx}-arr-org)"/>
+          <text x="${tx(11.0) + 12}" y="${ty(1.0) + 5}" text-anchor="start" font-size="14" font-weight="600" fill="#ea580c">U⃗'₂ = a · U⃗₂</text>
+        </svg>
+      `;
+    }
+
+    // PLANTILLA 2: Arranque Estrella-Triángulo (Y-Δ): Curvas de Par T(n)
+    if (code.indexOf('Arranque Estrella-Tri') !== -1) {
+      const S = 64, ox = 110, oy = 325;
+      const tx = function(x) { return ox + x * S; };
+      const ty = function(y) { return oy - y * S; };
+      const pathDelta = buildCurvePath(0, 5, 65, function(x) {
+        const s = 1 - 0.2 * x;
+        return 3.0 * s / (0.458 * s * s + 0.691 * s + 0.0412);
+      }, tx, ty);
+      const pathStar = buildCurvePath(0, 5, 65, function(x) {
+        const s = 1 - 0.2 * x;
+        return 1.0 * s / (0.458 * s * s + 0.691 * s + 0.0412);
+      }, tx, ty);
+      return `
+        <svg viewBox="0 0 610 375" width="600" xmlns="http://www.w3.org/2000/svg" style="font-family:${fontFamily};">
+          ${defs}
+          <text x="${tx(3.1)}" y="26" text-anchor="middle" font-size="15.5" font-weight="700" fill="#0f172a">Arranque Estrella-Triángulo (Y-Δ): Curvas de Par T(n)</text>
+          <text x="${tx(3.1)}" y="46" text-anchor="middle" font-size="13" fill="#475569">(Conmutación óptima a n = 950 rpm)</text>
+
+          <line x1="${tx(0)}" y1="${ty(0)}" x2="${tx(6.1)}" y2="${ty(0)}" stroke="#64748b" stroke-width="1.6" marker-end="url(#${pfx}-arr-gry)"/>
+          <text x="${tx(6.1) + 8}" y="${ty(0) + 4}" font-size="13.5" font-weight="600" fill="#0f172a">n [rpm]</text>
+          <line x1="${tx(0)}" y1="${ty(0)}" x2="${tx(0)}" y2="${ty(4.05)}" stroke="#64748b" stroke-width="1.6" marker-end="url(#${pfx}-arr-gry)"/>
+          <text x="${tx(0) - 10}" y="${ty(4.05) + 5}" text-anchor="end" font-size="13.5" font-weight="600" fill="#0f172a">T [N·m]</text>
+          <text x="${tx(0) - 6}" y="${ty(0) + 16}" text-anchor="end" font-size="13" fill="#0f172a">0</text>
+
+          <path d="${pathDelta}" fill="none" stroke="#0891b2" stroke-width="3"/>
+          <text x="${tx(3.5)}" y="${ty(3.15) - 8}" text-anchor="middle" font-size="14" font-weight="700" fill="#0891b2">T<tspan dy="3" font-size="10.5">Δ</tspan><tspan dy="-3">(n)</tspan></text>
+          <text x="${tx(0) - 8}" y="${ty(2.52) + 4}" text-anchor="end" font-size="12.5" font-weight="600" fill="#0891b2">252 N·m</text>
+
+          <path d="${pathStar}" fill="none" stroke="#0d9488" stroke-width="2.8"/>
+          <text x="${tx(3.3)}" y="${ty(1.06) - 8}" text-anchor="middle" font-size="13.5" font-weight="700" fill="#0d9488">T<tspan dy="3" font-size="10">Y</tspan><tspan dy="-3">(n)</tspan></text>
+          <text x="${tx(0) - 8}" y="${ty(0.88) + 4}" text-anchor="end" font-size="12.5" font-weight="600" fill="#0d9488">84 N·m</text>
+
+          <line x1="${tx(0)}" y1="${ty(0.60)}" x2="${tx(5.25)}" y2="${ty(0.60)}" stroke="#dc2626" stroke-width="2.2"/>
+          <text x="${tx(5.25) + 6}" y="${ty(0.60) + 4}" font-size="12.5" font-weight="600" fill="#dc2626">T<tspan dy="3" font-size="9.5">r</tspan><tspan dy="-3"> = 60 N·m</tspan></text>
+
+          <line x1="${tx(4.75)}" y1="${ty(0.65)}" x2="${tx(4.75)}" y2="${ty(1.90)}" stroke="#b91c1c" stroke-width="2.4" marker-end="url(#${pfx}-arr-drd)"/>
+          <circle cx="${tx(4.75)}" cy="${ty(0.65)}" r="3.6" fill="#b91c1c"/>
+          <circle cx="${tx(4.75)}" cy="${ty(1.95)}" r="3.6" fill="#b91c1c"/>
+          <text x="${tx(4.75) - 8}" y="${ty(1.95) + 4}" text-anchor="end" font-size="12.5" font-weight="700" fill="#b91c1c">Salto a Δ</text>
+
+          <line x1="${tx(4.75)}" y1="${ty(0)}" x2="${tx(4.75)}" y2="${ty(0.65)}" stroke="#64748b" stroke-width="1.5" stroke-dasharray="3,3"/>
+          <text x="${tx(4.72) - 4}" y="${ty(0) + 17}" text-anchor="end" font-size="12.5" font-weight="700" fill="#b91c1c">950</text>
+          <text x="${tx(5.02) + 4}" y="${ty(0) + 17}" text-anchor="start" font-size="13" font-weight="600" fill="#0f172a">1000 (n<tspan dy="3" font-size="10">s</tspan><tspan dy="-3">)</tspan></text>
+        </svg>
+      `;
+    }
+
+    // PLANTILLA 3: Vectores / Fasores en Disposición A4 (2 arriba + 1 centrado abajo)
+    if (code.indexOf('Efecto Ferranti') !== -1) {
+      const S = 44;
+      function renderPhasorScope(ox, oy, mode) {
+        const tx = function(x) { return ox + x * S; };
+        const ty = function(y) { return oy - y * S; };
+        const rArc = 3.5 * S;
+        const a1 = -18 * Math.PI / 180;
+        const a2 = 26 * Math.PI / 180;
+        const arcX1 = tx(3.5 * Math.cos(a1)), arcY1 = ty(3.5 * Math.sin(a1));
+        const arcX2 = tx(3.5 * Math.cos(a2)), arcY2 = ty(3.5 * Math.sin(a2));
+        let inner = `
+          <line x1="${tx(-0.4)}" y1="${ty(0)}" x2="${tx(5.0)}" y2="${ty(0)}" stroke="#94a3b8" stroke-width="1.4" marker-end="url(#${pfx}-arr-gry)"/>
+          <line x1="${tx(0)}" y1="${ty(-1.5)}" x2="${tx(0)}" y2="${ty(2.1)}" stroke="#94a3b8" stroke-width="1.4" marker-end="url(#${pfx}-arr-gry)"/>
+          <path d="M ${arcX1.toFixed(1)} ${arcY1.toFixed(1)} A ${rArc.toFixed(1)} ${rArc.toFixed(1)} 0 0 0 ${arcX2.toFixed(1)} ${arcY2.toFixed(1)}" fill="none" stroke="#64748b" stroke-width="1.4" stroke-dasharray="5,4"/>
+          <line x1="${tx(0)}" y1="${ty(0)}" x2="${tx(3.5)}" y2="${ty(0)}" stroke="#0891b2" stroke-width="2.8" marker-end="url(#${pfx}-arr-cyn)"/>
+          <text x="${tx(2.3)}" y="${ty(0) + 17}" text-anchor="middle" font-size="13" font-weight="700" fill="#0891b2">U⃗₂</text>
+        `;
+        if (mode === 'a') {
+          inner += `
+            <text x="${tx(2.3)}" y="${ty(3.65)}" text-anchor="middle" font-size="14.5" font-weight="700" fill="#0f172a">a) Carga Resistiva (φ₂ = 0°)</text>
+            <text x="${tx(2.3)}" y="${ty(3.1)}" text-anchor="middle" font-size="12.5" fill="#475569">U₂₀ ≈ U₂ (Caída leve)</text>
+            <line x1="${tx(0)}" y1="${ty(-0.28)}" x2="${tx(1.8)}" y2="${ty(-0.28)}" stroke="#0d9488" stroke-width="2.2" marker-end="url(#${pfx}-arr-tel)"/>
+            <text x="${tx(0.9)}" y="${ty(-0.28) + 16}" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0d9488">I⃗₂</text>
+            <line x1="${tx(3.5)}" y1="${ty(0)}" x2="${tx(4.05)}" y2="${ty(0)}" stroke="#dc2626" stroke-width="2.2" marker-end="url(#${pfx}-arr-red)"/>
+            <text x="${tx(3.85)}" y="${ty(0) + 16}" text-anchor="start" font-size="11.5" font-weight="700" fill="#dc2626">I₂R<tspan dy="2" font-size="9">cc</tspan></text>
+            <line x1="${tx(4.05)}" y1="${ty(0)}" x2="${tx(4.05)}" y2="${ty(1.4)}" stroke="#7c3aed" stroke-width="2.2" marker-end="url(#${pfx}-arr-vio)"/>
+            <text x="${tx(4.05) + 7}" y="${ty(0.7) + 4}" text-anchor="start" font-size="11.5" font-weight="700" fill="#7c3aed">jI₂X<tspan dy="2" font-size="9">cc</tspan></text>
+            <line x1="${tx(0)}" y1="${ty(0)}" x2="${tx(4.05)}" y2="${ty(1.4)}" stroke="#ea580c" stroke-width="2.8" marker-end="url(#${pfx}-arr-org)"/>
+            <text x="${tx(2.0)}" y="${ty(0.85) - 6}" text-anchor="middle" font-size="13" font-weight="700" fill="#ea580c">U⃗₂₀</text>
+          `;
+        } else if (mode === 'b') {
+          const ix = 1.8 * Math.cos(-36.87 * Math.PI / 180);
+          const iy = 1.8 * Math.sin(-36.87 * Math.PI / 180);
+          inner += `
+            <text x="${tx(2.3)}" y="${ty(3.65)}" text-anchor="middle" font-size="14.5" font-weight="700" fill="#0f172a">b) Carga Inductiva (φ₂ &gt; 0 atraso)</text>
+            <text x="${tx(2.3)}" y="${ty(3.1)}" text-anchor="middle" font-size="12.5" fill="#475569">U₂₀ ≫ U₂ (Pésima regulación)</text>
+            <line x1="${tx(0)}" y1="${ty(0)}" x2="${tx(ix)}" y2="${ty(iy)}" stroke="#0d9488" stroke-width="2.2" marker-end="url(#${pfx}-arr-tel)"/>
+            <text x="${tx(ix) + 6}" y="${ty(iy) + 10}" font-size="12.5" font-weight="700" fill="#0d9488">I⃗₂</text>
+            <path d="M ${tx(0.85)} ${ty(0)} A ${0.85 * S} ${0.85 * S} 0 0 1 ${tx(0.85 * Math.cos(-0.6435))} ${ty(0.85 * Math.sin(-0.6435))}" fill="none" stroke="#ea580c" stroke-width="1.4"/>
+            <text x="${tx(1.05)}" y="${ty(-0.32)}" font-size="12" font-weight="700" fill="#ea580c">φ₂</text>
+            <line x1="${tx(3.5)}" y1="${ty(0)}" x2="${tx(3.9)}" y2="${ty(-0.3)}" stroke="#dc2626" stroke-width="2.2" marker-end="url(#${pfx}-arr-red)"/>
+            <text x="${tx(3.75)}" y="${ty(-0.3) + 15}" text-anchor="middle" font-size="11.5" font-weight="700" fill="#dc2626">I₂R<tspan dy="2" font-size="9">cc</tspan></text>
+            <line x1="${tx(3.9)}" y1="${ty(-0.3)}" x2="${tx(4.74)}" y2="${ty(0.82)}" stroke="#7c3aed" stroke-width="2.2" marker-end="url(#${pfx}-arr-vio)"/>
+            <text x="${tx(4.45) + 6}" y="${ty(0.26) + 4}" text-anchor="start" font-size="11.5" font-weight="700" fill="#7c3aed">jI₂X<tspan dy="2" font-size="9">cc</tspan></text>
+            <line x1="${tx(0)}" y1="${ty(0)}" x2="${tx(4.74)}" y2="${ty(0.82)}" stroke="#ea580c" stroke-width="2.8" marker-end="url(#${pfx}-arr-org)"/>
+            <text x="${tx(2.3)}" y="${ty(0.55) - 6}" text-anchor="middle" font-size="13" font-weight="700" fill="#ea580c">U⃗₂₀</text>
+          `;
+        } else {
+          const ix = 1.8 * Math.cos(53.13 * Math.PI / 180);
+          const iy = 1.8 * Math.sin(53.13 * Math.PI / 180);
+          inner += `
+            <text x="${tx(2.3)}" y="${ty(3.65)}" text-anchor="middle" font-size="14.5" font-weight="700" fill="#0f172a">c) Carga Capacitiva (Efecto Ferranti)</text>
+            <text x="${tx(2.3)}" y="${ty(3.1)}" text-anchor="middle" font-size="12.5" fill="#475569">U₂ &gt; U₂₀ (Regulación &lt; 0)</text>
+            <line x1="${tx(0)}" y1="${ty(0)}" x2="${tx(ix)}" y2="${ty(iy)}" stroke="#0d9488" stroke-width="2.2" marker-end="url(#${pfx}-arr-tel)"/>
+            <text x="${tx(ix) - 6}" y="${ty(iy) - 6}" text-anchor="end" font-size="12.5" font-weight="700" fill="#0d9488">I⃗₂</text>
+            <path d="M ${tx(0.85)} ${ty(0)} A ${0.85 * S} ${0.85 * S} 0 0 0 ${tx(0.85 * Math.cos(0.927))} ${ty(0.85 * Math.sin(0.927))}" fill="none" stroke="#ea580c" stroke-width="1.4"/>
+            <text x="${tx(0.82)}" y="${ty(0.55)}" font-size="12" font-weight="700" fill="#ea580c">φ₂</text>
+            <line x1="${tx(3.5)}" y1="${ty(0)}" x2="${tx(3.8)}" y2="${ty(0.4)}" stroke="#dc2626" stroke-width="2.2" marker-end="url(#${pfx}-arr-red)"/>
+            <text x="${tx(3.8) + 6}" y="${ty(0.2)}" text-anchor="start" font-size="11.5" font-weight="700" fill="#dc2626">I₂R<tspan dy="2" font-size="9">cc</tspan></text>
+            <line x1="${tx(3.8)}" y1="${ty(0.4)}" x2="${tx(2.68)}" y2="${ty(1.24)}" stroke="#7c3aed" stroke-width="2.2" marker-end="url(#${pfx}-arr-vio)"/>
+            <text x="${tx(3.55)}" y="${ty(1.05)}" text-anchor="start" font-size="11.5" font-weight="700" fill="#7c3aed">jI₂X<tspan dy="2" font-size="9">cc</tspan></text>
+            <line x1="${tx(0)}" y1="${ty(0)}" x2="${tx(2.68)}" y2="${ty(1.24)}" stroke="#ea580c" stroke-width="2.8" marker-end="url(#${pfx}-arr-org)"/>
+            <text x="${tx(1.55)}" y="${ty(1.05)}" text-anchor="middle" font-size="13" font-weight="700" fill="#ea580c">U⃗₂₀</text>
+          `;
+        }
+        return inner;
+      }
+      return `
+        <svg viewBox="0 0 760 510" width="730" xmlns="http://www.w3.org/2000/svg" style="font-family:${fontFamily};">
+          ${defs}
+          ${renderPhasorScope(60, 180, 'a')}
+          ${renderPhasorScope(430, 180, 'b')}
+          ${renderPhasorScope(245, 430, 'c')}
+        </svg>
+      `;
+    }
+
+    // PLANTILLA 4: Característica Par-Velocidad y Punto Estable
+    if (code.indexOf('Punto Estable') !== -1) {
+      const S = 64, ox = 100, oy = 310;
+      const tx = function(x) { return ox + x * S; };
+      const ty = function(y) { return oy - y * S; };
+      const pathTm = buildCurvePath(0, 5, 60, function(x) {
+        const s = 1 - 0.2 * x;
+        return 1.792 * s / (s * s + 0.0784);
+      }, tx, ty);
+      const pathTr = buildCurvePath(0, 5.2, 45, function(x) {
+        return 0.6 + 0.0706 * x * x;
+      }, tx, ty);
+      return `
+        <svg viewBox="0 0 580 355" width="570" xmlns="http://www.w3.org/2000/svg" style="font-family:${fontFamily};">
+          ${defs}
+          <text x="${tx(3.0)}" y="30" text-anchor="middle" font-size="15.5" font-weight="700" fill="#0f172a">Característica Par-Velocidad y Punto Estable</text>
+
+          <line x1="${tx(0)}" y1="${ty(0)}" x2="${tx(6.0)}" y2="${ty(0)}" stroke="#64748b" stroke-width="1.6" marker-end="url(#${pfx}-arr-gry)"/>
+          <text x="${tx(6.0) + 8}" y="${ty(0) + 4}" font-size="13.5" font-weight="600" fill="#0f172a">n [rpm]</text>
+          <line x1="${tx(0)}" y1="${ty(0)}" x2="${tx(0)}" y2="${ty(3.8)}" stroke="#64748b" stroke-width="1.6" marker-end="url(#${pfx}-arr-gry)"/>
+          <text x="${tx(0) - 10}" y="${ty(3.8) + 5}" text-anchor="end" font-size="13.5" font-weight="600" fill="#0f172a">T [N·m]</text>
+          <text x="${tx(0) - 6}" y="${ty(0) + 16}" text-anchor="end" font-size="13" fill="#0f172a">0</text>
+
+          <path d="${pathTm}" fill="none" stroke="#0891b2" stroke-width="3"/>
+          <text x="${tx(3.6)}" y="${ty(3.2) - 8}" text-anchor="middle" font-size="14" font-weight="700" fill="#0891b2">T<tspan dy="3" font-size="10">m</tspan></text>
+
+          <path d="${pathTr}" fill="none" stroke="#dc2626" stroke-width="2.2" stroke-dasharray="6,4"/>
+          <text x="${tx(2.2)}" y="${ty(0.95) + 18}" text-anchor="middle" font-size="14" font-weight="700" fill="#dc2626">T<tspan dy="3" font-size="10">r</tspan></text>
+
+          <circle cx="${tx(0)}" cy="${ty(1.66)}" r="4.2" fill="#ea580c"/>
+          <text x="${tx(0) - 8}" y="${ty(1.66) + 4}" text-anchor="end" font-size="13" font-weight="700" fill="#ea580c">T<tspan dy="3" font-size="10">arr</tspan></text>
+
+          <circle cx="${tx(4.50)}" cy="${ty(2.03)}" r="4.6" fill="#0d9488"/>
+          <text x="${tx(4.50) + 10}" y="${ty(2.03) + 4}" text-anchor="start" font-size="13" font-weight="700" fill="#0d9488">Pto. Estable</text>
+
+          <line x1="${tx(4.50)}" y1="${ty(0)}" x2="${tx(4.50)}" y2="${ty(2.03)}" stroke="#64748b" stroke-width="1.5" stroke-dasharray="3,3"/>
+          <text x="${tx(4.50) - 4}" y="${ty(0) + 17}" text-anchor="end" font-size="13" font-weight="700" fill="#0d9488">n<tspan dy="3" font-size="10">N</tspan></text>
+          <text x="${tx(5.0) + 4}" y="${ty(0) + 17}" text-anchor="start" font-size="13" font-weight="600" fill="#0f172a">n<tspan dy="3" font-size="10">s</tspan></text>
+        </svg>
+      `;
+    }
+
+    // PLANTILLA 5: Mecanismos, Diseño Mecánico y Vibraciones (Esquema Físico + DCL con \foreach y coil)
+    if (code.indexOf('Diagrama de Cuerpo Libre') !== -1 || code.indexOf('Modelo F') !== -1) {
+      const S = 54, oxA = 35, oxB = 425, oy = 290;
+      const txA = function(x) { return oxA + x * S; };
+      const txB = function(x) { return oxB + x * S; };
+      const ty = function(y) { return oy - y * S; };
+      let hatches = '';
+      for (let x = 0.7; x <= 4.35; x += 0.3) {
+        hatches += `<line x1="${txA(x).toFixed(1)}" y1="${ty(0)}" x2="${txA(x - 0.22).toFixed(1)}" y2="${ty(-0.25)}" stroke="#64748b" stroke-width="1.4"/>`;
+      }
+      const springPath = buildCoilPath(txA(1.5), ty(0), ty(2.1), 7, 10, 12, 12);
+      return `
+        <svg viewBox="0 0 740 340" width="720" xmlns="http://www.w3.org/2000/svg" style="font-family:${fontFamily};">
+          ${defs}
+          <!-- SUBGRÁFICO A: MODELO FÍSICO -->
+          <text x="${txA(2.5)}" y="${ty(4.65)}" text-anchor="middle" font-size="15.5" font-weight="700" fill="#0f172a">a) Modelo Físico (1 GDL)</text>
+          <line x1="${txA(0.5)}" y1="${ty(0)}" x2="${txA(4.5)}" y2="${ty(0)}" stroke="#0f172a" stroke-width="2.3"/>
+          ${hatches}
+
+          <!-- Resorte helicoidal k -->
+          <path d="${springPath}" fill="none" stroke="#0891b2" stroke-width="2.2" stroke-linejoin="round"/>
+          <text x="${txA(1.5) - 18}" y="${ty(1.05) + 5}" text-anchor="end" font-size="14.5" font-weight="700" font-style="italic" fill="#0891b2">k</text>
+
+          <!-- Amortiguador viscoso c -->
+          <line x1="${txA(3.5)}" y1="${ty(0)}" x2="${txA(3.5)}" y2="${ty(0.85)}" stroke="#0d9488" stroke-width="2.2"/>
+          <polyline points="${txA(3.18)},${ty(1.40)} ${txA(3.18)},${ty(0.85)} ${txA(3.82)},${ty(0.85)} ${txA(3.82)},${ty(1.40)}" fill="none" stroke="#0d9488" stroke-width="2.2"/>
+          <line x1="${txA(3.26)}" y1="${ty(1.15)}" x2="${txA(3.74)}" y2="${ty(1.15)}" stroke="#0d9488" stroke-width="3"/>
+          <line x1="${txA(3.5)}" y1="${ty(1.15)}" x2="${txA(3.5)}" y2="${ty(2.1)}" stroke="#0d9488" stroke-width="2.2"/>
+          <text x="${txA(3.82) + 10}" y="${ty(1.10) + 5}" text-anchor="start" font-size="14.5" font-weight="700" font-style="italic" fill="#0d9488">c</text>
+
+          <!-- Masa m -->
+          <rect x="${txA(0.9)}" y="${ty(3.0)}" width="${(4.1 - 0.9) * S}" height="${0.9 * S}" rx="4" fill="#ffffff" stroke="#ea580c" stroke-width="2.5"/>
+          <text x="${txA(2.5)}" y="${ty(2.55) + 5}" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">Masa <tspan font-style="italic">m</tspan></text>
+
+          <!-- Fuerza externa F(t) y coordenada x(t) -->
+          <line x1="${txA(2.5)}" y1="${ty(3.0)}" x2="${txA(2.5)}" y2="${ty(3.85)}" stroke="#dc2626" stroke-width="2.5" marker-end="url(#${pfx}-arr-red)"/>
+          <text x="${txA(2.5)}" y="${ty(3.85) - 8}" text-anchor="middle" font-size="14" font-weight="700" fill="#dc2626">F(t)</text>
+          <line x1="${txA(4.1)}" y1="${ty(2.55)}" x2="${txA(4.85)}" y2="${ty(2.55)}" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <line x1="${txA(4.68)}" y1="${ty(2.55)}" x2="${txA(4.68)}" y2="${ty(3.48)}" stroke="#7c3aed" stroke-width="2.1" marker-end="url(#${pfx}-arr-vio)"/>
+          <text x="${txA(4.68) + 8}" y="${ty(3.05)}" text-anchor="start" font-size="13.5" font-weight="700" fill="#7c3aed">x(t)</text>
+
+          <!-- SUBGRÁFICO B: DIAGRAMA DE CUERPO LIBRE -->
+          <text x="${txB(2.5)}" y="${ty(4.65)}" text-anchor="middle" font-size="15.5" font-weight="700" fill="#0f172a">b) Diagrama de Cuerpo Libre</text>
+          <rect x="${txB(1.0)}" y="${ty(2.7)}" width="${3.0 * S}" height="${1.0 * S}" rx="4" fill="#ffffff" stroke="#ea580c" stroke-width="2.5"/>
+          <text x="${txB(2.5)}" y="${ty(2.2) + 5}" text-anchor="middle" font-size="15.5" font-weight="700" font-style="italic" fill="#0f172a">m</text>
+
+          <line x1="${txB(2.5)}" y1="${ty(2.7)}" x2="${txB(2.5)}" y2="${ty(3.85)}" stroke="#dc2626" stroke-width="2.5" marker-end="url(#${pfx}-arr-red)"/>
+          <text x="${txB(2.5)}" y="${ty(3.85) - 8}" text-anchor="middle" font-size="14" font-weight="700" fill="#dc2626">F(t)</text>
+
+          <line x1="${txB(1.45)}" y1="${ty(1.7)}" x2="${txB(1.45)}" y2="${ty(0.5)}" stroke="#0891b2" stroke-width="2.3" marker-end="url(#${pfx}-arr-cyn)"/>
+          <text x="${txB(1.45)}" y="${ty(0.5) + 18}" text-anchor="middle" font-size="13.5" font-weight="700" fill="#0891b2">k x</text>
+
+          <line x1="${txB(2.50)}" y1="${ty(1.7)}" x2="${txB(2.50)}" y2="${ty(0.5)}" stroke="#0d9488" stroke-width="2.3" marker-end="url(#${pfx}-arr-tel)"/>
+          <text x="${txB(2.50)}" y="${ty(0.5) + 18}" text-anchor="middle" font-size="13.5" font-weight="700" fill="#0d9488">c ẋ</text>
+
+          <line x1="${txB(3.55)}" y1="${ty(1.7)}" x2="${txB(3.55)}" y2="${ty(0.5)}" stroke="#7c3aed" stroke-width="2.3" marker-end="url(#${pfx}-arr-vio)"/>
+          <text x="${txB(3.55)}" y="${ty(0.5) + 18}" text-anchor="middle" font-size="13.5" font-weight="700" fill="#7c3aed">m ẍ</text>
+        </svg>
+      `;
+    }
+
+    // PLANTILLA 6: Estructura Canónica de un Sistema de Control en Lazo Cerrado
+    if (code.indexOf('Lazo Cerrado') !== -1 || code.indexOf('Controlador') !== -1) {
+      const S = 58, ox = 45, oy = 215;
+      const tx = function(x) { return ox + x * S; };
+      const ty = function(y) { return oy - y * S; };
+      return `
+        <svg viewBox="0 0 760 235" width="740" xmlns="http://www.w3.org/2000/svg" style="font-family:${fontFamily};">
+          ${defs}
+          <text x="${tx(5.6)}" y="${ty(3.3)}" text-anchor="middle" font-size="15.5" font-weight="700" fill="#0f172a">Estructura Canónica de un Sistema de Control en Lazo Cerrado</text>
+
+          <!-- R(s) y Sumador -->
+          <line x1="${tx(0)}" y1="${ty(2.0)}" x2="${tx(1.25)}" y2="${ty(2.0)}" stroke="#0891b2" stroke-width="2.3" marker-end="url(#${pfx}-arr-cyn)"/>
+          <text x="${tx(0.55)}" y="${ty(2.0) - 9}" text-anchor="middle" font-size="13.5" font-weight="700" fill="#0891b2">R(s)</text>
+
+          <circle cx="${tx(1.6)}" cy="${ty(2.0)}" r="18" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+          <text x="${tx(1.6)}" y="${ty(2.0) + 5}" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">Σ</text>
+          <text x="${tx(1.6) - 22}" y="${ty(2.0) - 6}" font-size="13" font-weight="700" fill="#0f172a">+</text>
+          <text x="${tx(1.6) - 14}" y="${ty(2.0) + 28}" font-size="14" font-weight="700" fill="#0f172a">−</text>
+
+          <!-- E(s) y Controlador Gc(s) -->
+          <line x1="${tx(1.6) + 18}" y1="${ty(2.0)}" x2="${tx(3.15)}" y2="${ty(2.0)}" stroke="#0f172a" stroke-width="2" marker-end="url(#${pfx}-arr-blk)"/>
+          <text x="${tx(2.45)}" y="${ty(2.0) - 8}" text-anchor="middle" font-size="13" font-weight="600" fill="#0f172a">E(s)</text>
+
+          <rect x="${tx(3.15)}" y="${ty(2.0) - 24}" width="122" height="48" rx="5" fill="#ffffff" stroke="#0891b2" stroke-width="2.3"/>
+          <text x="${tx(3.15) + 61}" y="${ty(2.0) - 4}" text-anchor="middle" font-size="13" font-weight="700" fill="#0f172a">Controlador</text>
+          <text x="${tx(3.15) + 61}" y="${ty(2.0) + 15}" text-anchor="middle" font-size="13" font-weight="600" font-style="italic" fill="#0f172a">G<tspan dy="2" font-size="9.5" font-style="normal">c</tspan><tspan dy="-2">(s)</tspan></text>
+
+          <!-- U(s) y Planta Gp(s) -->
+          <line x1="${tx(3.15) + 122}" y1="${ty(2.0)}" x2="${tx(6.65)}" y2="${ty(2.0)}" stroke="#0f172a" stroke-width="2" marker-end="url(#${pfx}-arr-blk)"/>
+          <text x="${tx(5.95)}" y="${ty(2.0) - 8}" text-anchor="middle" font-size="13" font-weight="600" fill="#0f172a">U(s)</text>
+
+          <rect x="${tx(6.65)}" y="${ty(2.0) - 24}" width="150" height="48" rx="5" fill="#ffffff" stroke="#0d9488" stroke-width="2.3"/>
+          <text x="${tx(6.65) + 75}" y="${ty(2.0) - 4}" text-anchor="middle" font-size="13" font-weight="700" fill="#0f172a">Planta / Proceso</text>
+          <text x="${tx(6.65) + 75}" y="${ty(2.0) + 15}" text-anchor="middle" font-size="13" font-weight="600" font-style="italic" fill="#0f172a">G<tspan dy="2" font-size="9.5" font-style="normal">p</tspan><tspan dy="-2">(s)</tspan></text>
+
+          <!-- Y(s) salida -->
+          <line x1="${tx(6.65) + 150}" y1="${ty(2.0)}" x2="${tx(11.3)}" y2="${ty(2.0)}" stroke="#ea580c" stroke-width="2.4" marker-end="url(#${pfx}-arr-org)"/>
+          <text x="${tx(10.85)}" y="${ty(2.0) - 9}" text-anchor="middle" font-size="13.5" font-weight="700" fill="#ea580c">Y(s)</text>
+
+          <!-- Lazo de realimentación H(s) -->
+          <circle cx="${tx(10.2)}" cy="${ty(2.0)}" r="3.6" fill="#0f172a"/>
+          <rect x="${tx(4.65)}" y="${ty(0.3) - 19}" width="175" height="38" rx="5" fill="#ffffff" stroke="#7c3aed" stroke-width="2.3"/>
+          <text x="${tx(4.65) + 87.5}" y="${ty(0.3) + 5}" text-anchor="middle" font-size="13" font-weight="700" fill="#0f172a">Sensor / Medición <tspan font-style="italic">H(s)</tspan></text>
+
+          <polyline points="${tx(10.2)},${ty(2.0)} ${tx(10.2)},${ty(0.3)} ${tx(4.65) + 175},${ty(0.3)}" fill="none" stroke="#0f172a" stroke-width="2" marker-end="url(#${pfx}-arr-blk)"/>
+          <polyline points="${tx(4.65)},${ty(0.3)} ${tx(1.6)},${ty(0.3)} ${tx(1.6)},${ty(2.0) + 18}" fill="none" stroke="#0f172a" stroke-width="2" marker-end="url(#${pfx}-arr-blk)"/>
+          <text x="${tx(1.6) - 8}" y="${ty(1.0)}" text-anchor="end" font-size="13" font-weight="600" fill="#0f172a">B(s)</text>
+        </svg>
+      `;
+    }
+
+    // PLANTILLA 7: Campana Termodinámica T-s y Ciclo Rankine
+    if (code.indexOf('Ciclo Rankine') !== -1 || code.indexOf('Campana') !== -1) {
+      const S = 64, ox = 95, oy = 310;
+      const tx = function(x) { return ox + x * S; };
+      const ty = function(y) { return oy - y * S; };
+      const bellPath = buildCurvePath(0.6, 5.4, 65, function(x) {
+        return 3.4 * Math.exp(-0.28 * (x - 3.0) * (x - 3.0));
+      }, tx, ty);
+      return `
+        <svg viewBox="0 0 610 355" width="600" xmlns="http://www.w3.org/2000/svg" style="font-family:${fontFamily};">
+          ${defs}
+          <text x="${tx(3.2)}" y="28" text-anchor="middle" font-size="15.5" font-weight="700" fill="#0f172a">Diagrama T-s: Ciclo Rankine con Sobrecalentamiento</text>
+
+          <line x1="${tx(0)}" y1="${ty(0)}" x2="${tx(6.3)}" y2="${ty(0)}" stroke="#64748b" stroke-width="1.6" marker-end="url(#${pfx}-arr-gry)"/>
+          <text x="${tx(6.3) + 8}" y="${ty(0) + 4}" font-size="13" font-weight="600" fill="#0f172a">s [kJ/(kg·K)]</text>
+          <line x1="${tx(0)}" y1="${ty(0)}" x2="${tx(0)}" y2="${ty(3.8)}" stroke="#64748b" stroke-width="1.6" marker-end="url(#${pfx}-arr-gry)"/>
+          <text x="${tx(0) - 10}" y="${ty(3.8) + 5}" text-anchor="end" font-size="13.5" font-weight="600" fill="#0f172a">T [°C]</text>
+          <text x="${tx(0) - 6}" y="${ty(0) + 16}" text-anchor="end" font-size="13" fill="#0f172a">0</text>
+
+          <!-- Campana de saturación -->
+          <path d="${bellPath}" fill="none" stroke="#64748b" stroke-width="2.3"/>
+          <circle cx="${tx(3.0)}" cy="${ty(3.4)}" r="3.5" fill="#64748b"/>
+          <text x="${tx(3.0)}" y="${ty(3.4) - 8}" text-anchor="middle" font-size="12.5" font-weight="600" fill="#475569">Pto. Crítico</text>
+
+          <!-- Ciclo Rankine 1 -> 2 -> 2' -> 3' -> 3 -> 4 -> 1 -->
+          <line x1="${tx(1.10)}" y1="${ty(1.24)}" x2="${tx(1.10)}" y2="${ty(1.65)}" stroke="#0891b2" stroke-width="2.6" marker-end="url(#${pfx}-arr-cyn)"/>
+          <line x1="${tx(1.10)}" y1="${ty(1.65)}" x2="${tx(1.80)}" y2="${ty(2.27)}" stroke="#dc2626" stroke-width="2.6" marker-end="url(#${pfx}-arr-red)"/>
+          <line x1="${tx(1.80)}" y1="${ty(2.27)}" x2="${tx(4.20)}" y2="${ty(2.27)}" stroke="#dc2626" stroke-width="2.6" marker-end="url(#${pfx}-arr-red)"/>
+          <text x="${tx(3.0)}" y="${ty(2.27) - 8}" text-anchor="middle" font-size="12.5" font-weight="700" fill="#dc2626">q<tspan dy="3" font-size="9.5">in</tspan><tspan dy="-3"> (P = cte)</tspan></text>
+          <line x1="${tx(4.20)}" y1="${ty(2.27)}" x2="${tx(4.90)}" y2="${ty(3.25)}" stroke="#dc2626" stroke-width="2.6" marker-end="url(#${pfx}-arr-red)"/>
+          <line x1="${tx(4.90)}" y1="${ty(3.25)}" x2="${tx(4.90)}" y2="${ty(1.24)}" stroke="#ea580c" stroke-width="2.6" marker-end="url(#${pfx}-arr-org)"/>
+          <text x="${tx(4.90) + 8}" y="${ty(2.25)}" text-anchor="start" font-size="13" font-weight="700" fill="#ea580c">w<tspan dy="3" font-size="10">t</tspan></text>
+          <line x1="${tx(4.90)}" y1="${ty(1.24)}" x2="${tx(1.10)}" y2="${ty(1.24)}" stroke="#0d9488" stroke-width="2.6" marker-end="url(#${pfx}-arr-tel)"/>
+          <text x="${tx(3.0)}" y="${ty(1.24) + 17}" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0d9488">q<tspan dy="3" font-size="9.5">out</tspan></text>
+
+          <!-- Puntos de estado -->
+          <circle cx="${tx(1.10)}" cy="${ty(1.24)}" r="3.8" fill="#0891b2"/>
+          <text x="${tx(1.10) - 9}" y="${ty(1.24) + 4}" text-anchor="end" font-size="12.5" font-weight="700" fill="#0891b2">1</text>
+          <circle cx="${tx(1.10)}" cy="${ty(1.65)}" r="3.8" fill="#0891b2"/>
+          <text x="${tx(1.10) - 8}" y="${ty(1.65) - 4}" text-anchor="end" font-size="12.5" font-weight="700" fill="#0891b2">2</text>
+          <circle cx="${tx(1.80)}" cy="${ty(2.27)}" r="3.5" fill="#dc2626"/>
+          <text x="${tx(1.80) - 6}" y="${ty(2.27) - 6}" text-anchor="end" font-size="12.5" font-weight="700" fill="#dc2626">2'</text>
+          <circle cx="${tx(4.20)}" cy="${ty(2.27)}" r="3.5" fill="#dc2626"/>
+          <text x="${tx(4.20) - 6}" y="${ty(2.27) - 6}" text-anchor="end" font-size="12.5" font-weight="700" fill="#dc2626">3'</text>
+          <circle cx="${tx(4.90)}" cy="${ty(3.25)}" r="3.8" fill="#ea580c"/>
+          <text x="${tx(4.90) + 7}" y="${ty(3.25) - 4}" text-anchor="start" font-size="12.5" font-weight="700" fill="#ea580c">3</text>
+          <circle cx="${tx(4.90)}" cy="${ty(1.24)}" r="3.8" fill="#0d9488"/>
+          <text x="${tx(4.90) + 8}" y="${ty(1.24) - 4}" text-anchor="start" font-size="12.5" font-weight="700" fill="#0d9488">4</text>
+
+          <line x1="${tx(4.90)}" y1="${ty(0)}" x2="${tx(4.90)}" y2="${ty(1.24)}" stroke="#64748b" stroke-width="1.5" stroke-dasharray="3,3"/>
+          <text x="${tx(4.90)}" y="${ty(0) + 17}" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0f172a">s₃ = s₄</text>
+        </svg>
+      `;
+    }
+
+    return null;
   }
 
   /* ==========================================================================
@@ -310,11 +742,9 @@
         });
       }
 
-      // Vista previa interactiva de plantillas TikZ (Mejora 4)
+      // Vista previa interactiva de plantillas TikZ (Mejora 4: SVG Vectorial + Opción Código Limpio)
       const tikzTemplates = extractTikzTemplates(rawText, langName);
       if (tikzTemplates.length > 0) {
-        ensureTikzJaxLoaded();
-
         const previewSection = document.createElement('div');
         previewSection.className = 'tikz-preview-section';
 
@@ -332,7 +762,7 @@
           </button>
           <div class="tikz-preview-body">
             <p class="tikz-preview-intro">
-              Gráficos compilados en vivo en el navegador con <strong>TikZJax</strong> a partir del código LaTeX/TikZ incluido en el prompt (circuitos equivalentes, curvas Par-Velocidad, diagramas fasoriales, sistemas 1-GDL, lazos de control y ciclos termodinámicos Rankine):
+              Gráficos vectoriales generados a partir del código LaTeX/TikZ incluido en el prompt (podés alternar entre el <strong>Gráfico Vectorial</strong> y el <strong>Código TikZ limpio</strong> en cada plantilla):
             </p>
             <div class="tikz-preview-grid"></div>
           </div>
@@ -343,28 +773,98 @@
           const card = document.createElement('div');
           card.className = 'tikz-preview-card';
 
+          const svgMarkup = renderTikzTemplateSvg(tpl.code, idx);
+          const hasPreRenderedSvg = !!svgMarkup;
+
           const cardHeader = document.createElement('div');
           cardHeader.className = 'tikz-preview-card-header';
           cardHeader.innerHTML = `
-            <span>${tpl.title}</span>
-            <span class="prompt-box-lines-count">SVG Vectorial #${idx + 1}</span>
+            <span class="tikz-card-title">${tpl.title}</span>
+            <div class="tikz-card-actions">
+              <button type="button" class="tikz-card-view-btn js-view-graphic ${hasPreRenderedSvg ? 'is-active' : ''}" title="Ver gráfico vectorial renderizado">📐 Gráfico</button>
+              <button type="button" class="tikz-card-view-btn js-view-code ${!hasPreRenderedSvg ? 'is-active' : ''}" title="Ver código fuente LaTeX/TikZ limpio">💻 Código TikZ</button>
+              <button type="button" class="tikz-card-copy-btn js-copy-tikz" title="Copiar este bloque TikZ para Obsidian">📋 Copiar TikZ</button>
+            </div>
           `;
 
           const stage = document.createElement('div');
-          stage.className = 'tikz-render-stage';
+          stage.className = 'tikz-render-stage' + (hasPreRenderedSvg ? '' : ' is-hidden');
 
-          const loadingHint = document.createElement('div');
-          loadingHint.className = 'tikz-loading-hint';
-          loadingHint.textContent = '⏳ Renderizando gráfico vectorial TikZ...';
+          if (hasPreRenderedSvg) {
+            stage.innerHTML = svgMarkup;
+          } else {
+            ensureTikzJaxLoaded();
+            const loadingHint = document.createElement('div');
+            loadingHint.className = 'tikz-loading-hint';
+            loadingHint.textContent = '⏳ Renderizando gráfico vectorial TikZ...';
+            const tikzScript = document.createElement('script');
+            tikzScript.type = 'text/tikz';
+            tikzScript.textContent = tpl.code;
+            stage.appendChild(loadingHint);
+            stage.appendChild(tikzScript);
+          }
 
-          const tikzScript = document.createElement('script');
-          tikzScript.type = 'text/tikz';
-          tikzScript.textContent = tpl.code;
+          const codeStage = document.createElement('div');
+          codeStage.className = 'tikz-code-stage' + (!hasPreRenderedSvg ? ' is-visible' : '');
+          const cleanPre = document.createElement('pre');
+          cleanPre.className = 'tikz-clean-code';
+          const cleanCodeEl = document.createElement('code');
+          cleanCodeEl.textContent = '```tikz\n' + tpl.code + '\n```';
+          cleanPre.appendChild(cleanCodeEl);
+          codeStage.appendChild(cleanPre);
 
-          stage.appendChild(loadingHint);
-          stage.appendChild(tikzScript);
+          const btnGraphic = cardHeader.querySelector('.js-view-graphic');
+          const btnCode = cardHeader.querySelector('.js-view-code');
+          const btnCopyTikz = cardHeader.querySelector('.js-copy-tikz');
+
+          btnGraphic.addEventListener('click', function() {
+            btnGraphic.classList.add('is-active');
+            btnCode.classList.remove('is-active');
+            stage.classList.remove('is-hidden');
+            codeStage.classList.remove('is-visible');
+            if (!hasPreRenderedSvg) {
+              setTimeout(function() {
+                if (!stage.querySelector('svg') && !stage.classList.contains('is-hidden')) {
+                  btnCode.click();
+                }
+              }, 2200);
+            }
+          });
+
+          btnCode.addEventListener('click', function() {
+            btnCode.classList.add('is-active');
+            btnGraphic.classList.remove('is-active');
+            codeStage.classList.add('is-visible');
+            stage.classList.add('is-hidden');
+          });
+
+          btnCopyTikz.addEventListener('click', function() {
+            const tikzToCopy = '```tikz\n' + tpl.code + '\n```';
+            if (navigator.clipboard && window.isSecureContext) {
+              navigator.clipboard.writeText(tikzToCopy).then(onCopiedTikz);
+            } else {
+              const ta = document.createElement('textarea');
+              ta.value = tikzToCopy;
+              ta.style.position = 'fixed';
+              ta.style.opacity = '0';
+              document.body.appendChild(ta);
+              ta.select();
+              try { document.execCommand('copy'); onCopiedTikz(); } catch (e) {}
+              document.body.removeChild(ta);
+            }
+            function onCopiedTikz() {
+              btnCopyTikz.classList.add('is-copied');
+              btnCopyTikz.textContent = '✅ ¡Copiado!';
+              setTimeout(function() {
+                btnCopyTikz.classList.remove('is-copied');
+                btnCopyTikz.textContent = '📋 Copiar TikZ';
+              }, 2000);
+            }
+          });
+
           card.appendChild(cardHeader);
           card.appendChild(stage);
+          card.appendChild(codeStage);
           gridEl.appendChild(card);
         });
 
@@ -615,6 +1115,10 @@
         diagEl.setAttribute('data-level', diag.level);
         diagEl.textContent = diag.text;
       }
+
+      if (typeof window.__syncFloatingLayout === 'function') {
+        window.__syncFloatingLayout();
+      }
     }
 
     const filterBtn = document.getElementById('chk-btn-filter');
@@ -624,6 +1128,9 @@
         const active = document.body.classList.toggle('checklist-filter-pending');
         filterBtn.classList.toggle('is-active', active);
         filterBtn.textContent = active ? '👁️ Mostrar todos' : '👁️ Ver solo pendientes';
+        if (typeof window.__syncFloatingLayout === 'function') {
+          window.__syncFloatingLayout();
+        }
       });
     }
 
@@ -634,6 +1141,9 @@
         const isMin = bar.classList.toggle('is-minimized');
         document.body.classList.toggle('checklist-bar-minimized', isMin);
         minBtn.textContent = isMin ? '🔼' : '🔽';
+        if (typeof window.__syncFloatingLayout === 'function') {
+          window.__syncFloatingLayout();
+        }
       });
     }
 
@@ -866,7 +1376,208 @@
   }
 
   /* ==========================================================================
-     4. MEJORA C: LIGHTBOX EXCLUSIVO PARA IMÁGENES / CAPTURAS (main.content img)
+     4. COORDINACIÓN ANTI-COLISIÓN ENTRE BARRA DE CHECKLIST Y BOTONES FLOTANTES
+     ========================================================================== */
+  function initFloatingLayoutSync() {
+    function syncFloatingLayout() {
+      const bar = document.getElementById('checklist-floating-bar');
+      const floatingWidget = document.querySelector('.floating-toc-widget');
+      const mainContent = document.querySelector('main.content');
+      if (!bar) return;
+
+      const vw = window.innerWidth || document.documentElement.clientWidth || 1024;
+      const vh = window.innerHeight || document.documentElement.clientHeight || 800;
+      const isMin = bar.classList.contains('is-minimized');
+      const barRect = bar.getBoundingClientRect();
+      const barHeight = Math.ceil(barRect.height || 0);
+
+      if (mainContent) {
+        if (isMin) {
+          mainContent.style.setProperty('padding-bottom', vw <= 768 ? '7.5rem' : '8.5rem', 'important');
+        } else {
+          const safePadding = Math.max(vw <= 768 ? 245 : 225, barHeight + (vw <= 768 ? 115 : 95));
+          mainContent.style.setProperty('padding-bottom', safePadding + 'px', 'important');
+        }
+      }
+
+      if (!floatingWidget) return;
+
+      if (isMin) {
+        if (vw <= 768) {
+          floatingWidget.style.setProperty('bottom', '8px', 'important');
+          floatingWidget.style.setProperty('right', '10px', 'important');
+          const fwRect = floatingWidget.getBoundingClientRect();
+          if (barRect.right + 8 > fwRect.left) {
+            const liftedBottom = Math.max(48, Math.ceil(vh - barRect.top + 8));
+            floatingWidget.style.setProperty('bottom', liftedBottom + 'px', 'important');
+          }
+        } else {
+          floatingWidget.style.removeProperty('bottom');
+          floatingWidget.style.removeProperty('right');
+        }
+      } else {
+        if (vw <= 1200) {
+          const computedBarBottom = Math.max(8, Math.round(vh - barRect.bottom));
+          const safeBottom = barHeight + computedBarBottom + (vw <= 768 ? 10 : 14);
+          floatingWidget.style.setProperty('bottom', safeBottom + 'px', 'important');
+          if (vw <= 768) {
+            floatingWidget.style.setProperty('right', '10px', 'important');
+          } else {
+            floatingWidget.style.removeProperty('right');
+          }
+        } else {
+          floatingWidget.style.removeProperty('bottom');
+          floatingWidget.style.removeProperty('right');
+          const fwRect = floatingWidget.getBoundingClientRect();
+          if (barRect.right + 12 > fwRect.left && barRect.top < fwRect.bottom) {
+            const computedBarBottom = Math.max(14, Math.round(vh - barRect.bottom));
+            floatingWidget.style.setProperty('bottom', (barHeight + computedBarBottom + 14) + 'px', 'important');
+          }
+        }
+      }
+    }
+
+    window.__syncFloatingLayout = syncFloatingLayout;
+    syncFloatingLayout();
+    setTimeout(syncFloatingLayout, 120);
+    setTimeout(syncFloatingLayout, 450);
+
+    window.addEventListener('resize', syncFloatingLayout, { passive: true });
+
+    const bar = document.getElementById('checklist-floating-bar');
+    if (bar && typeof ResizeObserver !== 'undefined') {
+      const ro = new ResizeObserver(function() {
+        syncFloatingLayout();
+      });
+      ro.observe(bar);
+    }
+  }
+
+  /* ==========================================================================
+     5. CALIBRACIÓN DE DIAGRAMAS MERMAID (ESCRITORIO ~140%, MÓVIL INTACTO,
+        Y ELIMINACIÓN DEL CUADRADITO FANTASMA EN ESQUINA SUPERIOR IZQUIERDA)
+     ========================================================================== */
+  function initMermaidEnhancements() {
+    function cleanAndScaleMermaid() {
+      const vw = window.innerWidth || document.documentElement.clientWidth || 1280;
+      const isMobile = vw <= 768;
+      const containers = document.querySelectorAll('.mermaid, .block-language-mermaid, pre.mermaid, div.mermaid');
+
+      containers.forEach(function(container) {
+        const svg = container.querySelector('svg');
+        if (!svg) return;
+
+        // 1. Eliminar cuadraditos fantasma en (0,0) generados por edgeLabel / labelBkg vacíos en Mermaid v11
+        const edgeLabels = svg.querySelectorAll('g.edgeLabel, .edgeLabel');
+        edgeLabels.forEach(function(el) {
+          const txt = (el.textContent || '').replace(/[\s\u200B-\u200D\uFEFF]+/g, '');
+          if (txt.length === 0 && !el.querySelector('img, svg')) {
+            el.style.setProperty('display', 'none', 'important');
+            el.style.setProperty('visibility', 'hidden', 'important');
+            el.style.setProperty('opacity', '0', 'important');
+          }
+        });
+
+        const labelBkgs = svg.querySelectorAll('.labelBkg');
+        labelBkgs.forEach(function(bkg) {
+          const txt = (bkg.textContent || '').replace(/[\s\u200B-\u200D\uFEFF]+/g, '');
+          if (txt.length === 0) {
+            bkg.style.setProperty('display', 'none', 'important');
+            bkg.style.setProperty('border', 'none', 'important');
+            bkg.style.setProperty('padding', '0', 'important');
+            bkg.style.setProperty('background', 'transparent', 'important');
+            bkg.style.setProperty('box-shadow', 'none', 'important');
+          }
+        });
+
+        const foreignObjects = svg.querySelectorAll('foreignObject');
+        foreignObjects.forEach(function(fo) {
+          const wAttr = fo.getAttribute('width');
+          const hAttr = fo.getAttribute('height');
+          const txt = (fo.textContent || '').replace(/[\s\u200B-\u200D\uFEFF]+/g, '');
+          if (wAttr === '0' || hAttr === '0' || parseFloat(wAttr) === 0 || parseFloat(hAttr) === 0 || txt.length === 0) {
+            fo.style.setProperty('display', 'none', 'important');
+            const parentEdge = fo.closest('g.edgeLabel');
+            if (parentEdge && ((parentEdge.textContent || '').replace(/[\s\u200B-\u200D\uFEFF]+/g, '').length === 0)) {
+              parentEdge.style.setProperty('display', 'none', 'important');
+            }
+          }
+        });
+
+        const edgeRects = svg.querySelectorAll('g.edgeLabel rect, rect.labelBkg');
+        edgeRects.forEach(function(r) {
+          const rw = parseFloat(r.getAttribute('width') || '0');
+          const rh = parseFloat(r.getAttribute('height') || '0');
+          const parentEdge = r.closest('g.edgeLabel');
+          const parentTxt = parentEdge ? (parentEdge.textContent || '').replace(/[\s\u200B-\u200D\uFEFF]+/g, '') : '';
+          if (rw <= 2 || rh <= 2 || parentTxt.length === 0) {
+            r.style.setProperty('display', 'none', 'important');
+          }
+        });
+
+        // 2. Calibrar tamaño en escritorio (~140% respecto al tamaño colapsado anterior), preservando móvil intacto
+        const vb = (svg.getAttribute('viewBox') || '').trim().split(/[\s,]+/).map(parseFloat);
+        let vbW = (vb.length === 4 && !isNaN(vb[2]) && vb[2] > 0) ? vb[2] : 380;
+        let vbH = (vb.length === 4 && !isNaN(vb[3]) && vb[3] > 0) ? vb[3] : 260;
+
+        let targetDesktopW;
+        if (vbW <= 380) {
+          // Diagrama vertical de 1 columna (antes colapsaba a ~300px; 300 * 1.45 ≈ 435-520px)
+          targetDesktopW = Math.round(Math.max(450, Math.min(540, vbW * 1.45)));
+          const aspect = vbH / Math.max(1, vbW);
+          if (aspect > 2.0) {
+            // Evitar que diagramas muy largos verticalmente excedan la altura cómoda en escritorio
+            targetDesktopW = Math.round(Math.max(430, Math.min(targetDesktopW, 640 / aspect)));
+          }
+        } else if (vbW <= 640) {
+          // Diagrama de 2 columnas (antes colapsaba a ~300-390px; ahora ~540-700px)
+          targetDesktopW = Math.round(Math.max(540, Math.min(720, vbW * 1.35)));
+        } else {
+          // Diagrama apaisado o de 3+ columnas (ahora ~680-860px)
+          targetDesktopW = Math.round(Math.max(680, Math.min(860, vbW * 1.2)));
+        }
+
+        container.style.setProperty('--mermaid-box-desktop-width', (targetDesktopW + 56) + 'px');
+        svg.style.setProperty('--mermaid-desktop-width', targetDesktopW + 'px');
+
+        if (isMobile) {
+          svg.style.setProperty('width', '100%', 'important');
+          svg.style.setProperty('max-width', '100%', 'important');
+          svg.style.setProperty('min-width', '0', 'important');
+        } else {
+          svg.style.setProperty('width', targetDesktopW + 'px', 'important');
+          svg.style.setProperty('max-width', '100%', 'important');
+        }
+      });
+    }
+
+    cleanAndScaleMermaid();
+    setTimeout(cleanAndScaleMermaid, 250);
+    setTimeout(cleanAndScaleMermaid, 800);
+    setTimeout(cleanAndScaleMermaid, 1800);
+
+    window.addEventListener('resize', cleanAndScaleMermaid, { passive: true });
+
+    const mainContent = document.querySelector('main.content') || document.body;
+    if (mainContent && typeof MutationObserver !== 'undefined') {
+      const mo = new MutationObserver(function(mutations) {
+        let shouldRun = false;
+        for (let i = 0; i < mutations.length; i++) {
+          if (mutations[i].addedNodes && mutations[i].addedNodes.length > 0) {
+            shouldRun = true;
+            break;
+          }
+        }
+        if (shouldRun) {
+          cleanAndScaleMermaid();
+        }
+      });
+      mo.observe(mainContent, { childList: true, subtree: true });
+    }
+  }
+
+  /* ==========================================================================
+     6. MEJORA C: LIGHTBOX EXCLUSIVO PARA IMÁGENES / CAPTURAS (main.content img)
         (Prohibido en etiquetas <svg> o diagramas Mermaid)
      ========================================================================== */
   function initImageLightbox() {

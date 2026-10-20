@@ -156,9 +156,16 @@ body {
     }
   }
 
-  /* Espacio inferior extra cuando hay barra de checklist para nunca tapar los links del final */
+  /* Espacio inferior extra cuando hay barra de checklist para nunca tapar los links ni preguntas del final */
   &.has-checklist-bar main.content {
-    padding-bottom: 11.5rem !important;
+    padding-bottom: 14.5rem !important;
+
+    @media (max-width: 768px) {
+      padding-bottom: 16rem !important;
+    }
+  }
+  &.has-checklist-bar.checklist-bar-minimized main.content {
+    padding-bottom: 7.5rem !important;
   }
 
   .empty-navbar {
@@ -537,24 +544,47 @@ main.content .callout {
   flex-direction: column !important;
   align-items: flex-end !important;
   gap: 10px !important;
+  transition: bottom 0.22s ease !important;
 
   @media (max-width: 960px) {
-    right: 14px !important;
-    bottom: 16px !important;
+    right: 12px !important;
+    bottom: 14px !important;
+  }
+
+  @media (max-width: 768px) {
+    right: 10px !important;
+    bottom: 10px !important;
+    gap: 8px !important;
   }
 }
 
-/* Si la página tiene barra de checklist en pantallas chicas, elevar el botón de índice para no superponerse */
+/* Si la página tiene barra de checklist en pantallas medianas/chicas, elevar los botones de navegación por encima de la barra */
 body.has-checklist-bar:not(.checklist-bar-minimized) .floating-toc-widget {
-  @media (max-width: 1100px) {
-    bottom: 122px !important;
+  @media (max-width: 1200px) {
+    bottom: 158px !important;
+  }
+
+  @media (max-width: 768px) {
+    bottom: 132px !important;
+  }
+}
+
+/* Cuando la barra está minimizada en móvil, queda a la izquierda y los botones de navegación a la derecha */
+body.has-checklist-bar.checklist-bar-minimized .floating-toc-widget {
+  @media (max-width: 768px) {
+    bottom: 10px !important;
+    right: 10px !important;
   }
 }
 
 .floating-toc-buttons {
   display: flex !important;
   align-items: center !important;
-  gap: 8px !important;
+  gap: 10px !important;
+
+  @media (max-width: 768px) {
+    gap: 7px !important;
+  }
 }
 
 .floating-toc-trigger,
@@ -577,6 +607,13 @@ body.has-checklist-bar:not(.checklist-bar-minimized) .floating-toc-widget {
   transition: all 0.2s ease !important;
   user-select: none !important;
 
+  @media (max-width: 768px) {
+    padding: 7px 12px !important;
+    font-size: 0.78rem !important;
+    gap: 5px !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35) !important;
+  }
+
   &:hover {
     border-color: var(--pro-accent) !important;
     color: var(--pro-accent) !important;
@@ -596,6 +633,10 @@ body.has-checklist-bar:not(.checklist-bar-minimized) .floating-toc-widget {
   opacity: 0;
   pointer-events: none;
   transform: translateY(8px);
+
+  @media (max-width: 768px) {
+    padding: 7px 10px !important;
+  }
 
   &.is-visible {
     opacity: 1 !important;
@@ -1223,10 +1264,31 @@ body.checklist-filter-pending {
     }
   }
 
-  @media (max-width: 600px) {
-    bottom: 10px !important;
-    padding: 10px 14px !important;
-    max-width: calc(100vw - 20px) !important;
+  @media (max-width: 768px) {
+    bottom: 8px !important;
+    left: 10px !important;
+    right: 10px !important;
+    width: auto !important;
+    max-width: none !important;
+    transform: none !important;
+    padding: 8px 11px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.48), 0 0 0 1px rgba(255, 255, 255, 0.06) !important;
+
+    &.is-minimized {
+      left: 10px !important;
+      right: auto !important;
+      bottom: 10px !important;
+      transform: none !important;
+      width: auto !important;
+      max-width: calc(100vw - 165px) !important;
+      padding: 6px 12px !important;
+      border-radius: 999px !important;
+
+      .checklist-bar-header {
+        gap: 8px !important;
+      }
+    }
   }
 }
 
@@ -1235,6 +1297,11 @@ body.checklist-filter-pending {
   align-items: center !important;
   justify-content: space-between !important;
   margin-bottom: 8px !important;
+
+  @media (max-width: 768px) {
+    margin-bottom: 4px !important;
+    gap: 6px !important;
+  }
 }
 
 .checklist-bar-stats {
@@ -1243,6 +1310,11 @@ body.checklist-filter-pending {
   gap: 12px !important;
   font-size: 0.88rem !important;
   font-weight: 600 !important;
+
+  @media (max-width: 768px) {
+    gap: 8px !important;
+    font-size: 0.76rem !important;
+  }
 }
 
 .stat-chip-done {
@@ -1257,12 +1329,20 @@ body.checklist-filter-pending {
   display: flex !important;
   align-items: center !important;
   gap: 10px !important;
+
+  @media (max-width: 768px) {
+    gap: 6px !important;
+  }
 }
 
 .checklist-bar-percent {
   font-size: 0.95rem !important;
   font-weight: 750 !important;
   color: var(--pro-accent) !important;
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem !important;
+  }
 }
 
 .checklist-minimize-btn {
@@ -1274,6 +1354,11 @@ body.checklist-filter-pending {
   font-size: 0.75rem !important;
   font-weight: 600 !important;
   cursor: pointer !important;
+
+  @media (max-width: 768px) {
+    padding: 2px 6px !important;
+    font-size: 0.7rem !important;
+  }
 
   &:hover {
     color: var(--pro-accent) !important;
@@ -1288,6 +1373,11 @@ body.checklist-filter-pending {
   border-radius: 999px !important;
   overflow: hidden !important;
   margin-bottom: 8px !important;
+
+  @media (max-width: 768px) {
+    height: 4px !important;
+    margin-bottom: 4px !important;
+  }
 }
 
 .checklist-progress-fill {
@@ -1308,6 +1398,14 @@ body.checklist-filter-pending {
   text-align: center !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   background: rgba(15, 23, 42, 0.4) !important;
+
+  @media (max-width: 768px) {
+    font-size: 0.72rem !important;
+    padding: 4px 8px !important;
+    margin-bottom: 5px !important;
+    line-height: 1.22 !important;
+    border-radius: 6px !important;
+  }
 
   &[data-level="good"] {
     background: rgba(16, 185, 129, 0.14) !important;
@@ -1360,6 +1458,11 @@ body.theme-light,
   font-size: 0.78rem !important;
   color: var(--pro-text-faint) !important;
 
+  @media (max-width: 768px) {
+    gap: 6px !important;
+    font-size: 0.71rem !important;
+  }
+
   .checklist-filter-btn {
     display: inline-flex !important;
     align-items: center !important;
@@ -1373,6 +1476,12 @@ body.theme-light,
     font-weight: 650 !important;
     cursor: pointer !important;
     transition: all 0.15s ease !important;
+
+    @media (max-width: 768px) {
+      padding: 3px 8px !important;
+      font-size: 0.71rem !important;
+      border-radius: 6px !important;
+    }
 
     &:hover {
       background: rgba(136, 192, 208, 0.22) !important;
@@ -1396,6 +1505,10 @@ body.theme-light,
     text-decoration: underline !important;
     padding: 0 !important;
 
+    @media (max-width: 768px) {
+      font-size: 0.71rem !important;
+    }
+
     &:hover {
       color: #bf616a !important;
     }
@@ -1403,7 +1516,7 @@ body.theme-light,
 }
 
 /* ==========================================================================
-   4. DIAGRAMAS MERMAID CALIBRADOS (SIN ZOOM, COMPACTOS Y CONTRASTE EN FLECHAS)
+   4. DIAGRAMAS MERMAID CALIBRADOS (ESCRITORIO ~140%, MÓVIL INTACTO, SIN CUADRADITO FANTASMA)
    ========================================================================== */
 
 .mermaid,
@@ -1416,10 +1529,11 @@ pre.mermaid,
   align-items: center !important;
   justify-content: center !important;
   text-align: center !important;
-  max-width: 620px !important;
-  width: fit-content !important;
-  margin: 1.5rem auto !important;
-  padding: 1.25rem 1.5rem !important;
+  width: var(--mermaid-box-desktop-width, fit-content) !important;
+  min-width: 500px !important;
+  max-width: 890px !important;
+  margin: 1.75rem auto !important;
+  padding: 1.5rem 1.85rem !important;
   background: var(--pro-bg-elevated) !important;
   border: 1px solid var(--pro-border-subtle) !important;
   border-radius: 12px !important;
@@ -1427,6 +1541,26 @@ pre.mermaid,
   position: relative !important;
   cursor: default !important;
   overflow-x: auto !important;
+  box-sizing: border-box !important;
+
+  &::before,
+  &::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  .copy-code-button {
+    display: none !important;
+  }
+
+  /* En el teléfono se conserva el tamaño exacto ideal */
+  @media (max-width: 768px) {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    padding: 1.1rem 1rem !important;
+    margin: 1.35rem auto !important;
+  }
 }
 
 .mermaid svg,
@@ -1437,9 +1571,18 @@ div.mermaid svg,
   margin: 0 auto !important;
   background: transparent !important;
   background-color: transparent !important;
+  width: var(--mermaid-desktop-width, 520px) !important;
+  min-width: 440px !important;
   max-width: 100% !important;
   height: auto !important;
   filter: none !important;
+
+  @media (max-width: 768px) {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: auto !important;
+  }
 }
 
 /* Estilo de nodos y etiquetas de flechas en Modo Oscuro */
@@ -1489,7 +1632,33 @@ div.mermaid svg,
   stroke: #94a3b8 !important;
 }
 
-/* Contraste nítido en textos sobre flechas (.edgeLabel / .labelBkg) en Modo Oscuro */
+/* Eliminación total del cuadradito vacío en la esquina superior izquierda (0,0)
+   que Mermaid v11 genera para flechas sin texto (edgeLabel / labelBkg vacío) */
+.mermaid .edgeLabel:empty,
+.mermaid .edgeLabel span:empty,
+.mermaid .labelBkg:empty,
+.mermaid .labelBkg:has(> .edgeLabel:empty),
+.mermaid .labelBkg:has(> span:empty),
+.mermaid .edgeLabel:has(.edgeLabel:empty),
+.mermaid .edgeLabel foreignObject[width="0"],
+.mermaid .edgeLabel foreignObject[height="0"],
+.mermaid .edgeLabel foreignObject[width="0"] > div,
+.mermaid .edgeLabel rect[width="0"],
+.mermaid .edgeLabel rect[height="0"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Contraste nítido en textos sobre flechas CON contenido (.edgeLabel / .labelBkg) en Modo Oscuro */
 .mermaid .edgeLabel,
 .mermaid .edgeLabel span,
 .mermaid .edgeLabel p,
@@ -1499,7 +1668,7 @@ div.mermaid svg,
   fill: #f8fafc !important;
 }
 
-.mermaid .edgeLabel rect {
+.mermaid .edgeLabel rect:not([width="0"]):not([height="0"]) {
   fill: #1e293b !important;
   background-color: #1e293b !important;
   stroke: #475569 !important;
@@ -1509,8 +1678,8 @@ div.mermaid svg,
   ry: 6px !important;
 }
 
-.mermaid .labelBkg,
-.mermaid .edgeLabel foreignObject > div {
+.mermaid .labelBkg:not(:empty):not(:has(> .edgeLabel:empty)),
+.mermaid .edgeLabel foreignObject:not([width="0"]):not([height="0"]) > div:not(:empty):not(:has(> .edgeLabel:empty)) {
   background-color: #1e293b !important;
   color: #f8fafc !important;
   border: 1px solid #475569 !important;
@@ -1577,15 +1746,15 @@ body.theme-light,
     fill: #0f172a !important;
   }
 
-  .mermaid .edgeLabel rect {
+  .mermaid .edgeLabel rect:not([width="0"]):not([height="0"]) {
     fill: #f1f5f9 !important;
     background-color: #f1f5f9 !important;
     stroke: #cbd5e1 !important;
     opacity: 1 !important;
   }
 
-  .mermaid .labelBkg,
-  .mermaid .edgeLabel foreignObject > div {
+  .mermaid .labelBkg:not(:empty):not(:has(> .edgeLabel:empty)),
+  .mermaid .edgeLabel foreignObject:not([width="0"]):not([height="0"]) > div:not(:empty):not(:has(> .edgeLabel:empty)) {
     background-color: #f1f5f9 !important;
     color: #0f172a !important;
     border: 1px solid #cbd5e1 !important;
@@ -1702,7 +1871,7 @@ main.content img.zoomable-screenshot {
 }
 
 /* ==========================================================================
-   6. MEJORA 4: VISTA PREVIA DE PLANTILLAS GRÁFICAS TIKZ EN LA WEB (TikZJax)
+   6. MEJORA 4: VISTA PREVIA DE PLANTILLAS GRÁFICAS TIKZ (SVG VECTORIAL + CÓDIGO LIMPIO)
    ========================================================================== */
 
 .tikz-preview-section {
@@ -1755,21 +1924,16 @@ main.content img.zoomable-screenshot {
   }
 }
 
-/* Usamos max-height + opacity en lugar de display:none para que TikZJax
-   calcule correctamente el BBox de los SVG incluso con el panel cerrado */
 .tikz-preview-body {
-  max-height: 0 !important;
-  overflow: hidden !important;
-  opacity: 0 !important;
-  padding: 0 18px !important;
-  pointer-events: none !important;
-  transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.25s ease !important;
+  display: none !important;
+  padding: 18px !important;
 
   &.is-open {
-    max-height: 9000px !important;
-    opacity: 1 !important;
-    padding: 18px !important;
-    pointer-events: auto !important;
+    display: block !important;
+  }
+
+  @media (max-width: 768px) {
+    padding: 12px !important;
   }
 }
 
@@ -1797,8 +1961,9 @@ main.content img.zoomable-screenshot {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
-  gap: 10px !important;
-  padding: 9px 14px !important;
+  flex-wrap: wrap !important;
+  gap: 8px 12px !important;
+  padding: 10px 14px !important;
   background: var(--pro-code-header-bg) !important;
   border-bottom: 1px solid var(--pro-border-subtle) !important;
   font-size: 0.86rem !important;
@@ -1806,16 +1971,70 @@ main.content img.zoomable-screenshot {
   color: var(--pro-text-main) !important;
 }
 
+.tikz-card-title {
+  font-weight: 700 !important;
+  color: var(--pro-text-main) !important;
+  font-size: 0.87rem !important;
+}
+
+.tikz-card-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  flex-wrap: wrap !important;
+  margin-left: auto !important;
+}
+
+.tikz-card-view-btn,
+.tikz-card-copy-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid var(--pro-border-medium) !important;
+  color: var(--pro-text-muted) !important;
+  border-radius: 6px !important;
+  padding: 4px 10px !important;
+  font-size: 0.76rem !important;
+  font-weight: 650 !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+  user-select: none !important;
+
+  &:hover {
+    border-color: var(--pro-accent) !important;
+    color: var(--pro-accent) !important;
+    background: rgba(136, 192, 208, 0.12) !important;
+  }
+
+  &.is-active {
+    background: var(--pro-accent) !important;
+    border-color: var(--pro-accent) !important;
+    color: #0f172a !important;
+    font-weight: 750 !important;
+  }
+
+  &.is-copied {
+    background: #10b981 !important;
+    border-color: #059669 !important;
+    color: #ffffff !important;
+  }
+}
+
 .tikz-render-stage {
   background: #ffffff !important;
   color: #0f172a !important;
-  padding: 18px 16px !important;
+  padding: 20px 18px !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
   justify-content: center !important;
   overflow-x: auto !important;
   min-height: 90px !important;
+
+  &.is-hidden {
+    display: none !important;
+  }
 
   svg {
     max-width: 100% !important;
@@ -1826,6 +2045,39 @@ main.content img.zoomable-screenshot {
 
   &:has(svg) .tikz-loading-hint {
     display: none !important;
+  }
+}
+
+.tikz-code-stage {
+  display: none !important;
+  background: var(--pro-code-box-bg) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+
+  &.is-visible {
+    display: block !important;
+  }
+
+  pre.tikz-clean-code {
+    margin: 0 !important;
+    padding: 14px 18px !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    overflow-x: auto !important;
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+
+    code {
+      font-family: "JetBrains Mono", "Fira Code", Consolas, Menlo, Monaco, monospace !important;
+      font-size: 0.84rem !important;
+      line-height: 1.58 !important;
+      color: #e5e9f0 !important;
+      display: block !important;
+      white-space: pre-wrap !important;
+      word-break: break-word !important;
+    }
   }
 }
 
