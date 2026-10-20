@@ -1,36 +1,16 @@
 <!-- ==========================================================================
-     MEJORAS INTERACTIVAS: TABLAS, ÍNDICE (TOC), PROMPTS, CHECKLISTS 07 Y MERMAID
+     MEJORAS INTERACTIVAS: TABLAS, PROMPTS + PERSONALIZADOR + TIKZ, CHECKLISTS 07,
+     ÍNDICE (TOC) Y LIGHTBOX EXCLUSIVO PARA CAPTURAS DE PANTALLA
      Obsidian Digital Garden - Archivo de personalización de usuario seguro
      ========================================================================== -->
 
-<!-- Modal de Zoom para Diagramas Mermaid -->
-<div id="mermaid-zoom-modal" class="mermaid-modal" role="dialog" aria-modal="true" aria-label="Zoom en diagrama" style="display: none;">
-  <div class="mermaid-modal-backdrop" id="mermaid-backdrop"></div>
-  <div class="mermaid-modal-dialog">
-    <div class="mermaid-modal-header">
-      <div class="mermaid-modal-title">
-        <span aria-hidden="true">📊</span>
-        <span>Diagrama Mermaid (Vista Ampliada)</span>
-      </div>
-      <div class="mermaid-modal-tools">
-        <button type="button" class="m-tool-btn" id="m-btn-zoom-in" title="Acercar (+)">➕ Acercar</button>
-        <button type="button" class="m-tool-btn" id="m-btn-zoom-out" title="Alejar (-)">➖ Alejar</button>
-        <button type="button" class="m-tool-btn" id="m-btn-reset" title="Restablecer (0)">↺ Restablecer</button>
-        <button type="button" class="m-tool-btn m-btn-close" id="m-btn-close" title="Cerrar (Esc)">✕ Cerrar</button>
-      </div>
-    </div>
-    <div class="mermaid-modal-body" id="mermaid-viewport">
-      <div class="mermaid-canvas" id="mermaid-canvas"></div>
-    </div>
-    <div class="mermaid-modal-footer">
-      <span>💡 Arrastrá para desplazar</span>
-      <span>•</span>
-      <span>Rueda del mouse o pellizco para zoom</span>
-      <span>•</span>
-      <span>Doble clic para restablecer</span>
-      <span>•</span>
-      <span>[Esc] para cerrar</span>
-    </div>
+<!-- Modal Lightbox Exclusivo para Capturas de Pantalla (main.content img) -->
+<div id="image-lightbox-modal" class="img-lightbox-modal" role="dialog" aria-modal="true" aria-label="Vista ampliada de captura de pantalla" style="display: none;">
+  <div class="img-lightbox-backdrop" id="img-lightbox-backdrop"></div>
+  <button type="button" class="img-lightbox-close" id="img-lightbox-close" title="Cerrar vista ampliada (Esc)">✕ Cerrar</button>
+  <div class="img-lightbox-content">
+    <img class="img-lightbox-img" id="img-lightbox-target" src="" alt="">
+    <div class="img-lightbox-caption" id="img-lightbox-caption" style="display: none;"></div>
   </div>
 </div>
 
@@ -38,7 +18,31 @@
 (function() {
   'use strict';
 
-  if (document.readyState === 'loading') {
+  let tikzJaxInjected = false;
+
+  function ensureTikzJaxLoaded() {
+    if (tikzJaxInjected) return;
+    tikzJaxInjected = true;
+
+    if (!document.querySelector('link[href*="tikzjax.com/v1/fonts.css"]')) {
+      const fontLink = document.createElement('link');
+      fontLink.rel = 'stylesheet';
+      fontLink.type = 'text/css';
+      fontLink.href = 'https://tikzjax.com/v1/fonts.css';
+      document.head.appendChild(fontLink);
+    }
+
+    if (!document.querySelector('script[src*="tikzjax.com/v1/tikzjax.js"]')) {
+      const scriptEl = document.createElement('script');
+      scriptEl.src = 'https://tikzjax.com/v1/tikzjax.js';
+      document.head.appendChild(scriptEl);
+    }
+  }
+
+  // Ejecutar inmediatamente si main.content ya está en el DOM (el footer se incluye después de main.content)
+  if (document.querySelector('main.content')) {
+    initAllCustomFeatures();
+  } else if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initAllCustomFeatures);
   } else {
     initAllCustomFeatures();
@@ -49,7 +53,7 @@
     initSmartPrompts();
     initInteractiveChecklists();
     initPageTOC();
-    initMermaidZoom();
+    initImageLightbox();
   }
 
   /* ==========================================================================
@@ -106,8 +110,56 @@
   }
 
   /* ==========================================================================
-     1. CAJAS DE PROMPTS INTELIGENTES
-        (Límite de altura >15 líneas, botón expandir/contraer y botón Copiar grande)
+     AUXILIAR: EXTRACCIÓN DE PLANTILLAS TIKZ PARA PREVISUALIZACIÓN VECTORIAL
+     ========================================================================== */
+  function extractTikzTemplates(rawText, langName) {
+    const results = [];
+    const fenceRegex = /(?:####\s+([^\n]+)\s*\n+)?```tikz\s*\n([\s\S]*?)```/g;
+    let match;
+
+    while ((match = fenceRegex.exec(rawText)) !== null) {
+      let rawTitle = (match[1] || '').trim();
+      if (!rawTitle) {
+        rawTitle = 'Plantilla Gráfica TikZ #' + (results.length + 1);
+      } else {
+        rawTitle = rawTitle
+          .replace(/`([^`]+)`/g, '$1')
+          .replace(/\$\\mathrm\{([^}]+)\}\$/g, '$1')
+          .replace(/\$\\Delta\$/g, 'Δ')
+          .replace(/\$([^$]+)\$/g, '$1');
+      }
+      const code = normalizeTikzDocument(match[2]);
+      if (code) {
+        results.push({ title: rawTitle, code: code });
+      }
+    }
+
+    if (results.length === 0 && (langName === 'TIKZ' || rawText.indexOf('\\begin{tikzpicture}') !== -1)) {
+      if (rawText.indexOf('```tikz') === -1) {
+        const code = normalizeTikzDocument(rawText);
+        if (code) {
+          results.push({ title: 'Gráfico Vectorial TikZ', code: code });
+        }
+      }
+    }
+
+    return results;
+  }
+
+  function normalizeTikzDocument(codeStr) {
+    const trimmed = (codeStr || '').trim();
+    if (trimmed.indexOf('\\begin{tikzpicture}') === -1 && trimmed.indexOf('\\begin{circuitikz}') === -1) {
+      return '';
+    }
+    if (trimmed.indexOf('\\begin{document}') !== -1) {
+      return trimmed;
+    }
+    return '\\begin{document}\n' + trimmed + '\n\\end{document}';
+  }
+
+  /* ==========================================================================
+     1. CAJAS DE PROMPTS INTELIGENTES + PERSONALIZADOR RÁPIDO (MEJORA A) +
+        VISTA PREVIA DE PLANTILLAS TIKZ (MEJORA 4)
      ========================================================================== */
   function initSmartPrompts() {
     const codeBlocks = document.querySelectorAll('main.content pre');
@@ -121,6 +173,18 @@
       }
 
       const codeEl = pre.querySelector('code') || pre;
+
+      // Reparar wikilinks de ejemplo como ![[imagen.png|450]] que Eleventy convierte en <a href="/404">450</a>
+      codeEl.querySelectorAll('a.internal-link.is-unresolved').forEach(function(brokenLink) {
+        if (brokenLink.textContent.trim() === '450') {
+          const prev = brokenLink.previousSibling;
+          if (prev && prev.nodeType === 3 && /!$/.test(prev.nodeValue)) {
+            prev.nodeValue = prev.nodeValue.replace(/!$/, '');
+          }
+          brokenLink.replaceWith(document.createTextNode('![[imagen.png|450]]'));
+        }
+      });
+
       const rawText = codeEl.innerText.replace(/\r\n/g, '\n');
       const lines = rawText.split('\n');
       if (lines.length > 1 && lines[lines.length - 1].trim() === '') {
@@ -135,6 +199,39 @@
         langName = matchLang[1].toUpperCase();
       }
 
+      // Detectar variables personalizables (Mejora A)
+      const hasTemaVar = rawText.indexOf('[TEMA A APRENDER]') !== -1;
+      const hasDemoVar = rawText.indexOf('¿Incluir demostraciones / deducciones paso a paso? [SI / NO]: NO') !== -1;
+      const hasUnidadVar = rawText.indexOf('Unidad o tema a procesar: DESDE EL PRINCIPIO') !== -1;
+
+      let customControlsHtml = '';
+      if (hasTemaVar) {
+        customControlsHtml += `
+          <label class="prompt-customizer-control" title="Si escribís tu materia o tema acá, al copiar se reemplaza automáticamente [TEMA A APRENDER]">
+            <span class="prompt-customizer-label">✏️ Tema:</span>
+            <input type="text" class="prompt-customizer-input js-custom-tema" placeholder="Escribí tu materia o tema...">
+          </label>
+        `;
+      }
+      if (hasUnidadVar) {
+        customControlsHtml += `
+          <label class="prompt-customizer-control" title="Si escribís una unidad puntual, al copiar reemplaza DESDE EL PRINCIPIO">
+            <span class="prompt-customizer-label">📂 Unidad:</span>
+            <input type="text" class="prompt-customizer-input js-custom-unidad" placeholder="Unidad (defecto: DESDE EL PRINCIPIO)">
+          </label>
+        `;
+      }
+      if (hasDemoVar) {
+        customControlsHtml += `
+          <button type="button" class="prompt-customizer-toggle js-custom-demo" data-value="NO" title="Elegí si querés incluir demostraciones paso a paso al copiar el prompt">
+            <span>Demostraciones:</span>
+            <span class="demo-opt is-active" data-opt="NO">[NO]</span>
+            <span>/</span>
+            <span class="demo-opt" data-opt="SI">[SÍ]</span>
+          </button>
+        `;
+      }
+
       const wrapper = document.createElement('div');
       wrapper.className = 'prompt-box-wrapper';
 
@@ -145,10 +242,13 @@
           <span class="prompt-box-badge">💬 ${langName}</span>
           <span class="prompt-box-lines-count">${lineCount} líneas</span>
         </div>
-        <button type="button" class="prompt-copy-btn" title="Copiar prompt al portapapeles">
-          <span class="copy-icon" aria-hidden="true">📋</span>
-          <span class="copy-text">Copiar Prompt</span>
-        </button>
+        <div class="prompt-header-actions">
+          ${customControlsHtml}
+          <button type="button" class="prompt-copy-btn" title="Copiar prompt al portapapeles">
+            <span class="copy-icon" aria-hidden="true">📋</span>
+            <span class="copy-text">Copiar Prompt</span>
+          </button>
+        </div>
       `;
 
       const codeContainer = document.createElement('div');
@@ -159,6 +259,20 @@
       wrapper.appendChild(header);
       wrapper.appendChild(codeContainer);
       codeContainer.appendChild(pre);
+
+      // Eventos del selector rápido de Demostraciones [NO] / [SÍ]
+      const demoToggleBtn = header.querySelector('.js-custom-demo');
+      if (demoToggleBtn) {
+        demoToggleBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const current = demoToggleBtn.getAttribute('data-value') === 'SI' ? 'SI' : 'NO';
+          const next = current === 'NO' ? 'SI' : 'NO';
+          demoToggleBtn.setAttribute('data-value', next);
+          demoToggleBtn.querySelectorAll('.demo-opt').forEach(function(opt) {
+            opt.classList.toggle('is-active', opt.getAttribute('data-opt') === next);
+          });
+        });
+      }
 
       if (isLong) {
         const expandBar = document.createElement('div');
@@ -196,9 +310,102 @@
         });
       }
 
+      // Vista previa interactiva de plantillas TikZ (Mejora 4)
+      const tikzTemplates = extractTikzTemplates(rawText, langName);
+      if (tikzTemplates.length > 0) {
+        ensureTikzJaxLoaded();
+
+        const previewSection = document.createElement('div');
+        previewSection.className = 'tikz-preview-section';
+
+        const countLabel = tikzTemplates.length === 1
+          ? '1 gráfico vectorial'
+          : tikzTemplates.length + ' plantillas vectoriales';
+
+        previewSection.innerHTML = `
+          <button type="button" class="tikz-preview-toggle-btn" aria-expanded="false">
+            <span class="tikz-preview-title-wrap">
+              <span>📐 Vista Previa de las Plantillas Gráficas TikZ Renderizadas</span>
+              <span class="tikz-preview-badge">${countLabel}</span>
+            </span>
+            <span class="tikz-preview-Action">🔽 Mostrar gráficos en vivo</span>
+          </button>
+          <div class="tikz-preview-body">
+            <p class="tikz-preview-intro">
+              Gráficos compilados en vivo en el navegador con <strong>TikZJax</strong> a partir del código LaTeX/TikZ incluido en el prompt (circuitos equivalentes, curvas Par-Velocidad, diagramas fasoriales, sistemas 1-GDL, lazos de control y ciclos termodinámicos Rankine):
+            </p>
+            <div class="tikz-preview-grid"></div>
+          </div>
+        `;
+
+        const gridEl = previewSection.querySelector('.tikz-preview-grid');
+        tikzTemplates.forEach(function(tpl, idx) {
+          const card = document.createElement('div');
+          card.className = 'tikz-preview-card';
+
+          const cardHeader = document.createElement('div');
+          cardHeader.className = 'tikz-preview-card-header';
+          cardHeader.innerHTML = `
+            <span>${tpl.title}</span>
+            <span class="prompt-box-lines-count">SVG Vectorial #${idx + 1}</span>
+          `;
+
+          const stage = document.createElement('div');
+          stage.className = 'tikz-render-stage';
+
+          const loadingHint = document.createElement('div');
+          loadingHint.className = 'tikz-loading-hint';
+          loadingHint.textContent = '⏳ Renderizando gráfico vectorial TikZ...';
+
+          const tikzScript = document.createElement('script');
+          tikzScript.type = 'text/tikz';
+          tikzScript.textContent = tpl.code;
+
+          stage.appendChild(loadingHint);
+          stage.appendChild(tikzScript);
+          card.appendChild(cardHeader);
+          card.appendChild(stage);
+          gridEl.appendChild(card);
+        });
+
+        const togglePreviewBtn = previewSection.querySelector('.tikz-preview-toggle-btn');
+        const previewBody = previewSection.querySelector('.tikz-preview-body');
+        const actionLabel = previewSection.querySelector('.tikz-preview-Action');
+
+        togglePreviewBtn.addEventListener('click', function() {
+          const isOpen = previewBody.classList.toggle('is-open');
+          togglePreviewBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          actionLabel.textContent = isOpen ? '🔼 Ocultar gráficos' : '🔽 Mostrar gráficos en vivo';
+        });
+
+        wrapper.appendChild(previewSection);
+      }
+
       const copyBtn = header.querySelector('.prompt-copy-btn');
       copyBtn.addEventListener('click', function() {
-        const textToCopy = rawText;
+        let textToCopy = rawText;
+
+        const temaInput = header.querySelector('.js-custom-tema');
+        if (temaInput && temaInput.value.trim() !== '') {
+          textToCopy = textToCopy.split('[TEMA A APRENDER]').join(temaInput.value.trim());
+        }
+
+        const unidadInput = header.querySelector('.js-custom-unidad');
+        if (unidadInput && unidadInput.value.trim() !== '') {
+          textToCopy = textToCopy.replace(
+            'Unidad o tema a procesar: DESDE EL PRINCIPIO',
+            'Unidad o tema a procesar: ' + unidadInput.value.trim()
+          );
+        }
+
+        if (demoToggleBtn) {
+          const demoVal = demoToggleBtn.getAttribute('data-value') === 'SI' ? 'SI' : 'NO';
+          textToCopy = textToCopy.replace(
+            '¿Incluir demostraciones / deducciones paso a paso? [SI / NO]: NO',
+            '¿Incluir demostraciones / deducciones paso a paso? [SI / NO]: ' + demoVal
+          );
+        }
+
         if (navigator.clipboard && window.isSecureContext) {
           navigator.clipboard.writeText(textToCopy).then(showSuccess, fallbackCopy);
         } else {
@@ -241,18 +448,49 @@
   }
 
   /* ==========================================================================
-     2. CHECKLISTS INTERACTIVAS EN LAS GUÍAS 07
-        (Casillas clickeables, estrella ★ resaltada, localStorage y barra flotante)
+     2. CHECKLISTS INTERACTIVAS EN LAS GUÍAS 07 + DIAGNÓSTICO EN VIVO Y FILTRO
      ========================================================================== */
   function initInteractiveChecklists() {
     const mainContent = document.querySelector('main.content');
     if (!mainContent) return;
 
     const containsBallot = mainContent.textContent.indexOf('☐') !== -1;
-    const is07Path = /07[\.\-_][1-4]/.test(window.location.pathname) || /07[\.\-_][1-4]/.test(document.title);
+    const pathAndTitle = window.location.pathname + ' ' + document.title;
+    const is07Path = /07[\.\-_][1-4]/.test(pathAndTitle);
 
     if (!containsBallot && !is07Path) {
       return;
+    }
+
+    let guideId = '07.1';
+    if (/07[\.\-_]2/.test(pathAndTitle)) {
+      guideId = '07.2';
+    } else if (/07[\.\-_]3/.test(pathAndTitle)) {
+      guideId = '07.3';
+    } else if (/07[\.\-_]4/.test(pathAndTitle)) {
+      guideId = '07.4';
+    }
+
+    function getDiagnosisForGuide(guide, pendingCount) {
+      if (guide === '07.2') {
+        if (pendingCount <= 5) return { level: 'good', text: '🟢 Entrenamiento práctico excelente' };
+        if (pendingCount <= 13) return { level: 'warn', text: '🟡 Margen claro de mejora (priorizá los ★ CLAVE)' };
+        return { level: 'danger', text: '🔴 Cuidado: estás estudiando práctica como si fuera lectura' };
+      }
+      if (guide === '07.3') {
+        if (pendingCount <= 4) return { level: 'good', text: '🟢 Estudio teórico de alto rigor' };
+        if (pendingCount <= 10) return { level: 'warn', text: '🟡 Puntos flojos bajo presión (enfocate en los ★ CLAVE)' };
+        return { level: 'danger', text: '🔴 Trampa de releer para reconocer en vez de producir' };
+      }
+      if (guide === '07.4') {
+        if (pendingCount <= 5) return { level: 'good', text: '🟢 Práctica docente alineada con la evidencia' };
+        if (pendingCount <= 14) return { level: 'warn', text: '🟡 Oportunidades de alto impacto (probá 1 o 2 ★ CLAVE)' };
+        return { level: 'danger', text: '🔴 Enseñanza centrada en transmitir más que en práctica activa' };
+      }
+      // 07.1 por defecto
+      if (pendingCount <= 5) return { level: 'good', text: '🟢 Sistema de estudio muy sólido' };
+      if (pendingCount <= 12) return { level: 'warn', text: '🟡 Hábitos clave por ajustar (empezá por 1 o 2 ★ CLAVE)' };
+      return { level: 'danger', text: '🔴 Peligro de ilusión de competencia (exceso de estudio pasivo)' };
     }
 
     const pageSlug = window.location.pathname.replace(/\/$/, '').split('/').pop() || 'guia07';
@@ -272,7 +510,6 @@
 
     if (checklistItems.length === 0) return;
 
-    // Añadir clase al body para dar margen extra al final y nunca tapar los enlaces de Navegación
     document.body.classList.add('has-checklist-bar');
 
     checklistItems.forEach(function(li, idx) {
@@ -345,8 +582,9 @@
       <div class="checklist-progress-track">
         <div class="checklist-progress-fill" id="chk-fill"></div>
       </div>
+      <div class="checklist-bar-diagnosis" id="chk-diagnosis" data-level="danger"></div>
       <div class="checklist-bar-actions">
-        <span class="checklist-title-hint">Progreso guardado automáticamente</span>
+        <button type="button" class="checklist-filter-btn" id="chk-btn-filter" title="Ocultar temporalmente los ítems ya marcados para enfocarte en los pendientes">👁️ Ver solo pendientes</button>
         <button type="button" class="checklist-reset-btn" id="chk-btn-reset">↺ Reiniciar progreso</button>
       </div>
     `;
@@ -365,11 +603,28 @@
       const pendingEl = document.getElementById('chk-count-pending');
       const pctEl = document.getElementById('chk-percent');
       const fillEl = document.getElementById('chk-fill');
+      const diagEl = document.getElementById('chk-diagnosis');
 
       if (doneEl) doneEl.textContent = completed;
       if (pendingEl) pendingEl.textContent = pending;
       if (pctEl) pctEl.textContent = pct + '%';
       if (fillEl) fillEl.style.width = pct + '%';
+
+      if (diagEl) {
+        const diag = getDiagnosisForGuide(guideId, pending);
+        diagEl.setAttribute('data-level', diag.level);
+        diagEl.textContent = diag.text;
+      }
+    }
+
+    const filterBtn = document.getElementById('chk-btn-filter');
+    if (filterBtn) {
+      filterBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const active = document.body.classList.toggle('checklist-filter-pending');
+        filterBtn.classList.toggle('is-active', active);
+        filterBtn.textContent = active ? '👁️ Mostrar todos' : '👁️ Ver solo pendientes';
+      });
     }
 
     const minBtn = document.getElementById('chk-btn-minimize');
@@ -399,6 +654,12 @@
             if (li) li.classList.remove('is-completed');
           });
 
+          document.body.classList.remove('checklist-filter-pending');
+          if (filterBtn) {
+            filterBtn.classList.remove('is-active');
+            filterBtn.textContent = '👁️ Ver solo pendientes';
+          }
+
           updateStats();
         }
       });
@@ -414,14 +675,12 @@
     const mainContent = document.querySelector('main.content');
     if (!mainContent) return;
 
-    // Seleccionar todos los subtítulos h2 y h3 reales de la nota (fuera de callouts o prompts)
     const rawHeadings = Array.from(mainContent.querySelectorAll('h2, h3')).filter(function(h) {
       return !h.closest('.callout') && !h.closest('.prompt-box-wrapper');
     });
 
     if (rawHeadings.length < 2) return;
 
-    // Asegurar que cada título tenga un id único
     const tocItems = rawHeadings.map(function(h, idx) {
       if (!h.id) {
         const slug = (h.textContent || 'seccion')
@@ -440,7 +699,6 @@
       };
     });
 
-    // Función auxiliar para saltar suavemente a un título y resaltarlo
     function scrollToHeading(targetId) {
       const targetEl = document.getElementById(targetId);
       if (!targetEl) return;
@@ -453,7 +711,6 @@
       }
     }
 
-    // A) Crear Cuadro de Índice Superior (antes del primer h2)
     const tocCard = document.createElement('nav');
     tocCard.className = 'page-toc-card';
     tocCard.setAttribute('aria-label', 'Índice de contenidos');
@@ -508,7 +765,6 @@
       });
     });
 
-    // B) Crear Botón y Menú Flotante de Índice Rápido (siempre accesible mientras scrolleás)
     const floatingWidget = document.createElement('div');
     floatingWidget.className = 'floating-toc-widget';
 
@@ -579,14 +835,12 @@
       });
     });
 
-    // Cerrar popover al hacer clic afuera
     document.addEventListener('click', function(e) {
       if (popover.classList.contains('is-open') && !floatingWidget.contains(e.target)) {
         togglePopover(false);
       }
     });
 
-    // ScrollSpy: actualizar sección activa y visibilidad del botón "Ir arriba"
     function onScrollSpy() {
       const scrollY = window.scrollY || document.documentElement.scrollTop;
       topBtn.classList.toggle('is-visible', scrollY > 350);
@@ -612,209 +866,84 @@
   }
 
   /* ==========================================================================
-     4. ZOOM EN DIAGRAMAS MERMAID CON PAN, WHEEL ZOOM Y MODAL FULLSCREEN
-        (Espera a que Mermaid renderice el <svg> antes de tocar el nodo)
+     4. MEJORA C: LIGHTBOX EXCLUSIVO PARA IMÁGENES / CAPTURAS (main.content img)
+        (Prohibido en etiquetas <svg> o diagramas Mermaid)
      ========================================================================== */
-  function initMermaidZoom() {
-    const modal = document.getElementById('mermaid-zoom-modal');
+  function initImageLightbox() {
+    const modal = document.getElementById('image-lightbox-modal');
     if (!modal) return;
 
-    const backdrop = document.getElementById('mermaid-backdrop');
-    const viewport = document.getElementById('mermaid-viewport');
-    const canvas = document.getElementById('mermaid-canvas');
-    const btnZoomIn = document.getElementById('m-btn-zoom-in');
-    const btnZoomOut = document.getElementById('m-btn-zoom-out');
-    const btnReset = document.getElementById('m-btn-reset');
-    const btnClose = document.getElementById('m-btn-close');
+    const backdrop = document.getElementById('img-lightbox-backdrop');
+    const closeBtn = document.getElementById('img-lightbox-close');
+    const targetImg = document.getElementById('img-lightbox-target');
+    const captionEl = document.getElementById('img-lightbox-caption');
 
-    let scale = 1;
-    let panX = 0;
-    let panY = 0;
-    let isDragging = false;
-    let startX = 0;
-    let startY = 0;
-
-    function applyTransform() {
-      canvas.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`;
-    }
-
-    function resetView() {
-      scale = 1;
-      panX = 0;
-      panY = 0;
-      applyTransform();
-    }
-
-    function zoom(delta) {
-      const newScale = Math.min(Math.max(scale + delta, 0.3), 5);
-      scale = Number(newScale.toFixed(2));
-      applyTransform();
-    }
-
-    function openModalWithSvg(svgEl) {
-      canvas.innerHTML = '';
-      const clone = svgEl.cloneNode(true);
-      clone.removeAttribute('width');
-      clone.removeAttribute('height');
-      clone.style.width = 'auto';
-      clone.style.maxWidth = '90vw';
-      clone.style.maxHeight = '75vh';
-      canvas.appendChild(clone);
-
-      resetView();
+    function openLightbox(src, alt, captionText) {
+      targetImg.src = src;
+      targetImg.alt = alt || '';
+      if (captionText) {
+        captionEl.textContent = captionText;
+        captionEl.style.display = 'block';
+      } else {
+        captionEl.textContent = '';
+        captionEl.style.display = 'none';
+      }
       modal.style.display = 'flex';
       void modal.offsetWidth;
       modal.classList.add('is-open');
       document.body.style.overflow = 'hidden';
     }
 
-    function closeModal() {
+    function closeLightbox() {
       modal.classList.remove('is-open');
       setTimeout(function() {
         modal.style.display = 'none';
-        canvas.innerHTML = '';
+        targetImg.src = '';
         document.body.style.overflow = '';
-      }, 250);
+      }, 220);
     }
 
-    btnZoomIn.addEventListener('click', function() { zoom(0.25); });
-    btnZoomOut.addEventListener('click', function() { zoom(-0.25); });
-    btnReset.addEventListener('click', resetView);
-    btnClose.addEventListener('click', closeModal);
-    backdrop.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', closeLightbox);
+    closeBtn.addEventListener('click', closeLightbox);
+    targetImg.addEventListener('click', closeLightbox);
 
     document.addEventListener('keydown', function(e) {
-      if (!modal.classList.contains('is-open')) return;
-      if (e.key === 'Escape') {
-        closeModal();
-      } else if (e.key === '+' || e.key === '=') {
-        zoom(0.25);
-      } else if (e.key === '-' || e.key === '_') {
-        zoom(-0.25);
-      } else if (e.key === '0') {
-        resetView();
+      if (modal.classList.contains('is-open') && e.key === 'Escape') {
+        closeLightbox();
       }
     });
 
-    viewport.addEventListener('wheel', function(e) {
-      e.preventDefault();
-      const delta = e.deltaY < 0 ? 0.15 : -0.15;
-      zoom(delta);
-    }, { passive: false });
-
-    viewport.addEventListener('mousedown', function(e) {
-      if (e.button !== 0) return;
-      isDragging = true;
-      startX = e.clientX - panX;
-      startY = e.clientY - panY;
-    });
-
-    window.addEventListener('mousemove', function(e) {
-      if (!isDragging) return;
-      panX = e.clientX - startX;
-      panY = e.clientY - startY;
-      applyTransform();
-    });
-
-    window.addEventListener('mouseup', function() {
-      isDragging = false;
-    });
-
-    viewport.addEventListener('dblclick', function() {
-      if (scale === 1 && panX === 0 && panY === 0) {
-        scale = 1.75;
-      } else {
-        scale = 1;
-        panX = 0;
-        panY = 0;
+    const images = document.querySelectorAll('main.content img');
+    images.forEach(function(img) {
+      if (img.tagName.toLowerCase() !== 'img') return;
+      if (img.closest('.mermaid') || img.closest('.block-language-mermaid') || img.closest('.tikz-preview-section')) {
+        return;
       }
-      applyTransform();
-    });
 
-    let initialTouchDistance = 0;
-    let initialScale = 1;
-
-    viewport.addEventListener('touchstart', function(e) {
-      if (e.touches.length === 1) {
-        isDragging = true;
-        startX = e.touches[0].clientX - panX;
-        startY = e.touches[0].clientY - panY;
-      } else if (e.touches.length === 2) {
-        isDragging = false;
-        initialTouchDistance = Math.hypot(
-          e.touches[0].clientX - e.touches[1].clientX,
-          e.touches[0].clientY - e.touches[1].clientY
-        );
-        initialScale = scale;
+      img.classList.add('zoomable-screenshot');
+      if (!img.title) {
+        img.title = 'Clic para ampliar captura de pantalla';
       }
-    }, { passive: true });
 
-    viewport.addEventListener('touchmove', function(e) {
-      if (e.touches.length === 1 && isDragging) {
-        panX = e.touches[0].clientX - startX;
-        panY = e.touches[0].clientY - startY;
-        applyTransform();
-      } else if (e.touches.length === 2 && initialTouchDistance > 0) {
-        const currentDistance = Math.hypot(
-          e.touches[0].clientX - e.touches[1].clientX,
-          e.touches[0].clientY - e.touches[1].clientY
-        );
-        const factor = currentDistance / initialTouchDistance;
-        scale = Math.min(Math.max(Number((initialScale * factor).toFixed(2)), 0.3), 5);
-        applyTransform();
-      }
-    }, { passive: true });
+      img.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
 
-    viewport.addEventListener('touchend', function() {
-      isDragging = false;
-      initialTouchDistance = 0;
-    }, { passive: true });
-
-    function attachMermaidZoomListeners() {
-      const diagrams = document.querySelectorAll('.mermaid, pre.mermaid, div.mermaid, .block-language-mermaid');
-
-      diagrams.forEach(function(diag) {
-        if (diag.dataset.zoomAttached) return;
-
-        // CRÍTICO: No modificar el nodo hasta que Mermaid haya terminado de renderizar el <svg>
-        const svgEl = diag.querySelector('svg');
-        if (!svgEl) return;
-
-        if (!diag.querySelector('.mermaid-zoom-hint')) {
-          const hint = document.createElement('span');
-          hint.className = 'mermaid-zoom-hint';
-          hint.innerHTML = '🔍 Clic para ampliar';
-          diag.appendChild(hint);
+        let caption = '';
+        const callout = img.closest('.callout');
+        if (callout) {
+          const titleInner = callout.querySelector('.callout-title-inner');
+          if (titleInner) {
+            caption = titleInner.textContent.trim();
+          }
+        }
+        if (!caption && img.alt && !/^pasted image/i.test(img.alt.trim())) {
+          caption = img.alt.trim();
         }
 
-        diag.addEventListener('click', function(e) {
-          if (e.target.closest('a')) return;
-
-          const currentSvg = diag.querySelector('svg');
-          if (currentSvg) {
-            openModalWithSvg(currentSvg);
-          }
-        });
-
-        diag.dataset.zoomAttached = 'true';
+        openLightbox(img.src, img.alt, caption);
       });
-    }
-
-    attachMermaidZoomListeners();
-
-    let attempts = 0;
-    const interval = setInterval(function() {
-      attachMermaidZoomListeners();
-      attempts++;
-      if (attempts > 25) clearInterval(interval);
-    }, 300);
-
-    if (window.MutationObserver) {
-      const observer = new MutationObserver(function() {
-        attachMermaidZoomListeners();
-      });
-      observer.observe(document.body, { childList: true, subtree: true });
-    }
+    });
   }
 
 })();

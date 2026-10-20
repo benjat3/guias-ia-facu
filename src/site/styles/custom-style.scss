@@ -58,6 +58,7 @@
   --pro-toc-header-bg: rgba(26, 30, 38, 0.85);
   --pro-toc-border: rgba(136, 192, 208, 0.22);
   --pro-toc-float-bg: rgba(24, 28, 36, 0.96);
+  --pro-shadow-card: 0 4px 18px rgba(0, 0, 0, 0.22);
 }
 
 /* Overrides para Modo Claro */
@@ -116,6 +117,7 @@ body.theme-light,
   --pro-toc-header-bg: #f1f5f9;
   --pro-toc-border: #cbd5e1;
   --pro-toc-float-bg: rgba(255, 255, 255, 0.98);
+  --pro-shadow-card: 0 4px 16px rgba(0, 0, 0, 0.06);
 }
 
 html {
@@ -701,9 +703,51 @@ body.has-checklist-bar:not(.checklist-bar-minimized) .floating-toc-widget {
 }
 
 /* ==========================================================================
-   2. MEJORA 2: CAJAS DE PROMPTS INTELIGENTES
-      (Límite de altura >15 líneas, botón expandir/contraer y botón Copiar grande)
+   2. MEJORA 2: CAJAS DE PROMPTS INTELIGENTES + PERSONALIZADOR RÁPIDO (MEJORA A)
+      (Salto de línea forzado sin barra fantasma, controles rápidos en header,
+       límite de altura >15 líneas, botón expandir/contraer y botón Copiar)
    ========================================================================== */
+
+/* Regla obligatoria de máxima especificidad para evitar desborde horizontal y barras fantasmas */
+pre[class*="language-"],
+pre[class*="language-"] > code[class*="language-"],
+.markdown-rendered pre,
+.markdown-rendered pre code {
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
+  overflow-x: hidden !important;
+}
+
+/* Neutralización de colisiones de clases globales (ej. .content, .tag, .table) en tokens de Prism */
+pre[class*="language-"] code .token,
+.markdown-rendered pre code .token,
+.prompt-code-container pre code .token {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  position: static !important;
+  display: inline !important;
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+
+  &::before,
+  &::after {
+    display: none !important;
+    content: none !important;
+  }
+}
+
 .prompt-box-wrapper {
   margin: 2rem 0 !important;
   border-radius: 12px !important;
@@ -718,6 +762,8 @@ body.has-checklist-bar:not(.checklist-bar-minimized) .floating-toc-widget {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 10px 14px !important;
   padding: 10px 16px !important;
   background: var(--pro-code-header-bg) !important;
   border-bottom: 1px solid var(--pro-border-subtle) !important;
@@ -729,6 +775,7 @@ body.has-checklist-bar:not(.checklist-bar-minimized) .floating-toc-widget {
   display: flex !important;
   align-items: center !important;
   gap: 10px !important;
+  flex-shrink: 0 !important;
 }
 
 .prompt-box-badge {
@@ -750,6 +797,122 @@ body.has-checklist-bar:not(.checklist-bar-minimized) .floating-toc-widget {
   font-size: 0.8rem !important;
   color: var(--pro-text-faint) !important;
   font-family: var(--font-monospace, monospace) !important;
+}
+
+.prompt-header-actions {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  flex-wrap: wrap !important;
+  gap: 8px 10px !important;
+  margin-left: auto !important;
+}
+
+.prompt-customizer-control {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  background: rgba(15, 23, 42, 0.45) !important;
+  border: 1px solid rgba(136, 192, 208, 0.28) !important;
+  border-radius: 8px !important;
+  padding: 3px 8px !important;
+  font-size: 0.78rem !important;
+  color: var(--pro-text-muted) !important;
+}
+
+.prompt-customizer-label {
+  font-weight: 600 !important;
+  color: var(--pro-accent) !important;
+  white-space: nowrap !important;
+  font-size: 0.76rem !important;
+}
+
+.prompt-customizer-input {
+  background: rgba(0, 0, 0, 0.28) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: 6px !important;
+  color: #f8fafc !important;
+  font-size: 0.8rem !important;
+  padding: 4px 9px !important;
+  width: 215px !important;
+  max-width: 52vw !important;
+  outline: none !important;
+  font-family: inherit !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+
+  &::placeholder {
+    color: rgba(216, 222, 233, 0.5) !important;
+  }
+
+  &:focus {
+    border-color: var(--pro-accent) !important;
+    box-shadow: 0 0 0 2px rgba(136, 192, 208, 0.2) !important;
+  }
+}
+
+.prompt-customizer-toggle {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  background: rgba(15, 23, 42, 0.55) !important;
+  border: 1px solid rgba(136, 192, 208, 0.3) !important;
+  color: #e5e9f0 !important;
+  border-radius: 8px !important;
+  padding: 5px 11px !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  transition: all 0.15s ease !important;
+
+  &:hover {
+    border-color: var(--pro-accent) !important;
+    background: rgba(136, 192, 208, 0.14) !important;
+  }
+
+  .demo-opt {
+    padding: 1px 5px !important;
+    border-radius: 4px !important;
+    opacity: 0.65 !important;
+    transition: all 0.15s ease !important;
+
+    &.is-active {
+      opacity: 1 !important;
+      background: var(--pro-accent) !important;
+      color: #0f172a !important;
+      font-weight: 750 !important;
+    }
+  }
+}
+
+body.theme-light,
+.theme-light {
+  .prompt-customizer-control {
+    background: rgba(255, 255, 255, 0.85) !important;
+    border-color: rgba(2, 132, 199, 0.3) !important;
+    color: #334155 !important;
+  }
+
+  .prompt-customizer-input {
+    background: #ffffff !important;
+    border-color: #cbd5e1 !important;
+    color: #0f172a !important;
+
+    &::placeholder {
+      color: #64748b !important;
+    }
+  }
+
+  .prompt-customizer-toggle {
+    background: #ffffff !important;
+    border-color: rgba(2, 132, 199, 0.35) !important;
+    color: #0f172a !important;
+
+    .demo-opt.is-active {
+      background: #0284c7 !important;
+      color: #ffffff !important;
+    }
+  }
 }
 
 .prompt-copy-btn {
@@ -791,6 +954,15 @@ body.has-checklist-bar:not(.checklist-bar-minimized) .floating-toc-widget {
 .prompt-code-container {
   position: relative !important;
   width: 100% !important;
+  overflow: hidden !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+
+  &::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
 
   pre {
     margin: 0 !important;
@@ -799,7 +971,20 @@ body.has-checklist-bar:not(.checklist-bar-minimized) .floating-toc-widget {
     border: none !important;
     border-radius: 0 !important;
     box-shadow: none !important;
-    overflow-x: auto !important;
+    overflow: hidden !important;
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+    overflow-wrap: anywhere !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+
+    &::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
 
     code {
       font-family: "JetBrains Mono", "Fira Code", Consolas, Menlo, Monaco, monospace !important;
@@ -807,6 +992,12 @@ body.has-checklist-bar:not(.checklist-bar-minimized) .floating-toc-widget {
       line-height: 1.65 !important;
       tab-size: 2 !important;
       color: #e5e9f0 !important;
+      white-space: pre-wrap !important;
+      word-break: break-word !important;
+      overflow-wrap: anywhere !important;
+      overflow-x: hidden !important;
+      display: block !important;
+      width: 100% !important;
     }
   }
 
@@ -815,21 +1006,22 @@ body.has-checklist-bar:not(.checklist-bar-minimized) .floating-toc-widget {
     overflow: hidden !important;
 
     &::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 110px;
-      background: linear-gradient(to bottom, rgba(28, 32, 40, 0) 0%, var(--pro-code-fade-bg) 100%);
-      pointer-events: none;
-      z-index: 5;
+      content: "" !important;
+      position: absolute !important;
+      bottom: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      width: 100% !important;
+      height: 110px !important;
+      background: linear-gradient(to bottom, rgba(28, 32, 40, 0) 0%, var(--pro-code-fade-bg) 90%, var(--pro-code-box-bg) 100%) !important;
+      pointer-events: none !important;
+      z-index: 5 !important;
     }
   }
 
   &.is-expanded {
     max-height: none !important;
-    overflow: visible !important;
+    overflow: hidden !important;
 
     &::after {
       display: none !important;
@@ -867,7 +1059,7 @@ body.has-checklist-bar:not(.checklist-bar-minimized) .floating-toc-widget {
 
 /* ==========================================================================
    3. MEJORA 3: CHECKLISTS INTERACTIVAS EN LAS GUÍAS 07
-      (Casillas reales, resaltado de estrellas ★, barra flotante con localStorage)
+      (Casillas reales, resaltado de estrellas ★, diagnóstico en vivo y filtro)
    ========================================================================== */
 .interactive-checklist-item {
   list-style-type: none !important;
@@ -901,6 +1093,17 @@ body.has-checklist-bar:not(.checklist-bar-minimized) .floating-toc-widget {
       text-decoration: line-through;
       text-decoration-color: var(--pro-strikethrough-color);
     }
+  }
+}
+
+/* Modo filtro: ocultar completados para ver solo hábitos pendientes */
+body.checklist-filter-pending {
+  .interactive-checklist-item.is-completed {
+    display: none !important;
+  }
+
+  .interactive-checklist-item.checklist-item-starred:not(.is-completed) {
+    box-shadow: 0 0 0 1px var(--pro-chk-starred-border), 0 4px 16px rgba(245, 158, 11, 0.18) !important;
   }
 }
 
@@ -984,11 +1187,11 @@ body.has-checklist-bar:not(.checklist-bar-minimized) .floating-toc-widget {
 /* --- BARRA FLOTANTE DE AUTOEVALUACIÓN --- */
 .checklist-floating-bar {
   position: fixed !important;
-  bottom: 18px !important;
+  bottom: 16px !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
-  width: calc(100% - 36px) !important;
-  max-width: 500px !important;
+  width: calc(100% - 32px) !important;
+  max-width: 560px !important;
   background: var(--pro-bar-bg) !important;
   border: 1px solid var(--pro-bar-border) !important;
   border-radius: 16px !important;
@@ -1003,11 +1206,12 @@ body.has-checklist-bar:not(.checklist-bar-minimized) .floating-toc-widget {
 
   &.is-minimized {
     width: auto !important;
-    max-width: 280px !important;
+    max-width: 310px !important;
     padding: 8px 14px !important;
     border-radius: 999px !important;
 
     .checklist-progress-track,
+    .checklist-bar-diagnosis,
     .checklist-bar-actions,
     .stat-chip-pending {
       display: none !important;
@@ -1020,9 +1224,9 @@ body.has-checklist-bar:not(.checklist-bar-minimized) .floating-toc-widget {
   }
 
   @media (max-width: 600px) {
-    bottom: 12px !important;
+    bottom: 10px !important;
     padding: 10px 14px !important;
-    max-width: calc(100vw - 24px) !important;
+    max-width: calc(100vw - 20px) !important;
   }
 }
 
@@ -1094,15 +1298,93 @@ body.has-checklist-bar:not(.checklist-bar-minimized) .floating-toc-widget {
   transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
+.checklist-bar-diagnosis {
+  font-size: 0.82rem !important;
+  font-weight: 650 !important;
+  padding: 6px 10px !important;
+  border-radius: 8px !important;
+  margin-bottom: 8px !important;
+  line-height: 1.35 !important;
+  text-align: center !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: rgba(15, 23, 42, 0.4) !important;
+
+  &[data-level="good"] {
+    background: rgba(16, 185, 129, 0.14) !important;
+    border-color: rgba(16, 185, 129, 0.38) !important;
+    color: #34d399 !important;
+  }
+
+  &[data-level="warn"] {
+    background: rgba(245, 158, 11, 0.14) !important;
+    border-color: rgba(245, 158, 11, 0.38) !important;
+    color: #fbbf24 !important;
+  }
+
+  &[data-level="danger"] {
+    background: rgba(239, 68, 68, 0.14) !important;
+    border-color: rgba(239, 68, 68, 0.38) !important;
+    color: #f87171 !important;
+  }
+}
+
+body.theme-light,
+.theme-light {
+  .checklist-bar-diagnosis {
+    &[data-level="good"] {
+      background: rgba(16, 185, 129, 0.12) !important;
+      border-color: rgba(5, 150, 105, 0.35) !important;
+      color: #047857 !important;
+    }
+
+    &[data-level="warn"] {
+      background: rgba(245, 158, 11, 0.12) !important;
+      border-color: rgba(217, 119, 6, 0.35) !important;
+      color: #b45309 !important;
+    }
+
+    &[data-level="danger"] {
+      background: rgba(239, 68, 68, 0.1) !important;
+      border-color: rgba(220, 38, 38, 0.35) !important;
+      color: #b91c1c !important;
+    }
+  }
+}
+
 .checklist-bar-actions {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
   font-size: 0.78rem !important;
   color: var(--pro-text-faint) !important;
 
-  .checklist-title-hint {
-    font-weight: 500 !important;
+  .checklist-filter-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    background: rgba(136, 192, 208, 0.12) !important;
+    border: 1px solid rgba(136, 192, 208, 0.28) !important;
+    color: var(--pro-accent) !important;
+    border-radius: 7px !important;
+    padding: 4px 10px !important;
+    font-size: 0.78rem !important;
+    font-weight: 650 !important;
+    cursor: pointer !important;
+    transition: all 0.15s ease !important;
+
+    &:hover {
+      background: rgba(136, 192, 208, 0.22) !important;
+      border-color: var(--pro-accent) !important;
+    }
+
+    &.is-active {
+      background: var(--pro-accent) !important;
+      border-color: var(--pro-accent) !important;
+      color: #0f172a !important;
+      box-shadow: 0 2px 8px rgba(136, 192, 208, 0.35) !important;
+    }
   }
 
   .checklist-reset-btn {
@@ -1121,77 +1403,58 @@ body.has-checklist-bar:not(.checklist-bar-minimized) .floating-toc-widget {
 }
 
 /* ==========================================================================
-   4. MEJORA 4: ZOOM EN DIAGRAMAS MERMAID
-      (Pill hover, cursor zoom-in y modal fullscreen interactivo con pan/zoom)
+   4. DIAGRAMAS MERMAID CALIBRADOS (SIN ZOOM, COMPACTOS Y CONTRASTE EN FLECHAS)
    ========================================================================== */
 
 .mermaid,
 .block-language-mermaid,
 div.mermaid,
-pre.mermaid {
+pre.mermaid,
+.markdown-preview-view pre.mermaid {
   display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
   justify-content: center !important;
   text-align: center !important;
-  background: transparent !important;
-  background-color: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  position: relative !important;
-  cursor: zoom-in !important;
-  padding: 1.5rem 0.5rem !important;
-  margin: 1.8rem 0 !important;
+  max-width: 620px !important;
+  width: fit-content !important;
+  margin: 1.5rem auto !important;
+  padding: 1.25rem 1.5rem !important;
+  background: var(--pro-bg-elevated) !important;
+  border: 1px solid var(--pro-border-subtle) !important;
   border-radius: 12px !important;
-  transition: background 0.2s ease, box-shadow 0.2s ease !important;
-
-  &:hover {
-    background: rgba(136, 192, 208, 0.04) !important;
-
-    .mermaid-zoom-hint {
-      opacity: 1 !important;
-      transform: translateY(0) !important;
-    }
-  }
+  box-shadow: var(--pro-shadow-card) !important;
+  position: relative !important;
+  cursor: default !important;
+  overflow-x: auto !important;
 }
 
 .mermaid svg,
-.block-language-mermaid svg {
+pre.mermaid svg,
+div.mermaid svg,
+.block-language-mermaid svg,
+.theme-dark .mermaid > svg {
   margin: 0 auto !important;
   background: transparent !important;
   background-color: transparent !important;
   max-width: 100% !important;
   height: auto !important;
+  filter: none !important;
 }
 
-.mermaid-zoom-hint {
-  position: absolute !important;
-  top: 8px !important;
-  right: 12px !important;
-  background: rgba(36, 41, 51, 0.88) !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  color: var(--pro-accent) !important;
-  font-size: 0.78rem !important;
-  font-weight: 650 !important;
-  padding: 4px 10px !important;
-  border-radius: 6px !important;
-  opacity: 0;
-  transform: translateY(-4px);
-  transition: opacity 0.2s ease, transform 0.2s ease !important;
-  pointer-events: none !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
-  backdrop-filter: blur(8px) !important;
-}
-
-/* Estilo de nodos en modo oscuro */
+/* Estilo de nodos y etiquetas de flechas en Modo Oscuro */
 .mermaid .node rect,
-.mermaid .node polygon {
-  fill: #1d152b !important;
-  stroke: #6b4fa2 !important;
+.mermaid .node polygon,
+.mermaid .node circle,
+.mermaid .node path {
+  fill: #1e293b !important;
+  stroke: #64748b !important;
   stroke-width: 1.5px !important;
 }
 
 .mermaid .cluster rect {
-  fill: #130d21 !important;
-  stroke: #48356d !important;
+  fill: #0f172a !important;
+  stroke: #475569 !important;
   stroke-width: 1.5px !important;
   rx: 10px !important;
 }
@@ -1200,82 +1463,171 @@ pre.mermaid {
 .mermaid .cluster .cluster-label span,
 .mermaid .cluster .nodeLabel,
 .mermaid .cluster span {
-  fill: #d8ccee !important;
-  color: #d8ccee !important;
-  font-weight: 500 !important;
+  fill: #e2e8f0 !important;
+  color: #e2e8f0 !important;
+  font-weight: 600 !important;
 }
 
 .mermaid .node .label,
 .mermaid .nodeLabel,
-.mermaid .label {
-  color: #e6e6e6 !important;
-  fill: #e6e6e6 !important;
+.mermaid .label,
+.mermaid .node span,
+.mermaid .node p,
+.mermaid .node text {
+  color: #f8fafc !important;
+  fill: #f8fafc !important;
 }
 
 .mermaid .flowchart-link,
 .mermaid .edgePath path {
-  stroke: #8e7bb0 !important;
+  stroke: #94a3b8 !important;
   stroke-width: 1.5px !important;
 }
 
 .mermaid marker path {
-  fill: #8e7bb0 !important;
-  stroke: #8e7bb0 !important;
+  fill: #94a3b8 !important;
+  stroke: #94a3b8 !important;
 }
 
-/* Adaptación de diagramas Mermaid en Modo Claro */
+/* Contraste nítido en textos sobre flechas (.edgeLabel / .labelBkg) en Modo Oscuro */
+.mermaid .edgeLabel,
+.mermaid .edgeLabel span,
+.mermaid .edgeLabel p,
+.mermaid .edgeLabel div,
+.mermaid .labelBkg {
+  color: #f8fafc !important;
+  fill: #f8fafc !important;
+}
+
+.mermaid .edgeLabel rect {
+  fill: #1e293b !important;
+  background-color: #1e293b !important;
+  stroke: #475569 !important;
+  stroke-width: 1px !important;
+  opacity: 1 !important;
+  rx: 6px !important;
+  ry: 6px !important;
+}
+
+.mermaid .labelBkg,
+.mermaid .edgeLabel foreignObject > div {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+  border: 1px solid #475569 !important;
+  border-radius: 6px !important;
+  padding: 4px 8px !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35) !important;
+}
+
+.mermaid .edgeLabel p,
+.mermaid .edgeLabel span.edgeLabel {
+  background-color: transparent !important;
+  color: #f8fafc !important;
+  margin: 0 !important;
+}
+
+/* Adaptación de diagramas Mermaid y .edgeLabel en Modo Claro */
 body.theme-light,
 .theme-light {
   .mermaid .node rect,
-  .mermaid .node polygon {
-    fill: #f3eefb !important;
-    stroke: #7c3aed !important;
+  .mermaid .node polygon,
+  .mermaid .node circle,
+  .mermaid .node path {
+    fill: #f8fafc !important;
+    stroke: #0284c7 !important;
   }
+
   .mermaid .node .label,
   .mermaid .nodeLabel,
-  .mermaid .label {
-    color: #3b0764 !important;
-    fill: #3b0764 !important;
+  .mermaid .label,
+  .mermaid .node span,
+  .mermaid .node p,
+  .mermaid .node text {
+    color: #0f172a !important;
+    fill: #0f172a !important;
   }
+
   .mermaid .cluster rect {
-    fill: #faf8ff !important;
-    stroke: #c4b5fd !important;
+    fill: #f1f5f9 !important;
+    stroke: #94a3b8 !important;
   }
+
   .mermaid .cluster text,
   .mermaid .cluster span {
-    fill: #5b21b6 !important;
-    color: #5b21b6 !important;
+    fill: #0f172a !important;
+    color: #0f172a !important;
   }
+
   .mermaid .flowchart-link,
   .mermaid .edgePath path {
-    stroke: #7c3aed !important;
+    stroke: #475569 !important;
   }
+
   .mermaid marker path {
-    fill: #7c3aed !important;
-    stroke: #7c3aed !important;
+    fill: #475569 !important;
+    stroke: #475569 !important;
   }
-  .mermaid-zoom-hint {
-    background: rgba(255, 255, 255, 0.92) !important;
-    border-color: rgba(0, 0, 0, 0.12) !important;
-    color: var(--pro-accent) !important;
+
+  .mermaid .edgeLabel,
+  .mermaid .edgeLabel span,
+  .mermaid .edgeLabel p,
+  .mermaid .edgeLabel div,
+  .mermaid .labelBkg {
+    color: #0f172a !important;
+    fill: #0f172a !important;
+  }
+
+  .mermaid .edgeLabel rect {
+    fill: #f1f5f9 !important;
+    background-color: #f1f5f9 !important;
+    stroke: #cbd5e1 !important;
+    opacity: 1 !important;
+  }
+
+  .mermaid .labelBkg,
+  .mermaid .edgeLabel foreignObject > div {
+    background-color: #f1f5f9 !important;
+    color: #0f172a !important;
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .mermaid .edgeLabel p,
+  .mermaid .edgeLabel span.edgeLabel {
+    background-color: transparent !important;
+    color: #0f172a !important;
   }
 }
 
-/* --- MODAL LIGHTBOX DE ZOOM MERMAID --- */
-.mermaid-modal {
+/* ==========================================================================
+   5. MEJORA C: LIGHTBOX EXCLUSIVO PARA CAPTURAS DE PANTALLA (main.content img)
+   ========================================================================== */
+
+main.content img.zoomable-screenshot {
+  cursor: zoom-in !important;
+  border-radius: 10px !important;
+  border: 1px solid var(--pro-border-subtle) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
+
+  &:hover {
+    transform: translateY(-2px) !important;
+    border-color: var(--pro-accent) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3) !important;
+  }
+}
+
+.img-lightbox-modal {
   position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
+  inset: 0 !important;
   width: 100vw !important;
   height: 100vh !important;
   z-index: 99999 !important;
   display: flex !important;
-  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition: opacity 0.22s ease !important;
 
   &.is-open {
     opacity: 1 !important;
@@ -1283,119 +1635,204 @@ body.theme-light,
   }
 }
 
-.mermaid-modal-backdrop {
+.img-lightbox-backdrop {
   position: absolute !important;
   inset: 0 !important;
-  background: rgba(10, 14, 20, 0.88) !important;
-  backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
+  background: rgba(10, 14, 22, 0.88) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  cursor: zoom-out !important;
 }
 
-.mermaid-modal-dialog {
+.img-lightbox-content {
   position: relative !important;
   z-index: 2 !important;
-  width: 100% !important;
-  height: 100% !important;
+  max-width: 92vw !important;
+  max-height: 90vh !important;
   display: flex !important;
   flex-direction: column !important;
+  align-items: center !important;
+  gap: 12px !important;
 }
 
-.mermaid-modal-header {
+.img-lightbox-close {
+  position: fixed !important;
+  top: 18px !important;
+  right: 24px !important;
+  z-index: 3 !important;
+  background: rgba(30, 41, 59, 0.92) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #f8fafc !important;
+  border-radius: 8px !important;
+  padding: 7px 14px !important;
+  font-size: 0.88rem !important;
+  font-weight: 650 !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4) !important;
+  transition: all 0.15s ease !important;
+
+  &:hover {
+    background: #ef4444 !important;
+    border-color: #dc2626 !important;
+    color: #ffffff !important;
+  }
+}
+
+.img-lightbox-img {
+  max-width: 92vw !important;
+  max-height: 82vh !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.65) !important;
+  cursor: zoom-out !important;
+}
+
+.img-lightbox-caption {
+  color: #e2e8f0 !important;
+  font-size: 0.88rem !important;
+  font-weight: 500 !important;
+  text-align: center !important;
+  background: rgba(15, 23, 42, 0.78) !important;
+  padding: 5px 14px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ==========================================================================
+   6. MEJORA 4: VISTA PREVIA DE PLANTILLAS GRÁFICAS TIKZ EN LA WEB (TikZJax)
+   ========================================================================== */
+
+.tikz-preview-section {
+  border-top: 1px solid var(--pro-border-subtle) !important;
+  background: rgba(15, 23, 42, 0.55) !important;
+}
+
+.tikz-preview-toggle-btn {
+  width: 100% !important;
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
-  padding: 14px 22px !important;
-  background: rgba(24, 28, 36, 0.9) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-  color: #eceff4 !important;
-}
-
-.mermaid-modal-title {
-  display: flex !important;
-  align-items: center !important;
-  gap: 10px !important;
-  font-weight: 700 !important;
-  font-size: 1.05rem !important;
-}
-
-.mermaid-modal-tools {
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-}
-
-.m-tool-btn {
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  color: #eceff4 !important;
-  padding: 7px 14px !important;
-  border-radius: 8px !important;
-  font-size: 0.88rem !important;
-  font-weight: 600 !important;
+  gap: 12px !important;
+  padding: 12px 18px !important;
+  background: rgba(136, 192, 208, 0.08) !important;
+  color: var(--pro-text-main) !important;
+  border: none !important;
   cursor: pointer !important;
-  transition: all 0.15s ease !important;
-  user-select: none !important;
+  font-size: 0.94rem !important;
+  font-weight: 700 !important;
+  text-align: left !important;
+  transition: background 0.15s ease !important;
 
   &:hover {
-    background: rgba(136, 192, 208, 0.2) !important;
-    border-color: var(--pro-accent) !important;
-    transform: translateY(-1px) !important;
+    background: rgba(136, 192, 208, 0.16) !important;
   }
 
-  &.m-btn-close {
-    background: rgba(191, 97, 106, 0.25) !important;
-    border-color: rgba(191, 97, 106, 0.5) !important;
-    color: #ff9999 !important;
+  .tikz-preview-title-wrap {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    flex-wrap: wrap !important;
+  }
 
-    &:hover {
-      background: #bf616a !important;
-      color: #ffffff !important;
-    }
+  .tikz-preview-badge {
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    padding: 2px 9px !important;
+    border-radius: 999px !important;
+    background: rgba(16, 185, 129, 0.18) !important;
+    color: #34d399 !important;
+    border: 1px solid rgba(16, 185, 129, 0.35) !important;
+  }
+
+  .tikz-preview-Action {
+    color: var(--pro-accent) !important;
+    font-size: 0.85rem !important;
+    font-weight: 650 !important;
+    white-space: nowrap !important;
   }
 }
 
-.mermaid-modal-body {
-  flex: 1 !important;
+/* Usamos max-height + opacity en lugar de display:none para que TikZJax
+   calcule correctamente el BBox de los SVG incluso con el panel cerrado */
+.tikz-preview-body {
+  max-height: 0 !important;
   overflow: hidden !important;
-  position: relative !important;
-  cursor: grab !important;
+  opacity: 0 !important;
+  padding: 0 18px !important;
+  pointer-events: none !important;
+  transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.25s ease !important;
+
+  &.is-open {
+    max-height: 9000px !important;
+    opacity: 1 !important;
+    padding: 18px !important;
+    pointer-events: auto !important;
+  }
+}
+
+.tikz-preview-intro {
+  font-size: 0.86rem !important;
+  color: var(--pro-text-muted) !important;
+  margin: 0 0 14px 0 !important;
+}
+
+.tikz-preview-grid {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 18px !important;
+}
+
+.tikz-preview-card {
+  border: 1px solid var(--pro-border-subtle) !important;
+  border-radius: 10px !important;
+  background: var(--pro-bg-elevated) !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18) !important;
+}
+
+.tikz-preview-card-header {
   display: flex !important;
   align-items: center !important;
-  justify-content: center !important;
-
-  &:active {
-    cursor: grabbing !important;
-  }
+  justify-content: space-between !important;
+  gap: 10px !important;
+  padding: 9px 14px !important;
+  background: var(--pro-code-header-bg) !important;
+  border-bottom: 1px solid var(--pro-border-subtle) !important;
+  font-size: 0.86rem !important;
+  font-weight: 650 !important;
+  color: var(--pro-text-main) !important;
 }
 
-.mermaid-canvas {
-  transform-origin: center center;
-  transition: transform 0.05s ease-out;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  user-select: none;
+.tikz-render-stage {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  padding: 18px 16px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow-x: auto !important;
+  min-height: 90px !important;
 
   svg {
-    max-width: none !important;
+    max-width: 100% !important;
     height: auto !important;
-    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5)) !important;
+    display: block !important;
+    margin: 0 auto !important;
+  }
+
+  &:has(svg) .tikz-loading-hint {
+    display: none !important;
   }
 }
 
-.mermaid-modal-footer {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 12px !important;
-  padding: 10px 18px !important;
-  background: rgba(24, 28, 36, 0.9) !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
-  font-size: 0.82rem !important;
-  color: var(--pro-text-faint) !important;
-
-  @media (max-width: 600px) {
-    font-size: 0.74rem !important;
-    gap: 6px !important;
-  }
+.tikz-loading-hint {
+  font-size: 0.84rem !important;
+  color: #475569 !important;
+  font-weight: 500 !important;
+  padding: 12px !important;
 }
+
