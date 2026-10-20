@@ -1,5 +1,5 @@
 <!-- ==========================================================================
-     MEJORAS INTERACTIVAS: PROMPTS, CHECKLISTS 07 Y ZOOM EN MERMAID
+     MEJORAS INTERACTIVAS: TABLAS, ÍNDICE (TOC), PROMPTS, CHECKLISTS 07 Y MERMAID
      Obsidian Digital Garden - Archivo de personalización de usuario seguro
      ========================================================================== -->
 
@@ -45,9 +45,64 @@
   }
 
   function initAllCustomFeatures() {
+    initFixBrokenTables();
     initSmartPrompts();
     initInteractiveChecklists();
+    initPageTOC();
     initMermaidZoom();
+  }
+
+  /* ==========================================================================
+     0. REPARADOR AUTOMÁTICO DE TABLAS MARKDOWN (Ej. sintaxis |-:--- de Obsidian)
+     ========================================================================== */
+  function initFixBrokenTables() {
+    const paragraphs = document.querySelectorAll('main.content p');
+
+    paragraphs.forEach(function(p) {
+      const inner = p.innerHTML.trim();
+      if (inner.indexOf('|') !== 0) return;
+
+      const lines = inner
+        .split(/<br\s*\/?>|\r?\n/)
+        .map(function(l) { return l.trim(); })
+        .filter(Boolean);
+
+      if (lines.length < 3) return;
+
+      // Verificar si la segunda línea es un separador de tabla Markdown (como |-:---| o |---|)
+      if (!/^\|[\s\-:|]+\|?$/.test(lines[1])) return;
+
+      function parseCells(line) {
+        const cleaned = line.replace(/^\|/, '').replace(/\|$/, '');
+        return cleaned.split('|').map(function(c) { return c.trim(); });
+      }
+
+      const headers = parseCells(lines[0]);
+      const bodyRows = lines.slice(2).map(parseCells);
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'table-wrapper';
+
+      let tableHtml = '<table><thead><tr>';
+      headers.forEach(function(h) {
+        tableHtml += '<th style="text-align:left">' + h + '</th>';
+      });
+      tableHtml += '</tr></thead><tbody>';
+
+      bodyRows.forEach(function(row) {
+        if (row.length === 0 || (row.length === 1 && row[0] === '')) return;
+        tableHtml += '<tr>';
+        for (let i = 0; i < headers.length; i++) {
+          tableHtml += '<td style="text-align:left">' + (row[i] !== undefined ? row[i] : '') + '</td>';
+        }
+        tableHtml += '</tr>';
+      });
+
+      tableHtml += '</tbody></table>';
+      wrapper.innerHTML = tableHtml;
+
+      p.parentNode.replaceChild(wrapper, p);
+    });
   }
 
   /* ==========================================================================
@@ -217,6 +272,9 @@
 
     if (checklistItems.length === 0) return;
 
+    // Añadir clase al body para dar margen extra al final y nunca tapar los enlaces de Navegación
+    document.body.classList.add('has-checklist-bar');
+
     checklistItems.forEach(function(li, idx) {
       const isStarred = li.textContent.indexOf('★') !== -1;
       const isChecked = !!savedData[idx];
@@ -261,7 +319,6 @@
         updateStats();
       });
 
-      // Permitir hacer clic en la fila completa (excepto enlaces o botones) para alternar la casilla
       li.addEventListener('click', function(e) {
         if (e.target.closest('a') || e.target.closest('button') || e.target.closest('input') || e.target.closest('label')) {
           return;
@@ -280,13 +337,16 @@
           <span class="stat-chip-done">✅ <strong id="chk-count-done">0</strong> marcados</span>
           <span class="stat-chip-pending">⏳ <strong id="chk-count-pending">0</strong> restantes</span>
         </div>
-        <div class="checklist-bar-percent" id="chk-percent">0%</div>
+        <div class="checklist-bar-right">
+          <div class="checklist-bar-percent" id="chk-percent">0%</div>
+          <button type="button" class="checklist-minimize-btn" id="chk-btn-minimize" title="Minimizar / Expandir barra">🔽</button>
+        </div>
       </div>
       <div class="checklist-progress-track">
         <div class="checklist-progress-fill" id="chk-fill"></div>
       </div>
       <div class="checklist-bar-actions">
-        <span class="checklist-title-hint">Tu autoevaluación se guarda automáticamente</span>
+        <span class="checklist-title-hint">Progreso guardado automáticamente</span>
         <button type="button" class="checklist-reset-btn" id="chk-btn-reset">↺ Reiniciar progreso</button>
       </div>
     `;
@@ -310,6 +370,16 @@
       if (pendingEl) pendingEl.textContent = pending;
       if (pctEl) pctEl.textContent = pct + '%';
       if (fillEl) fillEl.style.width = pct + '%';
+    }
+
+    const minBtn = document.getElementById('chk-btn-minimize');
+    if (minBtn) {
+      minBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const isMin = bar.classList.toggle('is-minimized');
+        document.body.classList.toggle('checklist-bar-minimized', isMin);
+        minBtn.textContent = isMin ? '🔼' : '🔽';
+      });
     }
 
     const resetBtn = document.getElementById('chk-btn-reset');
@@ -338,7 +408,212 @@
   }
 
   /* ==========================================================================
-     3. ZOOM EN DIAGRAMAS MERMAID CON PAN, WHEEL ZOOM Y MODAL FULLSCREEN
+     3. ÍNDICE DE LA PÁGINA (CUADRO SUPERIOR + BOTÓN Y PANEL FLOTANTE CON SCROLLSPY)
+     ========================================================================== */
+  function initPageTOC() {
+    const mainContent = document.querySelector('main.content');
+    if (!mainContent) return;
+
+    // Seleccionar todos los subtítulos h2 y h3 reales de la nota (fuera de callouts o prompts)
+    const rawHeadings = Array.from(mainContent.querySelectorAll('h2, h3')).filter(function(h) {
+      return !h.closest('.callout') && !h.closest('.prompt-box-wrapper');
+    });
+
+    if (rawHeadings.length < 2) return;
+
+    // Asegurar que cada título tenga un id único
+    const tocItems = rawHeadings.map(function(h, idx) {
+      if (!h.id) {
+        const slug = (h.textContent || 'seccion')
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '');
+        h.id = (slug || 'seccion') + '-' + idx;
+      }
+      return {
+        id: h.id,
+        text: h.textContent.trim(),
+        level: h.tagName.toLowerCase() === 'h3' ? 3 : 2,
+        el: h
+      };
+    });
+
+    // Función auxiliar para saltar suavemente a un título y resaltarlo
+    function scrollToHeading(targetId) {
+      const targetEl = document.getElementById(targetId);
+      if (!targetEl) return;
+      targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      targetEl.classList.remove('toc-jumped-highlight');
+      void targetEl.offsetWidth;
+      targetEl.classList.add('toc-jumped-highlight');
+      if (history.replaceState) {
+        history.replaceState(null, '', '#' + targetId);
+      }
+    }
+
+    // A) Crear Cuadro de Índice Superior (antes del primer h2)
+    const tocCard = document.createElement('nav');
+    tocCard.className = 'page-toc-card';
+    tocCard.setAttribute('aria-label', 'Índice de contenidos');
+
+    let inlineListHtml = '';
+    tocItems.forEach(function(item) {
+      const bullet = item.level === 2 ? '▸' : '↳';
+      inlineListHtml += `
+        <li class="page-toc-item toc-level-${item.level}">
+          <a href="#${item.id}" class="page-toc-link" data-target="${item.id}">
+            <span class="toc-bullet" aria-hidden="true">${bullet}</span>
+            <span>${item.text}</span>
+          </a>
+        </li>
+      `;
+    });
+
+    tocCard.innerHTML = `
+      <div class="page-toc-header" id="page-toc-header-toggle">
+        <div class="page-toc-title">
+          <span aria-hidden="true">📑</span>
+          <span>Índice de la página</span>
+          <span class="page-toc-count">${tocItems.length} secciones</span>
+        </div>
+        <button type="button" class="page-toc-toggle-btn" id="page-toc-toggle-btn">🔼 Ocultar</button>
+      </div>
+      <div class="page-toc-body" id="page-toc-body">
+        <ul class="page-toc-list">
+          ${inlineListHtml}
+        </ul>
+      </div>
+    `;
+
+    const firstH2 = rawHeadings[0];
+    if (firstH2 && firstH2.parentNode) {
+      firstH2.parentNode.insertBefore(tocCard, firstH2);
+    }
+
+    const headerToggle = tocCard.querySelector('#page-toc-header-toggle');
+    const toggleBtn = tocCard.querySelector('#page-toc-toggle-btn');
+    const tocBody = tocCard.querySelector('#page-toc-body');
+
+    headerToggle.addEventListener('click', function() {
+      const collapsed = tocBody.classList.toggle('is-collapsed');
+      toggleBtn.textContent = collapsed ? '🔽 Mostrar índice' : '🔼 Ocultar';
+    });
+
+    tocCard.querySelectorAll('.page-toc-link').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        scrollToHeading(link.getAttribute('data-target'));
+      });
+    });
+
+    // B) Crear Botón y Menú Flotante de Índice Rápido (siempre accesible mientras scrolleás)
+    const floatingWidget = document.createElement('div');
+    floatingWidget.className = 'floating-toc-widget';
+
+    let floatingLinksHtml = '';
+    tocItems.forEach(function(item) {
+      floatingLinksHtml += `
+        <a href="#${item.id}" class="floating-toc-entry level-${item.level}" data-target="${item.id}">
+          ${item.level === 3 ? '↳ ' : ''}${item.text}
+        </a>
+      `;
+    });
+
+    floatingWidget.innerHTML = `
+      <div class="floating-toc-popover" id="floating-toc-popover" role="dialog" aria-label="Índice rápido">
+        <div class="floating-toc-popover-header">
+          <span>📑 Saltar a sección</span>
+          <button type="button" class="floating-toc-close" id="floating-toc-close" title="Cerrar índice">✕</button>
+        </div>
+        <div class="floating-toc-popover-list" id="floating-toc-list">
+          ${floatingLinksHtml}
+        </div>
+      </div>
+      <div class="floating-toc-buttons">
+        <button type="button" class="floating-top-trigger" id="floating-top-btn" title="Subir al inicio de la página">⬆️</button>
+        <button type="button" class="floating-toc-trigger" id="floating-toc-btn" title="Abrir índice de secciones">
+          <span aria-hidden="true">📑</span>
+          <span>Índice</span>
+        </button>
+      </div>
+    `;
+
+    document.body.appendChild(floatingWidget);
+
+    const popover = document.getElementById('floating-toc-popover');
+    const tocBtn = document.getElementById('floating-toc-btn');
+    const closeTocBtn = document.getElementById('floating-toc-close');
+    const topBtn = document.getElementById('floating-top-btn');
+    const floatEntries = Array.from(floatingWidget.querySelectorAll('.floating-toc-entry'));
+
+    function togglePopover(forceState) {
+      const open = typeof forceState === 'boolean' ? forceState : !popover.classList.contains('is-open');
+      popover.classList.toggle('is-open', open);
+      tocBtn.classList.toggle('is-active', open);
+    }
+
+    tocBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      togglePopover();
+    });
+
+    closeTocBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      togglePopover(false);
+    });
+
+    topBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    floatEntries.forEach(function(entry) {
+      entry.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = entry.getAttribute('data-target');
+        scrollToHeading(targetId);
+        if (window.innerWidth < 900) {
+          togglePopover(false);
+        }
+      });
+    });
+
+    // Cerrar popover al hacer clic afuera
+    document.addEventListener('click', function(e) {
+      if (popover.classList.contains('is-open') && !floatingWidget.contains(e.target)) {
+        togglePopover(false);
+      }
+    });
+
+    // ScrollSpy: actualizar sección activa y visibilidad del botón "Ir arriba"
+    function onScrollSpy() {
+      const scrollY = window.scrollY || document.documentElement.scrollTop;
+      topBtn.classList.toggle('is-visible', scrollY > 350);
+
+      let currentId = tocItems[0].id;
+      for (let i = 0; i < tocItems.length; i++) {
+        const rect = tocItems[i].el.getBoundingClientRect();
+        if (rect.top <= 130) {
+          currentId = tocItems[i].id;
+        } else {
+          break;
+        }
+      }
+
+      floatEntries.forEach(function(entry) {
+        const active = entry.getAttribute('data-target') === currentId;
+        entry.classList.toggle('is-current', active);
+      });
+    }
+
+    window.addEventListener('scroll', onScrollSpy, { passive: true });
+    onScrollSpy();
+  }
+
+  /* ==========================================================================
+     4. ZOOM EN DIAGRAMAS MERMAID CON PAN, WHEEL ZOOM Y MODAL FULLSCREEN
+        (Espera a que Mermaid renderice el <svg> antes de tocar el nodo)
      ========================================================================== */
   function initMermaidZoom() {
     const modal = document.getElementById('mermaid-zoom-modal');
@@ -501,6 +776,10 @@
       diagrams.forEach(function(diag) {
         if (diag.dataset.zoomAttached) return;
 
+        // CRÍTICO: No modificar el nodo hasta que Mermaid haya terminado de renderizar el <svg>
+        const svgEl = diag.querySelector('svg');
+        if (!svgEl) return;
+
         if (!diag.querySelector('.mermaid-zoom-hint')) {
           const hint = document.createElement('span');
           hint.className = 'mermaid-zoom-hint';
@@ -511,9 +790,9 @@
         diag.addEventListener('click', function(e) {
           if (e.target.closest('a')) return;
 
-          const svg = diag.querySelector('svg');
-          if (svg) {
-            openModalWithSvg(svg);
+          const currentSvg = diag.querySelector('svg');
+          if (currentSvg) {
+            openModalWithSvg(currentSvg);
           }
         });
 
@@ -527,8 +806,8 @@
     const interval = setInterval(function() {
       attachMermaidZoomListeners();
       attempts++;
-      if (attempts > 12) clearInterval(interval);
-    }, 400);
+      if (attempts > 25) clearInterval(interval);
+    }, 300);
 
     if (window.MutationObserver) {
       const observer = new MutationObserver(function() {
