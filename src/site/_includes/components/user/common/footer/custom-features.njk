@@ -1,0 +1,542 @@
+<!-- ==========================================================================
+     MEJORAS INTERACTIVAS: PROMPTS, CHECKLISTS 07 Y ZOOM EN MERMAID
+     Obsidian Digital Garden - Archivo de personalización de usuario seguro
+     ========================================================================== -->
+
+<!-- Modal de Zoom para Diagramas Mermaid -->
+<div id="mermaid-zoom-modal" class="mermaid-modal" role="dialog" aria-modal="true" aria-label="Zoom en diagrama" style="display: none;">
+  <div class="mermaid-modal-backdrop" id="mermaid-backdrop"></div>
+  <div class="mermaid-modal-dialog">
+    <div class="mermaid-modal-header">
+      <div class="mermaid-modal-title">
+        <span aria-hidden="true">📊</span>
+        <span>Diagrama Mermaid (Vista Ampliada)</span>
+      </div>
+      <div class="mermaid-modal-tools">
+        <button type="button" class="m-tool-btn" id="m-btn-zoom-in" title="Acercar (+)">➕ Acercar</button>
+        <button type="button" class="m-tool-btn" id="m-btn-zoom-out" title="Alejar (-)">➖ Alejar</button>
+        <button type="button" class="m-tool-btn" id="m-btn-reset" title="Restablecer (0)">↺ Restablecer</button>
+        <button type="button" class="m-tool-btn m-btn-close" id="m-btn-close" title="Cerrar (Esc)">✕ Cerrar</button>
+      </div>
+    </div>
+    <div class="mermaid-modal-body" id="mermaid-viewport">
+      <div class="mermaid-canvas" id="mermaid-canvas"></div>
+    </div>
+    <div class="mermaid-modal-footer">
+      <span>💡 Arrastrá para desplazar</span>
+      <span>•</span>
+      <span>Rueda del mouse o pellizco para zoom</span>
+      <span>•</span>
+      <span>Doble clic para restablecer</span>
+      <span>•</span>
+      <span>[Esc] para cerrar</span>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAllCustomFeatures);
+  } else {
+    initAllCustomFeatures();
+  }
+
+  function initAllCustomFeatures() {
+    initSmartPrompts();
+    initInteractiveChecklists();
+    initMermaidZoom();
+  }
+
+  /* ==========================================================================
+     1. CAJAS DE PROMPTS INTELIGENTES
+        (Límite de altura >15 líneas, botón expandir/contraer y botón Copiar grande)
+     ========================================================================== */
+  function initSmartPrompts() {
+    const codeBlocks = document.querySelectorAll('main.content pre');
+
+    codeBlocks.forEach(function(pre) {
+      if (pre.classList.contains('mermaid') || pre.closest('.mermaid') || pre.closest('.block-language-mermaid')) {
+        return;
+      }
+      if (pre.closest('.prompt-box-wrapper')) {
+        return;
+      }
+
+      const codeEl = pre.querySelector('code') || pre;
+      const rawText = codeEl.innerText.replace(/\r\n/g, '\n');
+      const lines = rawText.split('\n');
+      if (lines.length > 1 && lines[lines.length - 1].trim() === '') {
+        lines.pop();
+      }
+      const lineCount = lines.length;
+
+      let langName = 'PROMPT';
+      const classAttr = (codeEl.className || '') + ' ' + (pre.className || '');
+      const matchLang = classAttr.match(/language-([a-zA-Z0-9_\-]+)/);
+      if (matchLang && matchLang[1] && matchLang[1] !== 'none') {
+        langName = matchLang[1].toUpperCase();
+      }
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'prompt-box-wrapper';
+
+      const header = document.createElement('div');
+      header.className = 'prompt-box-header';
+      header.innerHTML = `
+        <div class="prompt-box-meta-info">
+          <span class="prompt-box-badge">💬 ${langName}</span>
+          <span class="prompt-box-lines-count">${lineCount} líneas</span>
+        </div>
+        <button type="button" class="prompt-copy-btn" title="Copiar prompt al portapapeles">
+          <span class="copy-icon" aria-hidden="true">📋</span>
+          <span class="copy-text">Copiar Prompt</span>
+        </button>
+      `;
+
+      const codeContainer = document.createElement('div');
+      const isLong = lineCount > 15;
+      codeContainer.className = 'prompt-code-container' + (isLong ? ' is-collapsed' : '');
+
+      pre.parentNode.insertBefore(wrapper, pre);
+      wrapper.appendChild(header);
+      wrapper.appendChild(codeContainer);
+      codeContainer.appendChild(pre);
+
+      if (isLong) {
+        const expandBar = document.createElement('div');
+        expandBar.className = 'prompt-expand-bar';
+        expandBar.innerHTML = `
+          <button type="button" class="prompt-expand-btn">
+            <span class="expand-icon" aria-hidden="true">🔽</span>
+            <span class="expand-text">Expandir prompt completo (${lineCount} líneas)</span>
+          </button>
+        `;
+        wrapper.appendChild(expandBar);
+
+        const expandBtn = expandBar.querySelector('.prompt-expand-btn');
+        expandBtn.addEventListener('click', function() {
+          const currentlyCollapsed = codeContainer.classList.contains('is-collapsed');
+          if (currentlyCollapsed) {
+            codeContainer.classList.remove('is-collapsed');
+            codeContainer.classList.add('is-expanded');
+            expandBtn.innerHTML = `
+              <span class="expand-icon" aria-hidden="true">🔼</span>
+              <span class="expand-text">Contraer prompt</span>
+            `;
+          } else {
+            codeContainer.classList.add('is-collapsed');
+            codeContainer.classList.remove('is-expanded');
+            expandBtn.innerHTML = `
+              <span class="expand-icon" aria-hidden="true">🔽</span>
+              <span class="expand-text">Expandir prompt completo (${lineCount} líneas)</span>
+            `;
+            const rect = wrapper.getBoundingClientRect();
+            if (rect.top < 60) {
+              wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
+        });
+      }
+
+      const copyBtn = header.querySelector('.prompt-copy-btn');
+      copyBtn.addEventListener('click', function() {
+        const textToCopy = rawText;
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(textToCopy).then(showSuccess, fallbackCopy);
+        } else {
+          fallbackCopy();
+        }
+
+        function fallbackCopy() {
+          try {
+            const ta = document.createElement('textarea');
+            ta.value = textToCopy;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.focus();
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            showSuccess();
+          } catch (e) {
+            console.error('Error copiando:', e);
+          }
+        }
+
+        function showSuccess() {
+          copyBtn.classList.add('is-copied');
+          copyBtn.innerHTML = `
+            <span class="copy-icon" aria-hidden="true">✅</span>
+            <span class="copy-text">¡Copiado!</span>
+          `;
+          setTimeout(function() {
+            copyBtn.classList.remove('is-copied');
+            copyBtn.innerHTML = `
+              <span class="copy-icon" aria-hidden="true">📋</span>
+              <span class="copy-text">Copiar Prompt</span>
+            `;
+          }, 2400);
+        }
+      });
+    });
+  }
+
+  /* ==========================================================================
+     2. CHECKLISTS INTERACTIVAS EN LAS GUÍAS 07
+        (Casillas clickeables, estrella ★ resaltada, localStorage y barra flotante)
+     ========================================================================== */
+  function initInteractiveChecklists() {
+    const mainContent = document.querySelector('main.content');
+    if (!mainContent) return;
+
+    const containsBallot = mainContent.textContent.indexOf('☐') !== -1;
+    const is07Path = /07[\.\-_][1-4]/.test(window.location.pathname) || /07[\.\-_][1-4]/.test(document.title);
+
+    if (!containsBallot && !is07Path) {
+      return;
+    }
+
+    const pageSlug = window.location.pathname.replace(/\/$/, '').split('/').pop() || 'guia07';
+    const storageKey = 'ia_facu_checklist_' + pageSlug;
+
+    let savedData = {};
+    try {
+      savedData = JSON.parse(localStorage.getItem(storageKey) || '{}');
+    } catch(err) {
+      savedData = {};
+    }
+
+    const allLis = Array.from(mainContent.querySelectorAll('li'));
+    const checklistItems = allLis.filter(function(li) {
+      return li.textContent.indexOf('☐') !== -1;
+    });
+
+    if (checklistItems.length === 0) return;
+
+    checklistItems.forEach(function(li, idx) {
+      const isStarred = li.textContent.indexOf('★') !== -1;
+      const isChecked = !!savedData[idx];
+
+      li.classList.add('interactive-checklist-item');
+      if (isStarred) {
+        li.classList.add('checklist-item-starred');
+      }
+      if (isChecked) {
+        li.classList.add('is-completed');
+      }
+
+      const starBadgeHtml = isStarred
+        ? '<span class="checklist-star-badge" title="Hábito clave de alto impacto">★ CLAVE</span>'
+        : '';
+
+      const controlHtml = `
+        <label class="checklist-item-control" title="${isChecked ? 'Marcar como pendiente' : 'Marcar como completado'}">
+          <input type="checkbox" class="chk-input-native" data-idx="${idx}" ${isChecked ? 'checked' : ''}>
+          <span class="checklist-custom-box" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </span>
+        </label>${starBadgeHtml}
+      `;
+
+      li.innerHTML = li.innerHTML.replace(/☐\s*(★)?\s*/, controlHtml + ' <span class="checklist-item-text">') + '</span>';
+
+      const input = li.querySelector('.chk-input-native');
+      input.addEventListener('change', function() {
+        const checked = input.checked;
+        savedData[idx] = checked;
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(savedData));
+        } catch(e) {}
+
+        if (checked) {
+          li.classList.add('is-completed');
+        } else {
+          li.classList.remove('is-completed');
+        }
+
+        updateStats();
+      });
+
+      // Permitir hacer clic en la fila completa (excepto enlaces o botones) para alternar la casilla
+      li.addEventListener('click', function(e) {
+        if (e.target.closest('a') || e.target.closest('button') || e.target.closest('input') || e.target.closest('label')) {
+          return;
+        }
+        input.checked = !input.checked;
+        input.dispatchEvent(new Event('change'));
+      });
+    });
+
+    const bar = document.createElement('div');
+    bar.className = 'checklist-floating-bar';
+    bar.id = 'checklist-floating-bar';
+    bar.innerHTML = `
+      <div class="checklist-bar-header">
+        <div class="checklist-bar-stats">
+          <span class="stat-chip-done">✅ <strong id="chk-count-done">0</strong> marcados</span>
+          <span class="stat-chip-pending">⏳ <strong id="chk-count-pending">0</strong> restantes</span>
+        </div>
+        <div class="checklist-bar-percent" id="chk-percent">0%</div>
+      </div>
+      <div class="checklist-progress-track">
+        <div class="checklist-progress-fill" id="chk-fill"></div>
+      </div>
+      <div class="checklist-bar-actions">
+        <span class="checklist-title-hint">Tu autoevaluación se guarda automáticamente</span>
+        <button type="button" class="checklist-reset-btn" id="chk-btn-reset">↺ Reiniciar progreso</button>
+      </div>
+    `;
+    document.body.appendChild(bar);
+
+    function updateStats() {
+      const total = checklistItems.length;
+      let completed = 0;
+      for (let i = 0; i < total; i++) {
+        if (savedData[i]) completed++;
+      }
+      const pending = total - completed;
+      const pct = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+      const doneEl = document.getElementById('chk-count-done');
+      const pendingEl = document.getElementById('chk-count-pending');
+      const pctEl = document.getElementById('chk-percent');
+      const fillEl = document.getElementById('chk-fill');
+
+      if (doneEl) doneEl.textContent = completed;
+      if (pendingEl) pendingEl.textContent = pending;
+      if (pctEl) pctEl.textContent = pct + '%';
+      if (fillEl) fillEl.style.width = pct + '%';
+    }
+
+    const resetBtn = document.getElementById('chk-btn-reset');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (confirm('¿Querés reiniciar las casillas de esta guía y volver a empezar?')) {
+          savedData = {};
+          try {
+            localStorage.removeItem(storageKey);
+          } catch(e) {}
+
+          const inputs = mainContent.querySelectorAll('.chk-input-native');
+          inputs.forEach(function(inp) {
+            inp.checked = false;
+            const li = inp.closest('.interactive-checklist-item');
+            if (li) li.classList.remove('is-completed');
+          });
+
+          updateStats();
+        }
+      });
+    }
+
+    updateStats();
+  }
+
+  /* ==========================================================================
+     3. ZOOM EN DIAGRAMAS MERMAID CON PAN, WHEEL ZOOM Y MODAL FULLSCREEN
+     ========================================================================== */
+  function initMermaidZoom() {
+    const modal = document.getElementById('mermaid-zoom-modal');
+    if (!modal) return;
+
+    const backdrop = document.getElementById('mermaid-backdrop');
+    const viewport = document.getElementById('mermaid-viewport');
+    const canvas = document.getElementById('mermaid-canvas');
+    const btnZoomIn = document.getElementById('m-btn-zoom-in');
+    const btnZoomOut = document.getElementById('m-btn-zoom-out');
+    const btnReset = document.getElementById('m-btn-reset');
+    const btnClose = document.getElementById('m-btn-close');
+
+    let scale = 1;
+    let panX = 0;
+    let panY = 0;
+    let isDragging = false;
+    let startX = 0;
+    let startY = 0;
+
+    function applyTransform() {
+      canvas.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`;
+    }
+
+    function resetView() {
+      scale = 1;
+      panX = 0;
+      panY = 0;
+      applyTransform();
+    }
+
+    function zoom(delta) {
+      const newScale = Math.min(Math.max(scale + delta, 0.3), 5);
+      scale = Number(newScale.toFixed(2));
+      applyTransform();
+    }
+
+    function openModalWithSvg(svgEl) {
+      canvas.innerHTML = '';
+      const clone = svgEl.cloneNode(true);
+      clone.removeAttribute('width');
+      clone.removeAttribute('height');
+      clone.style.width = 'auto';
+      clone.style.maxWidth = '90vw';
+      clone.style.maxHeight = '75vh';
+      canvas.appendChild(clone);
+
+      resetView();
+      modal.style.display = 'flex';
+      void modal.offsetWidth;
+      modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.classList.remove('is-open');
+      setTimeout(function() {
+        modal.style.display = 'none';
+        canvas.innerHTML = '';
+        document.body.style.overflow = '';
+      }, 250);
+    }
+
+    btnZoomIn.addEventListener('click', function() { zoom(0.25); });
+    btnZoomOut.addEventListener('click', function() { zoom(-0.25); });
+    btnReset.addEventListener('click', resetView);
+    btnClose.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', function(e) {
+      if (!modal.classList.contains('is-open')) return;
+      if (e.key === 'Escape') {
+        closeModal();
+      } else if (e.key === '+' || e.key === '=') {
+        zoom(0.25);
+      } else if (e.key === '-' || e.key === '_') {
+        zoom(-0.25);
+      } else if (e.key === '0') {
+        resetView();
+      }
+    });
+
+    viewport.addEventListener('wheel', function(e) {
+      e.preventDefault();
+      const delta = e.deltaY < 0 ? 0.15 : -0.15;
+      zoom(delta);
+    }, { passive: false });
+
+    viewport.addEventListener('mousedown', function(e) {
+      if (e.button !== 0) return;
+      isDragging = true;
+      startX = e.clientX - panX;
+      startY = e.clientY - panY;
+    });
+
+    window.addEventListener('mousemove', function(e) {
+      if (!isDragging) return;
+      panX = e.clientX - startX;
+      panY = e.clientY - startY;
+      applyTransform();
+    });
+
+    window.addEventListener('mouseup', function() {
+      isDragging = false;
+    });
+
+    viewport.addEventListener('dblclick', function() {
+      if (scale === 1 && panX === 0 && panY === 0) {
+        scale = 1.75;
+      } else {
+        scale = 1;
+        panX = 0;
+        panY = 0;
+      }
+      applyTransform();
+    });
+
+    let initialTouchDistance = 0;
+    let initialScale = 1;
+
+    viewport.addEventListener('touchstart', function(e) {
+      if (e.touches.length === 1) {
+        isDragging = true;
+        startX = e.touches[0].clientX - panX;
+        startY = e.touches[0].clientY - panY;
+      } else if (e.touches.length === 2) {
+        isDragging = false;
+        initialTouchDistance = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+        initialScale = scale;
+      }
+    }, { passive: true });
+
+    viewport.addEventListener('touchmove', function(e) {
+      if (e.touches.length === 1 && isDragging) {
+        panX = e.touches[0].clientX - startX;
+        panY = e.touches[0].clientY - startY;
+        applyTransform();
+      } else if (e.touches.length === 2 && initialTouchDistance > 0) {
+        const currentDistance = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+        const factor = currentDistance / initialTouchDistance;
+        scale = Math.min(Math.max(Number((initialScale * factor).toFixed(2)), 0.3), 5);
+        applyTransform();
+      }
+    }, { passive: true });
+
+    viewport.addEventListener('touchend', function() {
+      isDragging = false;
+      initialTouchDistance = 0;
+    }, { passive: true });
+
+    function attachMermaidZoomListeners() {
+      const diagrams = document.querySelectorAll('.mermaid, pre.mermaid, div.mermaid, .block-language-mermaid');
+
+      diagrams.forEach(function(diag) {
+        if (diag.dataset.zoomAttached) return;
+
+        if (!diag.querySelector('.mermaid-zoom-hint')) {
+          const hint = document.createElement('span');
+          hint.className = 'mermaid-zoom-hint';
+          hint.innerHTML = '🔍 Clic para ampliar';
+          diag.appendChild(hint);
+        }
+
+        diag.addEventListener('click', function(e) {
+          if (e.target.closest('a')) return;
+
+          const svg = diag.querySelector('svg');
+          if (svg) {
+            openModalWithSvg(svg);
+          }
+        });
+
+        diag.dataset.zoomAttached = 'true';
+      });
+    }
+
+    attachMermaidZoomListeners();
+
+    let attempts = 0;
+    const interval = setInterval(function() {
+      attachMermaidZoomListeners();
+      attempts++;
+      if (attempts > 12) clearInterval(interval);
+    }, 400);
+
+    if (window.MutationObserver) {
+      const observer = new MutationObserver(function() {
+        attachMermaidZoomListeners();
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+    }
+  }
+
+})();
+</script>
