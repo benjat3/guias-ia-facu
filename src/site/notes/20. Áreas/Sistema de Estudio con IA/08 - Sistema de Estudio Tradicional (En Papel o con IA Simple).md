@@ -4,14 +4,16 @@
 
 
 
+
 # 📝 Sistema de Estudio Tradicional: Cómo Estudiar Ingeniería en Papel (o con IA Simple)
 
-> [!TIP] 📌 ¿Para quién es esta guía?
+> [!tip] 📌 ¿Para quién es esta guía?
 > Si no tenés ganas de configurar prompts largos, no te llevás bien con Anki, preferís estudiar con **apuntes impresos, cuaderno, birome y calculadora**, o simplemente querés usar una IA común (ChatGPT, Gemini o Claude) haciéndole preguntas normales sin armar todo el sistema automatizado de esta web, **este es tu mapa de ruta**.
 
-La realidad es una sola: **los prompts avanzados y las automatizaciones no hacen el milagro; lo que aprueba parciales y finales difíciles es el método cognitivo que hay detrás**.
-
-Este flujo traduce las mismas 4 fases del sistema principal a un método **100% de escritorio y papel**, basado exactamente en los mismos 7 libros científicos de nuestra **[[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]** y en las **[[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|Checklists de Autoevaluación (07)]]**.
+> [!abstract] Principio Rector del Método
+> La realidad es una sola: ==**los prompts avanzados y las automatizaciones no hacen el milagro; lo que aprueba parciales y finales difíciles es el método cognitivo que hay detrás**==.
+>
+> Este flujo traduce las mismas 4 fases del sistema principal a un método **100% de escritorio y papel**, basado exactamente en los mismos 7 libros científicos de nuestra **[[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]** y en las **[[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|Checklists de Autoevaluación (07)]]**.
 
 ---
 
@@ -31,71 +33,181 @@ Ambos caminos entrenan tu cerebro bajo las mismas reglas; solo cambia la herrami
 ## 🗺️ El Flujo de 4 Pasos en Papel
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'fontSize': '18px', 'primaryColor': '#f8fafc', 'primaryTextColor': '#1e293b', 'primaryBorderColor': '#475569', 'lineColor': '#4b5563'}, 'flowchart': {'htmlLabels': false, 'wrappingWidth': 360, 'nodeSpacing': 26, 'rankSpacing': 26, 'padding': 16}}}%%
 flowchart TD
-    F1["<b>PASO 1: EL MAPA DE LA UNIDAD (15-20 min)</b><br>• Mirás apuntes, guía de TP y parciales viejos<br>• Anotás en 1 carilla: Conceptos, Deducciones y Familias de ejercicios"]
-    
-    F2A["<b>PASO 2A: TEORÍA Y DEDUCCIONES</b><br>• Técnica de la Hoja en Blanco<br>• Deducciones divididas en 4 a 6 tramos (✓ / ✗)"]
-    
-    F2B["<b>PASO 2B: GUÍA DE TRABAJOS PRÁCTICOS</b><br>• Ejemplo resuelto tapado<br>• Dibujo previo + Planteo sin cuentas (Ecuaciones = Incógnitas)"]
-    
-    F3["<b>PASO 3: FIJACIÓN Y REGISTRO DE ERRORES</b><br>• Formulario Razonado (Fórmula + Hipótesis al lado)<br>• Lista de 'Fallas Raíz' (Reintentar al día siguiente y días después)"]
-    
-    F4["<b>PASO 4: ENTRENAMIENTO MEZCLADO Y SIMULACRO</b><br>• Intercalar ejercicios de distintas unidades<br>• Parcial viejo a mano, con tablas y cronómetro"]
-
-    F1 --> F2A
-    F1 --> F2B
-    F2A --> F3
-    F2B --> F3
-    F3 --> F4
+    F1["PASO 1: EL MAPA DE LA UNIDAD (15-20 min)<br/>Conceptos, Deducciones y Familias de TP"] --> F2A["PASO 2A: TEORÍA Y DEDUCCIONES<br/>Hoja en Blanco y Tramos (✔ / ✘)"]
+    F1 --> F2B["PASO 2B: GUÍA DE TRABAJOS PRÁCTICOS<br/>Ejemplo tapado y Planteo sin cuentas"]
+    F2A & F2B --> F3["PASO 3: FIJACIÓN Y REGISTRO DE ERRORES<br/>Formulario Razonado y Fallas Raíz"]
+    F3 --> F4["PASO 4: PRÁCTICA MEZCLADA Y SIMULACRO<br/>Intercalado y Parcial con cronómetro"]
 ```
+
+> [!info]+ Detalle Operativo de las 4 Etapas del Diagrama
+> - **PASO 1: EL MAPA DE LA UNIDAD (15–20 min)**
+>   - Mirás apuntes, guía de TP y parciales viejos.
+>   - Anotás en 1 carilla: Conceptos, Deducciones y Familias de ejercicios.
+> - **PASO 2A: TEORÍA Y DEDUCCIONES**
+>   - Técnica de la Hoja en Blanco.
+>   - Deducciones divididas en 4 a 6 tramos ($\checkmark$ / $\times$).
+> - **PASO 2B: GUÍA DE TRABAJOS PRÁCTICOS**
+>   - Ejemplo resuelto tapado.
+>   - Dibujo previo + Planteo sin cuentas ($\text{Ecuaciones} = \text{Incógnitas}$).
+> - **PASO 3: FIJACIÓN Y REGISTRO DE ERRORES**
+>   - Formulario Razonado (Fórmula + Hipótesis al lado).
+>   - Lista de «Fallas Raíz» (Reintentar al día siguiente y días después).
+> - **PASO 4: ENTRENAMIENTO MEZCLADO Y SIMULACRO**
+>   - Intercalar ejercicios de distintas unidades.
+>   - Parcial viejo a mano, con tablas y cronómetro.
 
 ---
 
 ## Paso 1: El Mapa de la Unidad en 20 Minutos (Antes de estudiar)
 
-El error más común en ingeniería es abrir el apunte en la página 1 y ponerse a subrayar o intentar hacer la guía del ejercicio 1 al 30 como un robot. Antes de estudiar una unidad nueva, invertí **20 minutos** en armar tu mapa en una hoja A4 *(método inspirado en Cal Newport)*:
+> [!warning] El error de arrancar a ciegas
+> El error más común en ingeniería es abrir el apunte en la página 1 y ponerse a subrayar o intentar hacer la guía del ejercicio 1 al 30 como un robot. Antes de estudiar una unidad nueva, invertí **20 minutos** en armar tu mapa en una hoja A4 *(método inspirado en Cal Newport)*:
 
-1. **Opcional, 2-3 minutos antes de abrir el apunte:** En una hoja borrador, anotá todo lo que recordás o intuís de la unidad. No importa que esté incompleto: te muestra de dónde partís y te prepara para fijarte en lo que no sabías.
-2. **Mirá el final de la película primero (Parciales viejos):** Buscá 2 o 3 exámenes anteriores de la cátedra y fijate qué problemas o preguntas tomaron de esta unidad. Eso te dice de entrada qué nivel de profundidad exigen.
-3. **Dividí tu hoja en tres columnas rápidas:**
-   * **Teoría y Gráficos clave:** ¿Qué fenómenos o curvas aparecen en las diapositivas/apuntes? *(ej. Diagrama T-s del ciclo Rankine, Curva tensión-deformación, Diagrama de Moody)*.
-   * **Demostraciones / Deducciones:** ¿Qué ecuaciones desarrolla el profesor paso a paso en el pizarrón?
-   * **Familias de Problemas (Arquetipos del TP):** Mirá la guía práctica y agrupá los ejercicios parecidos. En vez de ver "20 ejercicios sueltos", vas a notar que hay 3 o 4 familias *(ej. Ej. 1 a 4: cañerías en serie; Ej. 5 a 8: cañerías en paralelo; Ej. 9 y 10: bomba acoplada a red)*.
+- [x] **1. Opcional, 2–3 minutos antes de abrir el apunte:** En una hoja borrador, anotá todo lo que recordás o intuís de la unidad. No importa que esté incompleto: te muestra de dónde partís y te prepara para fijarte en lo que no sabías.
+- [x] **2. Mirá el final de la película primero (Parciales viejos):** Buscá 2 o 3 exámenes anteriores de la cátedra y fijate qué problemas o preguntas tomaron de esta unidad. Eso te dice de entrada qué nivel de profundidad exigen.
+- [x] **3. Dividí tu hoja en tres columnas rápidas:**
+  - **Teoría y Gráficos clave:** ¿Qué fenómenos o curvas aparecen en las diapositivas/apuntes? *(ej. Diagrama $T$-$s$ del ciclo Rankine, Curva tensión-deformación, Diagrama de Moody)*.
+  - **Demostraciones / Deducciones:** ¿Qué ecuaciones desarrolla el profesor paso a paso en el pizarrón?
+  - **Familias de Problemas (Arquetipos del TP):** Mirá la guía práctica y agrupá los ejercicios parecidos. En vez de ver "20 ejercicios sueltos", vas a notar que hay 3 o 4 familias *(ej. Ej. 1 a 4: cañerías en serie; Ej. 5 a 8: cañerías en paralelo; Ej. 9 y 10: bomba acoplada a red)*.
 
-Con esa hoja a la vista ya tenés tu propia **Checklist manual**: sabés qué tenés que dominar para dar la unidad por terminada. Veinte minutos es una referencia, no una garantía de cobertura: si la unidad es grande, ajustá.
+> [!tip] Tu propia Checklist manual
+> Con esa hoja a la vista ya tenés tu propia **Checklist manual**: sabés qué tenés que dominar para dar la unidad por terminada. Veinte minutos es una referencia, no una garantía de cobertura: si la unidad es grande, ajustá.
 
 ---
 
 ## Paso 2: Cómo Estudiar la Teoría y Hacer la Guía (Sin autoengañarte)
 
-En *A Mind for Numbers*, Barbara Oakley explica que el enemigo número uno del estudiante de ingeniería es la **ilusión de competencia**: leer el apunte o mirar cómo el ayudante resuelve en el pizarrón, sentir *"ah, claro, tiene todo el sentido del mundo"*, y descubrir en el parcial que frente a la hoja vacía no sabés ni por dónde arrancar.
+> [!warning] El Enemigo Número Uno: La Ilusión de Competencia (*A Mind for Numbers*)
+> En *A Mind for Numbers*, Barbara Oakley explica que el enemigo número uno del estudiante de ingeniería es la **ilusión de competencia**: leer el apunte o mirar cómo el ayudante resuelve en el pizarrón, sentir *"ah, claro, tiene todo el sentido del mundo"*, y descubrir en el parcial que frente a la hoja vacía no sabés ni por dónde arrancar.
+>
+> > [!zap] Regla de Oro del Estudio Activo
+> > Para destruir esa ilusión, separá tu estudio en dos dinámicas activas. En ambas vale la misma regla: ==**no alcanza con reproducir los pasos; tenés que poder decir por qué se hace cada uno y bajo qué hipótesis vale**== (escribilo al margen o decilo en voz alta).
 
-Para destruir esa ilusión, separá tu estudio en dos dinámicas activas. En ambas vale la misma regla: **no alcanza con reproducir los pasos; tenés que poder decir por qué se hace cada uno y bajo qué hipótesis vale** (escribilo al margen o decilo en voz alta).
+```tikz
+\begin{document}
+\begin{tikzpicture}[>=latex, scale=1.15, every node/.style={font=\normalsize}]
+
+  \node[align=center, font=\large\bfseries] at (3.4, 4.7) {Retenci\'on Cognitiva: Estudio Pasivo vs. Recuperaci\'on Activa\\{\normalsize (Efecto de la Hoja en Blanco y Reintento de Fallas Ra\'iz)}};
+
+  % Ejes coordenados
+  \draw[->, gray!60, line width=0.9pt] (0,0) -- (6.8,0) node[right=4pt, text=black] {$t$ [d\'ias]};
+  \draw[->, gray!60, line width=0.9pt] (0,0) -- (0,3.9) node[left=4pt, text=black] {Dominio [\%]};
+  \node[below left=2pt] at (0,0) {$0$};
+  \node[left=3pt, font=\small] at (0, 3.5) {$100\,\%$};
+  \node[left=3pt, font=\small, text=orange!90!black] at (0, 2.2) {$65\,\%$};
+
+  % Umbral minimo de aprobacion en parcial
+  \draw[dotted, orange!90!black, line width=1.1pt] (0, 2.2) -- (6.5, 2.2) node[right=3pt, font=\small, text=orange!90!black] {Umbral Parcial};
+
+  % Curva 1: Estudio pasivo (Releer / mirar resueltos)
+  \draw[line width=1.8pt, red, dashed, domain=0:6.2, samples=55, smooth, variable=\x]
+    plot ({\x}, {0.45 + 3.05 * exp(-0.62 * \x)});
+  \node[text=red, below right=2pt, font=\small, align=left] at (2.1, 1.25) {Releer / Mirar resueltos\\{\footnotesize (Ilusi\'on de competencia)}};
+
+  % Curva 2: Recuperacion activa (Hoja en blanco + Tramos + Reintentos)
+  \draw[line width=2.0pt, teal, domain=0:1.5, samples=30, smooth, variable=\x]
+    plot ({\x}, {1.20 + 2.30 * exp(-0.42 * \x)});
+  \draw[->, line width=1.4pt, cyan!85!black] (1.5, 2.42) -- (1.5, 3.45);
+  \draw[line width=2.0pt, teal, domain=1.5:3.6, samples=30, smooth, variable=\x]
+    plot ({\x}, {1.85 + 1.65 * exp(-0.26 * (\x - 1.5))});
+  \draw[->, line width=1.4pt, cyan!85!black] (3.6, 2.81) -- (3.6, 3.48);
+  \draw[line width=2.0pt, teal, domain=3.6:6.2, samples=30, smooth, variable=\x]
+    plot ({\x}, {2.45 + 1.05 * exp(-0.14 * (\x - 3.6))});
+
+  % Puntos de reintento activo corregidos (sin checkmark)
+  \filldraw[cyan!85!black] (1.5, 3.50) circle (2.2pt) node[above=3pt, font=\small, text=cyan!85!black] {D\'ia 2 ($\times \to \mathrm{OK}$)};
+  \filldraw[cyan!85!black] (3.6, 3.50) circle (2.2pt) node[above=3pt, font=\small, text=cyan!85!black] {D\'ias despu\'es};
+  \node[text=teal, above left=2pt, font=\small] at (6.2, 3.18) {Pr\'actica Activa};
+
+\end{tikzpicture}
+\end{document}
+```
 
 ### A. Para estudiar Teoría y Demostraciones (Hoja en Blanco y Tramos)
 
 1. **Evitá copiar y releer:**
    No pases el apunte en limpio con colores. Leé una sección corta tratando de entender el *porqué* físico, **cerrá el cuaderno**, agarrá una hoja borrador y **escribí o dibujá todo lo que te acuerdes desde cero** (definición, gráfico con sus ejes rotulados, ecuación y cuándo vale). Recién cuando te vacíes, abrí el apunte y corregite con otro color. Sí sirve armar un mapa o resumen *de memoria y con tus palabras*.
-   * *Regla de calibración:* Para que esto funcione, el esfuerzo tiene que costar, pero ser posible con lo que ya sabés, y terminar con corrección. Si no te sale absolutamente nada, no es esfuerzo útil: bajá un escalón (mirá una pista o el ejemplo) y volvé a intentar.
+
+   > [!tip] Regla de calibración
+   > Para que esto funcione, el esfuerzo tiene que costar, pero ser posible con lo que ya sabés, y terminar con corrección. Si no te sale absolutamente nada, no es esfuerzo útil: bajá un escalón (mirá una pista o el ejemplo) y volvé a intentar.
+
 2. **El método de los «Tramos» para deducciones largas:**
    En vez de intentar memorizar dos carillas de álgebra de corrido, hacé esto:
-   * Entendé **de dónde parte** (qué modelo físico y qué hipótesis asume) y **adónde llega**.
-   * Dividí la demostración en **4 a 6 escalones lógicos** (donde cada escalón termina en una ecuación intermedia importante) y anotá al margen **qué hipótesis física destraba ese paso** *(ej. "acá uso fluido incompresible $\rho = \text{cte}$", "acá desprecio variación de energía potencial")*.
-   * Tapá la hoja y reconstruila en limpio. Si te trabás en el escalón 3, espiá **solo ese renglón** y seguí solo hasta el final. Ponete un **✓** en los tramos que salieron y una **✗** donde espiaste. Al día siguiente, practicá solo los que tenían **✗**.
+   - Entendé **de dónde parte** (qué modelo físico y qué hipótesis asume) y **adónde llega**.
+   - Dividí la demostración en **4 a 6 escalones lógicos** (donde cada escalón termina en una ecuación intermedia importante) y anotá al margen **qué hipótesis física destraba ese paso** *(ej. "acá uso fluido incompresible $\rho = \text{cte}$", "acá desprecio variación de energía potencial")*.
+   - Tapá la hoja y reconstruila en limpio. Si te trabás en el escalón 3, espiá **solo ese renglón** y seguí solo hasta el final. Ponete un **✓** en los tramos que salieron y una **✗** donde espiaste. Al día siguiente, practicá solo los que tenían **✗**.
 
 ### B. Para resolver la Guía de Trabajos Prácticos
 
 1. **La técnica del «Ejemplo Resuelto Tapado» (*Craig Barton*):**
    Cuando el tema es nuevo, no te tires a ciegas ni copies la receta cambiando los números. Agarrá el primer ejemplo resuelto de la clase o del libro, leé línea por línea preguntándote *"¿por qué puso este signo?, ¿de dónde sacó este dato?"*. Una vez que lo entendiste, **tapalo por completo y resolvelo vos solo en una hoja en blanco**. Si no podés resolverlo después de haberlo estudiado, todavía necesitás practicarlo: revisá dónde te trabaste y volvé a intentarlo sin mirar.
-   * *Si el tema es muy nuevo (opcional):* Antes de ir al problema completo solo, hacé un escalón intermedio: el mismo ejemplo con los últimos pasos en blanco para que los completes vos.
+
+   > [!tip] Escalón intermedio (Si el tema es muy nuevo - opcional)
+   > Antes de ir al problema completo solo, hacé un escalón intermedio: el mismo ejemplo con los últimos pasos en blanco para que los completes vos.
+
 2. **Intentá identificar tu traba antes de pedir ayuda:**
    Cuando encares un ejercicio nuevo de la guía, **intentá plantearlo solo aunque no veas el camino, y tratá de ubicar dónde exactamente te trabás**. Unos minutos, no horas: si no avanzás, pedí una pista o mirá un renglón del resuelto y volvé a hacerlo solo. Si al primer minuto mirás el resuelto de otro año, tu cerebro entrena *reconocer* soluciones ajenas, no *crear* planteos propios.
+
 3. **Primero el dibujo, después las letras y al final los números:**
    Cuando el problema tenga una configuración física o espacial relevante, dibujá primero el esquema (diagrama de cuerpo libre, volumen de control en líneas punteadas, ejes coordenados $x\text{-}y$ y sentido positivo adoptado). En materias de cálculo o álgebra, donde no hay un dibujo físico, reemplazalo por un **esquema de signos, de dependencias entre variables o del comportamiento de la función** (asíntotas, crecimiento, signo).
+
 4. **Entrená el «Planteo Cerrado sin Álgebra»:**
    Cuando tengas poco tiempo o una guía larguísima, elegí 3 o 4 problemas y hacé **únicamente el planteo completo**: dibujás el esquema, listás las hipótesis, escribís las ecuaciones en letras, **contás que tengas exactamente tantas ecuaciones independientes como incógnitas**, y sobre todo entendés todo lo que hacés. En ingeniería, gran parte de la dificultad está en el planteo, pero **practicá también los despejes y las cuentas completas con reloj**, porque en el parcial el tiempo corre y el álgebra también se entrena.
+
 5. **Control físico del resultado:**
    Antes de recuadrar un número, frená 10 segundos: ¿tiene unidades?, ¿el signo coincide con mi dibujo?, ¿el orden de magnitud es lógico (o me dio que por un caño doméstico pasa el caudal del río Paraná)?, ¿qué da esta expresión si el ángulo vale $0^\circ$ o la masa tiende a cero?
+
+```tikz
+\usetikzlibrary{decorations.pathmorphing, arrows.meta, calc}
+\begin{document}
+\begin{tikzpicture}[>=latex, scale=1.1, every node/.style={font=\normalsize}]
+
+  % SUBGRAFICO A: ESQUEMA FISICO Y DCL PREVIO A LAS CUENTAS
+  \begin{scope}[xshift=0cm, yshift=0cm]
+    \node[align=center, font=\large\bfseries] at (2.4, 4.7) {a) 1$^\circ$ Dibujo y Ejes Adoptados\\{\normalsize (DCL / Volumen de Control)}};
+
+    % Suelo / Empotramiento
+    \draw[line width=1.4pt] (0.4, 0) -- (4.4, 0);
+    \foreach \x in {0.6, 0.9, 1.2, 1.5, 1.8, 2.1, 2.4, 2.7, 3.0, 3.3, 3.6, 3.9, 4.2} {
+      \draw[gray!70, line width=0.8pt] (\x, 0) -- (\x-0.22, -0.25);
+    }
+
+    % Volumen de control punteado
+    \draw[dashed, teal, line width=1.1pt] (0.5, 0.35) rectangle (4.3, 3.55);
+    \node[above right=1pt, font=\small, text=teal] at (0.5, 3.55) {V.C. / DCL};
+
+    % Resorte k y fuerzas
+    \draw[line width=1.4pt, cyan, decorate, decoration={coil, aspect=0.45, segment length=5.5pt, amplitude=5.5pt, pre length=6pt, post length=6pt}] (2.4, 0) -- (2.4, 1.55) node[midway, left=8pt, text=cyan] {$k x$};
+
+    % Cuerpo en estudio
+    \draw[line width=1.6pt, orange, fill=white] (1.1, 1.55) rectangle (3.7, 2.45) node[midway, text=black, font=\bfseries] {Sistema $m$};
+
+    % Fuerza externa y eje positivo
+    \draw[->, line width=1.6pt, red] (2.4, 2.45) -- (2.4, 3.35) node[above=1pt, text=red] {$F_{\mathrm{ext}}$};
+    \draw[->, line width=1.3pt, violet] (4.65, 1.55) -- (4.65, 2.85) node[right=2pt, text=violet] {$+y$};
+    \draw[dashed, gray!70, line width=0.8pt] (3.7, 1.55) -- (4.8, 1.55);
+  \end{scope}
+
+  % SUBGRAFICO B: PLANTEO CERRADO SIN ALGEBRA
+  \begin{scope}[xshift=7.8cm, yshift=0cm]
+    \node[align=center, font=\large\bfseries] at (2.8, 4.7) {b) 2$^\circ$ Planteo y Control F\'isico\\{\normalsize (Antes de reemplazar n\'umeros)}};
+
+    \node[draw=cyan!85!black, line width=1.5pt, fill=white, text=black, inner xsep=10pt, inner ysep=6pt, align=center, font=\small] (B1) at (2.8, 3.3) {\textbf{1. Hip\'otesis y Convenci\'on}\\[2pt]Sentido $(+)$, r\'egimen y v\'inculos};
+
+    % Corregido aqui: N_ec = N_inc sin acentos
+    \node[draw=teal!90!black, line width=1.5pt, fill=white, text=black, inner xsep=10pt, inner ysep=6pt, align=center, font=\small] (B2) at (2.8, 1.7) {\textbf{2. Planteo Cerrado en Letras}\\[2pt]$N_{\mathrm{ec}} = N_{\mathrm{inc}}$};
+
+    \node[draw=orange!90!black, line width=1.5pt, fill=white, text=black, inner xsep=10pt, inner ysep=6pt, align=center, font=\small] (B3) at (2.8, 0.1) {\textbf{3. Control F\'isico ($10\ \mathrm{s}$)}\\[2pt]Unidades, signo y casos l\'imite ($\theta \to 0^\circ$)};
+
+    \draw[->, line width=1.4pt] (B1.south) -- (B2.north);
+    \draw[->, line width=1.4pt] (B2.south) -- (B3.north);
+  \end{scope}
+
+\end{tikzpicture}
+\end{document}
+```
 
 ---
 
@@ -111,39 +223,73 @@ No hagas una lista muda de ecuaciones sueltas ($Q = A \cdot v$), porque en el pa
 | :--- | :--- | :--- |
 | **Bernoulli ideal:**<br>$P_1/\gamma + z_1 + v_1^2/2g = \text{cte}$ | 1. Fluido incompresible ($\rho=\text{cte}$)<br>2. Flujo invíscido (sin pérdidas)<br>3. Régimen estacionario<br>4. A lo largo de una línea de corriente<br>5. Sin intercambio de trabajo de eje ni de calor | • ¡No vale tal cual si hay una bomba o turbina en el medio! (ahí sumar $H_B$ o restar $H_T$; con pérdidas, agregar $h_f$).<br>• Presiones en la misma base (ambas manométricas o ambas absolutas). |
 
-- **Si el examen es SIN hoja de fórmulas:** Dos veces por semana, guardá esa carilla e intentá escribirla y dibujar sus gráficos de memoria en una hoja borrador.
-- **Si el examen es CON hoja de fórmulas:** Esa misma carilla (limpia según lo que permita tu cátedra) ya es el machete legal perfecto para llevar al parcial.
+```tikz
+\begin{document}
+\begin{tikzpicture}[>=latex, scale=1.1, every node/.style={font=\normalsize}]
+
+  \node[align=center, font=\large\bfseries] at (5.5, 3.2) {Esquema Mental del Formulario Razonado: Cu\'ando Cambia el Modelo};
+
+  % Nodo Izquierdo: Estado 1
+  \node[draw=cyan!85!black, line width=1.5pt, fill=white, text=black, inner xsep=8pt, inner ysep=6pt, align=center, font=\small] (E1) at (1.3, 1.6) {\textbf{Secci\'on 1}\\[3pt]$\frac{P_1}{\gamma} + z_1 + \frac{v_1^2}{2g}$};
+
+  % Nodo Central: Volumen de Control con Bomba / Turbina / Perdidas
+  \node[draw=orange!90!black, line width=1.5pt, fill=white, text=black, inner xsep=10pt, inner ysep=6pt, align=center, font=\small] (VC) at (5.5, 1.6) {\textbf{¿Qu\'e hay entre 1 y 2?}\\[3pt]Bomba ($+H_B$) / Turbina ($-H_T$)\\[2pt]Fricci\'on viscosa ($-h_f$)};
+
+  % Nodo Derecho: Estado 2
+  \node[draw=teal!90!black, line width=1.5pt, fill=white, text=black, inner xsep=8pt, inner ysep=6pt, align=center, font=\small] (E2) at (9.7, 1.6) {\textbf{Secci\'on 2}\\[3pt]$\frac{P_2}{\gamma} + z_2 + \frac{v_2^2}{2g}$};
+
+  % Conexiones
+  \draw[->, line width=1.5pt, cyan!85!black] (E1.east) -- (VC.west);
+  \draw[->, line width=1.5pt, teal!90!black] (VC.east) -- (E2.west);
+
+  % Nota inferior comparativa
+  \node[draw=red!80!black, line width=1.2pt, fill=white, text=black, inner xsep=10pt, inner ysep=5pt, align=center, font=\small] at (5.5, 0.1) {\textbf{Bernoulli Ideal} solo vale si $H_B = 0$, $H_T = 0$ y $h_f = 0$ ($\rho = \mathrm{cte}$, estacionario)};
+
+\end{tikzpicture}
+\end{document}
+```
+
+> [!tip]+ ¿Cómo usar esta carilla según la modalidad del examen?
+> - **Si el examen es SIN hoja de fórmulas:** Dos veces por semana, guardá esa carilla e intentá escribirla y dibujar sus gráficos de memoria en una hoja borrador.
+> - **Si el examen es CON hoja de fórmulas:** Esa misma carilla (limpia según lo que permita tu cátedra) ya es el machete legal perfecto para llevar al parcial.
 
 ### 2. La Bitácora de «Fallas Raíz» *(inspirada en la práctica deliberada de Anders Ericsson)*
 
 Dedicá la última hoja de tu cuaderno a anotar **cada ejercicio o pregunta teórica donde te trabaste o te dio mal**, pero prohibido anotar solo *"hacer de nuevo el Ej. 7"*. Anotá en un renglón **cuál fue tu falla raíz**:
-- `[TP3 - Ej. 4]` *Olvidé pasar la temperatura a Kelvin antes de meterla en gases ideales.*
-- `[TP4 - Ej. 8]` *Puse mal el signo del trabajo de expansión porque no declaré mi convención al principio.*
-- `[Parcial 2024 - Ej. 2]` *No supe qué estado usar a la salida de la válvula (olvidé que el estrangulamiento es isoentálpico $h_1 = h_2$).*
 
-**Clasificá cada falla según su causa, porque el remedio cambia:**
-- **De concepto** (no sabías la teoría) ➔ volvé al apunte.
-- **De estrategia** (elegiste mal el modelo) ➔ practicá clasificar enunciados.
-- **De cuentas** (despeje, método matemático) ➔ practicá ese cálculo suelto.
-- **De descuido** (signos, unidades) ➔ armá una lista de chequeo corta y usala.
+> [!example]+ Ejemplos de registro en tu Bitácora
+> - `[TP3 - Ej. 4]` *Olvidé pasar la temperatura a Kelvin antes de meterla en gases ideales.*
+> - `[TP4 - Ej. 8]` *Puse mal el signo del trabajo de expansión porque no declaré mi convención al principio.*
+> - `[Parcial 2024 - Ej. 2]` *No supe qué estado usar a la salida de la válvula (olvidé que el estrangulamiento es isoentálpico $h_1 = h_2$).*
 
-**La regla de oro del cuaderno de errores:** Reintentá el ejercicio fallado **al día siguiente** desde una hoja en blanco y sin espiar, y **de nuevo unos días después**; si sigue fallando, volvé a intentarlo más adelante. **Tachalo de la lista recién cuando te sale en un problema parecido**, no solo en el mismo enunciado que ya te acordás.
+> [!warning]+ Clasificá cada falla según su causa, porque el remedio cambia
+> - **De concepto** (no sabías la teoría) ➔ volvé al apunte.
+> - **De estrategia** (elegiste mal el modelo) ➔ practicá clasificar enunciados.
+> - **De cuentas** (despeje, método matemático) ➔ practicá ese cálculo suelto.
+> - **De descuido** (signos, unidades) ➔ armá una lista de chequeo corta y usala.
+
+> [!zap] La regla de oro del cuaderno de errores
+> Reintentá el ejercicio fallado **al día siguiente** desde una hoja en blanco y sin espiar, y **de nuevo unos días después**; si sigue fallando, volvé a intentarlo más adelante. ==**Tachalo de la lista recién cuando te sale en un problema parecido**==, no solo en el mismo enunciado que ya te acordás.
 
 ---
 
 ## Paso 4: Intercalar Temas y Hacer el Simulacro Real
 
-Estudiar la Unidad 1 el lunes, la Unidad 2 el martes y la Unidad 3 el miércoles te da una trampa invisible: cuando estás haciendo la guía 3, **ya sabés de antemano que todos los problemas salen con las fórmulas de la guía 3**. En el parcial, los problemas vienen sin cartelito.
+> [!warning] La trampa invisible del estudio en bloques
+> Estudiar la Unidad 1 el lunes, la Unidad 2 el martes y la Unidad 3 el miércoles te da una trampa invisible: cuando estás haciendo la guía 3, **ya sabés de antemano que todos los problemas salen con las fórmulas de la guía 3**. En el parcial, los problemas vienen sin cartelito.
 
 1. **Práctica Intercalada (*Interleaving*):**
    Primero tenés que saber resolver cada tipo de problema por separado. Una vez que lo lograste, empezá a mezclar: en una misma tarde resolvé **un ejercicio del tema de hoy + uno de la semana pasada + una demostración de la Unidad 1**. Ese esfuerzo mental de preguntarte *"¿con qué modelo sale esto?"* es exactamente lo que te evalúan en el examen.
-   * *Un ejercicio extra, de vez en cuando:* Juntá varios enunciados mezclados y decí **solo qué modelo e hipótesis usarías**, sin calcular.
+   - *Un ejercicio extra, de vez en cuando:* Juntá varios enunciados mezclados y decí **solo qué modelo e hipótesis usarías**, sin calcular.
+
 2. **La Técnica de las «Rondas ✓ / ✗» para finales o teoría:**
    Armate una lista de 15 o 20 preguntas exigentes de toda la materia (sacadas de parciales/finales viejos). Hacé la **Ronda 1**: respondés todas sin mirar apuntes y te calificás sin piedad con **✓** o **✗**. En la **Ronda 2** (al otro día), no repasás todo de nuevo: te tomás **únicamente las que tuvieron ✗**, hasta que no quede ninguna. *(Opcional: antes de corregir, anotá "creo que me salió: 1 a 5" y compará; si siempre te sobreestimás, sabés menos de lo que creés).*
+
 3. **El Simulacro con Cronómetro:**
    Cuando ya tengas una base y te quede margen para corregir lo que descubras, agarrá un parcial viejo completo que no hayas resuelto todavía. Guardá el celular en otra pieza, dejá arriba de la mesa **solo la calculadora y las tablas que te dejan usar en el aula**, poné una alarma con el tiempo real del examen y hacelo de punta a punta sin espiar una sola hoja.
-   * *Después, hacete dos preguntas:* **¿Dónde perdí tiempo?** y **¿Qué tipo de error fue cada uno?** (usá la clasificación de la bitácora). Eso te muestra qué ajustar con el tiempo que te queda.
+   - *Después, hacete dos preguntas:* **¿Dónde perdí tiempo?** y **¿Qué tipo de error fue cada uno?** (usá la clasificación de la bitácora). Eso te muestra qué ajustar con el tiempo que te queda.
 
+> [!quote] Un hábito más
 > **Un hábito más:** No estudies todo la noche anterior; dormir bien también es parte del método.
 
 ---
@@ -155,16 +301,19 @@ Si querés apoyarte en cualquier chat de IA gratuito mientras estudiás en papel
 1. **Nunca le pidas «Resolveme este ejercicio»:**
    Si le sacás una foto al enunciado y leés cómo lo resuelve la IA, te estás robando el entrenamiento. Escribile siempre:
 
+   > [!example] Prompt 1: Pedir pistas graduales sin spoiler
    > *"Estoy intentando resolver este problema: [pegar enunciado]. Yo planteé esto: [contarle qué pensaste o subir foto de tu hoja]. **No me des la resolución ni el resultado final**: decime únicamente si mi planteo físico es correcto o dame una sola pista, una a la vez, para el paso donde me trabé."*
 
 2. **Usala para destrabar el significado físico:**
    Cuando el apunte tire una ecuación que parece imposible, preguntale:
 
+   > [!example] Prompt 2: Traducir ecuaciones a intuición física
    > *"Explicame con intuición física para ingeniería mecánica qué representa cada término de esta ecuación, bajo qué hipótesis vale y dame un ejemplo real donde falle."*
 
 3. **Pedile que te arme un «problema gemelo»:**
    Cuando por fin pudiste destrabar un ejercicio difícil mirando la resolución de la cátedra, comprobalo en el acto:
 
+   > [!example] Prompt 3: Verificar transferencia con un problema gemelo
    > *"Acabo de entender cómo se resuelve este ejercicio: [pegar ejercicio]. Inventame un problema parecido que se resuelva con la misma lógica física pero cambiando la configuración o invirtiendo qué es dato y qué es incógnita, sin darme la solución. Esperá a que yo lo resuelva para corregirme."*
 
 4. **Desconfiá siempre de sus cuentas y convenciones, y dale tus apuntes:**
@@ -174,18 +323,20 @@ Si querés apoyarte en cualquier chat de IA gratuito mientras estudiás en papel
 
 ## 🧭 ¿Querés auditar cómo estás estudiando hoy?
 
-Si estudiás en papel, el complemento directo de este sistema son las **4 Checklists de Autoevaluación**, donde podés medir en 5 minutos qué hábitos ya tenés y cuáles te conviene sumar antes del parcial (empezando por los 5 puntos marcados con **★**):
-
-- 📘 **[[20. Áreas/Sistema de Estudio con IA/07.1 - Guía de Estudio - Teoría y Ejercicios\|07.1 - Guía de Estudio - Teoría y Ejercicios]]** *(Para materias que mezclan teoría, deducciones y problemas).*
-- 📐 **[[20. Áreas/Sistema de Estudio con IA/07.2 - Guía de Estudio - Ejercicios y Problemas\|07.2 - Guía de Estudio - Ejercicios y Problemas]]** *(Para materias 100% prácticas de cálculo).*
-- 📖 **[[20. Áreas/Sistema de Estudio con IA/07.3 - Guía de Estudio - Teoría y Demostraciones\|07.3 - Guía de Estudio - Teoría y Demostraciones]]** *(Para finales teóricos, orales o materias conceptuales).*
-- 👩‍🏫 **[[20. Áreas/Sistema de Estudio con IA/07.4 - Guía de Enseñanza para Docentes y Tutores\|07.4 - Guía de Enseñanza para Docentes y Tutores]]** *(Si sos ayudante alumno o das clases).*
+> [!abstract]+ Las 4 Checklists de Autoevaluación (Diagnóstico en 5 minutos)
+> Si estudiás en papel, el complemento directo de este sistema son las **4 Checklists de Autoevaluación**, donde podés medir en 5 minutos qué hábitos ya tenés y cuáles te conviene sumar antes del parcial (empezando por los 5 puntos marcados con **★**):
+>
+> - 📘 **[[20. Áreas/Sistema de Estudio con IA/07.1 - Guía de Estudio - Teoría y Ejercicios\|07.1 - Guía de Estudio - Teoría y Ejercicios]]** *(Para materias que mezclan teoría, deducciones y problemas).*
+> - 📐 **[[20. Áreas/Sistema de Estudio con IA/07.2 - Guía de Estudio - Ejercicios y Problemas\|07.2 - Guía de Estudio - Ejercicios y Problemas]]** *(Para materias 100% prácticas de cálculo).*
+> - 📖 **[[20. Áreas/Sistema de Estudio con IA/07.3 - Guía de Estudio - Teoría y Demostraciones\|07.3 - Guía de Estudio - Teoría y Demostraciones]]** *(Para finales teóricos, orales o materias conceptuales).*
+> - 👩‍🏫 **[[20. Áreas/Sistema de Estudio con IA/07.4 - Guía de Enseñanza para Docentes y Tutores\|07.4 - Guía de Enseñanza para Docentes y Tutores]]** *(Si sos ayudante alumno o das clases).*
 
 ---
 
 ## 🧭 Navegación
 
-*Volver al inicio general:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/00 - Inicio y Flujo de Trabajo\|00 - Inicio y Flujo de Trabajo]]**
-*Ver los 7 libros que fundamentan este método:* 📚 **[[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]**
-*Ir a las checklists de autoevaluación:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]**
-*Siguiente sección (Historial Técnico):* ➡️ **[[20. Áreas/Sistema de Estudio con IA/99 - Historial de Versiones (Changelog)\|99 - Historial de Versiones (Changelog)]]**
+> [!info]+ Mapa de Navegación del Sistema
+> - *Volver al inicio general:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/00 - Inicio y Flujo de Trabajo\|00 - Inicio y Flujo de Trabajo]]**
+> - *Ver los 7 libros que fundamentan este método:* 📚 **[[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]**
+> - *Ir a las checklists de autoevaluación:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]**
+> - *Siguiente sección (Historial Técnico):* ➡️ **[[20. Áreas/Sistema de Estudio con IA/99 - Historial de Versiones (Changelog)\|99 - Historial de Versiones (Changelog)]]**
