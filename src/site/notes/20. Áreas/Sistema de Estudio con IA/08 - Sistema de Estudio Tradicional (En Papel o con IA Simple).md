@@ -11,7 +11,7 @@
 > Si no tenés ganas de configurar prompts largos, no te llevás bien con Anki, preferís estudiar con **apuntes impresos, cuaderno, birome y calculadora**, o simplemente querés usar una IA común (ChatGPT, Gemini o Claude) haciéndole preguntas normales sin armar todo el sistema automatizado de esta web, **este es tu mapa de ruta**.
 
 > [!abstract] Principio Rector del Método
-> La realidad es una sola: ==**los prompts avanzados y las automatizaciones no hacen el milagro; lo que aprueba parciales y finales difíciles es el método cognitivo que hay detrás**==.
+> La realidad es una sola: ==🔵**los prompts avanzados y las automatizaciones no hacen el milagro; lo que aprueba parciales y finales difíciles es el método cognitivo que hay detrás**==.
 >
 > Este flujo traduce las mismas 4 fases del sistema principal a un método **100% de escritorio y papel**, basado exactamente en los mismos 7 libros científicos de nuestra **[[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]** y en las **[[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|Checklists de Autoevaluación (07)]]**.
 
