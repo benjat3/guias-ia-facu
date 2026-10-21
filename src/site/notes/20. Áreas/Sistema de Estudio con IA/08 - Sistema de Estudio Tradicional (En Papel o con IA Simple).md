@@ -11,7 +11,7 @@
 > Si no tenés ganas de configurar prompts largos, no te llevás bien con Anki, preferís estudiar con **apuntes impresos, cuaderno, birome y calculadora**, o simplemente querés usar una IA común (ChatGPT, Gemini o Claude) haciéndole preguntas normales sin armar todo el sistema automatizado de esta web, **este es tu mapa de ruta**.
 
 > [!abstract] Principio Rector del Método
-> La realidad es una sola: ==🔵**los prompts avanzados y las automatizaciones no hacen el milagro; lo que aprueba parciales y finales difíciles es el método cognitivo que hay detrás**==.
+> La realidad es una sola: **los prompts avanzados y las automatizaciones no hacen el milagro; lo que aprueba parciales y finales difíciles es el método cognitivo que hay detrás**.
 >
 > Este flujo traduce las mismas 4 fases del sistema principal a un método **100% de escritorio y papel**, basado exactamente en los mismos 7 libros científicos de nuestra **[[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]** y en las **[[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|Checklists de Autoevaluación (07)]]**.
 
@@ -83,7 +83,7 @@ flowchart TD
 > En *A Mind for Numbers*, Barbara Oakley explica que el enemigo número uno del estudiante de ingeniería es la **ilusión de competencia**: leer el apunte o mirar cómo el ayudante resuelve en el pizarrón, sentir *"ah, claro, tiene todo el sentido del mundo"*, y descubrir en el parcial que frente a la hoja vacía no sabés ni por dónde arrancar.
 >
 > > [!zap] Regla de Oro del Estudio Activo
-> > Para destruir esa ilusión, separá tu estudio en dos dinámicas activas. En ambas vale la misma regla: ==**no alcanza con reproducir los pasos; tenés que poder decir por qué se hace cada uno y bajo qué hipótesis vale**== (escribilo al margen o decilo en voz alta).
+> > Para destruir esa ilusión, separá tu estudio en dos dinámicas activas. En ambas vale la misma regla: **no alcanza con reproducir los pasos; tenés que poder decir por qué se hace cada uno y bajo qué hipótesis vale** (escribilo al margen o decilo en voz alta).
 
 > [!NOTE] 📈 Gráfico 1: Dinámica de Retención — Curva del Olvido vs. Práctica Activa Espaciada
 > ![08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)-1792587781401.webp](/img/user/_assets/attachments/08%20-%20Sistema%20de%20Estudio%20Tradicional%20(En%20Papel%20o%20con%20IA%20Simple)-1792587781401.webp)
@@ -162,7 +162,7 @@ Dedicá la última hoja de tu cuaderno a anotar **cada ejercicio o pregunta teó
 > - **De descuido** (signos, unidades) ➔ armá una lista de chequeo corta y usala.
 
 > [!zap] La regla de oro del cuaderno de errores
-> Reintentá el ejercicio fallado **al día siguiente** desde una hoja en blanco y sin espiar, y **de nuevo unos días después**; si sigue fallando, volvé a intentarlo más adelante. ==**Tachalo de la lista recién cuando te sale en un problema parecido**==, no solo en el mismo enunciado que ya te acordás.
+> Reintentá el ejercicio fallado **al día siguiente** desde una hoja en blanco y sin espiar, y **de nuevo unos días después**; si sigue fallando, volvé a intentarlo más adelante. **Tachalo de la lista recién cuando te sale en un problema parecido**, no solo en el mismo enunciado que ya te acordás.
 
 ---
 
