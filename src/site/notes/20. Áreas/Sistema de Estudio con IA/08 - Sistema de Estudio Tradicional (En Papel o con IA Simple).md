@@ -85,46 +85,8 @@ flowchart TD
 > > [!zap] Regla de Oro del Estudio Activo
 > > Para destruir esa ilusión, separá tu estudio en dos dinámicas activas. En ambas vale la misma regla: ==**no alcanza con reproducir los pasos; tenés que poder decir por qué se hace cada uno y bajo qué hipótesis vale**== (escribilo al margen o decilo en voz alta).
 
-```tikz
-\begin{document}
-\begin{tikzpicture}[>=latex, scale=1.15, every node/.style={font=\normalsize}]
-
-  \node[align=center, font=\large\bfseries] at (3.4, 4.7) {Retenci\'on Cognitiva: Estudio Pasivo vs. Recuperaci\'on Activa\\{\normalsize (Efecto de la Hoja en Blanco y Reintento de Fallas Ra\'iz)}};
-
-  % Ejes coordenados
-  \draw[->, gray!60, line width=0.9pt] (0,0) -- (6.8,0) node[right=4pt, text=black] {$t$ [d\'ias]};
-  \draw[->, gray!60, line width=0.9pt] (0,0) -- (0,3.9) node[left=4pt, text=black] {Dominio [\%]};
-  \node[below left=2pt] at (0,0) {$0$};
-  \node[left=3pt, font=\small] at (0, 3.5) {$100\,\%$};
-  \node[left=3pt, font=\small, text=orange!90!black] at (0, 2.2) {$65\,\%$};
-
-  % Umbral minimo de aprobacion en parcial
-  \draw[dotted, orange!90!black, line width=1.1pt] (0, 2.2) -- (6.5, 2.2) node[right=3pt, font=\small, text=orange!90!black] {Umbral Parcial};
-
-  % Curva 1: Estudio pasivo (Releer / mirar resueltos)
-  \draw[line width=1.8pt, red, dashed, domain=0:6.2, samples=55, smooth, variable=\x]
-    plot ({\x}, {0.45 + 3.05 * exp(-0.62 * \x)});
-  \node[text=red, below right=2pt, font=\small, align=left] at (2.1, 1.25) {Releer / Mirar resueltos\\{\footnotesize (Ilusi\'on de competencia)}};
-
-  % Curva 2: Recuperacion activa (Hoja en blanco + Tramos + Reintentos)
-  \draw[line width=2.0pt, teal, domain=0:1.5, samples=30, smooth, variable=\x]
-    plot ({\x}, {1.20 + 2.30 * exp(-0.42 * \x)});
-  \draw[->, line width=1.4pt, cyan!85!black] (1.5, 2.42) -- (1.5, 3.45);
-  \draw[line width=2.0pt, teal, domain=1.5:3.6, samples=30, smooth, variable=\x]
-    plot ({\x}, {1.85 + 1.65 * exp(-0.26 * (\x - 1.5))});
-  \draw[->, line width=1.4pt, cyan!85!black] (3.6, 2.81) -- (3.6, 3.48);
-  \draw[line width=2.0pt, teal, domain=3.6:6.2, samples=30, smooth, variable=\x]
-    plot ({\x}, {2.45 + 1.05 * exp(-0.14 * (\x - 3.6))});
-
-  % Puntos de reintento activo corregidos (sin checkmark)
-  \filldraw[cyan!85!black] (1.5, 3.50) circle (2.2pt) node[above=3pt, font=\small, text=cyan!85!black] {D\'ia 2 ($\times \to \mathrm{OK}$)};
-  \filldraw[cyan!85!black] (3.6, 3.50) circle (2.2pt) node[above=3pt, font=\small, text=cyan!85!black] {D\'ias despu\'es};
-  \node[text=teal, above left=2pt, font=\small] at (6.2, 3.18) {Pr\'actica Activa};
-
-\end{tikzpicture}
-\end{document}
-```
-
+> [!NOTE] 📈 Gráfico 1: Dinámica de Retención — Curva del Olvido vs. Práctica Activa Espaciada
+> ![08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)-1792587781401.webp](/img/user/_assets/attachments/08%20-%20Sistema%20de%20Estudio%20Tradicional%20(En%20Papel%20o%20con%20IA%20Simple)-1792587781401.webp)
 ### A. Para estudiar Teoría y Demostraciones (Hoja en Blanco y Tramos)
 
 1. **Evitá copiar y releer:**
@@ -159,55 +121,8 @@ flowchart TD
 5. **Control físico del resultado:**
    Antes de recuadrar un número, frená 10 segundos: ¿tiene unidades?, ¿el signo coincide con mi dibujo?, ¿el orden de magnitud es lógico (o me dio que por un caño doméstico pasa el caudal del río Paraná)?, ¿qué da esta expresión si el ángulo vale $0^\circ$ o la masa tiende a cero?
 
-```tikz
-\usetikzlibrary{decorations.pathmorphing, arrows.meta, calc}
-\begin{document}
-\begin{tikzpicture}[>=latex, scale=1.1, every node/.style={font=\normalsize}]
-
-  % SUBGRAFICO A: ESQUEMA FISICO Y DCL PREVIO A LAS CUENTAS
-  \begin{scope}[xshift=0cm, yshift=0cm]
-    \node[align=center, font=\large\bfseries] at (2.4, 4.7) {a) 1$^\circ$ Dibujo y Ejes Adoptados\\{\normalsize (DCL / Volumen de Control)}};
-
-    % Suelo / Empotramiento
-    \draw[line width=1.4pt] (0.4, 0) -- (4.4, 0);
-    \foreach \x in {0.6, 0.9, 1.2, 1.5, 1.8, 2.1, 2.4, 2.7, 3.0, 3.3, 3.6, 3.9, 4.2} {
-      \draw[gray!70, line width=0.8pt] (\x, 0) -- (\x-0.22, -0.25);
-    }
-
-    % Volumen de control punteado
-    \draw[dashed, teal, line width=1.1pt] (0.5, 0.35) rectangle (4.3, 3.55);
-    \node[above right=1pt, font=\small, text=teal] at (0.5, 3.55) {V.C. / DCL};
-
-    % Resorte k y fuerzas
-    \draw[line width=1.4pt, cyan, decorate, decoration={coil, aspect=0.45, segment length=5.5pt, amplitude=5.5pt, pre length=6pt, post length=6pt}] (2.4, 0) -- (2.4, 1.55) node[midway, left=8pt, text=cyan] {$k x$};
-
-    % Cuerpo en estudio
-    \draw[line width=1.6pt, orange, fill=white] (1.1, 1.55) rectangle (3.7, 2.45) node[midway, text=black, font=\bfseries] {Sistema $m$};
-
-    % Fuerza externa y eje positivo
-    \draw[->, line width=1.6pt, red] (2.4, 2.45) -- (2.4, 3.35) node[above=1pt, text=red] {$F_{\mathrm{ext}}$};
-    \draw[->, line width=1.3pt, violet] (4.65, 1.55) -- (4.65, 2.85) node[right=2pt, text=violet] {$+y$};
-    \draw[dashed, gray!70, line width=0.8pt] (3.7, 1.55) -- (4.8, 1.55);
-  \end{scope}
-
-  % SUBGRAFICO B: PLANTEO CERRADO SIN ALGEBRA
-  \begin{scope}[xshift=7.8cm, yshift=0cm]
-    \node[align=center, font=\large\bfseries] at (2.8, 4.7) {b) 2$^\circ$ Planteo y Control F\'isico\\{\normalsize (Antes de reemplazar n\'umeros)}};
-
-    \node[draw=cyan!85!black, line width=1.5pt, fill=white, text=black, inner xsep=10pt, inner ysep=6pt, align=center, font=\small] (B1) at (2.8, 3.3) {\textbf{1. Hip\'otesis y Convenci\'on}\\[2pt]Sentido $(+)$, r\'egimen y v\'inculos};
-
-    % Corregido aqui: N_ec = N_inc sin acentos
-    \node[draw=teal!90!black, line width=1.5pt, fill=white, text=black, inner xsep=10pt, inner ysep=6pt, align=center, font=\small] (B2) at (2.8, 1.7) {\textbf{2. Planteo Cerrado en Letras}\\[2pt]$N_{\mathrm{ec}} = N_{\mathrm{inc}}$};
-
-    \node[draw=orange!90!black, line width=1.5pt, fill=white, text=black, inner xsep=10pt, inner ysep=6pt, align=center, font=\small] (B3) at (2.8, 0.1) {\textbf{3. Control F\'isico ($10\ \mathrm{s}$)}\\[2pt]Unidades, signo y casos l\'imite ($\theta \to 0^\circ$)};
-
-    \draw[->, line width=1.4pt] (B1.south) -- (B2.north);
-    \draw[->, line width=1.4pt] (B2.south) -- (B3.north);
-  \end{scope}
-
-\end{tikzpicture}
-\end{document}
-```
+> [!NOTE] 📸  Gráfico 2: Metodología Canónica de Resolución — Del Esquema Físico (DCL) al Planteo Simbólico Cerrado
+> ![08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)-1792587710730.webp](/img/user/_assets/attachments/08%20-%20Sistema%20de%20Estudio%20Tradicional%20(En%20Papel%20o%20con%20IA%20Simple)-1792587710730.webp)
 
 ---
 
@@ -219,35 +134,13 @@ Si no querés usar programas de tarjetas como Anki, necesitás dos herramientas 
 
 No hagas una lista muda de ecuaciones sueltas ($Q = A \cdot v$), porque en el parcial el profesor te cambia una condición y aplicás una fórmula donde no vale. Armá una sola carilla A4 por unidad con este formato de tres columnas:
 
-| Ecuación / Relación | Hipótesis obligatorias (¿Cuándo vale?) | Trampa típica / Unidades / Gráfico |
-| :--- | :--- | :--- |
+| Ecuación / Relación                                                | Hipótesis obligatorias (¿Cuándo vale?)                                                                                                                                                                     | Trampa típica / Unidades / Gráfico                                                                                                                                                                 |
+| :----------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Bernoulli ideal:**<br>$P_1/\gamma + z_1 + v_1^2/2g = \text{cte}$ | 1. Fluido incompresible ($\rho=\text{cte}$)<br>2. Flujo invíscido (sin pérdidas)<br>3. Régimen estacionario<br>4. A lo largo de una línea de corriente<br>5. Sin intercambio de trabajo de eje ni de calor | • ¡No vale tal cual si hay una bomba o turbina en el medio! (ahí sumar $H_B$ o restar $H_T$; con pérdidas, agregar $h_f$).<br>• Presiones en la misma base (ambas manométricas o ambas absolutas). |
 
-```tikz
-\begin{document}
-\begin{tikzpicture}[>=latex, scale=1.1, every node/.style={font=\normalsize}]
 
-  \node[align=center, font=\large\bfseries] at (5.5, 3.2) {Esquema Mental del Formulario Razonado: Cu\'ando Cambia el Modelo};
-
-  % Nodo Izquierdo: Estado 1
-  \node[draw=cyan!85!black, line width=1.5pt, fill=white, text=black, inner xsep=8pt, inner ysep=6pt, align=center, font=\small] (E1) at (1.3, 1.6) {\textbf{Secci\'on 1}\\[3pt]$\frac{P_1}{\gamma} + z_1 + \frac{v_1^2}{2g}$};
-
-  % Nodo Central: Volumen de Control con Bomba / Turbina / Perdidas
-  \node[draw=orange!90!black, line width=1.5pt, fill=white, text=black, inner xsep=10pt, inner ysep=6pt, align=center, font=\small] (VC) at (5.5, 1.6) {\textbf{¿Qu\'e hay entre 1 y 2?}\\[3pt]Bomba ($+H_B$) / Turbina ($-H_T$)\\[2pt]Fricci\'on viscosa ($-h_f$)};
-
-  % Nodo Derecho: Estado 2
-  \node[draw=teal!90!black, line width=1.5pt, fill=white, text=black, inner xsep=8pt, inner ysep=6pt, align=center, font=\small] (E2) at (9.7, 1.6) {\textbf{Secci\'on 2}\\[3pt]$\frac{P_2}{\gamma} + z_2 + \frac{v_2^2}{2g}$};
-
-  % Conexiones
-  \draw[->, line width=1.5pt, cyan!85!black] (E1.east) -- (VC.west);
-  \draw[->, line width=1.5pt, teal!90!black] (VC.east) -- (E2.west);
-
-  % Nota inferior comparativa
-  \node[draw=red!80!black, line width=1.2pt, fill=white, text=black, inner xsep=10pt, inner ysep=5pt, align=center, font=\small] at (5.5, 0.1) {\textbf{Bernoulli Ideal} solo vale si $H_B = 0$, $H_T = 0$ y $h_f = 0$ ($\rho = \mathrm{cte}$, estacionario)};
-
-\end{tikzpicture}
-\end{document}
-```
+> [!NOTE] 📸 Gráfico 3: Esquema Mental del Formulario Razonado — Cuándo Cambia el Modelo (Límites de Bernoulli)
+> ![08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)-1792587738124.webp](/img/user/_assets/attachments/08%20-%20Sistema%20de%20Estudio%20Tradicional%20(En%20Papel%20o%20con%20IA%20Simple)-1792587738124.webp)
 
 > [!tip]+ ¿Cómo usar esta carilla según la modalidad del examen?
 > - **Si el examen es SIN hoja de fórmulas:** Dos veces por semana, guardá esa carilla e intentá escribirla y dibujar sus gráficos de memoria en una hoja borrador.
