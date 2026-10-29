@@ -26,7 +26,7 @@ Estas listas de autoevaluación fueron diseñadas para auditar con honestidad tu
 Cada guía tiene entre 30 y 40 ítems, pero **no intentes cambiar todo de golpe**. Elegí 1 o 2 hábitos marcados con **★**, que son los que mayor impacto tienen con el menor esfuerzo adicional:
 
 **Si sos estudiante (Guías 07.1, 07.2 y 07.3):**
-1. **Producir sin mirar:** escribir lo que sabés o atacar el ejercicio en una hoja en blanco *antes* de mirar el apunte o la solución.
+1. **Producir sin mirar:** escribir lo que sabés sin espiar el apunte y, apenas entendés los pasos del primer ejemplo de un tema, atacar los ejercicios nuevos en una hoja en blanco.
 2. **Espaciar e intercalar:** volver a temas viejos mezclados con los nuevos en lugar de dar unidades por cerradas.
 3. **Corregir de verdad:** rehacer en otro día, sin ayuda y mezclado con otros temas, lo que te salió mal.
 4. **Simular el examen:** practicar a mano, con límite de tiempo y sin apuntes.

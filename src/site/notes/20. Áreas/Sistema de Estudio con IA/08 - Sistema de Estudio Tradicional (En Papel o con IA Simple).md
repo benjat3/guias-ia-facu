@@ -467,7 +467,7 @@ En lugar de confiar en tu memoria para decidir qué estudiar o repasar cada tard
 ### 3. Elegí cómo arrancar según tu Punto de Partida (Las 3 Ramas)
 
 No todos los temas se empiezan en el mismo lugar:
-- **🟢 Rama 1 — Nunca viste el tema:** Arrancá con el ciclo corto **`I.0 (Entrada al tema)` + la técnica de `Fase I`** que corresponda, tramo por tramo (porciones de 10 minutos). **Prohibido** empezar intentando resolver ejercicios o testeándote a ciegas.
+- **🟢 Rama 1 — Nunca viste el tema:** Arrancá con el ciclo corto **`I.0 (Entrada al tema)` + la técnica de `Fase I`** que corresponda, tramo por tramo (porciones de 10 minutos). 
 - **🟡 Rama 2 — Ya viste el tema en clase o leíste, pero no practicaste:** Salteá `I.0` (usalo solo en algún subtítulo puntual que no recuerdes de qué habla) y andá directo a la **Ficha de variable** más la técnica de desarme de **`Fase I` (`I.1`, `I.2` o `I.3`)**.
 - **🔵 Rama 3 — Ya practicaste el tema:** Empezá tu sesión haciendo **1 ejercicio en hoja en blanco** de un tipo que elijas, sin mirar apuntes ni usar técnicas correctivas durante el intento, y contrastalo al terminar contra la clave o tu material:
   - *Si te sale bien:* Escribí la lista de títulos de pasos de ese ejercicio y arrancá ese tipo directamente en el **Escalón 3** (o en el **Escalón 4** si estás en Modo Emergencia).
@@ -581,34 +581,36 @@ En lugar de intentar memorizar dos carillas de despejes algebraicos (o de párra
 
 ---
 
-### `I.4` Datos Exactos de Memoria: Tarjetas Directas/Inversas, Tabla Tapable y «Formulario Razonado»
+### `I.4` Datos Exactos de Memoria: Tarjetas Directas/Inversas y Tabla Tapable (El «Formulario Razonado»)
 
 Hay cosas que en pleno examen no podés deducir desde cero y tenés que traer en la memoria (o saber ubicar e interpretar en segundos si te dejan usar hoja de fórmulas): **fórmulas con su condición de uso, convenciones de signos, valores/umbrales típicos, clasificaciones, tablas de decisión y distinciones entre términos parecidos** (o vocabulario, plazos legales y regímenes de verbos en otras carreras).
+
+> [!important] Cero duplicación de soportes (Ficha de variable vs. Tabla tapable / Formulario Razonado)
+> No armes tres cosas distintas para una misma ecuación:
+> - La **Ficha de variable** (al inicio de la Fase I) la hiciste una sola vez para entender qué significa cada letra individual ($P$, $\gamma$, $z$, $v$).
+> - Acá en **`I.4`** guardás la **relación completa y sus condiciones de uso** en **un único soporte de recuperación** (o en Anki, o en tu tabla tapable en papel, nunca duplicado en ambos).
 
 #### Regla de oro: Entender primero y preguntar en ambas direcciones (Directa + Inversa)
 Recién cuando hayas cumplido el criterio de comprensión del tramo (`I.0` a `I.3`), registrá los datos exactos armando siempre **dos direcciones de recuperación**:
 - **Pregunta Directa (Condición $\rightarrow$ Dato/Fórmula):** *"¿Cuál es la ecuación de Bernoulli ideal y en qué unidades va cada término?"*
 - **Pregunta Inversa (Dato/Fórmula $\rightarrow$ Condición de uso o Categoría):** *"Tenés la ecuación $P_1/\gamma + z_1 + v_1^2/2g = \text{cte}$: ¿bajo qué 5 hipótesis físicas exactas es válida y cuándo queda prohibido usarla tal cual?"*
 
-#### Cómo llevarlo en Papel (Sin usar Anki)
+#### Cómo llevarlo en Papel sin duplicar trabajo: El «Formulario Razonado» COMO tu Tabla Tapable
 
-Si no usás Anki (**[[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|04 - Generador de Tarjetas de Anki]]**), tenés dos soportes en papel sumamente rápidos que cumplen la misma función cognitiva (siempre que los repases con los apuntes cerrados):
+Si no usás Anki (**[[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|04 - Generador de Tarjetas de Anki]]**) o estás en **Modo Emergencia**, en papel usás una **Tabla Tapable** donde ocultás una columna con una hoja para recuperar la otra en frío:
+- **Para datos cortos (signos, umbrales, clasificaciones, vocabulario):** Trazás 2 columnas rápidas (`Pregunta o condición | Dato, signo o término`) y tapás la 2.ª columna para recuperar el dato (directa) o la 1.ª para recuperar cuándo aplica (inversa).
+- **Para ecuaciones de Ingeniería (tu «Formulario Razonado» de 1 carilla por unidad):** Prohibido armar listas mudas de ecuaciones sueltas ($Q = A \cdot v$) y prohibido armar una tabla tapable y además un formulario aparte. **Cuando el dato a retener es una ecuación como Bernoulli, tu tabla tapable de preguntas directas e inversas ES directamente este Formulario Razonado**:
 
-1. **La «Tabla Tapable de 2 Columnas» (Ideal para definiciones, signos, umbrales y Modo Emergencia):**
-   Dividís una hoja al medio (`Pregunta o condición | Fórmula, dato o término`). Al terminar de estudiar el tramo —y en los repasos diarios de apertura—, **tapás la 2.ª columna con una hoja**, respondés en voz alta o en borrador, y destapás para verificar.
-2. **El «Formulario Razonado» de 1 Carilla por Unidad (Ideal para ecuaciones de Ingeniería):**
-   Prohibido armar listas mudas de ecuaciones sueltas ($Q = A \cdot v$), porque en el parcial el profesor cambia una condición de borde y aplicás una fórmula donde no vale. Armá **una sola carilla A4 por unidad** con estas 3 columnas:
-
-| Ecuación / Relación                                                | Hipótesis obligatorias (¿Cuándo vale?)                                                                                                                                                                     | Trampa típica / Unidades / Órdenes de magnitud                                                                                                                                                    |
-| :----------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Ecuación / Relación *(Se tapa para recuperación DIRECTA)*          | Hipótesis obligatorias: ¿Cuándo vale? *(Se tapa para recuperación INVERSA)*                                                                                                                                | Trampa típica / Unidades / Gráfico *(Se tapa junto con las hipótesis)*                                                                                                                             |
+| :----------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Bernoulli ideal:**<br>$P_1/\gamma + z_1 + v_1^2/2g = \text{cte}$ | 1. Fluido incompresible ($\rho=\text{cte}$)<br>2. Flujo invíscido (sin pérdidas)<br>3. Régimen estacionario<br>4. A lo largo de una línea de corriente<br>5. Sin intercambio de trabajo de eje ni de calor | • ¡No vale tal cual si hay una bomba o turbina en el medio! (ahí sumar $H_B$ o restar $H_T$; con pérdidas, agregar $h_f$).<br>• Presiones en la misma base (ambas manométricas o ambas absolutas). |
 
 > [!NOTE] 📸 Gráfico 3: Esquema Mental del Formulario Razonado — Cuándo Cambia el Modelo (Límites de Bernoulli)
 > ![08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)-1792587738124.webp](/img/user/_assets/attachments/08%20-%20Sistema%20de%20Estudio%20Tradicional%20(En%20Papel%20o%20con%20IA%20Simple)-1792587738124.webp)
 
-> [!tip]+ ¿Cómo usar esta carilla según la modalidad de tu examen?
-> - **Si el examen es SIN hoja de fórmulas:** Dos veces por semana (o en tu bloque diario de repaso), guardá esa carilla o tapá las columnas 1 y 2 e intentá reconstruir las fórmulas, sus 5 hipótesis y sus gráficos de memoria en una hoja borrador.
-> - **Si el examen es CON hoja de fórmulas:** Esa misma carilla (limpia según las reglas de tu cátedra) ya es el machete legal perfecto para llevar al aula, y podés practicar tapando la columna de *Hipótesis obligatorias* (recuperación inversa).
+> [!tip]+ ¿Cómo usar esta misma carilla como Tabla Tapable según la modalidad de tu examen?
+> - **Entrenamiento Directo (si el examen es SIN hoja de fórmulas):** Tapás con una hoja la 1.ª columna (`Ecuación / Relación`) y, leyendo solo de qué modelo e hipótesis se trata, escribís la fórmula y dibujás su esquema de memoria en borrador.
+> - **Entrenamiento Inverso (fundamental CON o SIN hoja de fórmulas):** Dejás visible la 1.ª columna (la ecuación de Bernoulli) y **tapás con una hoja las columnas 2 y 3**: mirando solo la fórmula, tenés que decir en frío y sin dudar las **5 hipótesis obligatorias** ($\rho=\text{cte}$, invíscido, estacionario, misma línea de corriente, sin $W_{\text{eje}}$ ni $Q$) y qué cambia si aparece una bomba, turbina o fricción. Además, si el examen permite formulario, esa misma carilla limpia ya es tu hoja legal para llevar al aula.
 
 ---
 
