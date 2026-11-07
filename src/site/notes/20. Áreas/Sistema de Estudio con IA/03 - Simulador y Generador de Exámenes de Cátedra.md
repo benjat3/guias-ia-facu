@@ -629,7 +629,7 @@ Estados y reglas de transición:
 ```html
 <div class="cajetin-ingenieria">
   <div><b>Materia:</b> [Nombre de la Materia]<br><b>Tema:</b> [Simulacro de Examen N]</div>
-  <div><b>Alumno:</b> Duilio Benjamín Torres<br><b>Legajo:</b> 6607</div>
+  <div><b>Alumno:</b> [TU NOMBRE]<br><b>Legajo:</b> [LEGAJO]</div>
   <div><b>Fecha:</b> [Mes Año]<br><b>Estado:</b> Simulacro Oficial</div>
 </div>
 ```
