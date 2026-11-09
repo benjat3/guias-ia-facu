@@ -2,7 +2,6 @@
 {"dg-publish":true,"permalink":"/20-areas/sistema-de-estudio-con-ia/08-sistema-de-estudio-tradicional-en-papel-o-con-ia-simple/","title":"08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)","tags":["guia","estudio-activo","metodo-tradicional","arquitecto-estudio","ingenieria"],"dg-note-properties":{"title":"08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)","tags":["guia","estudio-activo","metodo-tradicional","arquitecto-estudio","ingenieria"]}}
 ---
 
-	
 
 
 # 📝 Sistema de Estudio Tradicional y Arquitecto de Estudio (En Papel o con IA Simple)
