@@ -68,7 +68,7 @@ No afirmes hechos sobre mi historial o hábitos que no declaré; rotulá las inf
 <reglas_operativas>
 1. Acción inmediata y autonomía de orden.
 Yo elijo siempre qué tema, unidad o ejercicio encaro y en qué orden; vos decidís cómo estudiarlo, porque la decisión y el control de avanzar me pertenecen. No elijas, sugieras ni bloquees por dónde empiezo o sigo, ni decidas qué ejercicios practico. Los criterios de dominio (~80% de acierto o ~7–8 prácticas) orientan el método y nunca frenan mi avance ni funcionan como peajes. Si no indiqué qué ejercicio usar, pedime que lo elija o pegue el enunciado. Si pregunto "¿por dónde arranco?" o "¿con qué sigo?", recordame que el orden lo elijo yo y cerrá con: "seguí con lo que elijas".
-Tras la calibración entregá la Acción de Hoy y la oferta de artefacto (estructura en <flujo_por_defecto>), sin discursos previos sobre cómo se aprueba la materia. El plan completo solo se emite si pido /plan o /completo.
+Tras calibrar sin comando entregá la Acción de Hoy y la oferta de artefacto (<flujo_por_defecto>), sin discursos previos. Con /plan o /completo emití solo el plan completo (sin Acción de Hoy ni invitar a /plan).
 No expliques teoría ni resuelvas cuentas fuera de /explicar, un pedido directo de explicación o un artefacto confirmado. Si me trabo en un paso, dame solo una pista mínima de método (Principio 6).
 
 2. Adaptabilidad por materia y examen.
@@ -228,10 +228,10 @@ Tanto el ecosistema automatizado (`01` a `04`), como el **Arquitecto v3.5** y el
 
 | Etapa del Aprendizaje | 🤖 Con el Sistema de IA (`01` a `04`) | 📝 En Papel / Escritorio (Inspirado en el Arquitecto v3.5) | Principios asociados (`[[06 - Biblioteca de Ciencia del Aprendizaje\|06]]`) |
 | :--- | :--- | :--- | :--- |
-| **0. Mapa y Seguimiento** | **[[01 - Extractor de Checklists]]** en AI Studio. | **El Registro Operativo (7 columnas) + Punto de Partida:** Cobertura por secciones y desglose por tipo de tarea. | *Chunking*, catálogo de arquetipos y calibración (*Oakley / Newport / Agarwal*). |
-| **I. Primer Contacto y Esquema** | **[[02 - Tutor Personal Cognitivo]]** + **[[04 - Generador de Tarjetas de Anki]]**. | **Ficha de Variable (3 renglones) + Técnicas `I.0` a `I.4`:** Desarme de ejemplo en pasos, dibujo con ecuaciones adentro, tabla de pistas/comparación, esqueleto con tabla doblable y tabla tapable / Formulario Razonado. | Efecto del ejemplo resuelto, autoexplicación y eliminación de atención dividida (*Barton / Sweller / Make It Stick*). |
-| **II. Retirar la Ayuda (*Fading*)** | **[[02 - Tutor Personal Cognitivo]]** (pistas graduales hasta `Dominado`). | **Escalera de 5 Escalones + Deducciones de atrás hacia adelante (Rondas 1–3) + Criterio de 2 tareas en blanco separadas por $\ge 1\text{ h}$.** | Retiro gradual de andamiaje y práctica deliberada (*Atkinson / Renkl / Ericsson*). |
-| **III y IV. Mezcla, Repaso y Examen** | **[[03 - Simulador y Generador de Exámenes de Cátedra]]** + repaso en Anki. | **Circuito Mezclado + 3 Líneas ($\le 120\text{ s}$) + Tabla de Pares Parecidos + Apertura fija (`Prueba en frío 24–48 h ➔ Tarjetas ➔ Nuevo`) + Simulacro y 8 Rutas de Corrección.** | Práctica intercalada, transferencia directa y espaciado (*Rohrer / Scott Young / Make It Stick*). |
+| **0. Mapa y Seguimiento** | **[[20. Áreas/Sistema de Estudio con IA/01 - Extractor de Checklists\|01 - Extractor de Checklists]]** en AI Studio. | **El Registro Operativo (7 columnas) + Punto de Partida:** Cobertura por secciones y desglose por tipo de tarea. | *Chunking*, catálogo de arquetipos y calibración (*Oakley / Newport / Agarwal*). |
+| **I. Primer Contacto y Esquema** | **[[20. Áreas/Sistema de Estudio con IA/02 - Tutor Personal Cognitivo\|02 - Tutor Personal Cognitivo]]** + **[[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|04 - Generador de Tarjetas de Anki]]**. | **Ficha de Variable (3 renglones) + Técnicas `I.0` a `I.4`:** Desarme de ejemplo en pasos, dibujo con ecuaciones adentro, tabla de pistas/comparación, esqueleto con tabla doblable y tabla tapable / Formulario Razonado. | Efecto del ejemplo resuelto, autoexplicación y eliminación de atención dividida (*Barton / Sweller / Make It Stick*). |
+| **II. Retirar la Ayuda (*Fading*)** | **[[20. Áreas/Sistema de Estudio con IA/02 - Tutor Personal Cognitivo\|02 - Tutor Personal Cognitivo]]** (pistas graduales hasta `Dominado`). | **Escalera de 5 Escalones + Deducciones de atrás hacia adelante (Rondas 1–3) + Criterio de 2 tareas en blanco separadas por $\ge 1\text{ h}$.** | Retiro gradual de andamiaje y práctica deliberada (*Atkinson / Renkl / Ericsson*). |
+| **III y IV. Mezcla, Repaso y Examen** | **[[20. Áreas/Sistema de Estudio con IA/03 - Simulador y Generador de Exámenes de Cátedra\|03 - Simulador y Generador de Exámenes de Cátedra]]** + repaso en Anki. | **Circuito Mezclado + 3 Líneas ($\le 120\text{ s}$) + Tabla de Pares Parecidos + Apertura fija (`Prueba en frío 24–48 h ➔ Tarjetas ➔ Nuevo`) + Simulacro y 8 Rutas de Corrección.** | Práctica intercalada, transferencia directa y espaciado (*Rohrer / Scott Young / Make It Stick*). |
 
 ---
 
@@ -424,7 +424,7 @@ Recién cuando hayas cumplido el criterio de comprensión del tramo (`I.0` a `I.
 
 #### Cómo llevarlo en Papel sin duplicar trabajo: El «Formulario Razonado» COMO tu Tabla Tapable
 
-Si no usás Anki (**[[04 - Generador de Tarjetas de Anki]]**) o estás en **Modo Emergencia**, en papel usás una **Tabla Tapable** donde ocultás una columna con una hoja para recuperar la otra en frío:
+Si no usás Anki (**[[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|04 - Generador de Tarjetas de Anki]]**) o estás en **Modo Emergencia**, en papel usás una **Tabla Tapable** donde ocultás una columna con una hoja para recuperar la otra en frío:
 - **Para datos cortos (signos, umbrales, clasificaciones, vocabulario):** Trazás 2 columnas rápidas (`Pregunta o condición | Dato, signo o término`) y tapás la 2.ª columna para recuperar el dato (directa) o la 1.ª para recuperar cuándo aplica (inversa).
 - **Para ecuaciones de Ingeniería (tu «Formulario Razonado» de 1 carilla por unidad):** Prohibido armar listas mudas de ecuaciones sueltas ($Q = A \cdot v$) y prohibido armar una tabla tapable y además un formulario aparte. **Cuando el dato a retener es una ecuación como Bernoulli, tu tabla tapable de preguntas directas e inversas ES directamente este Formulario Razonado**:
 
@@ -433,7 +433,7 @@ Si no usás Anki (**[[04 - Generador de Tarjetas de Anki]]**) o estás en **Modo
 | **Bernoulli ideal:**<br>$P_1/\gamma + z_1 + v_1^2/2g = \text{cte}$ | 1. Fluido incompresible ($\rho=\text{cte}$)<br>2. Flujo invíscido (sin pérdidas)<br>3. Régimen estacionario<br>4. A lo largo de una línea de corriente<br>5. Sin intercambio de trabajo de eje ni de calor | • ¡No vale tal cual si hay una bomba o turbina en el medio! (ahí sumar $H_B$ o restar $H_T$; con pérdidas, agregar $h_f$).<br>• Presiones en la misma base (ambas manométricas o ambas absolutas). |
 
 > [!NOTE] 📸 Gráfico 3: Esquema Mental del Formulario Razonado — Cuándo Cambia el Modelo (Límites de Bernoulli)
-> ![[08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)-1792587738124.webp]]
+> ![08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)-1792587738124.webp](/img/user/_assets/attachments/08%20-%20Sistema%20de%20Estudio%20Tradicional%20(En%20Papel%20o%20con%20IA%20Simple)-1792587738124.webp)
 
 > [!tip]+ ¿Cómo usar esta misma carilla como Tabla Tapable según la modalidad de tu examen?
 > - **Entrenamiento Directo (si el examen es SIN hoja de fórmulas):** Tapás con una hoja la 1.ª columna (`Ecuación / Relación`) y, leyendo solo de qué modelo e hipótesis se trata, escribís la fórmula y dibujás su esquema de memoria en borrador.
@@ -449,7 +449,7 @@ Si no usás Anki (**[[04 - Generador de Tarjetas de Anki]]**) o estás en **Modo
 > Por otro lado, saltar de golpe de leer un ejemplo resuelto a intentar hacer el problema más difícil de la guía sin ayuda también falla: te trabás a los 2 minutos y terminás espiando el resuelto entero. **El secreto científico es retirar las muletas de a un escalón por vez.**
 
 > [!NOTE] 📈 Gráfico 1: Dinámica de Retención — Curva del Olvido vs. Práctica Activa Espaciada
-> ![[08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)-1792587781401.webp]]
+> ![08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)-1792587781401.webp](/img/user/_assets/attachments/08%20-%20Sistema%20de%20Estudio%20Tradicional%20(En%20Papel%20o%20con%20IA%20Simple)-1792587781401.webp)
 
 ### A. La «Escalera de 5 Escalones» (Para problemas y ejercicios prácticos)
 
@@ -473,7 +473,7 @@ Mientras resolvés cualquier ejercicio de la Escalera, entrená estos dos hábit
    Antes de dar el ejercicio por terminado, frená y chequeá: *¿Tiene unidades coherentes? ¿El signo coincide con mi dibujo? ¿El orden de magnitud es físicamente lógico (o me dio que por un caño domiciliario pasa el caudal del río Paraná)? ¿Qué da mi expresión algebraica en un caso límite evidente (ej. si el ángulo vale $0^\circ$ o la masa tiende a cero)?*
 
 > [!NOTE] 📸 Gráfico 2: Metodología Canónica de Resolución — Del Esquema Físico (DCL) al Planteo Simbólico Cerrado
-> ![[08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)-1792587710730.webp]]
+> ![08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)-1792587710730.webp](/img/user/_assets/attachments/08%20-%20Sistema%20de%20Estudio%20Tradicional%20(En%20Papel%20o%20con%20IA%20Simple)-1792587710730.webp)
 
 ---
 
@@ -695,17 +695,17 @@ Si mientras estudiás en papel querés hacerle consultas puntuales a cualquier c
 > [!abstract]+ Las 4 Checklists de Autoevaluación (Diagnóstico en 5 minutos)
 > Si estudiás en papel, el complemento directo de este sistema son las **4 Checklists de Autoevaluación**, donde podés medir en 5 minutos qué hábitos ya tenés y cuáles te conviene sumar antes del parcial (empezando por los 5 puntos marcados con **★**):
 >
-> - 📘 **[[07.1 - Guía de Estudio - Teoría y Ejercicios]]** *(Para materias que mezclan teoría, deducciones y problemas).*
-> - 📐 **[[07.2 - Guía de Estudio - Ejercicios y Problemas]]** *(Para materias 100% prácticas de cálculo).*
-> - 📖 **[[07.3 - Guía de Estudio - Teoría y Demostraciones]]** *(Para finales teóricos, orales o materias conceptuales).*
-> - 👩‍🏫 **[[07.4 - Guía de Enseñanza para Docentes y Tutores]]** *(Si sos ayudante alumno o das clases).*
+> - 📘 **[[20. Áreas/Sistema de Estudio con IA/07.1 - Guía de Estudio - Teoría y Ejercicios\|07.1 - Guía de Estudio - Teoría y Ejercicios]]** *(Para materias que mezclan teoría, deducciones y problemas).*
+> - 📐 **[[20. Áreas/Sistema de Estudio con IA/07.2 - Guía de Estudio - Ejercicios y Problemas\|07.2 - Guía de Estudio - Ejercicios y Problemas]]** *(Para materias 100% prácticas de cálculo).*
+> - 📖 **[[20. Áreas/Sistema de Estudio con IA/07.3 - Guía de Estudio - Teoría y Demostraciones\|07.3 - Guía de Estudio - Teoría y Demostraciones]]** *(Para finales teóricos, orales o materias conceptuales).*
+> - 👩‍🏫 **[[20. Áreas/Sistema de Estudio con IA/07.4 - Guía de Enseñanza para Docentes y Tutores\|07.4 - Guía de Enseñanza para Docentes y Tutores]]** *(Si sos ayudante alumno o das clases).*
 
 ---
 
 ## 🧭 Navegación
 
 > [!info]+ Mapa de Navegación del Sistema
-> - *Volver al inicio general:* ⬅️ **[[00 - Inicio y Flujo de Trabajo]]**
-> - *Ver los 7 libros que fundamentan este método:* 📚 **[[06 - Biblioteca de Ciencia del Aprendizaje]]**
-> - *Ir a las checklists de autoevaluación:* ⬅️ **[[07 - Índice de Guías y Checklists de Aprendizaje]]**
-> - *Siguiente sección (Historial Técnico):* ➡️ **[[99 - Historial de Versiones (Changelog)]]**
+> - *Volver al inicio general:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/00 - Inicio y Flujo de Trabajo\|00 - Inicio y Flujo de Trabajo]]**
+> - *Ver los 7 libros que fundamentan este método:* 📚 **[[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]**
+> - *Ir a las checklists de autoevaluación:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]**
+> - *Siguiente sección (Historial Técnico):* ➡️ **[[20. Áreas/Sistema de Estudio con IA/99 - Historial de Versiones (Changelog)\|99 - Historial de Versiones (Changelog)]]**
