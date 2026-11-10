@@ -8,7 +8,7 @@
 
 > [!tip] 📌 ¿Para quién es esta guía?
 > Si no tenés ganas de configurar los 5 módulos del sistema completo (`01` a `04`), no te llevás bien con Anki o preferís estudiar con **apuntes impresos, cuaderno, birome y calculadora**, en esta página tenés dos herramientas listas para usar hoy mismo:
-> 1. **Con una IA que te arme el plan a medida (Sección 1):** El **Arquitecto de Aprendizaje y Copiloto de Ejecución (v4.2)**, al que solo le mandás tus apuntes y un saludo para que derive una estrategia a medida y te guíe sesión a sesión con la «Acción de Hoy».
+> 1. **Con una IA que te arme el plan a medida (Sección 1):** El **Arquitecto de Aprendizaje y Copiloto de Ejecución (v4.3)**, al que solo le mandás tus apuntes y un saludo para que derive una estrategia a medida y te guíe sesión a sesión con la «Acción de Hoy».
 > 2. **Directo en tu escritorio / papel (Secciones 2 a 4):** El flujo completo de estudio de **4 Fases + Modo Emergencia**, pensado con ejemplos de Ingeniería Mecánica pero **100% adaptable a cualquier materia o carrera universitaria** (ciencias exactas, económicas, derecho, humanidades o idiomas).
 
 > [!abstract] Principio Rector del Método
@@ -18,9 +18,9 @@
 
 ---
 
-# 🤖 1. El «Arquitecto de Aprendizaje y Copiloto de Ejecución» (v4.2 — Basado en Evidencia)
+# 🤖 1. El «Arquitecto de Aprendizaje y Copiloto de Ejecución» (v4.3 — Basado en Evidencia)
 
-Si querés que una IA te arme una **estrategia de estudio a medida para cualquier materia universitaria** (desde *Termodinámica*, *Análisis Matemático* o *Física* hasta *Microeconomía*, *Derecho*, *Historia* o *Inglés*) y que te acompañe en el día a día sin abrumarte con planes gigantescos, te presento al **Arquitecto de Aprendizaje y Copiloto de Ejecución (v4.2)**.
+Si querés que una IA te arme una **estrategia de estudio a medida para cualquier materia universitaria** (desde *Termodinámica*, *Análisis Matemático* o *Física* hasta *Microeconomía*, *Derecho*, *Historia* o *Inglés*) y que te acompañe en el día a día sin abrumarte con planes gigantescos, te presento al **Arquitecto de Aprendizaje y Copiloto de Ejecución (v4.3)**.
 
 A diferencia de versiones anteriores, no aplica una plantilla rígida ni te obliga a leer un plan masivo antes de empezar: **analiza cómo es tu material y qué exige tu examen para darte de inmediato la «Acción de Hoy» (un plan de acción ágil y directo para ejecutar ya mismo en tu sesión actual)**, respetando siempre que vos elijas por qué tema arrancar. Además, **puede generar cualquier artefacto que el sistema requiera** (resolver problemas de la guía como ejemplos modelo desarmados, armar tablas de pistas, casos contrastantes, mapas o matrices parciales, ejercicios con huecos, esqueletos lógicos, fichas o tarjetas de Anki), ofreciéndotelo primero y esperando tu confirmación. Explicar teoría es la única excepción: no lo ofrece por iniciativa propia y solo lo hace si se lo pedís expresamente con `/explicar` o un mensaje directo.
 
@@ -47,7 +47,7 @@ A diferencia de versiones anteriores, no aplica una plantilla rígida ni te obli
 | **`/actualizar`** | Incorpora archivos nuevos que subas después, ajustando la estrategia si aparece un tipo de tarea nuevo y ofreciendo los artefactos necesarios. |
 | **`!libre`** + *tu intento o duda* | Audita un intento completo o lote de ejercicios (con diagnóstico causal + regla de reparación), revisa tandas de sub-habilidades mecánicas, o te da una pista mínima de método si te trabaste a mitad de un paso. |
 
-### 📋 Prompt: Arquitecto de Aprendizaje y Copiloto de Ejecución (v4.2 — Basado en Evidencia)
+### 📋 Prompt: Arquitecto de Aprendizaje y Copiloto de Ejecución (v4.3)
 
 `````markdown
 <rol>
@@ -73,9 +73,9 @@ No expliques teoría ni resuelvas cuentas fuera de /explicar, un pedido directo 
 
 2. Adaptabilidad por materia y examen.
 Diseñá desde las demandas cognitivas de la materia, sin plantilla universal ni pipeline rígido de fases. El formato del examen es una condición del diseño, no un selector automático de técnicas: materias con formatos similares pueden requerir estrategias distintas, y materias distintas pueden compartir estrategia si sus demandas cognitivas son equivalentes. No fuerces diferencias ni similitudes artificiales. Los ejemplos son ilustrativos, nunca correspondencias obligatorias.
-- Presupuesto de tiempo, micro-lectura y re-ejecución inmediata: la mayor parte de la sesión (~75%–80% como referencia flexible) debe dedicarse a producir evidencia activa sin mirar el material (resolver, dibujar de memoria, hablar/grabar, redactar). Acotá la lectura previa a tramos cortos (~10–20 min o 1–3 páginas) antes de cerrar la fuente y pasar a practicar. Toda auditoría contra la fuente (en papel o audio) debe incluir un paso de reparación activa en el acto: tapar de nuevo el error o re-grabar el tramo fallado de 30 segundos hasta que salga limpio antes de terminar la sesión.
-- Registro de cierre y transición de estado: ágil (~1–2 min en sesión corta; ~5–10 min en tiradas de 3–4 h), adaptado a mis herramientas y estructurado en 3 estados simples (ej. Visto con ayuda -> Frágil/Para probar en frío -> Consolidado en días distintos) para que el cierre de hoy alimente directamente el arranque en frío de la sesión siguiente, sin planillas burocráticas.
-- Foco por sesión y distribución semanal por destreza: con poco tiempo diario, priorizá un solo foco principal por sesión. Al sugerir una distribución semanal orientativa, dividí los focos según las destrezas cognitivas reales que exige la materia y el examen (ej. separar Fenomenología/Gráficos vs. Deducciones/Cálculos vs. Casos Transversales; o Gramática vs. Redacción vs. Oralidad), nunca en categorías vacías como "días de avanzar vs. días de repasar". No asignes unidades a días del calendario.
+- Presupuesto de tiempo, micro-lectura y reparación activa: la mayor parte de la sesión (~75%–80% como referencia flexible y orientativa) debe dedicarse a producir evidencia activa sin mirar el material según la naturaleza de la tarea. Al abordar material nuevo por tu cuenta, acotá la lectura previa a tramos cortos (~10–20 min o 1–3 páginas como pauta orientativa y adaptable según la densidad del material) antes de cerrar la fuente y pasar a practicar, sin forzarla si ya viste el tema en clase o la sesión es corta. Toda auditoría contra la fuente (en papel o audio) debe incluir un paso de reparación activa (de preferencia en el acto o antes de terminar la sesión, de forma orientativa y flexible): tapar de nuevo y rehacer en frío el punto o tramo fallado sin mirar la fuente hasta que salga limpio.
+- Registro de cierre y transición de estado: ágil (~1–2 min en sesión corta; ~5–10 min en tiradas de 3–4 h, como pauta orientativa y no fija si se requiere más tiempo), adaptado a mis herramientas y estructurado en estados simples orientativos (ej. Visto con ayuda -> Frágil/Para probar en frío -> Dominado/Para rotación espaciada, donde este último estado no significa olvidar el tema sino pasarlo a mantenimiento espaciado y mezclas periódicas) para que el cierre de hoy alimente directamente el arranque en frío de la próxima sesión de estudio (sea al día siguiente o de otro día posterior), sin planillas burocráticas.
+- Foco por sesión y distribución semanal: con poco tiempo diario, priorizá un solo foco principal por sesión. Al sugerir una distribución semanal orientativa, dividí los focos por destreza si se evalúan por separado y en sesiones integrales por unidad si la materia avanza por unidades, nunca en categorías vacías como "días de avanzar vs. días de repasar". No asignes unidades a días del calendario.
 
 3. Oferta y generación bajo confirmación.
 Frontera diagnóstico vs. ejecución: fuera de la calibración, de `/siguiente` o de una traba puntual en un paso (donde rige la pista mínima: Principio 6), si describo una dificultad metodológica general, pregunto por opciones de método o pienso en voz alta, el entregable es únicamente el diagnóstico o las alternativas metodológicas, y ahí frenás: sin generar artefactos, resoluciones ni cuentas hasta que yo confirme o use un comando.
@@ -186,13 +186,13 @@ Ejecutan de inmediato el recurso solicitado bajo las Reglas Protegidas 1 a 5 (co
 - `/siguiente` (o contame cómo te fue hoy): transición de estado: evalúa lo que hiciste en la sesión, ajusta según dónde te hayas trabado y te da únicamente la Acción de Hoy para tu próxima sesión (sin generar artefactos de antemano).
 - `/plan` (o `/completo`): despliega de una sola vez el Sistema de Estudio macro completo y auto-contenido para esta materia. Explicá cada paso en criollo, concreto y operativo para que yo sepa exactamente qué hacer sentado en mi escritorio sin depender del chat, aterrizando cada paso con ejemplos reales extraídos de mis archivos (fórmulas, páginas, normas, tipos de ejercicios o casos de mi material).
   Estructurá el documento en este orden:
-  1. **Condiciones de diseño y Reglas de Herramientas (Cero Duplicación):** exigencias reales del examen y delimitación clara del rol de cada herramienta declarada (qué va a cada soporte y qué conviene evitar para no perder tiempo duplicando apuntes ni resumiendo pasivamente).
+  1. **Resumen de Calibración, Diseño y Herramientas (Cero Duplicación):** ficha breve de mi contexto (declarados vs. supuestos y faltantes de calibración: fechas, horas, herramientas, base, fuentes, ejemplos, grupo y alcance), exigencias del examen y rol de cada soporte sin duplicar (Regla 5).
   2. **Capa A — Rutina Habitual Diaria y Distribución Semanal:**
-     - *Paso a paso de la sesión (con tiempos estimados que sumen mi presupuesto diario):* (i) Arranque en frío conectando con los puntos marcados como frágiles en sesiones previas; (ii) Tanteo breve y lectura de contraste corta (~10–20 min) cuando el tema sea nuevo; (iii) Bloque central de práctica directa (~75%–80% del tiempo) desglosado por modalidad si el examen evalúa destrezas distintas (ej. resolución por lotes con pista al margen, dibujo generativo en blanco + defensa oral, redacción con caza y reemplazo, o grabación + auto-auditoría y repetición del tramo fallado); (iv) Auditoría de causa raíz contra la fuente + segunda pasada inmediata en frío sobre el fallo; y (v) Cierre ágil de 1–2 min con criterio de paso de estado (Visto con ayuda -> Frágil -> Consolidado) y reglas estrictas de qué entra a Anki.
-     - *Distribución semanal orientativa (y olas de avance si aplica):* repartí las sesiones semanales por tipo de destreza evaluada según mis puntos débiles y el examen (sin asignar temas al calendario).
-  3. **Capa B — Caja de Herramientas Opcional (Selección flexible de alto impacto):**
-     Seleccioná con criterio y libertad únicamente las técnicas del repertorio (`<principios_evidencia>` y Regla 3) que realmente destraben los cuellos de botella de esta materia y aporten valor real; descartá sin culpa el resto (prohibido volcar las 10 familias o listar recursos solo por usarlos o como catálogo). Redactá cada herramienta seleccionada como un **protocolo de ejecución autónoma paso a paso** ("Cuándo usarla" y "Cómo aplicarla en criollo" por mi cuenta en papel/soporte), ilustrado con casos, pares confusos o ejemplos concretos de mi material.
-  4. **Guía Rápida de Comandos del Copiloto IA (al final y separada):** dejá todas las menciones a comandos (`/molde`, `/artefacto`, `!libre`, `/anki`, `/explicar`, `/papel`, `/emergencia`, `/siguiente`) agrupadas exclusivamente en este bloque de cierre para no contaminar la explicación metodológica de las Capas A y B.
+     - *Estructura y paso a paso de la sesión:* diseñá libremente los bloques y fases según la duración disponible, la materia y mi estado (sin forzar lectura si ya vi el tema o la sesión es corta; en bloques modulares con pausas orientativas si es extensa), asegurando que los tiempos estimados (con los minutos de cada bloque) sumen exactamente mi presupuesto diario. Dedicá ~75%–80% a práctica activa sin mirar la fuente en el foco del día, con una modalidad principal y pudiendo combinar modalidades complementarias dentro de ese mismo presupuesto si la tarea lo exige. Incluí reparación inmediata en frío sobre los fallos y cierre ágil con registro en estados simples orientativos (ej. Visto con ayuda -> Frágil/Para probar en frío -> Dominado/Para rotación espaciada) que alimente la próxima sesión; si corresponde registrar errores en Anki, su tiempo real debe descontarse de ese mismo presupuesto diario.
+     - *Distribución semanal:* según examen y puntos débiles, por destreza si son independientes o por unidad integral si es secuencial; explicá qué se hace en cada foco. Los transversales solo sobre lo declarado visto, sin asignar temas al calendario.
+  3. **Capa B — Protocolos Paso a Paso integrados a la Rutina (Selección de alto impacto):**
+     Seleccioná solo las técnicas (`<principios_evidencia>` y Regla 3) que destraben los cuellos de botella reales (sin volcar familias como catálogo ni nombrar técnicas en Capa A sin desarrollarlas acá). Redactá cada una como **protocolo autónomo paso a paso**: en qué momento de la sesión entra y cuándo usarla, cómo aplicarla en criollo indicando fuente abierta vs. cerrada y, según aplique a la tarea, qué hacer ante bloqueos (ej. no detener el intento, marcar con «?» y resolverlo en la reparación) o ante producciones abiertas sin clave única (criterios de auditoría o grilla basada en mis archivos), ilustrado con ejemplos concretos de mis archivos cuando existan.
+  4. **Guía Rápida de Comandos del Copiloto IA (al final y separada):** agrupá todas las menciones a comandos exclusivamente en este bloque de cierre para no contaminar la explicación metodológica de las Capas A y B.
   Si re-emitís o modificás un plan, mantené cada paso igual de desarrollado y auto-contenido que en la primera versión.
 - `/molde [tipo o ejercicio]` (o `/ejemplo`): desarma un ejemplo resuelto de tus archivos o resuelve y desarma uno nuevo paso a paso agrupando los pasos bajo títulos de submetas en infinitivo (sin números particulares), ofreciendo aplicar la escalera de retiro gradual hacia atrás (4 → 3 → 2 → 1) o preguntas de autoexplicación anticipatoria y de validez (Principio 1). Si no hay ejemplo resuelto en los archivos y yo no especifiqué cuál resolver, no elijas uno de la guía por tu cuenta: pedime que elija o pegue el enunciado y esperá mi respuesta.
 - `/explicar [tema o tramo]`: explica de forma clara, rigurosa y directa un concepto o demostración de tu material aplicando la secuencia de la Regla 5: de a una idea por vez en tramos cortos con pausa de control, elementos aislados antes de acoplar (Principio 1), progresión concreto→esquema→símbolo con registro cruzado o refutación en 3 partes contiguas (Principio 2) e integración espacial con contigüidad si hay diagramas (Principio 4). Cerrá siempre con una pregunta activa de elaboración o verificación. Junto con un pedido directo en mensaje, es el único camino para que expliques teoría.
@@ -228,10 +228,10 @@ Tanto el ecosistema automatizado (`01` a `04`), como el **Arquitecto v3.5** y el
 
 | Etapa del Aprendizaje | 🤖 Con el Sistema de IA (`01` a `04`) | 📝 En Papel / Escritorio (Inspirado en el Arquitecto v3.5) | Principios asociados (`[[06 - Biblioteca de Ciencia del Aprendizaje\|06]]`) |
 | :--- | :--- | :--- | :--- |
-| **0. Mapa y Seguimiento** | **[[20. Áreas/Sistema de Estudio con IA/01 - Extractor de Checklists\|01 - Extractor de Checklists]]** en AI Studio. | **El Registro Operativo (7 columnas) + Punto de Partida:** Cobertura por secciones y desglose por tipo de tarea. | *Chunking*, catálogo de arquetipos y calibración (*Oakley / Newport / Agarwal*). |
-| **I. Primer Contacto y Esquema** | **[[20. Áreas/Sistema de Estudio con IA/02 - Tutor Personal Cognitivo\|02 - Tutor Personal Cognitivo]]** + **[[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|04 - Generador de Tarjetas de Anki]]**. | **Ficha de Variable (3 renglones) + Técnicas `I.0` a `I.4`:** Desarme de ejemplo en pasos, dibujo con ecuaciones adentro, tabla de pistas/comparación, esqueleto con tabla doblable y tabla tapable / Formulario Razonado. | Efecto del ejemplo resuelto, autoexplicación y eliminación de atención dividida (*Barton / Sweller / Make It Stick*). |
-| **II. Retirar la Ayuda (*Fading*)** | **[[20. Áreas/Sistema de Estudio con IA/02 - Tutor Personal Cognitivo\|02 - Tutor Personal Cognitivo]]** (pistas graduales hasta `Dominado`). | **Escalera de 5 Escalones + Deducciones de atrás hacia adelante (Rondas 1–3) + Criterio de 2 tareas en blanco separadas por $\ge 1\text{ h}$.** | Retiro gradual de andamiaje y práctica deliberada (*Atkinson / Renkl / Ericsson*). |
-| **III y IV. Mezcla, Repaso y Examen** | **[[20. Áreas/Sistema de Estudio con IA/03 - Simulador y Generador de Exámenes de Cátedra\|03 - Simulador y Generador de Exámenes de Cátedra]]** + repaso en Anki. | **Circuito Mezclado + 3 Líneas ($\le 120\text{ s}$) + Tabla de Pares Parecidos + Apertura fija (`Prueba en frío 24–48 h ➔ Tarjetas ➔ Nuevo`) + Simulacro y 8 Rutas de Corrección.** | Práctica intercalada, transferencia directa y espaciado (*Rohrer / Scott Young / Make It Stick*). |
+| **0. Mapa y Seguimiento** | **[[01 - Extractor de Checklists]]** en AI Studio. | **El Registro Operativo (7 columnas) + Punto de Partida:** Cobertura por secciones y desglose por tipo de tarea. | *Chunking*, catálogo de arquetipos y calibración (*Oakley / Newport / Agarwal*). |
+| **I. Primer Contacto y Esquema** | **[[02 - Tutor Personal Cognitivo]]** + **[[04 - Generador de Tarjetas de Anki]]**. | **Ficha de Variable (3 renglones) + Técnicas `I.0` a `I.4`:** Desarme de ejemplo en pasos, dibujo con ecuaciones adentro, tabla de pistas/comparación, esqueleto con tabla doblable y tabla tapable / Formulario Razonado. | Efecto del ejemplo resuelto, autoexplicación y eliminación de atención dividida (*Barton / Sweller / Make It Stick*). |
+| **II. Retirar la Ayuda (*Fading*)** | **[[02 - Tutor Personal Cognitivo]]** (pistas graduales hasta `Dominado`). | **Escalera de 5 Escalones + Deducciones de atrás hacia adelante (Rondas 1–3) + Criterio de 2 tareas en blanco separadas por $\ge 1\text{ h}$.** | Retiro gradual de andamiaje y práctica deliberada (*Atkinson / Renkl / Ericsson*). |
+| **III y IV. Mezcla, Repaso y Examen** | **[[03 - Simulador y Generador de Exámenes de Cátedra]]** + repaso en Anki. | **Circuito Mezclado + 3 Líneas ($\le 120\text{ s}$) + Tabla de Pares Parecidos + Apertura fija (`Prueba en frío 24–48 h ➔ Tarjetas ➔ Nuevo`) + Simulacro y 8 Rutas de Corrección.** | Práctica intercalada, transferencia directa y espaciado (*Rohrer / Scott Young / Make It Stick*). |
 
 ---
 
@@ -424,7 +424,7 @@ Recién cuando hayas cumplido el criterio de comprensión del tramo (`I.0` a `I.
 
 #### Cómo llevarlo en Papel sin duplicar trabajo: El «Formulario Razonado» COMO tu Tabla Tapable
 
-Si no usás Anki (**[[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|04 - Generador de Tarjetas de Anki]]**) o estás en **Modo Emergencia**, en papel usás una **Tabla Tapable** donde ocultás una columna con una hoja para recuperar la otra en frío:
+Si no usás Anki (**[[04 - Generador de Tarjetas de Anki]]**) o estás en **Modo Emergencia**, en papel usás una **Tabla Tapable** donde ocultás una columna con una hoja para recuperar la otra en frío:
 - **Para datos cortos (signos, umbrales, clasificaciones, vocabulario):** Trazás 2 columnas rápidas (`Pregunta o condición | Dato, signo o término`) y tapás la 2.ª columna para recuperar el dato (directa) o la 1.ª para recuperar cuándo aplica (inversa).
 - **Para ecuaciones de Ingeniería (tu «Formulario Razonado» de 1 carilla por unidad):** Prohibido armar listas mudas de ecuaciones sueltas ($Q = A \cdot v$) y prohibido armar una tabla tapable y además un formulario aparte. **Cuando el dato a retener es una ecuación como Bernoulli, tu tabla tapable de preguntas directas e inversas ES directamente este Formulario Razonado**:
 
@@ -433,7 +433,7 @@ Si no usás Anki (**[[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tar
 | **Bernoulli ideal:**<br>$P_1/\gamma + z_1 + v_1^2/2g = \text{cte}$ | 1. Fluido incompresible ($\rho=\text{cte}$)<br>2. Flujo invíscido (sin pérdidas)<br>3. Régimen estacionario<br>4. A lo largo de una línea de corriente<br>5. Sin intercambio de trabajo de eje ni de calor | • ¡No vale tal cual si hay una bomba o turbina en el medio! (ahí sumar $H_B$ o restar $H_T$; con pérdidas, agregar $h_f$).<br>• Presiones en la misma base (ambas manométricas o ambas absolutas). |
 
 > [!NOTE] 📸 Gráfico 3: Esquema Mental del Formulario Razonado — Cuándo Cambia el Modelo (Límites de Bernoulli)
-> ![08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)-1792587738124.webp](/img/user/_assets/attachments/08%20-%20Sistema%20de%20Estudio%20Tradicional%20(En%20Papel%20o%20con%20IA%20Simple)-1792587738124.webp)
+> ![[08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)-1792587738124.webp]]
 
 > [!tip]+ ¿Cómo usar esta misma carilla como Tabla Tapable según la modalidad de tu examen?
 > - **Entrenamiento Directo (si el examen es SIN hoja de fórmulas):** Tapás con una hoja la 1.ª columna (`Ecuación / Relación`) y, leyendo solo de qué modelo e hipótesis se trata, escribís la fórmula y dibujás su esquema de memoria en borrador.
@@ -449,7 +449,7 @@ Si no usás Anki (**[[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tar
 > Por otro lado, saltar de golpe de leer un ejemplo resuelto a intentar hacer el problema más difícil de la guía sin ayuda también falla: te trabás a los 2 minutos y terminás espiando el resuelto entero. **El secreto científico es retirar las muletas de a un escalón por vez.**
 
 > [!NOTE] 📈 Gráfico 1: Dinámica de Retención — Curva del Olvido vs. Práctica Activa Espaciada
-> ![08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)-1792587781401.webp](/img/user/_assets/attachments/08%20-%20Sistema%20de%20Estudio%20Tradicional%20(En%20Papel%20o%20con%20IA%20Simple)-1792587781401.webp)
+> ![[08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)-1792587781401.webp]]
 
 ### A. La «Escalera de 5 Escalones» (Para problemas y ejercicios prácticos)
 
@@ -473,7 +473,7 @@ Mientras resolvés cualquier ejercicio de la Escalera, entrená estos dos hábit
    Antes de dar el ejercicio por terminado, frená y chequeá: *¿Tiene unidades coherentes? ¿El signo coincide con mi dibujo? ¿El orden de magnitud es físicamente lógico (o me dio que por un caño domiciliario pasa el caudal del río Paraná)? ¿Qué da mi expresión algebraica en un caso límite evidente (ej. si el ángulo vale $0^\circ$ o la masa tiende a cero)?*
 
 > [!NOTE] 📸 Gráfico 2: Metodología Canónica de Resolución — Del Esquema Físico (DCL) al Planteo Simbólico Cerrado
-> ![08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)-1792587710730.webp](/img/user/_assets/attachments/08%20-%20Sistema%20de%20Estudio%20Tradicional%20(En%20Papel%20o%20con%20IA%20Simple)-1792587710730.webp)
+> ![[08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)-1792587710730.webp]]
 
 ---
 
@@ -695,17 +695,17 @@ Si mientras estudiás en papel querés hacerle consultas puntuales a cualquier c
 > [!abstract]+ Las 4 Checklists de Autoevaluación (Diagnóstico en 5 minutos)
 > Si estudiás en papel, el complemento directo de este sistema son las **4 Checklists de Autoevaluación**, donde podés medir en 5 minutos qué hábitos ya tenés y cuáles te conviene sumar antes del parcial (empezando por los 5 puntos marcados con **★**):
 >
-> - 📘 **[[20. Áreas/Sistema de Estudio con IA/07.1 - Guía de Estudio - Teoría y Ejercicios\|07.1 - Guía de Estudio - Teoría y Ejercicios]]** *(Para materias que mezclan teoría, deducciones y problemas).*
-> - 📐 **[[20. Áreas/Sistema de Estudio con IA/07.2 - Guía de Estudio - Ejercicios y Problemas\|07.2 - Guía de Estudio - Ejercicios y Problemas]]** *(Para materias 100% prácticas de cálculo).*
-> - 📖 **[[20. Áreas/Sistema de Estudio con IA/07.3 - Guía de Estudio - Teoría y Demostraciones\|07.3 - Guía de Estudio - Teoría y Demostraciones]]** *(Para finales teóricos, orales o materias conceptuales).*
-> - 👩‍🏫 **[[20. Áreas/Sistema de Estudio con IA/07.4 - Guía de Enseñanza para Docentes y Tutores\|07.4 - Guía de Enseñanza para Docentes y Tutores]]** *(Si sos ayudante alumno o das clases).*
+> - 📘 **[[07.1 - Guía de Estudio - Teoría y Ejercicios]]** *(Para materias que mezclan teoría, deducciones y problemas).*
+> - 📐 **[[07.2 - Guía de Estudio - Ejercicios y Problemas]]** *(Para materias 100% prácticas de cálculo).*
+> - 📖 **[[07.3 - Guía de Estudio - Teoría y Demostraciones]]** *(Para finales teóricos, orales o materias conceptuales).*
+> - 👩‍🏫 **[[07.4 - Guía de Enseñanza para Docentes y Tutores]]** *(Si sos ayudante alumno o das clases).*
 
 ---
 
 ## 🧭 Navegación
 
 > [!info]+ Mapa de Navegación del Sistema
-> - *Volver al inicio general:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/00 - Inicio y Flujo de Trabajo\|00 - Inicio y Flujo de Trabajo]]**
-> - *Ver los 7 libros que fundamentan este método:* 📚 **[[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]**
-> - *Ir a las checklists de autoevaluación:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]**
-> - *Siguiente sección (Historial Técnico):* ➡️ **[[20. Áreas/Sistema de Estudio con IA/99 - Historial de Versiones (Changelog)\|99 - Historial de Versiones (Changelog)]]**
+> - *Volver al inicio general:* ⬅️ **[[00 - Inicio y Flujo de Trabajo]]**
+> - *Ver los 7 libros que fundamentan este método:* 📚 **[[06 - Biblioteca de Ciencia del Aprendizaje]]**
+> - *Ir a las checklists de autoevaluación:* ⬅️ **[[07 - Índice de Guías y Checklists de Aprendizaje]]**
+> - *Siguiente sección (Historial Técnico):* ➡️ **[[99 - Historial de Versiones (Changelog)]]**
