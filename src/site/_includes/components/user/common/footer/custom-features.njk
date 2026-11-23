@@ -971,30 +971,34 @@
       guideId = '07.4';
     }
 
-    function getDiagnosisForGuide(guide, pendingCount) {
-      if (guide === '07.2') {
-        if (pendingCount <= 5) return { level: 'good', text: '🟢 Entrenamiento práctico excelente' };
-        if (pendingCount <= 13) return { level: 'warn', text: '🟡 Margen claro de mejora (priorizá los ★ CLAVE)' };
-        return { level: 'danger', text: '🔴 Cuidado: estás estudiando práctica como si fuera lectura' };
+    function getDiagnosisForGuide(guide, pendingCount, totalCount, starredDone, starredTotal) {
+      const goodText = {
+        '07.1': '🟢 Sistema de estudio muy sólido',
+        '07.2': '🟢 Entrenamiento práctico excelente',
+        '07.3': '🟢 Estudio teórico muy sólido',
+        '07.4': '🟢 Práctica docente muy sólida'
+      }[guide] || '🟢 Sistema de estudio muy sólido';
+
+      const greenMax = Math.floor(totalCount * 0.275);
+      const yellowMax = Math.floor(totalCount * 0.5);
+      const minStarForWarn = starredTotal >= 6 ? 4 : Math.max(1, starredTotal - 1);
+
+      if (pendingCount <= greenMax || (starredTotal > 0 && starredDone === starredTotal && pendingCount <= greenMax + 2)) {
+        return { level: 'good', text: goodText + ' (pilares ★: ' + starredDone + '/' + starredTotal + ')' };
       }
-      if (guide === '07.3') {
-        if (pendingCount <= 4) return { level: 'good', text: '🟢 Estudio teórico de alto rigor' };
-        if (pendingCount <= 10) return { level: 'warn', text: '🟡 Puntos flojos bajo presión (enfocate en los ★ CLAVE)' };
-        return { level: 'danger', text: '🔴 Trampa de releer para reconocer en vez de producir' };
+      if (pendingCount <= yellowMax || (starredTotal > 0 && starredDone >= minStarForWarn)) {
+        return { level: 'warn', text: '🟡 Buena base activa (pilares ★: ' + starredDone + '/' + starredTotal + ') — sumá 1 o 2 hábitos más' };
       }
-      if (guide === '07.4') {
-        if (pendingCount <= 5) return { level: 'good', text: '🟢 Práctica docente alineada con la evidencia' };
-        if (pendingCount <= 14) return { level: 'warn', text: '🟡 Oportunidades de alto impacto (probá 1 o 2 ★ CLAVE)' };
-        return { level: 'danger', text: '🔴 Enseñanza centrada en transmitir más que en práctica activa' };
-      }
-      // 07.1 por defecto
-      if (pendingCount <= 5) return { level: 'good', text: '🟢 Sistema de estudio muy sólido' };
-      if (pendingCount <= 12) return { level: 'warn', text: '🟡 Hábitos clave por ajustar (empezá por 1 o 2 ★ CLAVE)' };
-      return { level: 'danger', text: '🔴 Peligro de ilusión de competencia (exceso de estudio pasivo)' };
+      return {
+        level: 'danger',
+        text: (guide === '07.4'
+          ? '🔴 Riesgo de exposición pasiva — empezá por los pilares ★ (' + starredDone + '/' + starredTotal + ')'
+          : '🔴 Riesgo de estudio pasivo — empezá por los pilares ★ (' + starredDone + '/' + starredTotal + ')')
+      };
     }
 
     const pageSlug = window.location.pathname.replace(/\/$/, '').split('/').pop() || 'guia07';
-    const storageKey = 'ia_facu_checklist_' + pageSlug;
+    const storageKey = 'ia_facu_checklist_v3_' + pageSlug;
 
     let savedData = {};
     try {
@@ -1037,7 +1041,12 @@
         </label>${starBadgeHtml}
       `;
 
-      li.innerHTML = li.innerHTML.replace(/☐\s*(★)?\s*/, controlHtml + ' <span class="checklist-item-text">') + '</span>';
+      const firstP = li.firstElementChild;
+      if (firstP && firstP.tagName === 'P' && firstP.textContent.indexOf('☐') !== -1) {
+        firstP.innerHTML = firstP.innerHTML.replace(/☐\s*(★)?\s*/, controlHtml + ' <span class="checklist-item-text">') + '</span>';
+      } else {
+        li.innerHTML = li.innerHTML.replace(/☐\s*(★)?\s*/, controlHtml + ' <span class="checklist-item-text">') + '</span>';
+      }
 
       const input = li.querySelector('.chk-input-native');
       input.addEventListener('change', function() {
@@ -1057,7 +1066,7 @@
       });
 
       li.addEventListener('click', function(e) {
-        if (e.target.closest('a') || e.target.closest('button') || e.target.closest('input') || e.target.closest('label')) {
+        if (e.target.closest('a') || e.target.closest('button') || e.target.closest('input') || e.target.closest('label') || e.target.closest('blockquote')) {
           return;
         }
         input.checked = !input.checked;
@@ -1073,6 +1082,7 @@
         <div class="checklist-bar-stats">
           <span class="stat-chip-done">✅ <strong id="chk-count-done">0</strong> marcados</span>
           <span class="stat-chip-pending">⏳ <strong id="chk-count-pending">0</strong> restantes</span>
+          <span class="stat-chip-starred" title="Hábitos clave de mayor impacto">⭐ <strong id="chk-count-starred">0/0</strong> claves ★</span>
         </div>
         <div class="checklist-bar-right">
           <div class="checklist-bar-percent" id="chk-percent">0%</div>
@@ -1084,6 +1094,7 @@
       </div>
       <div class="checklist-bar-diagnosis" id="chk-diagnosis" data-level="danger"></div>
       <div class="checklist-bar-actions">
+        <button type="button" class="checklist-filter-btn" id="chk-btn-starred" title="Mostrar únicamente los 5-6 hábitos fundamentales marcados con ★">⭐ Ver solo claves ★</button>
         <button type="button" class="checklist-filter-btn" id="chk-btn-filter" title="Ocultar temporalmente los ítems ya marcados para enfocarte en los pendientes">👁️ Ver solo pendientes</button>
         <button type="button" class="checklist-reset-btn" id="chk-btn-reset">↺ Reiniciar progreso</button>
       </div>
@@ -1093,25 +1104,34 @@
     function updateStats() {
       const total = checklistItems.length;
       let completed = 0;
+      let starredTotal = 0;
+      let starredDone = 0;
       for (let i = 0; i < total; i++) {
-        if (savedData[i]) completed++;
+        const isStar = checklistItems[i].classList.contains('checklist-item-starred');
+        if (isStar) starredTotal++;
+        if (savedData[i]) {
+          completed++;
+          if (isStar) starredDone++;
+        }
       }
       const pending = total - completed;
       const pct = total > 0 ? Math.round((completed / total) * 100) : 0;
 
       const doneEl = document.getElementById('chk-count-done');
       const pendingEl = document.getElementById('chk-count-pending');
+      const starredEl = document.getElementById('chk-count-starred');
       const pctEl = document.getElementById('chk-percent');
       const fillEl = document.getElementById('chk-fill');
       const diagEl = document.getElementById('chk-diagnosis');
 
       if (doneEl) doneEl.textContent = completed;
       if (pendingEl) pendingEl.textContent = pending;
+      if (starredEl) starredEl.textContent = starredDone + '/' + starredTotal;
       if (pctEl) pctEl.textContent = pct + '%';
       if (fillEl) fillEl.style.width = pct + '%';
 
       if (diagEl) {
-        const diag = getDiagnosisForGuide(guideId, pending);
+        const diag = getDiagnosisForGuide(guideId, pending, total, starredDone, starredTotal);
         diagEl.setAttribute('data-level', diag.level);
         diagEl.textContent = diag.text;
       }
@@ -1119,6 +1139,19 @@
       if (typeof window.__syncFloatingLayout === 'function') {
         window.__syncFloatingLayout();
       }
+    }
+
+    const starredBtn = document.getElementById('chk-btn-starred');
+    if (starredBtn) {
+      starredBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const active = document.body.classList.toggle('checklist-filter-starred');
+        starredBtn.classList.toggle('is-active', active);
+        starredBtn.textContent = active ? '⭐ Ver todos' : '⭐ Ver solo claves ★';
+        if (typeof window.__syncFloatingLayout === 'function') {
+          window.__syncFloatingLayout();
+        }
+      });
     }
 
     const filterBtn = document.getElementById('chk-btn-filter');
@@ -1164,10 +1197,14 @@
             if (li) li.classList.remove('is-completed');
           });
 
-          document.body.classList.remove('checklist-filter-pending');
+          document.body.classList.remove('checklist-filter-pending', 'checklist-filter-starred');
           if (filterBtn) {
             filterBtn.classList.remove('is-active');
             filterBtn.textContent = '👁️ Ver solo pendientes';
+          }
+          if (starredBtn) {
+            starredBtn.classList.remove('is-active');
+            starredBtn.textContent = '⭐ Ver solo claves ★';
           }
 
           updateStats();
@@ -1184,6 +1221,10 @@
   function initPageTOC() {
     const mainContent = document.querySelector('main.content');
     if (!mainContent) return;
+
+    if (document.getElementById('dgQuizApp') || document.getElementById('dgEmergencyTriage')) {
+      return;
+    }
 
     const rawHeadings = Array.from(mainContent.querySelectorAll('h2, h3')).filter(function(h) {
       return !h.closest('.callout') && !h.closest('.prompt-box-wrapper');
@@ -1221,73 +1262,26 @@
       }
     }
 
-    const tocCard = document.createElement('nav');
-    tocCard.className = 'page-toc-card';
-    tocCard.setAttribute('aria-label', 'Índice de contenidos');
-
-    let inlineListHtml = '';
-    tocItems.forEach(function(item) {
-      const bullet = item.level === 2 ? '▸' : '↳';
-      inlineListHtml += `
-        <li class="page-toc-item toc-level-${item.level}">
-          <a href="#${item.id}" class="page-toc-link" data-target="${item.id}">
-            <span class="toc-bullet" aria-hidden="true">${bullet}</span>
-            <span>${item.text}</span>
-          </a>
-        </li>
-      `;
-    });
-
-    tocCard.innerHTML = `
-      <div class="page-toc-header" id="page-toc-header-toggle">
-        <div class="page-toc-title">
-          <span aria-hidden="true">📑</span>
-          <span>Índice de la página</span>
-          <span class="page-toc-count">${tocItems.length} secciones</span>
-        </div>
-        <button type="button" class="page-toc-toggle-btn" id="page-toc-toggle-btn">🔼 Ocultar</button>
-      </div>
-      <div class="page-toc-body" id="page-toc-body">
-        <ul class="page-toc-list">
-          ${inlineListHtml}
-        </ul>
-      </div>
-    `;
-
-    const firstH2 = rawHeadings[0];
-    if (firstH2 && firstH2.parentNode) {
-      firstH2.parentNode.insertBefore(tocCard, firstH2);
-    }
-
-    const headerToggle = tocCard.querySelector('#page-toc-header-toggle');
-    const toggleBtn = tocCard.querySelector('#page-toc-toggle-btn');
-    const tocBody = tocCard.querySelector('#page-toc-body');
-
-    headerToggle.addEventListener('click', function() {
-      const collapsed = tocBody.classList.toggle('is-collapsed');
-      toggleBtn.textContent = collapsed ? '🔽 Mostrar índice' : '🔼 Ocultar';
-    });
-
-    tocCard.querySelectorAll('.page-toc-link').forEach(function(link) {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        scrollToHeading(link.getAttribute('data-target'));
-      });
-    });
+    const isHome = Boolean(document.querySelector('.dgq-wrap'));
+    const textLength = (mainContent.textContent || '').trim().length;
+    const showFloatingToc = !isHome && rawHeadings.length >= 5 && textLength >= 4500;
 
     const floatingWidget = document.createElement('div');
     floatingWidget.className = 'floating-toc-widget';
 
     let floatingLinksHtml = '';
-    tocItems.forEach(function(item) {
-      floatingLinksHtml += `
-        <a href="#${item.id}" class="floating-toc-entry level-${item.level}" data-target="${item.id}">
-          ${item.level === 3 ? '↳ ' : ''}${item.text}
-        </a>
-      `;
-    });
+    if (showFloatingToc) {
+      tocItems.forEach(function(item) {
+        floatingLinksHtml += `
+          <a href="#${item.id}" class="floating-toc-entry level-${item.level}" data-target="${item.id}">
+            ${item.level === 3 ? '↳ ' : ''}${item.text}
+          </a>
+        `;
+      });
+    }
 
     floatingWidget.innerHTML = `
+      ${showFloatingToc ? `
       <div class="floating-toc-popover" id="floating-toc-popover" role="dialog" aria-label="Índice rápido">
         <div class="floating-toc-popover-header">
           <span>📑 Saltar a sección</span>
@@ -1296,13 +1290,14 @@
         <div class="floating-toc-popover-list" id="floating-toc-list">
           ${floatingLinksHtml}
         </div>
-      </div>
+      </div>` : ''}
       <div class="floating-toc-buttons">
         <button type="button" class="floating-top-trigger" id="floating-top-btn" title="Subir al inicio de la página">⬆️</button>
+        ${showFloatingToc ? `
         <button type="button" class="floating-toc-trigger" id="floating-toc-btn" title="Abrir índice de secciones">
           <span aria-hidden="true">📑</span>
           <span>Índice</span>
-        </button>
+        </button>` : ''}
       </div>
     `;
 
@@ -1315,24 +1310,31 @@
     const floatEntries = Array.from(floatingWidget.querySelectorAll('.floating-toc-entry'));
 
     function togglePopover(forceState) {
+      if (!popover || !tocBtn) return;
       const open = typeof forceState === 'boolean' ? forceState : !popover.classList.contains('is-open');
       popover.classList.toggle('is-open', open);
       tocBtn.classList.toggle('is-active', open);
     }
 
-    tocBtn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      togglePopover();
-    });
+    if (tocBtn) {
+      tocBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        togglePopover();
+      });
+    }
 
-    closeTocBtn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      togglePopover(false);
-    });
+    if (closeTocBtn) {
+      closeTocBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        togglePopover(false);
+      });
+    }
 
-    topBtn.addEventListener('click', function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+    if (topBtn) {
+      topBtn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
 
     floatEntries.forEach(function(entry) {
       entry.addEventListener('click', function(e) {
@@ -1345,15 +1347,21 @@
       });
     });
 
-    document.addEventListener('click', function(e) {
-      if (popover.classList.contains('is-open') && !floatingWidget.contains(e.target)) {
-        togglePopover(false);
-      }
-    });
+    if (popover) {
+      document.addEventListener('click', function(e) {
+        if (popover.classList.contains('is-open') && !floatingWidget.contains(e.target)) {
+          togglePopover(false);
+        }
+      });
+    }
 
     function onScrollSpy() {
       const scrollY = window.scrollY || document.documentElement.scrollTop;
-      topBtn.classList.toggle('is-visible', scrollY > 350);
+      if (topBtn) {
+        topBtn.classList.toggle('is-visible', scrollY > 350);
+      }
+
+      if (!floatEntries.length || !tocItems.length) return;
 
       let currentId = tocItems[0].id;
       for (let i = 0; i < tocItems.length; i++) {
@@ -1551,10 +1559,79 @@
       });
     }
 
+    async function renderHiddenMermaidsIn(rootEl) {
+      const scope = rootEl || document;
+      const containers = Array.from(scope.querySelectorAll('.mermaid'));
+      const nodesToRender = [];
+
+      containers.forEach(function(container) {
+        if (container.closest('.callout.is-collapsed') || container.offsetParent === null) return;
+        const svg = container.querySelector('svg');
+        const rect = svg ? svg.getBoundingClientRect() : null;
+        const vb = svg ? (svg.getAttribute('viewBox') || '').trim().split(/[\s,]+/).map(Number) : [];
+        const inCollapsible = Boolean(container.closest('.callout.is-collapsible, details'));
+        const needsFirstReveal = inCollapsible && container.dataset.renderedVisible !== 'true';
+        const brokenSvg = !svg || !rect || rect.height < 25 || rect.width < 25 || (vb.length === 4 && (vb[2] < 60 || vb[3] < 40));
+        const encodedSrc = container.dataset ? container.dataset.mermaidSrc : '';
+        if ((needsFirstReveal || brokenSvg) && encodedSrc) {
+          container.textContent = decodeURIComponent(encodedSrc);
+          container.removeAttribute('data-processed');
+          container.removeAttribute('id');
+          nodesToRender.push(container);
+        }
+      });
+
+      if (nodesToRender.length > 0) {
+        try {
+          const mod = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+          const m = mod.default;
+          m.initialize({
+            startOnLoad: false,
+            theme: document.body.classList.contains('theme-light') ? 'default' : 'dark'
+          });
+          await m.run({ nodes: nodesToRender });
+          nodesToRender.forEach(function(node) {
+            node.dataset.renderedVisible = 'true';
+          });
+        } catch (err) {
+          console.warn('No se pudo re-renderizar Mermaid oculto:', err);
+        }
+      }
+
+      cleanAndScaleMermaid();
+      setTimeout(cleanAndScaleMermaid, 120);
+    }
+
+    document.querySelectorAll('.callout.is-collapsible').forEach(function(callout) {
+      const title = callout.querySelector('.callout-title');
+      if (title) {
+        title.addEventListener('click', function() {
+          setTimeout(function() { renderHiddenMermaidsIn(callout); }, 70);
+        });
+      }
+      if (typeof MutationObserver !== 'undefined') {
+        const classObserver = new MutationObserver(function() {
+          if (!callout.classList.contains('is-collapsed')) {
+            setTimeout(function() { renderHiddenMermaidsIn(callout); }, 40);
+          }
+        });
+        classObserver.observe(callout, { attributes: true, attributeFilter: ['class'] });
+      }
+    });
+
+    document.querySelectorAll('details').forEach(function(detailsEl) {
+      detailsEl.addEventListener('toggle', function() {
+        if (detailsEl.open) {
+          setTimeout(function() { renderHiddenMermaidsIn(detailsEl); }, 50);
+        }
+      });
+    });
+
     cleanAndScaleMermaid();
     setTimeout(cleanAndScaleMermaid, 250);
     setTimeout(cleanAndScaleMermaid, 800);
     setTimeout(cleanAndScaleMermaid, 1800);
+    setTimeout(function() { renderHiddenMermaidsIn(document); }, 900);
 
     window.addEventListener('resize', cleanAndScaleMermaid, { passive: true });
 

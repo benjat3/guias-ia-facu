@@ -160,6 +160,28 @@ function getAnchorLink(filePath, linkTitle) {
 // (target, title). Cleared in eleventy.before so watch-mode rebuilds see
 // frontmatter edits.
 const anchorAttributesCache = new Map();
+let noteStemIndex = null;
+
+function findNoteFileByStem(stem) {
+  if (!noteStemIndex) {
+    noteStemIndex = new Map();
+    const walk = (dir) => {
+      for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+        const p = nodePath.join(dir, entry.name);
+        if (entry.isDirectory()) {
+          walk(p);
+        } else if (entry.name.endsWith(".md")) {
+          const base = entry.name.slice(0, -3);
+          if (!noteStemIndex.has(base)) {
+            noteStemIndex.set(base, p);
+          }
+        }
+      }
+    };
+    walk("./src/site/notes");
+  }
+  return noteStemIndex.get(stem) || null;
+}
 
 function getAnchorAttributes(filePath, linkTitle) {
   const cacheKey = `${filePath}\x00${linkTitle || ""}`;
@@ -191,6 +213,12 @@ function computeAnchorAttributes(filePath, linkTitle) {
       fullPath = `${startPath}${fileName}`;
     } else {
       fullPath = `${startPath}${fileName}.md`;
+    }
+    if (!fs.existsSync(fullPath) && !fileName.includes("/")) {
+      const byStem = findNoteFileByStem(fileName.replace(/\.md$/, ""));
+      if (byStem) {
+        fullPath = byStem;
+      }
     }
     const file = fs.readFileSync(fullPath, "utf8");
     const frontMatter = matter(file, matterOptions);
@@ -283,7 +311,7 @@ module.exports = function(eleventyConfig) {
         const token = tokens[idx];
         if (token.info === "mermaid") {
           const code = token.content.trim();
-          return `<pre class="mermaid">${code}</pre>`;
+          return `<pre class="mermaid" data-mermaid-src="${encodeURIComponent(code)}">${code}</pre>`;
         }
         if (token.info === "transclusion") {
           const code = token.content.trim();
@@ -470,17 +498,27 @@ module.exports = function(eleventyConfig) {
   });
 
   eleventyConfig.addFilter("link", function(str) {
-    return (
-      str &&
-      str.replace(/\[\[(.*?\|.*?)\]\]/g, function(match, p1) {
+    if (!str) return str;
+    return str.replace(
+      /(<pre\b[^>]*>[\s\S]*?<\/pre>|<code\b[^>]*>[\s\S]*?<\/code>|<script\b[^>]*>[\s\S]*?<\/script>|<style\b[^>]*>[\s\S]*?<\/style>)|\[\[([^\[\]\r\n]+?)\]\]/gi,
+      function(match, protectedBlock, p1) {
+        if (protectedBlock) {
+          return protectedBlock;
+        }
         //Check if it is an embedded excalidraw drawing or mathjax javascript
         if (p1.indexOf("],[") > -1 || p1.indexOf('"$"') > -1) {
           return match;
         }
-        const [fileLink, linkTitle] = p1.split("|");
-
-        return getAnchorLink(fileLink, linkTitle);
-      })
+        if (p1.includes("|")) {
+          const [fileLink, linkTitle] = p1.split("|");
+          return getAnchorLink(fileLink, linkTitle);
+        }
+        const { attributes, innerHTML } = getAnchorAttributes(p1);
+        if (attributes.class && attributes.class.includes("is-unresolved")) {
+          return match;
+        }
+        return `<a ${Object.keys(attributes).map(key => `${key}="${attributes[key]}"`).join(" ")}>${innerHTML}</a>`;
+      }
     );
   });
 
@@ -850,6 +888,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.on("eleventy.before", () => {
     normalizeFavicon(FAVICON_SOURCE, FAVICON_NORMALIZED);
     anchorAttributesCache.clear();
+    noteStemIndex = null;
   });
   eleventyConfig.on("eleventy.after", async () => {
     if (pendingImageJobs.length > 0) {

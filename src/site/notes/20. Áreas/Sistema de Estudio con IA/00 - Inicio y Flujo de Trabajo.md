@@ -85,8 +85,8 @@ body:has(.dgq-wrap) .floating-toc-widget{display:none !important}
 <div class="dgq-bcard">
 <h4>🔥 Urgencias y Arranque</h4>
 <div class="dgq-blinks">
-<a class="dgq-bitem" data-note-match="00B" href="/20-areas/sistema-de-estudio-con-ia/00b-modo-emergencia-ruta-rapida-con-ia/"><span>🚨 Modo Emergencia (IA)</span><span class="dgq-btag">Ruta rápida</span></a>
-<a class="dgq-bitem" data-note-match="00C" href="/20-areas/sistema-de-estudio-con-ia/00c-copiloto-arranque-vencer-la-procrastinacion/"><span>🚀 Copiloto ARRANQUE</span><span class="dgq-btag">Procrastinación</span></a>
+<a class="dgq-bitem" data-note-match="00B" href="/20-areas/sistema-de-estudio-con-ia/00-b-modo-emergencia-ruta-rapida-con-ia/"><span>🚨 Modo Emergencia (IA)</span><span class="dgq-btag">Ruta rápida</span></a>
+<a class="dgq-bitem" data-note-match="00C" href="/20-areas/sistema-de-estudio-con-ia/00-c-copiloto-arranque-vencer-la-procrastinacion/"><span>🚀 Copiloto ARRANQUE</span><span class="dgq-btag">Procrastinación</span></a>
 </div>
 </div>
 <div class="dgq-bcard">
@@ -97,7 +97,7 @@ body:has(.dgq-wrap) .floating-toc-widget{display:none !important}
 <a class="dgq-bitem" data-note-match="02 -" href="/20-areas/sistema-de-estudio-con-ia/02-tutor-personal-cognitivo/"><span>2. Tutor Personal</span><span class="dgq-btag">Estudio activo</span></a>
 <a class="dgq-bitem" data-note-match="03 -" href="/20-areas/sistema-de-estudio-con-ia/03-simulador-y-generador-de-examenes-de-catedra/"><span>3. Simulador de Exámenes</span><span class="dgq-btag">Parciales</span></a>
 <a class="dgq-bitem" data-note-match="04 -" href="/20-areas/sistema-de-estudio-con-ia/04-generador-de-tarjetas-de-anki/"><span>4. Generador de Anki</span><span class="dgq-btag">CSV</span></a>
-<a class="dgq-bitem" data-note-match="04B" href="/20-areas/sistema-de-estudio-con-ia/04b-importacion-a-anki-e-image-occlusion-tutorial-visual/"><span>4B. Importar a Anki</span><span class="dgq-btag">Visual</span></a>
+<a class="dgq-bitem" data-note-match="04B" href="/20-areas/sistema-de-estudio-con-ia/04-b-importacion-a-anki-e-image-occlusion-tutorial-visual/"><span>4B. Importar a Anki</span><span class="dgq-btag">Visual</span></a>
 </div>
 </div>
 <div class="dgq-bcard">

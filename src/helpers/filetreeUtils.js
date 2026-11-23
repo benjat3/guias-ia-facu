@@ -123,11 +123,37 @@ function getPermalinkMeta(note, key) {
       folders = note.data["dg-path"].split("/");
     } else {
       // Ensure we extract everything after the LAST "notes/" occurrence
-      const parts = note.filePathStem.split("/notes/");
-      if (parts.length > 1) {
-        folders = parts.slice(-1)[0].split("/"); // Take the last part after "notes/"
+      const stemParts = note.filePathStem.split("/notes/");
+      if (stemParts.length > 1) {
+        folders = stemParts.slice(-1)[0].split("/"); // Take the last part after "notes/"
       } else {
         folders = []; // Handle unexpected cases gracefully
+      }
+      if (
+        folders.length === 3 &&
+        folders[0] === "20. Áreas" &&
+        folders[1] === "Sistema de Estudio con IA"
+      ) {
+        const fileName = folders[2];
+        if (fileName.startsWith("00 -")) {
+          noteIcon = "home";
+          pinned = true;
+          name = "🏠 00 - Inicio y Selector de Ruta";
+          folders = ["🏠 00 - Inicio y Selector de Ruta"];
+        } else if (fileName.startsWith("00B") || fileName.startsWith("00C")) {
+          folders = ["1. Empezar y Urgencias", fileName];
+        } else if (
+          fileName.startsWith("01") ||
+          fileName.startsWith("02") ||
+          fileName.startsWith("03") ||
+          fileName.startsWith("04")
+        ) {
+          folders = ["2. Sistema Completo con IA", fileName];
+        } else if (fileName.startsWith("08")) {
+          folders = ["3. En Papel o con IA Simple", fileName];
+        } else {
+          folders = ["4. Ciencia, Modelos y Checklists", fileName];
+        }
       }
     }
     // Path rewrite rules produce a dg-path that already includes the ".md"
