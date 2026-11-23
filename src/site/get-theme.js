@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("../helpers/loadGardenEnv")();
 const axios = require("axios");
 const fs = require("fs");
 const crypto = require("crypto");

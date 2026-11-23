@@ -1,3 +1,4 @@
+require("./src/helpers/loadGardenEnv")();
 const markdownIt = require("markdown-it");
 const fs = require("fs");
 const matter = require("gray-matter");

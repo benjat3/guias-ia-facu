@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("../../helpers/loadGardenEnv")();
 const settings = require("../../helpers/constants");
 const { pickNoteMetadata } = require("../../helpers/bases-engine/noteMetadata");
 const pluginLoader = require("../../helpers/pluginLoader");

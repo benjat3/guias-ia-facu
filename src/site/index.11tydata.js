@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("../helpers/loadGardenEnv")();
 const path = require("path");
 const settings = require("../helpers/constants");
 const pluginLoader = require("../helpers/pluginLoader");

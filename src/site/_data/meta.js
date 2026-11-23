@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("../../helpers/loadGardenEnv")();
 const { globSync } = require("glob");
 
 module.exports = async (data) => {
