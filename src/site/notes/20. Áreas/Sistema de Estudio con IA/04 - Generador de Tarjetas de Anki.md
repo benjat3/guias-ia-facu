@@ -27,9 +27,9 @@ Para que tus mazos queden guardados automáticamente en tu Google Drive, desmarc
 > [!NOTE] 📸 Desactivar chat temporal
 > ![Pasted image 20261011150316.png](/img/user/_assets/attachments/Pasted%20image%2020261011150316.png)
 
-### 2. Elegí el modelo `Gemini 3.8 Flash`
+### 2. Elegí `Gemini Hydrogen`
 
-En la barra de configuración de la derecha (*Run settings*), seleccioná **`Gemini 3.8 Flash`**.
+En la barra de configuración de la derecha (*Run settings*), seleccioná **`Gemini Hydrogen`** *(el caballo de batalla súper económico: excelente en `Medium` o `High` para generar tarjetas limpias, y en `Extra High` para apuntes muy densos)*. *(Nota: modelos de otras empresas como Claude, ChatGPT, DeepSeek o Qwen no fueron probados por el autor).*
 
 > [!NOTE] 📸 Selección del modelo y acceso a System Instructions
 > ![Pasted image 20261011150326.png](/img/user/_assets/attachments/Pasted%20image%2020261011150326.png)
@@ -44,11 +44,11 @@ En la barra de configuración de la derecha (*Run settings*), seleccioná **`Gem
 > ![Pasted image 20261011150337.png](/img/user/_assets/attachments/Pasted%20image%2020261011150337.png)
 > ![Pasted image 20261011150344.png](/img/user/_assets/attachments/Pasted%20image%2020261011150344.png)
 
-### 4. Poné «Thinking level» y «Media resolution» en High
+### 4. Configurá «Thinking level» y «Media resolution»
 
-En esa misma barra derecha, ajustá estos dos controles en **`High`**:
-- **Thinking level:** `High` *(hace que la IA revise todo el apunte párrafo por párrafo antes de armar las tarjetas)*.
-- **Media resolution** (adentro de *Advanced settings*): `High` *(fundamental para que lea bien los subíndices de las fórmulas y los gráficos en capturas de diapositivas)*.
+En esa misma barra derecha, ajustá estos dos controles:
+- **Thinking level:** **`High`** o **`Medium`** *(en **Gemini Hydrogen**, ambos revisan el apunte párrafo por párrafo con excelente precisión y muy bajo consumo; subí a **`Extra High`** si el tramo es muy denso)*.
+- **Media resolution** (adentro de *Advanced settings*): **`High`** *(fundamental para que lea bien los subíndices de las fórmulas y los gráficos en capturas de diapositivas)*.
 
 > [!NOTE] 📸 Calibración en High (Thinking y Media Resolution)
 > ![Pasted image 20261011150350.png](/img/user/_assets/attachments/Pasted%20image%2020261011150350.png)
@@ -62,7 +62,7 @@ Una vez que tenés elegido tu preset en *System Instructions*, en el cuadro de c
 1. **Mandá lotes cortos (Regla de oro):** Subí de a **4 a 6 diapositivas** o **1 a 2 páginas de apunte** por mensaje. Si le mandás un PDF entero de 30 páginas de golpe, la IA va a saltear la mitad de los conceptos para acortar la respuesta.
 2. **Sumá los comentarios de tu profesor (Opcional):** Si anotaste algo importante en el cuaderno o tenés un fragmento de `voz_catedra.md` (**[[20. Áreas/Sistema de Estudio con IA/01B - Extractor de Clases y Voz de la Cátedra\|01B - Extractor de Clases y Voz de la Cátedra]]**), pegalo en el mensaje para que la IA arme tarjetas sobre las trampas o unidades que exige tu cátedra (lo mejor es no pegar todo, ir por tema).
 
-*(Nota: Si ya copiaste el bloque CSV que te devolvió la IA y querés ver cómo importarlo en Anki Desktop y en tu celular paso a paso con capturas, andá a la **Fase 5** de **[[20. Áreas/Sistema de Estudio con IA/00 - Inicio y Flujo de Trabajo\|00 - Inicio y Flujo de Trabajo]]**).*
+*(Nota: Si ya copiaste el bloque CSV que te devolvió la IA y querés ver cómo importarlo en Anki Desktop y en tu celular paso a paso con capturas, andá directo al tutorial visual **[[20. Áreas/Sistema de Estudio con IA/04B - Importación a Anki e Image Occlusion (Tutorial Visual)\|04B - Importación a Anki e Image Occlusion (Tutorial Visual)]]**).*
 
 ---
 
@@ -312,7 +312,8 @@ Notas de clase / Voz de la cátedra (opcional):
 
 ## 🧭 Navegación
 
-*Volver a la guía general (y ver el tutorial de importación en Fase 5):* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/00 - Inicio y Flujo de Trabajo\|00 - Inicio y Flujo de Trabajo]]**
+*Siguiente paso (Importación CSV e Image Occlusion):* ➡️ **[[20. Áreas/Sistema de Estudio con IA/04B - Importación a Anki e Image Occlusion (Tutorial Visual)\|04B - Importación a Anki e Image Occlusion (Tutorial Visual)]]**
 *Herramienta anterior:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/03 - Simulador y Generador de Exámenes de Cátedra\|03 - Simulador y Generador de Exámenes de Cátedra]]**
 *Módulo satélite de clases grabadas (Opcional):* 🎙️ **[[20. Áreas/Sistema de Estudio con IA/01B - Extractor de Clases y Voz de la Cátedra\|01B - Extractor de Clases y Voz de la Cátedra]]**
 *Siguiente sección (Infraestructura de Modelos):* ➡️ **[[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]**
+*Volver al inicio:* 🏠 **[[20. Áreas/Sistema de Estudio con IA/00 - Inicio y Flujo de Trabajo\|00 - Inicio y Flujo de Trabajo]]**

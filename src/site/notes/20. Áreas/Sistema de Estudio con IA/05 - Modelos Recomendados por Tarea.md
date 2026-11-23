@@ -6,129 +6,96 @@
 
 # 🤖 Infraestructura de Modelos y Gestión de Cuotas
 
-Como los modelos de Inteligencia Artificial cambian de nombre, versión y límites cada pocos meses, esta página centraliza **qué herramienta gratuita o paga conviene usar en cada paso del sistema**.
+Como los modelos de Inteligencia Artificial cambian de nombre y límites cada pocos meses, esta página centraliza **qué motor conviene usar en cada módulo del sistema** para tener máxima precisión técnica sin quemar cuota al pedo.
 
-En lugar de atar las guías a un nombre comercial fijo, dividimos las tareas del sistema en **dos niveles cognitivos**:
-
-```mermaid
-flowchart TD
-    T1["01 - Extractor de Checklists"]
-    T1B_P3["01B - Voz de la Cátedra (Pasos 3 y 4)"]
-    T2_B["02 - Tutor Cognitivo (Ruta Beta)"]
-    T3_A["03 - Simulador de Exámenes (Pasos 1, 3 y 4)"]
-    T4["04 - Generador de Tarjetas de Anki"]
-
-    subgraph AR [" "]
-        direction TB
-        H_AR["🧠 <b>[Nivel: Alto Razonamiento]</b><br><i>Donde importa la precisión matemática y no saltear temas</i>"]
-        
-        M1["<b>🥇 Gemini 3.8 Flash (Thinking: High)</b><br>(Google AI Studio • 100% Gratuito • El estándar del sistema)"]
-        M2["<b>✍️ Claude Sonnet 5.5 (Razonamiento Medium)</b><br>(Claude.ai • Excelente alternativa para redactar exámenes)"]
-        M3["<b>💎 Gemini Argon</b><br>(Plan Pago Pro/Ultra • Muy potente pero consume cuota rápido)"]
-
-        H_AR --> M1
-        H_AR --> M2
-        H_AR --> M3
-    end
-
-    T1 --> H_AR
-    T1B_P3 --> H_AR
-    T2_B --> H_AR
-    T3_A --> H_AR
-    T4 --> H_AR
-```
+Hoy Google reemplazó sus modelos anteriores por **dos motores principales** en [Google AI Studio](https://aistudio.google.com/): **Gemini Hydrogen** (de `Low` a `Extra High`, el caballo de batalla súper económico para casi todo) y **Gemini Neon** (de `Low` a `Extra High`, la máxima potencia disponible para tareas muy complejas). Con este salto, **NotebookLM queda hoy muy poco recomendado**, ya que en prácticamente cualquier tarea rinden mejor Hydrogen o Neon.
 
 ```mermaid
 flowchart TD
-    T1B_P1["01B - Voz de la Cátedra (Pasos 1 y 2: Videos)"]
-    T2_E["02 - Tutor Cognitivo (Ruta Estable diaria)"]
-    T3_B["03 - Simulador de Exámenes (Paso 2: Banco)"]
-
-    subgraph MR [" "]
-        direction TB
-        H_MR["📚 <b>[Nivel: Minería y Recuperación]</b><br><i>Donde importa tener 40 archivos juntos sin subirlos cada vez</i>"]
-        N1["<b>📚 NotebookLM Nativo</b><br>(Gratuito • Citas clickeables • Cuota diaria amplísima)"]
-        
-        H_MR --> N1
-    end
-
-    T1B_P1 --> H_MR
-    T2_E --> H_MR
-    T3_B --> H_MR
+    IN["Google AI Studio<br/>Los 2 modelos actuales de Gemini"] --> HY["🚀 Gemini Hydrogen<br/>Caballo de batalla (Low → Extra High)"]
+    IN --> NE["💎 Gemini Neon<br/>Máxima potencia (Low → Extra High)"]
+    HY --> H1["Low / Medium (Ágil y diario)<br/>00C Arranque · 02 Tutor · Dudas"]
+    H1 --> H2["Escalar a High / Extra High<br/>01 Checklists · 03 Simulador · 04 Anki"]
+    NE --> N1["Extra High (Máxima complejidad)<br/>08 Arquitecto (/plan) · 03 Exámenes"]
 ```
 
 ---
 
-## ⚖️ La Regla de Oro: Cuándo usar NotebookLM y cuándo usar Google AI Studio
+## ⚙️ Las 3 Reglas de Oro del Ecosistema
 
-Hoy existe una diferencia grande entre la **comodidad** de NotebookLM y la **inteligencia analítica** de los modelos con razonamiento profundo (*Thinking: High*):
+1. **Usá `Gemini Hydrogen` (`Low` → `Extra High`) en Google AI Studio como caballo de batalla para casi todo:**
+   * Es buenísimo y **súper barato en cuota**, cubriendo prácticamente el 90 % del flujo de estudio:
+     * **`Low`:** Muy rápido (tipo *Flash*) y sólido para respuestas inmediatas (`00C - Copiloto ARRANQUE` o dudas puntuales leyendo en papel).
+     * **`Medium`:** El nivel ideal para el **Tutor Personal Cognitivo (`02`)** y consultas del día a día; rinde muy bien gastando poquísima cuota.
+     * **`High`:** Excelente balance para checklists (`01`), unión de clases (`01B`), tarjetas de Anki (`04`), modo emergencia (`00B`) y simulacros estándar (`03`).
+     * **`Extra High`:** Rinde al nivel del antiguo *Argon High* (o incluso un poco mejor) a una fracción del costo; ideal para exámenes exigentes (`03`) o temarios extensos (`01`) sin gastar cuota pesada.
+   * Activá siempre **`Media resolution: High`** en AI Studio cuando subas PDFs con gráficos, tablas o diapositivas escaneadas.
 
-1. **Usá NotebookLM (`[Nivel: Minería y Recuperación]`) cuando necesites consultar muchos archivos a la vez o chatear largo:**
-   * Su ventaja imbatible es logística: arrastrás una sola vez los 40 archivos de la cursada (apuntes, libros, TPs, parciales y videos de YouTube) y te quedan listos para siempre con **citas clickeables**.
-   * Aunque Google actualizó sus políticas y la cuota **ya no es infinita**, sigue siendo **sumamente amplia y generosa** (en la práctica es casi imposible llegar al límite diario, incluso estudiando todo el día para finales).
-   * **Su punto débil:** Su modelo interno quedó rezagado. Si le pedís armar checklists o redactar un examen nuevo, resume de más, se saltea temas en silencio (*omisión silenciosa*) y se equivoca en los cálculos físicos.
-2. **Usá Google AI Studio o Argon (`[Nivel: Alto Razonamiento]`) cuando necesites precisión técnica absoluta:**
-   * Para armar la checklist de una unidad, diseñar el mapa de examen, redactar simulacros o crear tarjetas de Anki, necesitamos motores que "piensen paso a paso" antes de responder. Acá tenés que subir a mano desde tu PC únicamente los PDFs de la unidad que estás trabajando.
+2. **Reservá `Gemini Neon` (`Extra High`) para las tareas más complejas:**
+   * Aunque corre desde `Low` hasta `Extra High`, su mayor valor diferencial está en **`Extra High`**, donde es el motor más potente disponible.
+   * Es la mejor opción para tareas de diseño y razonamiento profundo, especialmente el **Arquitecto de Aprendizaje (`08`) al armar el `/plan` en 3 pasos** (o `/completo`), así como simulacros integradores muy largos o complejos (`03`).
 
-> [!DANGER] ⛔ PROHIBIDO usar el conector de Cuadernos dentro de Gemini Web (`gemini.google.com`)
-> La página común de Gemini permite elegir un cuaderno de NotebookLM desde su barra lateral izquierda, pero **esa conexión funciona mal**: el modelo ignora la mayoría de los archivos del cuaderno o inventa que están vacíos. Cuando uses modelos de **`[Nivel: Alto Razonamiento]`**, subí siempre los PDFs directamente desde tu computadora en Google AI Studio (o en Argon).
+3. **NotebookLM queda hoy muy poco recomendado *(y nunca lo conectes desde Gemini Web)*:**
+   * En prácticamente cualquier módulo del sistema (incluido el Tutor `02` y el Simulador `03`), hoy vas a obtener mejores respuestas y mayor adherencia subiendo los PDFs de la unidad a **Google AI Studio (`Hydrogen` o `Neon`)** que usando NotebookLM.
+   * NotebookLM solo conserva un nicho secundario puntual si querés cargar ~40 archivos juntos para consultar citas clickeables o procesar links de YouTube sin descargar videos (`01B` Pasos 1 y 2).
+   * **Error crítico a evitar:** nunca uses el conector lateral de cuadernos de NotebookLM dentro de `gemini.google.com` porque falla al indexar e ignora archivos enteros. Subí siempre tus PDFs desde tu PC en Google AI Studio.
 
 ---
 
-## 📊 Matriz Rápida: Qué usar en cada Módulo
+## 📊 Matriz de Modelos por Guía
 
-| Módulo del Sistema | Nivel Cognitivo | 🥇 Opción Principal (100% Gratuita) | 💎 Alternativa Paga / Secundaria | Motivo Práctico |
+| Guía / Herramienta | Nivel Cognitivo | 🥇 Opción Recomendada | Alternativa | Motivo Técnico |
 | :--- | :--- | :--- | :--- | :--- |
-| **[[20. Áreas/Sistema de Estudio con IA/01 - Extractor de Checklists\|01 - Extractor de Checklists]]** | `[Alto Razonamiento]` | **Gemini 3.8 Flash (`Thinking: High`)** en Google AI Studio | **Gemini Argon** *(subiendo PDFs a mano)* | Lee diapositivas escaneadas con nitidez (`Media Res: High`) y no saltea subtemas ni ejercicios de TP. |
-| **[[20. Áreas/Sistema de Estudio con IA/01B - Extractor de Clases y Voz de la Cátedra\|01B - Extractor de Clases y Voz de la Cátedra]]** | • **P1 y P2:** `[Minería]`<br>• **P3 y P4:** `[Alto Razonamiento]` | • **P1/P2:** **NotebookLM Nativo**<br>• **P3/P4:** **Gemini 3.8 Flash High** (AI Studio) | • **P3/P4:** **Gemini Argon** | NotebookLM lee videos de YouTube sin descargarlos y da citas clickeables; Flash High une y compacta los textos al final. |
-| **[[20. Áreas/Sistema de Estudio con IA/02 - Tutor Personal Cognitivo\|02 - Tutor Personal Cognitivo]]** | • **Estable:** `[Minería]`<br>• **Beta:** `[Alto Razonamiento]` | • **Estable:** **NotebookLM Nativo** (Prompt 27k)<br>• **Beta:** **Gemini 3.8 Flash High** (AI Studio) | • **Beta:** **Gemini Argon** | NotebookLM para el estudio diario sin preocuparte por cuotas; AI Studio cuando el tema tiene matemática o física muy pesada. |
-| **[[20. Áreas/Sistema de Estudio con IA/03 - Simulador y Generador de Exámenes de Cátedra\|03 - Simulador y Generador de Exámenes de Cátedra]]** | • **Paso 2:** `[Minería]`<br>• **Pasos 1, 3 y 4:** `[Alto Razonamiento]` | • **P2:** **NotebookLM Nativo**<br>• **P1/P3/P4:** **Gemini 3.8 Flash High** (AI Studio) | • **P1/P3/P4:** **Claude Sonnet 5.5 (`Medium`)** o **Gemini Argon** | NotebookLM copia rápido los 15 exámenes viejos al banco; Flash High, Sonnet o Argon redactan simulacros nuevos con cuentas válidas. |
-| **[[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|04 - Generador de Tarjetas de Anki]]** | `[Alto Razonamiento]` | **Gemini 3.8 Flash (`Thinking: High`)** en Google AI Studio | — | Permite dejar el prompt guardado en *System Instructions* y respeta sin errores el formato CSV y LaTeX. |
+| **[[20. Áreas/Sistema de Estudio con IA/01 - Extractor de Checklists\|01 - Extractor de Checklists]]** | `[Alto Razonamiento]` | **Gemini Hydrogen (`High` o `Extra High`)** en AI Studio | **Gemini Neon (`High` / `Extra High`)** *(temarios gigantes)* | Lee diapositivas escaneadas con nitidez (`Media Res: High`), no saltea subtemas ni ejercicios y gasta poquísima cuota. |
+| **[[20. Áreas/Sistema de Estudio con IA/01B - Extractor de Clases y Voz de la Cátedra\|01B - Extractor de Clases y Voz de la Cátedra]]** | • **P1 y P2:** `[Extracción]`<br>• **P3 y P4:** `[Alto Razonamiento]` | • **P1/P2:** **Hydrogen (`Medium` / `High`)** *(o NotebookLM si pegás link de YouTube)*<br>• **P3/P4:** **Hydrogen (`High` / `Extra High`)** | **Gemini Neon (`High` / `Extra High`)** *(cierres muy extensos)* | Si tenés la transcripción o audio, Hydrogen rinde mejor; NotebookLM queda solo como atajo cómodo para pegar links de YouTube sin descargarlos. |
+| **[[20. Áreas/Sistema de Estudio con IA/02 - Tutor Personal Cognitivo\|02 - Tutor Personal Cognitivo]]** | `[Diario / Riguroso]` | **Gemini Hydrogen (`Medium`)** en AI Studio *(Prompt V3)* | **Hydrogen (`High` / `Extra High`)** o **Neon** *(deducciones muy difíciles)* · NotebookLM *(secundario)* | **Hydrogen en `Medium`** funciona excelente para el Tutor y el estudio diario manteniendo contexto, micro-pacing y cuentas sólidas. |
+| **[[20. Áreas/Sistema de Estudio con IA/03 - Simulador y Generador de Exámenes de Cátedra\|03 - Simulador y Generador de Exámenes de Cátedra]]** | `[Alto Razonamiento]` | **Gemini Hydrogen (`High` / `Extra High`)** en AI Studio *(Pasos 1 a 4)* | **Gemini Neon (`Extra High`)** *(simulacros muy largos o complejos)* | En `Extra High`, Hydrogen iguala o supera al viejo Argon High; para exámenes integradores de máxima dificultad, Neon `Extra High` es imbatible. |
+| **[[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|04 - Generador de Tarjetas de Anki]]** | `[Alto Razonamiento]` | **Gemini Hydrogen (`Medium` o `High`)** | **Hydrogen (`Extra High`)** si el apunte es muy denso | Guardás el prompt en *System Instructions*; Hydrogen respeta CSV y LaTeX limpio sin comillas rotas. |
+| **[[20. Áreas/Sistema de Estudio con IA/00C - Copiloto ARRANQUE (Vencer la Procrastinación)\|00C - Copiloto ARRANQUE (Vencer la Procrastinación)]]** | `[Ágil / Cotidiano]` | **Gemini Hydrogen (`Low` o `Medium`)** | **Gemini Web** (chat rápido) | En **`Low`** es rapidísimo (estilo *Flash*) y en **`Medium`** sostiene perfecto las reglas para destrabar el arranque con fricción mínima. |
+| **[[20. Áreas/Sistema de Estudio con IA/08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)\|08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)]]** *(Arquitecto v6.0)* | `[Diseño Complejo]` / `[Diario]` | • **Para `/plan` (3 pasos) o `/completo`:** **Gemini Neon (`Extra High`)**<br>• **Sesión diaria (`/siguiente`, `!libre`):** **Hydrogen (`Medium` / `High`)** | **Hydrogen (`Extra High`)** para `/plan` si querés cuidar cuota | Neon en `Extra High` es lo mejor disponible para diseñar la estrategia macro en 3 pasos; Hydrogen en `Medium` acompaña el día a día muy rápido y barato. |
+| **[[20. Áreas/Sistema de Estudio con IA/00B - Modo Emergencia (Ruta Rápida con IA)\|00B - Modo Emergencia (Ruta Rápida con IA)]]** | Según vía (`08`/`03`/`02`) | **Gemini Hydrogen (`High` / `Extra High`)** o **Neon (`Extra High`)** *(en `/emergencia`)* | **Hydrogen (`Medium`)** para el Tutor enfocado | Prioriza precisión directa al formato de examen sin perder tiempo ni quemar cuota innecesaria. |
 
 ---
 
-## 🔍 Detalle de cada Motor y Cómo Cuidar tus Cuotas
+## 🔍 Análisis Detallado por Motor
 
-### 🥇 1. Gemini 3.8 Flash (`Thinking: High`) en Google AI Studio — *El Caballo de Batalla Gratuito*
+### 🚀 1. Gemini Hydrogen (`Low` → `Extra High`) — *El Caballo de Batalla*
+- **Acceso:** **[Google AI Studio](https://aistudio.google.com/)** (panel derecho *Run settings*).
+- **Por qué cubre casi todo el sistema:** Es muy económico y responde excelente en toda su escala de razonamiento:
+  - **`Low`:** Ultra rápido (estilo *Flash*) y confiable para consultas cortas, dudas en papel y `00C - Copiloto ARRANQUE`.
+  - **`Medium`:** El punto dulce para estudiar todos los días: **Tutor Personal Cognitivo (`02`)**, consultas cotidianas, seguimiento con el Arquitecto (`08`) y generación de tarjetas (`04`).
+  - **`High`:** Gran equilibrio para tareas estructuradas (`01 - Checklists`, `01B` consolidación, `03 - Simulador`, `04 - Anki`).
+  - **`Extra High`:** Rinde al nivel del viejo *Argon High* (o un poco mejor) con un costo mínimo; ideal para trabajos densos sin pasar a un modelo pesado.
+- **Configuración recomendada en AI Studio:** Subir los PDFs de la unidad desde tu PC, elegir `Thinking level` según la tarea y activar **`Media resolution: High`** cuando haya gráficos, tablas o escaneos.
 
-- **Acceso:** 100% gratuito entrando con tu cuenta de Google en **[aistudio.google.com](https://aistudio.google.com/)**.
-- **Por qué en AI Studio y no en la web común de Gemini:**
-  1. Es el entorno para desarrolladores: responde de forma directa y técnica, sin filtros comerciales que acorten o simplifiquen los prompts largos.
-  2. Te deja guardar tus prompts fijos en **System Instructions**.
-  3. Te permite forzar **`Thinking level: High`** (máximo razonamiento paso a paso) y **`Media resolution: High`** (lectura perfecta de subíndices y gráficos en diapositivas).
-  4. Sus límites diarios gratuitos son amplísimos; podés estudiar todo el cuatrimestre sin pagar un centavo.
+### 💎 2. Gemini Neon (`Low` → `Extra High`) — *Máxima Potencia de Razonamiento*
+- **Acceso:** **[Google AI Studio](https://aistudio.google.com/)**.
+- **Cuándo usarlo:** Disponible desde `Low` hasta `Extra High`, brilla especialmente en **`Extra High`** como el modelo más potente para tareas de altísima complejidad:
+  - Armar el **`/plan` en 3 pasos** (o `/completo`) del **Arquitecto de Estudio (`08` v6.0)** sobre apuntes y exámenes reales.
+  - Generar o corregir **simulacros integradores muy exigentes (`03`)** o deducciones largas donde querés cero margen de error.
+- **Consejo de cuota:** Usalo para las piezas de diseño o máxima exigencia y pasate a **Hydrogen (`Medium` / `High`)** para la práctica diaria.
 
-### 📚 2. NotebookLM Nativo — *Tu Biblioteca Central*
-
+### 📚 3. NotebookLM Nativo — *Uso Secundario / Poco Recomendado*
 - **Acceso:** Gratuito en **[notebook.google.com](https://notebook.google.com/)**.
-- **Para qué es imbatible:** Para tener cargados todos los archivos de la materia en un solo lugar, escuchar clases grabadas en el Paso 1 de **[[20. Áreas/Sistema de Estudio con IA/01B - Extractor de Clases y Voz de la Cátedra\|Módulo 01B]]**, transcribir exámenes viejos en el Paso 2 de **[[20. Áreas/Sistema de Estudio con IA/03 - Simulador y Generador de Exámenes de Cátedra\|Módulo 03]]** y tener sesiones largas de preguntas y respuestas con el Tutor.
+- **Por qué quedó relegado:** Con **Hydrogen** y **Neon** en AI Studio, hoy prácticamente cualquier tarea del sistema (Tutor, Checklists, Simulador, Anki) rinde mucho mejor subiendo los archivos de la unidad a AI Studio. Dejalo únicamente como biblioteca opcional si querés tener ~40 archivos juntos con citas clickeables o pegar links de YouTube sin descargarlos en `01B` (Pasos 1 y 2).
 
-### ✍️ 3. Claude Sonnet 5.5 (`Razonamiento: Medium`) — *Especialista en Exámenes y LaTeX*
+---
 
-- **Acceso:** Plan gratuito (con límite corto de mensajes cada 5 horas) o plan Pro en **Claude.ai**.
-- **Dónde brilla:** En el **Paso 4 del Simulador de Exámenes**. Redacta enunciados con tono universitario impecable y casi nunca comete errores de sintaxis en fórmulas LaTeX.
-- **Cómo no quemar la cuota:** Si lo usás con el razonamiento en *High* o *Max*, agotás tu límite en un par de mensajes. Configuralo siempre en **`Medium`**, que alcanza de sobra para validar balances físicos sin quedarte sin mensajes.
-
-### 💎 4. Gemini Argon — *El Motor de Frontera (Solo Planes Pagos)*
-
-- **Acceso:** Exclusivo para usuarios con suscripción paga de Google (AI Pro / Ultra).
-- **Estado actual y rendimiento:** Aunque todavía lo estoy terminando de testear en cursadas completas, en las pruebas que hice demostró ser **lo más potente que vi hasta hoy**, superando tanto a Claude Sonnet 5.5 como a Flash 3.8 High en estructuración de mapas y resolución de problemas complejos.
-- **El gran cuidado (Consume muchísima cuota):** Es un modelo pesado que devora tu límite de tokens a una velocidad altísima. Si tenés plan pago, **no lo desperdicies en charlas largas del Tutor ni copiando enunciados**: reservalo como un bisturí para tareas puntuales de 1 o 2 mensajes, como armar el `mapa.md` o generar los paquetes finales de examen en el **[[20. Áreas/Sistema de Estudio con IA/03 - Simulador y Generador de Exámenes de Cátedra\|Módulo 03]]** y las checklists de materias troncales en el **[[20. Áreas/Sistema de Estudio con IA/01 - Extractor de Checklists\|Módulo 01]]**.
-
-### ⛔ Modelos que NO tenés que usar en este sistema
-
-- **Gemini Pro 3.1:** Rinde peor que `Gemini 3.8 Flash (Thinking: High)`, tiende a resumir las checklists por pereza y suele meter errores de comillas en los archivos CSV de Anki.
-- **Gemini Flash-Lite:** Es demasiado básico para seguir las reglas de estos prompts; inventa datos y rompe los formatos.
+> [!note]- 💬 ¿Qué pasa con modelos de otras empresas (Claude, ChatGPT, DeepSeek, Qwen)?
+> **No he probado personalmente** modelos de otras empresas como **Claude**, **ChatGPT**, ni modelos chinos como **DeepSeek** o **Qwen** con estos prompts. Toda la guía está calibrada y probada en la práctica sobre los dos modelos actuales de Google (**Gemini Hydrogen** y **Gemini Neon** en Google AI Studio).
+>
+> Si probás cualquiera de estos prompts en **Claude**, **ChatGPT**, **DeepSeek**, **Qwen** u otro modelo y querés contarme cómo te fue (qué respetó bien, dónde se trabó o si necesitó algún ajuste), escribime a **[duiliobtorres@gmail.com](mailto:duiliobtorres@gmail.com)** así sumo referencias reales para el resto.
 
 ---
 
 > [!INFO] 📜 Registro de cambios de modelos
-> Para ver la historia completa de qué modelos y flujos se descartaron en versiones anteriores y por qué, consultá **[[20. Áreas/Sistema de Estudio con IA/99 - Historial de Versiones (Changelog)\|99 - Historial de Versiones (Changelog)]]**.
+> Para ver el historial de cambios y evolución de las herramientas, consultá **[[20. Áreas/Sistema de Estudio con IA/99 - Historial de Versiones (Changelog)\|99 - Historial de Versiones (Changelog)]]**.
 
 ---
 
 ## 🧭 Navegación
 
-*Volver a la herramienta anterior:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|04 - Generador de Tarjetas de Anki]]**
-*Módulo satélite de clases grabadas:* 🎙️ **[[20. Áreas/Sistema de Estudio con IA/01B - Extractor de Clases y Voz de la Cátedra\|01B - Extractor de Clases y Voz de la Cátedra]]**
-*Ir a la biblioteca de fundamentos:* ➡️ **[[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]**
+*Volver al inicio y selector de ruta:* 🏠 **[[20. Áreas/Sistema de Estudio con IA/00 - Inicio y Flujo de Trabajo\|00 - Inicio y Flujo de Trabajo]]**
+*Tutorial de importación a Anki (Paso 4B):* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/04B - Importación a Anki e Image Occlusion (Tutorial Visual)\|04B - Importación a Anki e Image Occlusion (Tutorial Visual)]]**
+*Urgencias y bloqueo:* 🚨 **[[20. Áreas/Sistema de Estudio con IA/00B - Modo Emergencia (Ruta Rápida con IA)\|00B - Modo Emergencia (Ruta Rápida con IA)]]** · 🚀 **[[20. Áreas/Sistema de Estudio con IA/00C - Copiloto ARRANQUE (Vencer la Procrastinación)\|00C - Copiloto ARRANQUE (Vencer la Procrastinación)]]**
+*Siguiente sección (Biblioteca científica):* ➡️ **[[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]**

@@ -6,43 +6,44 @@
 
 # 🧭 Índice de Guías y Checklists de Autoevaluación
 
-Estas listas de autoevaluación fueron diseñadas para auditar con honestidad tus hábitos de estudio (o de enseñanza) **durante la cursada o al menos 3 a 4 semanas antes del examen**. No son métodos rígidos ni planes obligatorios: son **herramientas de diagnóstico** basadas en la ciencia del aprendizaje para detectar a tiempo si estás estudiando para *producir respuestas por tu cuenta* o solo para *reconocer apuntes*.
+Estas cuatro listas de autoevaluación están pensadas para **auditar con honestidad cualquier método de estudio o enseñanza en Ingeniería** frente a lo que tiene respaldo sólido en Ciencia del Aprendizaje —**sin obligarte a usar un sistema, app o receta en particular**.
+
+Sirven igual si estudiás en papel, en tablet, solo, en grupo, con Anki, con resúmenes propios, con IA o sin IA: **si cumplís el principio cognitivo de un punto a tu manera, cuenta como Sí**. Además, las tácticas prácticas para el día del examen (o heurísticas de cátedra) están separadas en un bloque **Bonus** al final para que el semáforo mida exclusivamente la calidad científica de cómo aprendés o enseñás.
 
 ---
 
 ## 🎯 ¿Cuál guía tenés que usar según tu caso?
 
-| Tu Situación o Materia | Guía Recomendada | Enfoque Principal |
-| :--- | :--- | :--- |
-| **Mezcla teoría, deducciones y cálculo** *(La mayoría: Física I/II, Termodinámica, Fluidos, Electrotecnia, Análisis)* | ➡️ **[[20. Áreas/Sistema de Estudio con IA/07.1 - Guía de Estudio - Teoría y Ejercicios\|07.1 - Guía de Estudio - Teoría y Ejercicios]]** | Conectar teoría con cálculo, verificar hipótesis, plantear problemas y deducir fórmulas. |
-| **Pura resolución práctica de problemas** *(Prácticas de Álgebra/Cálculo, Estática, Estructuras, Mecanismos)* | ➡️ **[[20. Áreas/Sistema de Estudio con IA/07.2 - Guía de Estudio - Ejercicios y Problemas\|07.2 - Guía de Estudio - Ejercicios y Problemas]]** | Plantear problemas sin ver soluciones, diagramas previos, conteo de incógnitas y patrones de error. |
-| **Mucha teoría, criterios, demostraciones o finales orales** *(Materiales, Economía/Gestión, o coloquios y finales teóricos)* | ➡️ **[[20. Áreas/Sistema de Estudio con IA/07.3 - Guía de Estudio - Teoría y Demostraciones\|07.3 - Guía de Estudio - Teoría y Demostraciones]]** | Demostraciones por tramos, gráficos desde cero, preguntas de criterio y justificaciones sin apuntes. |
-| **Sos ayudante de cátedra, tutor o docente** *(Clases teóricas, prácticas o consultas)* | ➡️ **[[20. Áreas/Sistema de Estudio con IA/07.4 - Guía de Enseñanza para Docentes y Tutores\|07.4 - Guía de Enseñanza para Docentes y Tutores]]** | Actividades cortas en clase, recuperación sin nota, feedback efectivo, exámenes justos y tutorías ágiles. |
+| Tu Situación o Materia | Guía Recomendada | Ítems científicos | Enfoque Principal |
+| :--- | :--- | :---: | :--- |
+| **Mezcla teoría, deducciones y cálculo** *(La mayoría: Física I/II, Termodinámica, Fluidos, Electrotecnia, Análisis)* | ➡️ **[[20. Áreas/Sistema de Estudio con IA/07.1 - Guía de Estudio - Teoría y Ejercicios\|07.1 - Guía de Estudio - Teoría y Ejercicios]]** | 24 *(5 ★)* | Conectar teoría con cálculo, calibrar ayudas según dominio, diagramas, intercalado y recuperación activa. |
+| **Pura resolución práctica de problemas** *(Estática, Estructuras, Mecanismos, Prácticas de Álgebra/Cálculo)* | ➡️ **[[20. Áreas/Sistema de Estudio con IA/07.2 - Guía de Estudio - Ejercicios y Problemas\|07.2 - Guía de Estudio - Ejercicios y Problemas]]** | 22 *(5 ★)* | Planteo desde hoja en blanco, variación de condiciones, feedback resumido, diagnóstico de errores y simulacros. |
+| **Mucha teoría, criterios, demostraciones o finales orales** *(Materiales, Economía/Gestión, Ensayos, Finales teóricos)* | ➡️ **[[20. Áreas/Sistema de Estudio con IA/07.3 - Guía de Estudio - Teoría y Demostraciones\|07.3 - Guía de Estudio - Teoría y Demostraciones]]** | 22 *(5 ★)* | Comprensión por partes, casos contrastantes, gráficos desde cero, recuperación elaborada y demostraciones por hitos. |
+| **Sos ayudante de cátedra, tutor o docente** *(Clases teóricas, prácticas o consultas)* | ➡️ **[[20. Áreas/Sistema de Estudio con IA/07.4 - Guía de Enseñanza para Docentes y Tutores\|07.4 - Guía de Enseñanza para Docentes y Tutores]]** | 24 *(6 ★)* | Participación activa en aula, recuperación sin nota, retiro gradual de ayudas, feedback explicativo y tutorías por pistas. |
 
 ---
 
-## 💡 La Regla de Oro de las 4 Guías: Empezar por los ítems con estrella (★)
+## 💡 La Regla de Oro de las 4 Guías: Empezar por los pilares con estrella (★)
 
-Cada guía tiene entre 30 y 40 ítems, pero **no intentes cambiar todo de golpe**. Elegí 1 o 2 hábitos marcados con **★**, que son los que mayor impacto tienen con el menor esfuerzo adicional:
+Cada guía tiene **22 a 24 principios atómicos** (un principio claro por casilla). **No necesitás tildar todo ni cambiar tu forma de estudiar de golpe**: cumplir los **5 o 6 pilares con ★** más una base razonable ya ubica a cualquier método en zona sólida (amarilla o verde).
 
 **Si sos estudiante (Guías 07.1, 07.2 y 07.3):**
-1. **Producir sin mirar:** escribir lo que sabés sin espiar el apunte y, apenas entendés los pasos del primer ejemplo de un tema, atacar los ejercicios nuevos en una hoja en blanco.
-2. **Espaciar e intercalar:** volver a temas viejos mezclados con los nuevos en lugar de dar unidades por cerradas.
-3. **Corregir de verdad:** rehacer en otro día, sin ayuda y mezclado con otros temas, lo que te salió mal.
-4. **Simular el examen:** practicar a mano, con límite de tiempo y sin apuntes.
+1. **Regla de los 2/3 activos:** que la mayor parte de tu tiempo de estudio sea produciendo respuestas, esquemas o problemas sin mirar, no consumiendo pasivamente.
+2. **Recuperación sin mirar y calibración según nivel:** usar ejemplos resueltos cuando el tema es nuevo y complejo, pero pasar a la hoja en blanco apenas entendés la mecánica básica.
+3. **Espaciar y mezclar:** volver periódicamente a temas anteriores mezclados con los nuevos en lugar de dar unidades por cerradas.
+4. **Corregir de fondo y simular el examen:** reparar errores rehaciéndolos sin mirar en otro día y practicar en el formato real en que te van a evaluar.
 
 **Si sos docente o tutor (Guía 07.4):**
-1. **Cortar la exposición:** intercalar explicaciones breves con micro-actividades de 1 a 3 minutos y recuperación sin nota.
-2. **Espaciar desde la cátedra:** traer preguntas y problemas de semanas anteriores a la clase y a las tareas.
-3. **Dar pistas, no soluciones:** en consultas, preguntar primero qué intentó el alumno y destrabar solo el paso siguiente.
-4. **Calibrar el examen:** resolver tu propio examen con cronómetro antes de tomarlo y dar feedback explicando el porqué.
+1. **Aula activa y recuperación sin nota:** cortar la exposición con producción frecuente del estudiante y breves instancias de recuerdo sin calificación.
+2. **Andamiaje con retiro gradual y espaciado desde la cátedra:** modelar con ejemplos guiados al inicio, retirar ayudas progresivamente y traer temas viejos a las clases y guías.
+3. **Feedback explicativo y tutoría por pistas:** explicar el *porqué* detrás de errores y aciertos, y en consultas destrabar solo el paso siguiente devolviendo el lápiz al estudiante.
 
 ---
 
 ## 🧭 Navegación
 
 *Volver al inicio del sistema:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/00 - Inicio y Flujo de Trabajo\|00 - Inicio y Flujo de Trabajo]]**
-*Volver a la biblioteca:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]**
+*Volver a la biblioteca científica:* ⬅️ **[[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]**
 *Ir a la guía principal de ingeniería:* ➡️ **[[20. Áreas/Sistema de Estudio con IA/07.1 - Guía de Estudio - Teoría y Ejercicios\|07.1 - Guía de Estudio - Teoría y Ejercicios]]**
 *Ir al sistema paso a paso en papel (sin configurar IA):* 📝 **[[20. Áreas/Sistema de Estudio con IA/08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)\|08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)]]**
 *Ver el historial técnico de versiones:* 📜 **[[20. Áreas/Sistema de Estudio con IA/99 - Historial de Versiones (Changelog)\|99 - Historial de Versiones (Changelog)]]**

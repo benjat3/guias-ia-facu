@@ -16,16 +16,16 @@ Este sistema hace **ingeniería inversa sobre los parciales y finales reales de 
 
 Para que el sistema sea rápido y no falle en las cuentas, usamos cada herramienta donde mejor rinde (ver detalles en **[[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]**):
 
-| Paso                     | Archivo que obtenés    | Nivel Cognitivo                             | 🥇 Entorno Recomendado (Gratis / Pago)                                                | ¿Por qué se hace ahí?                                                                                                                                                    |
+| Paso                     | Archivo que obtenés    | Nivel Cognitivo                             | 🥇 Entorno Recomendado                                                                | ¿Por qué se hace ahí?                                                                                                                                                    |
 |-:------------------------|-:-----------------------|-:-------------------------------------------|-:-------------------------------------------------------------------------------------|-:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Paso 1**               | `mapa.md`               | `[Nivel: Alto Razonamiento]`                | **Google AI Studio (`Gemini 3.8 Flash High`)** *(o **Gemini Argon** en plan pago)*    | Subís los PDFs de la unidad y los parciales viejos. Necesita alto razonamiento para armar bien la lista de habilidades y contar cuántas veces entró cada una.            |
-| **Paso 2**               | `banco.md`              | `[Nivel: Minería y Recuperación]`         | **NotebookLM Nativo**                                                                 | En tu cuaderno de NotebookLM ya tenés cargados los 15 parciales y los 8 TPs; es comodísimo para que transcriba los enunciados literalmente sin subir todo de nuevo.       |
-| **Paso 3**               | `modelo.md`             | `[Nivel: Alto Razonamiento]`                | **Google AI Studio (`Gemini 3.8 Flash High`)** *(o **Gemini Argon**)*                 | Acá ya no necesitás subir PDFs: solo le pegás tus textos `mapa.md` y `banco.md` para que resuma en 70 líneas el estilo y las reglas de tu profesor.                     |
-| **Paso 3B** *(Opcional)* | `banco_teoria.md`       | `[Nivel: Alto Razonamiento]` o `[Minería]` | **AI Studio (`Flash 3.8 High`)** o **NotebookLM**                                     | **Solo se usa si no tenés parciales viejos con teoría escrita** o si la teoría se toma en forma oral.
-| **Paso 4**               | **Simulacros y Claves** | `[Nivel: Alto Razonamiento]`                | **AI Studio (`Flash 3.8 High`)**, **Claude Sonnet 5.5 (`Medium`)** o **Gemini Argon** | **PROHIBIDO usar NotebookLM en el Paso 4:** al redactar exámenes enteros inventa datos imposibles y se equivoca en las cuentas. Usá siempre modelos de alto razonamiento. |
+| **Paso 1**               | `mapa.md`               | `[Nivel: Alto Razonamiento]`                | **Google AI Studio (`Gemini Hydrogen High / Extra High`)** *(o `Neon` si es enorme)*  | Subís los PDFs de la unidad y los parciales viejos. Necesita alto razonamiento para armar bien la lista de habilidades y contar cuántas veces entró cada una (`Hydrogen Extra High` rinde al nivel del viejo *Argon High* o mejor a bajísimo costo). |
+| **Paso 2**               | `banco.md`              | `[Nivel: Transcripción]`                    | **Google AI Studio (`Gemini Hydrogen Medium / High`)** *(o NotebookLM solo si ya los tenés ahí)* | Hydrogen transcribe con excelente fidelidad subiendo los PDFs desde tu PC; NotebookLM queda únicamente como alternativa secundaria si ya tenés los 15 parciales subidos ahí. |
+| **Paso 3**               | `modelo.md`             | `[Nivel: Alto Razonamiento]`                | **Google AI Studio (`Gemini Hydrogen High / Medium`)** *(o `Neon`)*                   | Acá ya no necesitás subir PDFs: solo le pegás tus textos `mapa.md` y `banco.md` para que resuma en 70 líneas el estilo y las reglas de tu profesor.                     |
+| **Paso 3B** *(Opcional)* | `banco_teoria.md`       | `[Nivel: Alto Razonamiento]`                | **Google AI Studio (`Gemini Hydrogen High / Medium`)**                                | **Solo se usa si no tenés parciales viejos con teoría escrita** o si la teoría se toma en forma oral.                                                                     |
+| **Paso 4**               | **Simulacros y Claves** | `[Nivel: Máximo Razonamiento]`              | **Google AI Studio (`Gemini Hydrogen High / Extra High`)** o **`Gemini Neon (Extra High)`** *(exámenes muy largos/complejos)* | **PROHIBIDO usar NotebookLM en el Paso 4:** al redactar exámenes enteros inventa datos imposibles y se equivoca en las cuentas. **Hydrogen (`Extra High`)** rinde excelente a bajísimo costo, y **Neon (`Extra High`)** ofrece la máxima potencia disponible en simulacros muy complejos. |
 
 > [!DANGER] ⛔ Recordatorio importante
-> En los pasos donde uses `Gemini 3.8 Flash High` o `Gemini Argon`, **subí los archivos PDF directamente desde tu computadora**. Nunca uses el conector lateral de cuadernos dentro de `gemini.google.com` porque falla al leer las fuentes.
+> En **Google AI Studio** (`Gemini Hydrogen` o `Gemini Neon`), **subí los archivos PDF directamente desde tu computadora** y activá `Media resolution: High`. Nunca uses el conector lateral de cuadernos dentro de `gemini.google.com` porque falla al leer las fuentes. *(Modelos de otras empresas como Claude, ChatGPT, DeepSeek o Qwen no fueron probados por el autor).*
 
 ---
 
@@ -44,11 +44,11 @@ Los Pasos 1, 2 y 3 se hacen **una sola vez** para preparar el terreno; después 
 
 ```mermaid
 flowchart TD
-    P1["<b>PASO 1: mapa.md (En AI Studio)</b><br>Lista qué habilidades existen en la unidad<br>y cuántas veces se tomaron en parciales (n/N)"]
-    P2["<b>PASO 2: banco.md (En NotebookLM)</b><br>Copia el 100% de los exámenes viejos y<br>suma solo 1-2 ejercicios útiles de cada TP"]
-    P3["<b>PASO 3: modelo.md (En AI Studio)</b><br>Extrae en ≤70 líneas la 'receta' del profesor:<br>peso de teoría/práctica, formato y corrección"]
+    P1["<b>PASO 1: mapa.md (AI Studio)</b><br>Lista qué habilidades existen en la unidad<br>y cuántas veces se tomaron en parciales (n/N)"]
+    P2["<b>PASO 2: banco.md (AI Studio)</b><br>Copia el 100% de los exámenes viejos y<br>suma solo 1-2 ejercicios útiles de cada TP"]
+    P3["<b>PASO 3: modelo.md (AI Studio)</b><br>Extrae en ≤70 líneas la 'receta' del profesor:<br>peso de teoría/práctica, formato y corrección"]
     P3B["<b>PASO 3B: banco_teoria.md (Opcional)</b><br>Solo si no tenés parciales viejos con teoría"]
-    P4["<b>PASO 4: GENERADOR DE EXÁMENES</b><br>En AI Studio, Claude Sonnet 5.5 o Argon"]
+    P4["<b>PASO 4: GENERADOR DE EXÁMENES</b><br>Gemini Hydrogen (High / Extra High) o Neon (Extra High)"]
     
     RA["<b>Ruta A: Entrenamiento Personal</b><br>Rendís a ciegas en papel y la IA<br>te corrige con puntaje parcial"]
     RB["<b>Ruta B: Paquetes para Compartir</b><br>Te entrega Enunciado + Resolución paso a paso<br>en LaTeX listo para exportar a PDF"]
@@ -68,19 +68,19 @@ flowchart TD
 
 ### Paso 1: Armar el Mapa de Habilidades (`mapa.md`)
 
-1. Abrí **Google AI Studio** (`Gemini 3.8 Flash` en `Thinking: High`) y subí desde tu PC los apuntes/guías de la unidad junto con los exámenes viejos que tengas.
+1. Abrí **Google AI Studio** con **Gemini Hydrogen** (`High` o `Extra High`; o **Gemini Neon** si la materia es enorme) y subí desde tu PC los apuntes/guías de la unidad junto con los exámenes viejos que tengas.
 2. Pegá el **Prompt 1**. La IA va a listar cada habilidad de la unidad (marcando si es de cálculo `[N]`, concepto `[C]`, deducción `[D]`, gráfico `[G]`, etc.) y cuántas veces apareció en los parciales que evalúan esa unidad (ej. `3/4 exámenes (75%)`).
 3. Copiá esa respuesta y guardala en Obsidian como **`mapa.md`**.
 
 ### Paso 2: Armar el Banco de Enunciados (`banco.md`)
 
-1. Andá a tu cuaderno de **NotebookLM**, pegá primero tu archivo `mapa.md` y el **Prompt 2**.
+1. Abrí un chat de **Google AI Studio** con **Gemini Hydrogen (`Medium` o `High`)** *(o tu cuaderno de NotebookLM si preferís usar las fuentes ya subidas)*, pegá primero tu archivo `mapa.md` y el **Prompt 2**.
 2. **Regla obligatoria de orden:** Pedile que procese primero **todos los exámenes reales** (de a un archivo por mensaje) para que copie el 100% de los enunciados tal cual los redactó el profesor.
 3. Recién cuando termines con los exámenes, pasale las **guías de TP**: la IA va a descartar los ejercicios repetitivos o muy fáciles y va a copiar únicamente 1 o 2 problemas por tema que cubran puntos que nunca se tomaron en los parciales viejos. Guardá todo como **`banco.md`**.
 
 ### Paso 3: Extraer el Estilo del Profesor (`modelo.md`)
 
-1. En un chat limpio de **Google AI Studio** (`Gemini 3.8 Flash High`), pegá directamente el texto de tus archivos `mapa.md` y `banco.md` junto con el **Prompt 3** *(no hace falta subir los PDFs originales)*.
+1. En un chat limpio de **Google AI Studio** (**Gemini Hydrogen** en `High` o `Medium`), pegá directamente el texto de tus archivos `mapa.md` y `banco.md` junto con el **Prompt 3** *(no hace falta subir los PDFs originales)*.
 2. La IA te va a devolver un resumen compacto (máximo 70 líneas) con el formato exacto de tu cátedra: qué porcentaje del examen es teoría y qué porcentaje es práctica, cuántos incisos tienen los problemas, qué datos te dan y cómo puntúan. Guardalo como **`modelo.md`**.
 
 > [!WARNING] ⚠️ ¿Cuándo usar y cuándo SALTEAR el Paso 3B (`banco_teoria.md`)?
@@ -89,7 +89,7 @@ flowchart TD
 
 ### Paso 4: Generar y Rendir los Simulacros
 
-Abrí un chat nuevo en **Google AI Studio (`Gemini 3.8 Flash High`)**, **Claude Sonnet 5.5 (`Medium`)** o **Gemini Argon**. Pegá el **Prompt 4** y, cuando te lo pida, pasale tus archivos `mapa.md`, `banco.md`, `modelo.md` y los apuntes o tablas de las unidades que entran.
+Abrí un chat nuevo en **Google AI Studio** con **Gemini Hydrogen** (`High` o `Extra High` —en `Extra High` iguala o supera al viejo *Argon High* gastando poquísima cuota—) o **Gemini Neon (`Extra High`)** *(lo más potente disponible para exámenes muy largos o complejos)*. *(Modelos de otras empresas como Claude, ChatGPT, DeepSeek o Qwen no fueron probados por el autor)*. Pegá el **Prompt 4** y, cuando te lo pida, pasale tus archivos `mapa.md`, `banco.md`, `modelo.md` y los apuntes o tablas de las unidades que entran.
 
 A partir de ahí, tenés **dos formas de usarlo**:
 
@@ -109,7 +109,7 @@ A partir de ahí, tenés **dos formas de usarlo**:
 
 ### 1️⃣ Prompt 1: Mapa de Habilidades (`mapa.md`)
 
-* **Dónde usarlo:** Google AI Studio (`Gemini 3.8 Flash High`) o Gemini Argon, subiendo los PDFs de la unidad y los exámenes viejos.
+* **Dónde usarlo:** Google AI Studio (**Gemini Hydrogen** en `High` o `Extra High`; o **Gemini Neon** en materias muy extensas), subiendo los PDFs de la unidad y los exámenes viejos.
 
 `````markdown
 # ROL
@@ -178,7 +178,7 @@ Unidad a procesar: [indicar unidad o "todas"]. Si pedí "todas" y hay más de 2 
 
 ### 2️⃣ Prompt 2: Banco de Consignas (`banco.md`)
 
-* **Dónde usarlo:** NotebookLM nativo (recordá procesar primero todos los exámenes reales antes de pasarle guías de TP).
+* **Dónde usarlo:** Google AI Studio (**Gemini Hydrogen** en `Medium` o `High`) subiendo los PDFs, o NotebookLM nativo solo si ya los tenés todos cargados ahí *(recordá procesar primero todos los exámenes reales antes de pasarle guías de TP)*.
 
 `````markdown
 # ROL
@@ -270,7 +270,7 @@ Fuente a procesar ahora: [indicar archivo de examen, TP o material teórico]. Pr
 
 ### 3️⃣ Prompt 3: Modelo de Examen (`modelo.md`)
 
-* **Dónde usarlo:** Google AI Studio (`Gemini 3.8 Flash High`) o Gemini Argon, pegándole únicamente el texto de `mapa.md` y `banco.md`.
+* **Dónde usarlo:** Google AI Studio (**Gemini Hydrogen** en `High` o `Medium`, o **Gemini Neon**), pegándole únicamente el texto de `mapa.md` y `banco.md`.
 
 `````markdown
 # ROL
@@ -399,7 +399,7 @@ Unidad a procesar: [indicar unidad]. Procesá UNA unidad por turno manteniendo l
 
 ### 4️⃣ Prompt 4: Motor Generador de Exámenes
 
-* **Dónde usarlo:** Google AI Studio (`Gemini 3.8 Flash High`), Claude Sonnet 5.5 (`Medium`) o Gemini Argon (prohibido usar NotebookLM acá).
+* **Dónde usarlo:** Google AI Studio (**Gemini Hydrogen** en `High` o `Extra High`) o **Gemini Neon (`Extra High`)** *(lo más potente disponible en exámenes muy largos/complejos — prohibido usar NotebookLM acá)*. *(Modelos de otras empresas como Claude, ChatGPT, DeepSeek o Qwen no fueron probados por el autor)*.
 
 `````markdown
 # ROL Y MODO DE EJECUCIÓN
@@ -518,7 +518,7 @@ Respondé únicamente: "Generador activado. Pegame el mapa, el banco, el banco t
 
 ### 4️⃣🅱️ Prompt 4 BETA: Motor Generador con Gráficos Técnicos en Obsidian (Mermaid + TikZJax)
 
-* **Dónde usarlo:** Google AI Studio (`Gemini 3.8 Flash High`), Claude Sonnet 5.5 (`Medium`) o Gemini Argon.
+* **Dónde usarlo:** Google AI Studio (**Gemini Hydrogen** en `High` o `Extra High`) o **Gemini Neon (`Extra High`)** *(lo más potente disponible en exámenes muy largos/complejos)*. *(Modelos de otras empresas como Claude, ChatGPT, DeepSeek o Qwen no fueron probados por el autor)*.
 * **Cómo visualizar los gráficos:** Copiá la respuesta de la IA y pegala en una nota de **Obsidian** teniendo instalado el plugin comunitario **TikZJax**. Renderiza automáticamente diagramas de bloques (`mermaid`) y gráficos matemáticos, curvas características, diagramas de estado, vectores/fasores y circuitos (`tikz`) calibrados para Modo Oscuro/Claro y exportación a PDF A4 (incluye salto de página automático entre el enunciado y la resolución).
 
 `````markdown

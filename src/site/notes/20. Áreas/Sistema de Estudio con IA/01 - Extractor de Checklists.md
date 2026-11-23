@@ -16,9 +16,9 @@ Extraer un temario completo sin que la IA resuma de más ni se saltee gráficos 
 
 | Prioridad | Entorno y Modelo | Costo | Por qué elegirlo |
 | :--- | :--- | :--- | :--- |
-| **🥇 1.° Recomendado (Estándar)** | **Gemini 3.8 Flash (`Thinking: High`)** en **[Google AI Studio](https://aistudio.google.com/)** | **100% Gratis** | Configurando `Thinking level: High` y `Media resolution: High` (para leer bien gráficos y fórmulas en diapositivas), extrae cada unidad con precisión total subiendo los PDFs desde tu PC. |
-| **💎 Alternativa Premium** | **Gemini Argon** *(subiendo los PDFs a mano)* | **Plan Pago** *(Pro / Ultra)* | El modelo más potente de frontera. Jerarquiza subtemas con un nivel excelente, pero consume mucha cuota de tu suscripción. |
-| **🥉 Última Opción** | **[NotebookLM](https://notebook.google.com/) nativo** | **Gratis** | Solo si no querés subir archivos a otro lado. Suele resumir de más (*omisión silenciosa*) y entrega casillas más pobres o desordenadas. |
+| **🥇 1.° Recomendado (Estándar)** | **Gemini Hydrogen (`High` o `Extra High`)** en **[Google AI Studio](https://aistudio.google.com/)** | **Gratis / Súper económico** | **Hydrogen** es el caballo de batalla: en **`High`** logra un balance excelente, en **`Extra High`** alcanza o supera el nivel del viejo *Argon High* a una fracción del costo, siempre con `Media resolution: High` y los PDFs subidos desde tu PC. *(Otros modelos como Claude, ChatGPT, DeepSeek o Qwen no fueron probados por el autor; si los usás, contame cómo te rinden).* |
+| **💎 Alternativa Máxima Potencia** | **Gemini Neon (`High` / `Extra High`)** *(subiendo los PDFs a mano)* | **AI Studio** | La mayor capacidad disponible para programas gigantes o unidades muy densas, aunque **Hydrogen (`High` / `Extra High`)** ya cubre casi todo consumiendo poquísima cuota. |
+| **🥉 Última Opción *(Poco recomendada)*** | **[NotebookLM](https://notebook.google.com/) nativo** | **Gratis** | Hoy queda claramente por debajo de Hydrogen y Neon: suele resumir de más (*omisión silenciosa*) y entrega casillas más pobres. |
 | **⛔ PROHIBIDO** | **Conector de Cuadernos dentro de Gemini Web (`gemini.google.com`)** | — | La barra lateral de Gemini Web que vincula cuadernos de NotebookLM tiene fallas de indexación e ignora archivos enteros. **Subí siempre los PDFs desde tu PC**. |
 
 ---
@@ -50,7 +50,7 @@ flowchart TD
     OBS -.->|"Repetís 'Seguí' hasta terminar la materia"| U1
 ```
 
-1. **Prepará Google AI Studio:** Entrá a [aistudio.google.com](https://aistudio.google.com/), elegí `Gemini 3.8 Flash` en el panel derecho y poné **`Thinking level: High`** y **`Media resolution: High`** (dentro de *Advanced settings*).
+1. **Prepará Google AI Studio:** Entrá a [aistudio.google.com](https://aistudio.google.com/), elegí **Gemini Hydrogen** (en **`High`** para el balance ideal o **`Extra High`** si querés máxima precisión económica; también podés usar **Gemini Neon** en programas gigantes), y poné **`Media resolution: High`** (dentro de *Advanced settings*).
 2. **Subí la Unidad 1:** Arrastrá desde tu computadora el **Programa de la materia** y los PDFs de la **Unidad 1** (teoría, diapositivas, guía de TP y parciales si tenés).
 3. **Pegá el prompt:** Copiá el prompt de abajo y envialo. La IA va a emitir únicamente la **Unidad 1** completa dentro de un recuadro copiable y va a frenar escribiendo afuera: `PAUSA: Unidad 1 completada... Escribí 'Seguí' para procesar la Unidad 2.`
 4. **Continuá con `'Seguí'`:** Copiá las casillas a tu nota de Obsidian, arrastrá al chat los PDFs de la Unidad 2 y escribí simplemente **`Seguí`**.

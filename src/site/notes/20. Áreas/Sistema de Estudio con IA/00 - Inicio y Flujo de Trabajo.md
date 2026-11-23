@@ -4,308 +4,314 @@
 
 
 
-> 👨‍💻 **Desarrollado por Duilio** • Sistema de Estudio Universitario con IA (Pensado para Ingeniería Mecánica, adaptable a cualquier carrera)
+> 👨‍💻 **Desarrollado por Duilio Torres** • Sistema de Estudio Universitario gratuito *(pensado en Ingeniería, 100% adaptable a cualquier carrera — con IA gratuita o directo en papel)*.
+
+**No hace falta entender todo ni leer toda la página.** Elegí tu situación abajo para ver únicamente lo que te sirve hoy, o pasá directo a **Acceso Directo** si ya sabés qué módulo venís a buscar.
+
+<style>
+.dgq-wrap{border:1px solid var(--background-modifier-border,#2f3540);background:var(--background-secondary,#131519);border-radius:14px;padding:18px;margin:16px 0 22px}
+.dgq-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--background-modifier-border,#2f3540)}
+.dgq-modes{display:flex;flex-wrap:wrap;gap:8px}
+.dgq-mode-btn{padding:8px 14px;border-radius:999px;border:1px solid var(--background-modifier-border,#2f3540);background:var(--background-primary,#181a1e);color:inherit;cursor:pointer;font:inherit;font-size:.88rem;font-weight:650;transition:all .16s ease}
+.dgq-mode-btn:hover{border-color:var(--color-accent,#82b2de)}
+.dgq-mode-btn.is-active{background:rgba(130,178,222,0.18);border-color:var(--color-accent,#82b2de);box-shadow:0 0 0 1px rgba(130,178,222,0.35)}
+.dgq-badge{font-size:.8rem;opacity:.85;padding:4px 10px;border-radius:999px;background:var(--background-primary-alt,#21252b);color:var(--text-muted,#9ba3b0)}
+.dgq-qtitle{font-size:1.08rem;font-weight:700;margin:0 0 10px}
+.dgq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.dgq-opt{text-align:left;padding:13px 14px;border-radius:12px;border:1px solid var(--background-modifier-border,#2f3540);background:var(--background-primary,#181a1e);color:inherit;cursor:pointer;font:inherit;line-height:1.38;transition:all .16s ease}
+.dgq-opt:hover{border-color:var(--color-accent,#82b2de);transform:translateY(-1px);background:rgba(130,178,222,0.10)}
+.dgq-opt.is-picked{border-color:var(--color-accent,#82b2de);background:rgba(130,178,222,0.16);box-shadow:0 0 0 1px rgba(130,178,222,0.40)}
+.dgq-opt strong{display:block;font-size:.95rem;margin-bottom:4px}
+.dgq-opt span{display:block;font-size:.82rem;opacity:.82}
+.dgq-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:12px}
+.dgq-linkbtn{background:transparent;border:none;color:var(--link-color,#e0af70);opacity:.88;font:inherit;font-size:.83rem;cursor:pointer;text-decoration:underline;padding:2px 0}
+.dgq-linkbtn:hover{opacity:1;color:var(--link-color-hover,#f0c78e)}
+.dgq-hidden{display:none !important}
+.dgq-wrap.is-interactive .dgq-panel{display:none}
+.dgq-wrap.is-interactive .dgq-panel.is-visible{display:block;animation:dgqIn .2s ease}
+.dgq-panel{margin-top:14px;padding-top:10px;border-top:1px dashed var(--background-modifier-border,#2f3540)}
+.dgq-bento{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.dgq-bcard{padding:13px;border-radius:12px;background:var(--background-primary,#181a1e);border:1px solid var(--background-modifier-border,#2f3540)}
+.dgq-bcard h4{margin:0 0 8px !important;font-size:.92rem !important;letter-spacing:.02em;opacity:.95}
+.dgq-blinks{display:flex;flex-direction:column;gap:6px}
+.dgq-bitem{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;background:var(--background-primary-alt,#21252b);color:var(--text-normal,#d5d8de) !important;text-decoration:none !important;font-size:.86rem;font-weight:600;transition:background .15s ease,color .15s ease}
+.dgq-bitem:hover{background:rgba(130,178,222,0.16);color:var(--text-accent-hover,#a8ccf0) !important}
+.dgq-btag{font-size:.73rem;color:var(--link-color,#e0af70);opacity:.9;font-weight:500;white-space:nowrap}
+.dgq-pipe{border:1px solid var(--background-modifier-border,#2f3540);background:var(--background-secondary,#131519);border-radius:14px;padding:16px;margin:16px 0}
+.dgq-steps{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.dgq-stepbtn{padding:8px 12px;border-radius:10px;border:1px solid var(--background-modifier-border,#2f3540);background:var(--background-primary,#181a1e);color:inherit;cursor:pointer;font:inherit;font-size:.84rem;font-weight:650;transition:all .15s ease}
+.dgq-stepbtn:hover{border-color:var(--color-accent,#82b2de)}
+.dgq-stepbtn.is-active{background:rgba(130,178,222,0.18);border-color:var(--color-accent,#82b2de)}
+.dgq-pipe.is-interactive .dgq-pcard{display:none}
+.dgq-pipe.is-interactive .dgq-pcard.is-active{display:block;animation:dgqIn .18s ease}
+.dgq-pcard{padding:14px;border-radius:12px;background:var(--background-primary,#181a1e);border:1px solid var(--background-modifier-border,#2f3540)}
+.dgq-pmeta{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 10px}
+.dgq-chip{font-size:.78rem;padding:4px 9px;border-radius:999px;background:var(--tag-background,#232b36);color:var(--tag-color,#a6c7e6);border:1px solid var(--background-modifier-border,#2f3540)}
+body:has(.dgq-wrap) .floating-toc-widget{display:none !important}
+@keyframes dgqIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+</style>
+<div class="dgq-wrap dg-no-toc" id="dgQuizApp">
+<div class="dgq-top">
+<div class="dgq-modes">
+<button type="button" class="dgq-mode-btn is-active" data-mode="quiz">🧭 Soy nuevo / Ayudame a elegir</button>
+<button type="button" class="dgq-mode-btn" data-mode="direct">⚡ Ya conozco el sistema (Acceso Directo)</button>
+</div>
+<span class="dgq-badge" id="dgqProgress">Paso 1 de 2</span>
+</div>
+<div id="dgqQuizView">
+<div id="dgqStep1">
+<div class="dgq-qtitle">¿En qué situación estás ahora mismo?</div>
+<div class="dgq-grid">
+<button type="button" class="dgq-opt" data-q1="emergencia"><strong>🚨 Tengo el examen encima / poco tiempo</strong><span>Necesito ir directo a lo evaluable con IA, sin pasos largos</span></button>
+<button type="button" class="dgq-opt" data-q1="arranque"><strong>🚀 No puedo arrancar / estoy procrastinando</strong><span>Me cuesta sentarme a empezar o me disperso apenas abro el apunte</span></button>
+<button type="button" class="dgq-opt" data-q1="materia"><strong>📚 Tengo tiempo y quiero estudiar una materia</strong><span>Quiero preparar la cursada o un parcial de forma ordenada</span></button>
+<button type="button" class="dgq-opt" data-q1="autoeval"><strong>🔍 Quiero revisar cómo estoy estudiando</strong><span>Autoevaluación de hábitos y fundamento científico</span></button>
+</div>
+</div>
+<div id="dgqStep2" class="dgq-hidden" style="margin-top:14px">
+<div class="dgq-qtitle">¿Cómo preferís estudiar esta materia?</div>
+<div class="dgq-grid">
+<button type="button" class="dgq-opt" data-q2="ia-completa"><strong>🤖 Sistema Completo con IA (Paso a paso)</strong><span>Prompts listos para Checklists, Tutor, Simulador de Exámenes y Anki</span></button>
+<button type="button" class="dgq-opt" data-q2="papel"><strong>📝 Papel / Cuaderno o IA Simple (Sin configurar nada)</strong><span>Arquitecto v6.0 (le subís apuntes y te arma el plan) o Método en Papel</span></button>
+</div>
+</div>
+<div class="dgq-actions">
+<button type="button" class="dgq-linkbtn dgq-hidden" id="dgqReset">↺ Volver a elegir</button>
+<button type="button" class="dgq-linkbtn" id="dgqShowAll">Ver las 5 rutas juntas</button>
+</div>
+</div>
+<div id="dgqDirectView" class="dgq-hidden">
+<div class="dgq-bento" id="dgqBentoGrid">
+<div class="dgq-bcard">
+<h4>🔥 Urgencias y Arranque</h4>
+<div class="dgq-blinks">
+<a class="dgq-bitem" data-note-match="00B" href="/20-areas/sistema-de-estudio-con-ia/00b-modo-emergencia-ruta-rapida-con-ia/"><span>🚨 Modo Emergencia (IA)</span><span class="dgq-btag">Ruta rápida</span></a>
+<a class="dgq-bitem" data-note-match="00C" href="/20-areas/sistema-de-estudio-con-ia/00c-copiloto-arranque-vencer-la-procrastinacion/"><span>🚀 Copiloto ARRANQUE</span><span class="dgq-btag">Procrastinación</span></a>
+</div>
+</div>
+<div class="dgq-bcard">
+<h4>🤖 Sistema Completo (IA)</h4>
+<div class="dgq-blinks">
+<a class="dgq-bitem" data-note-match="01 -" href="/20-areas/sistema-de-estudio-con-ia/01-extractor-de-checklists/"><span>1. Extractor de Checklists</span><span class="dgq-btag">Temario</span></a>
+<a class="dgq-bitem" data-note-match="01B" href="/20-areas/sistema-de-estudio-con-ia/01-b-extractor-de-clases-y-voz-de-la-catedra/"><span>1B. Voz de la Cátedra</span><span class="dgq-btag">Opcional</span></a>
+<a class="dgq-bitem" data-note-match="02 -" href="/20-areas/sistema-de-estudio-con-ia/02-tutor-personal-cognitivo/"><span>2. Tutor Personal</span><span class="dgq-btag">Estudio activo</span></a>
+<a class="dgq-bitem" data-note-match="03 -" href="/20-areas/sistema-de-estudio-con-ia/03-simulador-y-generador-de-examenes-de-catedra/"><span>3. Simulador de Exámenes</span><span class="dgq-btag">Parciales</span></a>
+<a class="dgq-bitem" data-note-match="04 -" href="/20-areas/sistema-de-estudio-con-ia/04-generador-de-tarjetas-de-anki/"><span>4. Generador de Anki</span><span class="dgq-btag">CSV</span></a>
+<a class="dgq-bitem" data-note-match="04B" href="/20-areas/sistema-de-estudio-con-ia/04b-importacion-a-anki-e-image-occlusion-tutorial-visual/"><span>4B. Importar a Anki</span><span class="dgq-btag">Visual</span></a>
+</div>
+</div>
+<div class="dgq-bcard">
+<h4>📝 Papel / 1 sola IA</h4>
+<div class="dgq-blinks">
+<a class="dgq-bitem" data-note-match="08 -" href="/20-areas/sistema-de-estudio-con-ia/08-sistema-de-estudio-tradicional-en-papel-o-con-ia-simple/"><span>🤖 Arquitecto v6.0 + Método en Papel</span><span class="dgq-btag">Universal</span></a>
+</div>
+</div>
+<div class="dgq-bcard">
+<h4>🧭 Apoyo y Ciencia</h4>
+<div class="dgq-blinks">
+<a class="dgq-bitem" data-note-match="05 -" href="/20-areas/sistema-de-estudio-con-ia/05-modelos-recomendados-por-tarea/"><span>🤖 Modelos de IA</span><span class="dgq-btag">Qué usar</span></a>
+<a class="dgq-bitem" data-note-match="07 -" href="/20-areas/sistema-de-estudio-con-ia/07-indice-de-guias-y-checklists-de-aprendizaje/"><span>✅ Checklists de Hábitos</span><span class="dgq-btag">07.1–07.4</span></a>
+<a class="dgq-bitem" data-note-match="06 -" href="/20-areas/sistema-de-estudio-con-ia/06-biblioteca-de-ciencia-del-aprendizaje/"><span>📚 Biblioteca Científica</span><span class="dgq-btag">7 libros</span></a>
+<a class="dgq-bitem" data-note-match="99 -" href="/20-areas/sistema-de-estudio-con-ia/99-historial-de-versiones-changelog/"><span>📜 Historial de Versiones</span><span class="dgq-btag">Cambios</span></a>
+</div>
+</div>
+</div>
+</div>
+<div class="dgq-panel" data-route="emergencia">
+
+> [!danger] 🚨 Tu ruta recomendada: Modo Emergencia (Ruta Rápida con IA)
+> No te pongas a leer resúmenes ni a construir checklists gigantes o mazos completos de Anki:
+> * **Tenés parciales viejos:** Usá el mapa de examen (`03`) + probá en hoja en blanco + destrabá solo tus fallas en el Tutor (`02`, `Profundidad: Baja`).
+> * **Querés un plan rápido en 1 solo chat:** Subí tus apuntes al **Arquitecto (`08`)** y mandale `/emergencia`.
+> * **Tenés clases de repaso grabadas:** Extraé en minutos qué dijo el profesor que entra y qué descartó (`01B`).
+> 👉 **[[20. Áreas/Sistema de Estudio con IA/00B - Modo Emergencia (Ruta Rápida con IA)\|Abrir Guía de Modo Emergencia (IA) →]]** · *(¿El bloqueo no te deja ni empezar? Pasá primero 5 min por [[20. Áreas/Sistema de Estudio con IA/00C - Copiloto ARRANQUE (Vencer la Procrastinación)\|Copiloto ARRANQUE]])*
+
+</div>
+<div class="dgq-panel" data-route="arranque">
+
+> [!tip] 🚀 Tu ruta recomendada: Copiloto ARRANQUE
+> Ideal cuando sabés qué tendrías que hacer pero **no podés sentarte**, venís de fallar ayer o el perfeccionismo te paraliza:
+> * Te da **1 acción física concreta de 5–8 minutos** en versión borrador para romper la inercia sin sermones ni autoayuda.
+> * Trae comandos al vuelo para trabas (`/traba`), distracciones (`/fuga`), cansancio (`/quemado`) o días malos (`/15min`), y guarda tu **`Handoff`** al cerrar (`/cierre`).
+> * Sirve para cualquier materia, TP, trámite o hábito (ej. entrenar).
+> 👉 **[[20. Áreas/Sistema de Estudio con IA/00C - Copiloto ARRANQUE (Vencer la Procrastinación)\|Abrir Copiloto ARRANQUE →]]** · *(Después de destrabarte, seguí con [[20. Áreas/Sistema de Estudio con IA/02 - Tutor Personal Cognitivo\|el Tutor]] o [[20. Áreas/Sistema de Estudio con IA/08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)\|tu cuaderno]])*
+
+</div>
+<div class="dgq-panel" data-route="ia-completa">
+
+> [!tip] 🤖 Tu ruta recomendada: Sistema Completo con IA (Paso a paso)
+> Pensado para llevar la cursada ordenada usando **Google AI Studio (`Gemini Hydrogen` / `Neon`) + Anki**:
+> 1. **Temario ([[20. Áreas/Sistema de Estudio con IA/01 - Extractor de Checklists\|01]]):** Sacás la checklist completa de la unidad sin spoilers *(y opcionalmente señales de clases grabadas en [[20. Áreas/Sistema de Estudio con IA/01B - Extractor de Clases y Voz de la Cátedra\|01B]])*.
+> 2. **Estudio activo ([[20. Áreas/Sistema de Estudio con IA/02 - Tutor Personal Cognitivo\|02]]):** Estudiás punto por punto con un tutor socrático (1 pregunta corta por turno, sin regalarte soluciones).
+> 3. **Simulacros reales ([[20. Áreas/Sistema de Estudio con IA/03 - Simulador y Generador de Exámenes de Cátedra\|03]]):** Generás parciales idénticos a los de tu cátedra y te los corrige por *arrastre*.
+> 4. **No olvidar nada ([[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|04]] → [[20. Áreas/Sistema de Estudio con IA/04B - Importación a Anki e Image Occlusion (Tutorial Visual)\|04B]]):** Creás las tarjetas CSV e importás a Anki con tutorial visual.
+> 👉 **[[20. Áreas/Sistema de Estudio con IA/01 - Extractor de Checklists\|Empezar por la Fase 1 (Extractor de Checklists) →]]** · *(Ver qué modelo elegir en cada paso: [[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]])*
+
+</div>
+<div class="dgq-panel" data-route="papel">
+
+> [!tip] 📝 Tu ruta recomendada: Papel, Cuaderno o Arquitecto IA (Guía 08)
+> Tenés **dos opciones** listas dentro de la misma página, sin configurar 5 herramientas ni usar Anki:
+> 1. **Con una IA que te arme el plan a medida (Sección 1):** Copiás el **Arquitecto v6.0**, subís tus apuntes y te arma la rutina exacta y te acompaña sesión a sesión.
+> 2. **100% en Papel y Birome (Secciones 2 a 4):** Sistema **Pareto 80/20 para Ingeniería** (lo leés en 10–15 min) cubriendo teoría, ejercicios y exámenes escritos, orales, de desarrollo o multiple choice + pautas breves si usás una IA común sin prompts largos.
+> 👉 **[[20. Áreas/Sistema de Estudio con IA/08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)\|Abrir Guía 08 (Arquitecto v6.0 + Método en Papel) →]]**
+
+</div>
+<div class="dgq-panel" data-route="autoeval">
+
+> [!info] 🔍 Tu ruta recomendada: Autoevaluación de Hábitos y Fundamentos
+> Antes de cambiar de herramienta, revisá en 5 minutos si no estás cayendo en la *ilusión de competencia* (creer que sabés solo porque entendiste al leer):
+> * **4 Checklists interactivas:** Elegí tu perfil (teórico-práctico, solo problemas, teoría/demostraciones o docente) y marcá qué hábitos aplicás hoy.
+> * **Biblioteca científica:** Los 7 libros clave que explican *por qué* funciona este sistema (empezando por *A Mind for Numbers* y *Make It Stick*).
+> 👉 **[[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|Abrir Checklists de Autoevaluación →]]** · **[[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|Ver Biblioteca Científica →]]**
+
+</div>
+</div>
 
 ---
 
-# 🚀 Sistema de Estudio Activo con IA: Flujo Completo
+## 🧩 Explorador Visual del Sistema Completo *(¿Qué pasa en cada paso?)*
 
-Este sistema no busca que la IA te haga resúmenes pasivos ni te resuelva las guías mientras mirás la pantalla. Su objetivo es usar la Inteligencia Artificial para aplicar la **ciencia del aprendizaje** (recuperación activa, práctica deliberada y repetición espaciada) preparando materias universitarias exigentes en menos tiempo y con el nivel real que toman en los exámenes de tu cátedra.
+Si elegiste (o querés entender) cómo trabajan juntas las fases de IA, tocá cada paso para ver qué subís, qué archivo te devuelve y qué guía abrir:
 
-### ¿Cómo funciona si empezás desde cero?
+<div class="dgq-pipe" id="dgPipeExplorer">
+<div class="dgq-steps">
+<button type="button" class="dgq-stepbtn is-active" data-step="p1">1️⃣ Checklists (01)</button>
+<button type="button" class="dgq-stepbtn" data-step="p1b">🎙️ Clases (01B)</button>
+<button type="button" class="dgq-stepbtn" data-step="p2">2️⃣ Tutor (02)</button>
+<button type="button" class="dgq-stepbtn" data-step="p3">3️⃣ Simulador (03)</button>
+<button type="button" class="dgq-stepbtn" data-step="p4">4️⃣ Tarjetas (04)</button>
+<button type="button" class="dgq-stepbtn" data-step="p5">5️⃣ Importar Anki (04B)</button>
+</div>
+<div class="dgq-pcard is-active" data-step-panel="p1">
+<strong>Fase 1: Extraer el temario completo sin spoilers</strong>
+<div class="dgq-pmeta">
+<span class="dgq-chip">📥 Subís: Programa + Apuntes + TPs de 1 unidad</span>
+<span class="dgq-chip">📤 Obtenés: Checklist unidad por unidad (<code>- [ ]</code>)</span>
+<span class="dgq-chip">🤖 Motor: AI Studio (Gemini Hydrogen High / Extra High)</span>
+</div>
 
-En lugar de usar un chat genérico, dividimos el estudio de cada unidad en **5 fases conectadas**:
-1. **Armás tu hoja de ruta (`Fase 1`):** La IA lee los apuntes y guías de la unidad y te arma una lista de control (*checklist*) con todo lo que tenés que saber explicar, deducir o calcular.
-2. **Estudiás pensando (`Fase 2`):** Cargás un ítem de esa lista en el **Tutor Cognitivo**. No te da sermones largos: te hace **una sola pregunta corta por turno**, espera tu respuesta, corrige tus errores y te guía con pistas hasta que dominás el tema.
-3. **Practicás como en el parcial (`Fase 3`):** El **Simulador de Exámenes** analiza los parciales viejos de tus profesores y te genera simulacros nuevos con la misma dificultad y estilo.
-4. **Fijás en la memoria a largo plazo (`Fases 4 y 5`):** Convertís las fórmulas, condiciones de validez y esquemas clave en tarjetas de **Anki** para repasarlos en pocos minutos desde el celular.
+> Subís los PDFs de cada unidad desde tu PC en [Google AI Studio](https://aistudio.google.com/) y usás el **[[20. Áreas/Sistema de Estudio con IA/01 - Extractor de Checklists\|Prompt 01]]** de a una unidad por turno (`Seguí`) para no saltear nada.
 
-> [!TIP] 📝 ¿Preferís estudiar en papel o que una IA te arme un plan personalizado con un saludo?
-> Si no querés usar Anki ni configurar los 5 módulos, en **[[20. Áreas/Sistema de Estudio con IA/08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)\|08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)]]** tenés el **Arquitecto de Estrategia y Sistema de Estudio v3.5 (Beta)** (le subís tus apuntes y un saludo y te arma un plan a medida para cualquier materia) y el **flujo completo de estudio en papel de 4 fases + Modo Emergencia**.
+</div>
+<div class="dgq-pcard" data-step-panel="p1b">
+<strong>Módulo Satélite Opcional: Voz de la Cátedra (solo si graban clases)</strong>
+<div class="dgq-pmeta">
+<span class="dgq-chip">📥 Subís: Videos o audios de clases</span>
+<span class="dgq-chip">📤 Obtenés: Archivo maestro <code>voz_catedra.md</code></span>
+<span class="dgq-chip">🤖 Motor: AI Studio (Gemini Hydrogen High / Extra High) · NotebookLM opcional p/ YouTube</span>
+</div>
 
-> [!NOTE] 📌 Sobre la autoría y el uso responsable de IA
-> Este sistema y su documentación fueron estructurados y redactados en gran parte con asistencia de inteligencia artificial, **a partir de mis propias ideas, metodología de estudio y experiencia directa en materias de ingeniería**.
+> Audita lo que el docente advierte en clase (qué **no** entra, qué exige justificar y qué trampas repite). Después lo sumás al resto de los módulos. 👉 **[[20. Áreas/Sistema de Estudio con IA/01B - Extractor de Clases y Voz de la Cátedra\|Abrir Módulo 01B →]]**
+
+</div>
+<div class="dgq-pcard" data-step-panel="p2">
+<strong>Fase 2: Estudio activo punto por punto con el Tutor</strong>
+<div class="dgq-pmeta">
+<span class="dgq-chip">📥 Pegás: 1 casilla de tu checklist + profundidad</span>
+<span class="dgq-chip">📤 Obtenés: Práctica socrática + bloque <code>HANDOFF</code></span>
+<span class="dgq-chip">🤖 Motor: AI Studio (Gemini Hydrogen Medium diario / High-Extra High o Neon)</span>
+</div>
+
+> Nunca te regala la solución ni larga resúmenes eternos: avanza **de a 1 pregunta corta por turno** hasta que dominás el punto. 👉 **[[20. Áreas/Sistema de Estudio con IA/02 - Tutor Personal Cognitivo\|Abrir Tutor Personal →]]**
+
+</div>
+<div class="dgq-pcard" data-step-panel="p3">
+<strong>Fase 3: Ingeniería inversa y Simulacros de Cátedra</strong>
+<div class="dgq-pmeta">
+<span class="dgq-chip">📥 Subís: Parciales/finales viejos + TPs</span>
+<span class="dgq-chip">📤 Obtenés: <code>mapa.md</code> → <code>banco.md</code> → <code>modelo.md</code> → Simulacros</span>
+<span class="dgq-chip">🤖 Motor: AI Studio (Gemini Hydrogen High / Extra High o Neon Extra High)</span>
+</div>
+
+> Podés rendir a ciegas en papel y mandar **`Corregir`** *(Ruta A, con puntaje parcial por arrastre)* o generar parciales completos resueltos para imprimir y compartir *(Ruta B: `Paquete`)*. 👉 **[[20. Áreas/Sistema de Estudio con IA/03 - Simulador y Generador de Exámenes de Cátedra\|Abrir Simulador 03 →]]**
+
+</div>
+<div class="dgq-pcard" data-step-panel="p4">
+<strong>Fase 4: Generar tarjetas CSV para repaso espaciado</strong>
+<div class="dgq-pmeta">
+<span class="dgq-chip">📥 Mandás: De a 4–6 diapositivas o 1–2 págs.</span>
+<span class="dgq-chip">📤 Obtenés: Bloque <code>.csv</code> listo para Anki (CON o SIN fórmulas)</span>
+<span class="dgq-chip">🤖 Motor: AI Studio (Gemini Hydrogen Medium / High)</span>
+</div>
+
+> Adapta las preguntas según si tu materia permite llevar formulario (evalúa criterios y variables) o exige recordar ecuaciones de memoria. Incluye tarjetas para tapar esquemas (`[CREAR IMAGE OCCLUSION]`). 👉 **[[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|Abrir Generador Anki 04 →]]**
+
+</div>
+<div class="dgq-pcard" data-step-panel="p5">
+<strong>Fase 5: Cargar el CSV en Anki y tapar esquemas (Visual)</strong>
+<div class="dgq-pmeta">
+<span class="dgq-chip">📥 Usás: Archivo <code>.csv</code> + Anki Desktop / AnkiDroid</span>
+<span class="dgq-chip">📤 Obtenés: Mazo sincronizado en PC y celular</span>
+<span class="dgq-chip">🖼️ Tutorial paso a paso con capturas</span>
+</div>
+
+> Te muestra exactamente qué casillas marcar al importar el `.csv`, cómo convertir a *Image Occlusion* y qué botón tocar al sincronizar para no pisar tus tarjetas. 👉 **[[20. Áreas/Sistema de Estudio con IA/04B - Importación a Anki e Image Occlusion (Tutorial Visual)\|Abrir Tutorial Visual Anki 04B →]]**
+
+</div>
+</div>
+
+> [!warning]- ⚠️ Antes de empezar con IA: 3 Reglas de Oro para no frustrarte *(clic para desplegar)*
+> 1. **`Gemini Hydrogen` (`Low` → `Extra High`) en Google AI Studio es tu caballo de batalla:** súper económico y rinde excelente en casi todo: **`Low`** es muy rápido (tipo *Flash*) para consultas cortas y `00C`, **`Medium`** anda muy bien para el **Tutor Cognitivo (`02`)** y el uso diario, **`High`** es ideal para checklists/Anki/simulacros, y **`Extra High`** alcanza o supera al antiguo *Argon High* a una fracción del costo. Activá siempre `Media resolution: High` y subí los PDFs desde tu PC.
+> 2. **`Gemini Neon` (`Extra High`) para las tareas más complejas:** es lo más potente disponible hoy, especialmente para armar el **`/plan` en 3 pasos** con el **Arquitecto (`08` v6.0)** o resolver simulacros integradores muy exigentes (`03`). *(Nota: no he probado modelos de otras empresas como Claude, ChatGPT, DeepSeek o Qwen; si los probás, contame cómo te fue).*
+> 3. **NotebookLM queda hoy poco recomendado *(y PROHIBIDO conectarlo desde Gemini Web)*:** en prácticamente cualquier tarea hoy rinden mejor Hydrogen o Neon directo en Google AI Studio. Si alguna vez usás NotebookLM (ej. links de YouTube en `01B`), entrá directo en [notebook.google.com](https://notebook.google.com/) y nunca desde el conector lateral de `gemini.google.com` porque ignora archivos. *(Más detalles en [[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]])*.
+
+> [!abstract]- 🧠 Ver mapa visual completo de conexiones (Mermaid) *(clic para desplegar)*
 >
-> Todo el contenido, los prompts y los flujos de trabajo fueron **rigurosamente chequeados y probados en cursadas reales**. Sin embargo, ninguna IA es infalible: contrastá siempre cada resultado con los apuntes oficiales de tu cátedra. En el examen vas a estar solo.
+> ```mermaid
+> flowchart TD
+>     INICIO["<b>PUNTO DE ENTRADA (00)</b><br>¿Urgencia, bloqueo o cursada normal?"]
+>     URG["<b>00B - MODO EMERGENCIA (IA)</b><br>Pinza rápida 03 + 02 o /emergencia"]
+>     ARR["<b>00C - COPILOTO ARRANQUE</b><br>Destraba procrastinación y sesiones"]
+>     PAPEL["<b>08 - PAPEL O IA SIMPLE</b><br>Arquitecto v6.0 + Método en Papel"]
+>     FUENTES["<b>FUENTES DE CÁTEDRA</b><br>Programa, apuntes, TPs y parciales"]
+>     VOZ["<b>01B - VOZ DE LA CÁTEDRA (Opcional)</b><br>Extrae alcance y trampas de clases<br><code>voz_catedra.md</code>"]
+>     F1["<b>01 - CHECKLISTS</b><br>Temario unidad por unidad"]
+>     F2["<b>02 - TUTOR PERSONAL</b><br>Práctica socrática 1 consigna"]
+>     F3["<b>03 - SIMULADOR</b><br>mapa + banco + modelo -> Examen"]
+>     F4["<b>04 - GENERADOR ANKI</b><br>Tarjetas CSV CON/SIN fórmulas"]
+>     F5["<b>04B - TUTORIAL ANKI</b><br>Importación e Image Occlusion"]
+>
+>     INICIO -.-> URG
+>     INICIO -.-> ARR
+>     INICIO -.-> PAPEL
+>     INICIO --> FUENTES
+>     FUENTES --> F1
+>     FUENTES -.-> VOZ
+>     VOZ -.-> F1
+>     VOZ -.-> F2
+>     VOZ -.-> F3
+>     VOZ -.-> F4
+>     F1 --> F2
+>     F2 --> F3
+>     F3 --> F4
+>     F4 --> F5
+> ```
 
 ---
 
-## ⚡ Índice de Acceso Rápido
-
-| Herramienta / Módulo                                | Entorno Recomendado                                             | ¿Para qué sirve?                                                                             | Enlace directo                                               |
-| :-------------------------------------------------- | :-------------------------------------------------------------- | :------------------------------------------------------------------------------------------- | :----------------------------------------------------------- |
-| **Fase 1: Extractor de Checklists**                 | `AI Studio (Gratis)` o `Argon` `[Alto Razonamiento]`            | Extrae el temario completo de la cursada unidad por unidad sin spoilers.                     | ➡️ **[[20. Áreas/Sistema de Estudio con IA/01 - Extractor de Checklists\|01 - Extractor de Checklists]]**                      |
-| **Módulo Satélite: Voz de la Cátedra** *(Opcional)* | `NotebookLM` `[Minería]` ➔ `AI Studio` `[Alto Razonamiento]`    | Audita clases grabadas (videos/audios) y extrae qué entra, trampas y criterios del profesor. | ➡️ **[[20. Áreas/Sistema de Estudio con IA/01B - Extractor de Clases y Voz de la Cátedra\|01B - Extractor de Clases y Voz de la Cátedra]]**     |
-| **Fase 2: Tutor Personal Cognitivo**                | `NotebookLM` `[Minería]` o `AI Studio` `[Alto Razonamiento]`    | Estudio socrático paso a paso (1 consigna corta por turno) sin regalar soluciones.           | ➡️ **[[20. Áreas/Sistema de Estudio con IA/02 - Tutor Personal Cognitivo\|02 - Tutor Personal Cognitivo]]**                     |
-| **Fase 3: Simulador de Exámenes**                   | `NotebookLM` (Banco) + `AI Studio / Claude / Argon` (Generador) | Analiza parciales viejos de tu cátedra y genera simulacros reales con clave de corrección.   | ➡️ **[[20. Áreas/Sistema de Estudio con IA/03 - Simulador y Generador de Exámenes de Cátedra\|03 - Simulador y Generador de Exámenes de Cátedra]]** |
-| **Fase 4: Generador de Anki**                       | `Google AI Studio` `[Alto Razonamiento]`                        | Crea mazos de tarjetas listas para importar (para exámenes con o sin hoja de fórmulas).      | ➡️ **[[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|04 - Generador de Tarjetas de Anki]]**                |
-| **Infraestructura de Modelos**                      | *Guía técnica*                                                  | Qué IA gratuita o paga elegir para cada tarea y cómo cuidar las cuotas de uso.               | ➡️ **[[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]**               |
-| **Biblioteca de Aprendizaje**                       | *Fundamentos*                                                   | Los 7 libros científicos que explican por qué este método funciona.                          | ➡️ **[[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]**        |
-| **Checklists de Autoevaluación**                    | *Diagnóstico*                                                   | 4 guías rápidas para auditar tus hábitos de estudio (o de docencia) antes del parcial.       | ➡️ **[[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]**  |
-| **Sistema Tradicional + Arquitecto (Beta)** | *Papel + IA simple / Arquitecto v3.5* | Prompt del Arquitecto v3.5 (plan de estudio a medida con tus apuntes) + flujo en papel de 4 fases y Modo Emergencia. | ➡️ **[[20. Áreas/Sistema de Estudio con IA/08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)\|08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)]]** |
-| **Historial de Versiones**                          | *Changelog*                                                     | Registro técnico de mejoras, pruebas y evolución de los prompts.                             | ➡️ **[[20. Áreas/Sistema de Estudio con IA/99 - Historial de Versiones (Changelog)\|99 - Historial de Versiones (Changelog)]]**           |
-
----
-
-> [!WARNING] ⚠️ Reglas de Oro sobre las IAs que usamos (Actualizado 15/10/2026)
-> Para no frustrarte con errores de la IA, tené presentes estas 3 reglas prácticas (explicadas a fondo en **[[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]**):
-> 1. **NotebookLM es tu biblioteca central, pero se quedó atrás en razonamiento:** Su gran ventaja es que te deja subir de una sola vez los 40 archivos de la materia (apuntes, libros, TPs, parciales y videos) con **citas clickeables** y una **cuota diaria sumamente amplia** (ya no es infinita, pero es casi imposible agotarla estudiando). Sin embargo, frente a modelos modernos de **`[Nivel: Alto Razonamiento]`**, hoy resume de más, saltea temas sin avisar (*omisión silenciosa*) y falla al inventar problemas matemáticos.
-> 2. **Google AI Studio (100% Gratuito) es tu motor de precisión:** Para extraer checklists, generar exámenes o crear tarjetas de Anki, usamos **Gemini 3.8 Flash** configurado en `Thinking level: High` dentro de Google AI Studio (o **Gemini Argon** si tenés plan pago), subiendo a mano los PDFs de la unidad que vas a trabajar.
-> 3. **PROHIBIDO usar el conector de cuadernos dentro de Gemini Web (`gemini.google.com`):** La barra lateral de Gemini Web que conecta con NotebookLM tiene un bug grave e ignora la mayoría de los archivos del cuaderno. Cuando uses modelos de **`[Nivel: Alto Razonamiento]`**, subí siempre los PDFs directamente desde tu computadora.
-
----
-
-## 🗺️ Mapa Global del Flujo (5 Fases + Módulo Opcional)
-
-```mermaid
-flowchart TD
-    FUENTES["<b>FUENTES DE LA CÁTEDRA</b><br>(PDFs, Diapositivas, Guías de TP, Exámenes viejos)"]
-    VIDEOS["<b>CLASES GRABADAS (OPCIONAL)</b><br>(Videos de Zoom, Meet, Teams o YouTube)"]
-    VOZ["<b>MÓDULO SATÉLITE OPCIONAL</b><br><b>01B - Voz de la Cátedra</b><br>Extrae alcance, criterios y trampas<br><code>voz_catedra.md</code>"]
-    
-    F1["<b>FASE 1: CHECKLIST DE ESTUDIO (01)</b><br>• Entorno: [Nivel: Alto Razonamiento] (AI Studio / Argon)<br>• Objetivo: Temario secuencial unidad por unidad (- [ ])"]
-    F2["<b>FASE 2: TUTOR PERSONAL COGNITIVO (02)</b><br>• Entorno: NotebookLM [Minería] o AI Studio [Alto Razonamiento]<br>• Objetivo: Estudio activo (1 pregunta corta por turno)"]
-    F3["<b>FASE 3: SIMULADOR DE EXÁMENES (03)</b><br>• Banco en [Minería] ➔ Simulacros en [Alto Razonamiento]<br>• Objetivo: Parciales de práctica fieles a tu cátedra"]
-    F4["<b>FASE 4: GENERADOR DE ANKI (04)</b><br>• Entorno: Google AI Studio [Nivel: Alto Razonamiento]<br>• Objetivo: Tarjetas CSV (Con / Sin hoja de fórmulas)"]
-    F5["<b>FASE 5: IMPORTACIÓN Y REPASO EN ANKI</b><br>• Entorno: Anki Desktop + AnkiDroid<br>• Objetivo: Tapar esquemas (Image Occlusion) y repaso diario"]
-
-    FUENTES --> F1
-    VIDEOS -.-> VOZ
-    VOZ -.->|"Aporta qué entra y qué no"| F1
-    VOZ -.->|"Aporta criterios y trampas"| F2
-    VOZ -.->|"Aporta pautas del profesor"| F3
-    VOZ -.->|"Prioriza errores típicos"| F4
-    
-    F1 --> F2
-    F2 --> F3
-    F3 --> F4
-    F4 --> F5
-```
-
----
-
-## Fase 1: Carga de Fuentes y Checklist de la Materia
-
-El objetivo de este primer paso es armar el **mapa completo de cada unidad** en casillas de verificación (`- [ ]`), sin que la IA omita temas ni te revele las respuestas antes de estudiar.
-
-### 1.1. Armá tu biblioteca general en NotebookLM
-
-1. Creá un cuaderno gratuito en **[NotebookLM](https://notebook.google.com/)** con el nombre de la materia (ej: *Termodinámica Técnica*).
-2. Subí **todo el material de la cursada**: programa, diapositivas, apuntes teóricos, guías de TP y parciales/finales de años anteriores. Este cuaderno será tu repositorio central para el resto del cuatrimestre.
-
-### 1.2. Extraé la Checklist unidad por unidad (En Google AI Studio)
-
-Para que la IA no resuma de más ni se saltee ejercicios, la lista de temas se extrae **de a una unidad por turno** en un motor de **`[Nivel: Alto Razonamiento]`**:
-1. Abrí **[Google AI Studio](https://aistudio.google.com/)** con el modelo **Gemini 3.8 Flash** (activando `Thinking level: High` y `Media resolution: High` en el panel derecho) o **Gemini Argon**.
-2. Subí desde tu PC los archivos PDF del **Programa** y de la **Unidad 1** (teoría, guía de TP y exámenes).
-3. Pegá el prompt de **[[20. Áreas/Sistema de Estudio con IA/01 - Extractor de Checklists\|01 - Extractor de Checklists]]**. La IA va a generar las casillas `- [ ]` de la Unidad 1 ordenadas por conceptos, deducciones, gráficos y tipos de problemas `(TP X: Ej. N, M)`, y se detendrá automáticamente.
-4. Copiá el bloque a tu nota de Obsidian, subí los PDFs de la Unidad 2 y escribí **`Seguí`** para recibir la siguiente unidad con el mismo nivel de detalle.
-
-> [!NOTE] 📸 Captura de referencia: Extracción curricular
-> ![Pasted image 20260913212906.png](/img/user/_assets/attachments/Pasted%20image%2020260913212906.png)
-
----
-
-## 🎙️ Módulo Satélite Opcional: Extractor de Clases y «Voz de la Cátedra»
-
-> [!IMPORTANT] 📌 100% Opcional
-> Este módulo aplica **únicamente si tu cátedra graba las clases** (Zoom, Meet, Teams o YouTube) y tenés los videos o audios. Si no tenés clases grabadas, pasá directo a la **Fase 2**.
-
-Si tenés las grabaciones, los prompts de **[[20. Áreas/Sistema de Estudio con IA/01B - Extractor de Clases y Voz de la Cátedra\|01B - Extractor de Clases y Voz de la Cátedra]]** escanean lo que dice el profesor en clase y arman un documento compacto (`voz_catedra.md`) con citas exactas sobre:
-- Qué temas entran y cuáles **no entran** en el parcial.
-- Qué fórmulas hay que saber demostrar y cuáles solo aplicar.
-- Qué errores típicos advierte en el pizarrón y qué unidades o diagramas exige al corregir.
-
-Ese archivo `voz_catedra.md` se suma luego al Tutor, al Simulador de Exámenes y a Anki para estudiar enfocado en lo que realmente evalúa tu docente.
-
----
-
-## Fase 2: Estudio Activo con el Tutor Cognitivo
-
-Acá es donde aprendés los temas desde cero o resolvés las guías de TP. Podés ver todas las opciones y prompts en **[[20. Áreas/Sistema de Estudio con IA/02 - Tutor Personal Cognitivo\|02 - Tutor Personal Cognitivo]]**.
-
-### 2.1. Dos formas de usar el Tutor
-
-- **Ruta Estable en NotebookLM (`[Nivel: Minería y Recuperación]`):** Es la más cómoda para estudiar todos los días porque ya tenés todos los archivos cargados en un solo lugar, tenés **citas clickeables** que te abren la diapositiva exacta y una cuota amplísima para charlar durante horas. Podés usar el prompt compacto (<10.000 caracteres) o el **Prompt Extendido de 27.000 caracteres** mediante el truco de configuración que vemos abajo.
-- **Ruta BETA en Google AI Studio (`[Nivel: Alto Razonamiento]`):** Ideal para días de cálculo pesado o deducciones complejas donde necesitás que la IA no falle en física ni en matemática. Solo requiere subir a mano los 2 o 3 PDFs del tema que vas a estudiar hoy.
-
-### 2.2. Cómo cargar el Prompt Extendido (27k caracteres) en NotebookLM
-
-El cuadro de configuración de NotebookLM corta los textos a los 10.000 caracteres. Para guardar el **Prompt Completo de 27.000 caracteres**, usamos la interfaz de Gemini Web únicamente como puente de guardado (para estudiar seguís usando la web de NotebookLM):
-
-1. **Abrir el cuaderno desde Gemini:** Entrá a **[gemini.google.com](https://gemini.google.com)** y hacé clic en tu cuaderno en la barra lateral izquierda.
-
-   > [!NOTE] 📸 Acceso al Notebook desde Gemini
-   > ![Pasted image 20261011145307.png](/img/user/_assets/attachments/Pasted%20image%2020261011145307.png)
-
-2. **Entrar a Notebook Settings:** Hacé clic en los tres puntos (`...`) arriba a la derecha.
-
-   > [!NOTE] 📸 Menú de opciones del cuaderno
-   > ![Pasted image 20261011145315.png](/img/user/_assets/attachments/Pasted%20image%2020261011145315.png)
-
-3. **Pegar el prompt y guardar:** Pegá el prompt de 27k caracteres en **Instructions** y presioná **Save**.
-
-   > [!NOTE] 📸 Guardado de directivas sin límite
-   > ![Pasted image 20261011145351.png](/img/user/_assets/attachments/Pasted%20image%2020261011145351.png)
-
-4. **Verificar en NotebookLM:** Volvé a **[notebook.google.com](https://notebook.google.com/)**. En *Configure Chat* vas a ver **`27236 / 10000`** en violeta.
-
-   > [!WARNING] ⚠️ Cerrá esa ventana con la cruz (`X`)
-   > No edites ni toques nada adentro de esa ventana en NotebookLM para que el navegador no recorte el texto. El prompt de 27k ya quedó activo.
-   > ![Pasted image 20261011145342.png](/img/user/_assets/attachments/Pasted%20image%2020261011145342.png)
-
-### 2.3. Cómo es una sesión de estudio
-
-1. **Arranque:** Le pegás una casilla de tu checklist (`- [ ]`), le indicás la profundidad (`Baja`, `Media` o `Alta`) y si en el examen te dejan usar hoja de fórmulas.
-2. **Una pregunta por turno:** La IA nunca te tira un resumen largo. Te hace una pregunta corta o te pide plantear el primer paso del problema. Si te trabás, te da pistas graduales o te muestra un ejemplo parecido con otros números para no arruinarte tu ejercicio.
-3. **Cierre y continuidad (`HANDOFF`):** Cuando terminás el tema, te pide explicarlo de punta a punta con tus palabras. Al escribir `Cerrar unidad`, te entrega un bloque resumen (`HANDOFF`) para guardar en Obsidian y pegarlo en tu próxima sesión de estudio.
-
-> [!NOTE] 📸 Captura de referencia: Sesión de tutoría activa
-> ![Pasted image 20260913213142.png](/img/user/_assets/attachments/Pasted%20image%2020260913213142.png)
-
----
-
-## Fase 3: Simulador y Generador de Exámenes de Cátedra
-
-Cuando ya estudiaste las unidades, esta fase analiza los exámenes viejos de tu materia para tomarte simulacros idénticos a los reales. Todos los prompts están en **[[20. Áreas/Sistema de Estudio con IA/03 - Simulador y Generador de Exámenes de Cátedra\|03 - Simulador y Generador de Exámenes de Cátedra]]**.
-
-### 3.1. Extracción del ADN del examen (Pasos 1 a 3)
-
-1. **`mapa.md` (Paso 1 en `AI Studio` - `[Alto Razonamiento]`):** Subís los apuntes de la unidad y los parciales viejos. La IA lista todas las habilidades evaluables y calcula cuántas veces se tomó cada una en la historia de la cátedra.
-2. **`banco.md` (Paso 2 en `NotebookLM` - `[Minería]`):** Como en NotebookLM ya tenés todos los exámenes cargados, lo usás para transcribir el 100% de los parciales viejos y sumar solo 1 o 2 ejercicios clave de las guías de TP que cubran temas nunca tomados.
-3. **`modelo.md` (Paso 3 en `AI Studio` - `[Alto Razonamiento]`):** Le pegás el mapa y el banco, y la IA resume en 70 líneas el estilo exacto de tu profesor (cuánto vale la teoría vs. la práctica, cómo redacta los incisos y qué errores descuentan puntos). *(Si casi no tenés parciales viejos con teoría, existe un Paso 3B opcional para cubrir preguntas teóricas).*
-
-### 3.2. Generación de Simulacros (Paso 4 en `[Alto Razonamiento]`)
-
-Con esos tres archivos `.md`, abrís un chat en **Google AI Studio (Gemini 3.8 Flash High)**, **Claude Sonnet 5.5** o **Gemini Argon** *(nunca uses NotebookLM acá porque falla en las cuentas)* y elegís cómo practicar:
-- **Ruta A (Rendir a ciegas con corrección):** Pedís un `Examen`, lo resolvés en papel con cronómetro y usás el comando `Corregir`. La IA revisa tus cuentas paso a paso y, si te equivocaste en el inciso `a)` pero hiciste bien el planteo del `b)`, te considera el procedimiento por *arrastre* como hace un profesor real.
-- **Ruta B (Paquetes listos para imprimir o compartir):** Usás el comando `Paquete` y la IA te genera en un solo mensaje el **Enunciado limpio + Resolución paso a paso en LaTeX + Trazabilidad**, listo para exportar a PDF y pasarle a tus compañeros.
-
----
-
-## Fase 4: Generación de Tarjetas de Anki
-
-Para no olvidarte las fórmulas, unidades o conceptos de las primeras unidades cuando llegás al parcial, creamos tarjetas de repaso espaciado con **[[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|04 - Generador de Tarjetas de Anki]]**.
-
-### 4.1. Configuración única en Google AI Studio
-
-Usamos **[Google AI Studio](https://aistudio.google.com/prompts/new_chat)** porque es gratuito, permite guardar el prompt fijo y lee gráficos o subíndices chicos con máxima nitidez:
-
-1. **Desactivar chat temporal:** Desmarcá *Temporary chat* para que tus chats queden guardados en Google Drive.
-
-   > [!NOTE] 📸 Desactivar chat temporal
-   > ![Pasted image 20261011150316.png](/img/user/_assets/attachments/Pasted%20image%2020261011150316.png)
-
-2. **Elegir el modelo:** Seleccioná `Gemini 3.8 Flash` en la columna derecha.
-
-   > [!NOTE] 📸 Selección del modelo y acceso a System Instructions
-   > ![Pasted image 20261011150326.png](/img/user/_assets/attachments/Pasted%20image%2020261011150326.png)
-
-3. **Guardar el prompt fijo en System Instructions:** Creá una instrucción con el prompt **CON hoja de fórmulas** (que no te pide memorizar ecuaciones largas, sino entender cómo varían) o **SIN hoja de fórmulas** (que te entrena para escribir las ecuaciones de memoria).
-
-   > [!NOTE] 📸 Creación y guardado de instrucciones del sistema
-   > ![Pasted image 20261011150337.png](/img/user/_assets/attachments/Pasted%20image%2020261011150337.png)  
-   > ![Pasted image 20261011150344.png](/img/user/_assets/attachments/Pasted%20image%2020261011150344.png)
-
-4. **Poner Thinking y Media Resolution en High:** Así la IA analiza bien el apunte y lee con nitidez los diagramas de las diapositivas.
-
-   > [!NOTE] 📸 Calibración en High (Thinking y Media Resolution)
-   > ![Pasted image 20261011150350.png](/img/user/_assets/attachments/Pasted%20image%2020261011150350.png)
-
-### 4.2. Envío de apuntes por lotes cortos
-
-Enviá de a **4 a 6 diapositivas** (o **1 a 2 páginas de apunte**) por mensaje, sumando si querés comentarios que haya dicho el profesor en clase. La IA te devolverá un bloque de código CSV listo para copiar.
-
-> [!NOTE] 📸 Captura de referencia: Generación de mazos en bloque CSV
-> ![Pasted image 20260913213301.png](/img/user/_assets/attachments/Pasted%20image%2020260913213301.png)
-
----
-
-## Fase 5: Importación, Image Occlusion y Repaso en Anki
-
-> [!TIP] Prerrequisito
-> Instalá **Anki** en tu computadora (gratuito en [apps.ankiweb.net](https://apps.ankiweb.net/)) y la app en tu celular (**AnkiDroid** en Android o **AnkiMobile** en iOS) vinculadas con la misma cuenta gratuita de AnkiWeb.
-
-### 5.1. Guardar e importar el archivo CSV
-
-1. Copiá el bloque CSV que te dio la IA, pegalo en el Bloc de notas y guardalo como `.csv` o `.txt` (ej: `unidad_1.csv`).
-2. En Anki de PC, andá a **File ➔ Import...** y elegí el archivo.
-3. Verificá estas opciones:
-   * **Field separator:** `Semicolon` (Punto y coma).
-   * **Allow HTML in fields:** **ACTIVADO** (en azul).
-   * **Note Type:** `Basic`.
-   * **Deck:** El mazo de tu materia.
-
-> [!NOTE] 📸 Captura de referencia: Configuración de archivo y opciones
-> ![Pasted image 20260913214554.png](/img/user/_assets/attachments/Pasted%20image%2020260913214554.png)
-
-4. En **Field mapping**, dejá `Front` en la columna 1, `Back` en la columna 2, `Tags` en `(Nothing)` y hacé clic en **Import**.
-
-> [!NOTE] 📸 Captura de referencia: Mapeo de campos (Field mapping)
-> ![Pasted image 20260913214609.png](/img/user/_assets/attachments/Pasted%20image%2020260913214609.png)
-
----
-
-### 5.2. Pasar esquemas y dibujos a Image Occlusion
-
-Cuando el apunte tiene un corte de un equipo o un ciclo con partes para identificar, la IA crea tarjetas que empiezan con `[CREAR IMAGE OCCLUSION]`. Para agregarles la imagen y tapar sus nombres:
-
-1. Abrí el explorador de Anki (**Browse** o tecla `B`), buscá `[CREAR IMAGE OCCLUSION]` y seleccioná todas (`Ctrl + A`).
-2. Hacé clic derecho ➔ **Notes ➔ Change Note Type...** y cambiá de `Basic` a `Image Occlusion`.
-3. Mapeá los campos así y guardá (**Save**):
-   * `Front` ➔ **Header**
-   * `Back` ➔ **Back Extra** *(acá te queda anotado qué partes tenés que tapar y qué función cumple cada una)*.
-   * El resto dejalo en `(Nothing)`.
-
-> [!NOTE] 📸 Captura de referencia: Mapeo para cambio de tipo de nota
-> ![Pasted image 20260913214656.png](/img/user/_assets/attachments/Pasted%20image%2020260913214656.png)
-
-4. Confirmá el aviso haciendo clic en **Yes**.
-
-> [!NOTE] 📸 Captura de referencia: Confirmación de subida completa
-> ![Pasted image 20260913214707.png](/img/user/_assets/attachments/Pasted%20image%2020260913214707.png)
-
----
-
-### 5.3. Sincronización segura entre PC y Celular
-
-> [!DANGER] ⛔ Cuidado al sincronizar después de cambiar el tipo de nota
-> Cuando convertís tarjetas a *Image Occlusion*, Anki te pregunta qué base de datos querés conservar. Si tocás el botón equivocado, borrás lo que acabás de importar.
-
-1. **Primero en tu PC (Anki Desktop):** Presioná **Sync** y elegí siempre **`Upload to AnkiWeb`** (Subir a AnkiWeb).
-
-   > [!NOTE] 📸 Captura de referencia: Selección de Upload to AnkiWeb en PC
-   > ![Pasted image 20260913214729.png](/img/user/_assets/attachments/Pasted%20image%2020260913214729.png)
-
-2. **Después en tu celular (AnkiDroid):** Presioná sincronizar y elegí **`AnkiWeb`** (para descargar a tu teléfono lo que subiste desde la PC).
-
-   > [!NOTE] 📸 Captura de referencia: Selección de AnkiWeb en AnkiDroid
-   > ![Pasted image 20260915182435.png](/img/user/_assets/attachments/Pasted%20image%2020260915182435.png)
-
----
-
-### 5.4. Pegar la imagen y tapar las partes
-
-En el explorador (`B`) de tu PC, hacé clic en cada tarjeta de `[CREAR IMAGE OCCLUSION]`:
-
-> [!NOTE] 📸 Captura de referencia: Botones de control del editor de oclusión
-> ![Pasted image 20260913215126.png](/img/user/_assets/attachments/Pasted%20image%2020260913215126.png)
-
-1. **Botón 1 (Texto):** Borrá el cartel `[CREAR IMAGE OCCLUSION]` del título para que quede limpio, y mirá en **Back Extra** qué partes te indica tapar la IA.
-2. **Botón 2 (Resetear imagen):** Tocá el segundo ícono para limpiar el lienzo en blanco.
-3. **Pegar captura y tapar:** Sacale una captura a la figura de tu apunte (`Win + Shift + S`), pegala con `Ctrl + V` y dibujá rectángulos sobre los nombres a ocultar. *(Tip: si al pegar la imagen no te deja dibujar rectángulos, tocá dos veces el Botón 1 para refrescar la ventana).*
-
----
-
-## 🛠️ Guías Complementarias del Sistema
-
-Además de las herramientas paso a paso, tenés tres secciones de consulta para mejorar tu forma de estudiar:
-
-- 🤖 **[[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]**: Guía actualizada sobre qué modelo de IA elegir en cada paso y cómo cuidar tus límites de uso gratuitos o pagos.
-- 📚 **[[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]**: Resumen de los 7 libros científicos (encabezados por *A Mind for Numbers* de Barbara Oakley) que explican cómo funciona la memoria y la resolución de problemas en ingeniería.
-- 🧭 **[[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]**: 4 checklists de autoevaluación para revisar tus hábitos de estudio unas semanas antes del parcial y evitar la *ilusión de competencia* (sentir que sabés el tema solo porque entendés el apunte al leerlo).
-- 📝 **[[20. Áreas/Sistema de Estudio con IA/08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)\|08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)]]**: El "espejo analógico" del sistema para estudiar ingeniería en papel o usando un chat de IA común sin configuraciones técnicas.
-- 📜 **[[20. Áreas/Sistema de Estudio con IA/99 - Historial de Versiones (Changelog)\|99 - Historial de Versiones (Changelog)]]**: Registro técnico de todas las actualizaciones y mejoras de los prompts.
+## 🗺️ Mapa Completo de Guías {#mapa-completo}
+
+| Grupo | Guía / Herramienta | Para qué sirve |
+| :--- | :--- | :--- |
+| **Urgencias y Arranque** | **[[20. Áreas/Sistema de Estudio con IA/00B - Modo Emergencia (Ruta Rápida con IA)\|00B - Modo Emergencia (Ruta Rápida con IA)]]** | Ruta rápida con IA cuando tenés poco tiempo frente al volumen de examen. |
+| **Urgencias y Arranque** | **[[20. Áreas/Sistema de Estudio con IA/00C - Copiloto ARRANQUE (Vencer la Procrastinación)\|00C - Copiloto ARRANQUE (Vencer la Procrastinación)]]** | Vencer la parálisis para empezar, cortar distracciones y retomar con `Handoff`. |
+| **Sistema Completo (IA)** | **[[20. Áreas/Sistema de Estudio con IA/01 - Extractor de Checklists\|01 - Extractor de Checklists]]** | Armar la hoja de ruta unidad por unidad en `- [ ]` sin spoilers. |
+| **Sistema Completo (IA)** | **[[20. Áreas/Sistema de Estudio con IA/01B - Extractor de Clases y Voz de la Cátedra\|01B - Extractor de Clases y Voz de la Cátedra]]** | *(Opcional)* Auditar clases grabadas para saber qué entra y qué trampas advierten. |
+| **Sistema Completo (IA)** | **[[20. Áreas/Sistema de Estudio con IA/02 - Tutor Personal Cognitivo\|02 - Tutor Personal Cognitivo]]** | Estudiar paso a paso con pistas graduales (AI Studio con Hydrogen Medium; NotebookLM opcional). |
+| **Sistema Completo (IA)** | **[[20. Áreas/Sistema de Estudio con IA/03 - Simulador y Generador de Exámenes de Cátedra\|03 - Simulador y Generador de Exámenes de Cátedra]]** | Ingeniería inversa de parciales viejos y simulacros con corrección real. |
+| **Sistema Completo (IA)** | **[[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|04 - Generador de Tarjetas de Anki]]** | Crear mazos `.csv` optimizados (con o sin hoja de fórmulas). |
+| **Sistema Completo (IA)** | **[[20. Áreas/Sistema de Estudio con IA/04B - Importación a Anki e Image Occlusion (Tutorial Visual)\|04B - Importación a Anki e Image Occlusion (Tutorial Visual)]]** | Cómo importar `.csv` a Anki, tapar esquemas y sincronizar PC/celular sin borrar nada. |
+| **Papel / 1 sola IA** | **[[20. Áreas/Sistema de Estudio con IA/08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)\|08 - Sistema de Estudio Tradicional (En Papel o con IA Simple)]]** | **Arquitecto v6.0** (plan a medida en 1 chat) + **Sistema Pareto 80/20 en Papel** para Ingeniería (teoría, ejercicios y exámenes en ~15 min). |
+| **Apoyo y Ciencia** | **[[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]** | Qué modelo elegir en Google AI Studio (`Gemini Hydrogen` / `Gemini Neon`) según la tarea. |
+| **Apoyo y Ciencia** | **[[20. Áreas/Sistema de Estudio con IA/06 - Biblioteca de Ciencia del Aprendizaje\|06 - Biblioteca de Ciencia del Aprendizaje]]** | Los 7 libros científicos que fundamentan el método. |
+| **Apoyo y Ciencia** | **[[20. Áreas/Sistema de Estudio con IA/07 - Índice de Guías y Checklists de Aprendizaje\|07 - Índice de Guías y Checklists de Aprendizaje]]** | 4 checklists interactivas (`07.1` a `07.4`) para auditar tu forma de estudiar. |
+| **Apoyo y Ciencia** | **[[20. Áreas/Sistema de Estudio con IA/99 - Historial de Versiones (Changelog)\|99 - Historial de Versiones (Changelog)]]** | Registro de mejoras y evolución de las herramientas. |
+
+> [!tip]- 📸 ¿Necesitás ver los tutoriales con capturas de pantalla de AI Studio y Anki?
+> * **Cómo configurar Google AI Studio (System Instructions, Thinking level, Media High):** está explicado con capturas dentro de **[[20. Áreas/Sistema de Estudio con IA/04 - Generador de Tarjetas de Anki\|04 - Generador de Tarjetas de Anki]]**.
+> * **Cómo importar CSV, usar *Image Occlusion* y sincronizar Anki:** está en **[[20. Áreas/Sistema de Estudio con IA/04B - Importación a Anki e Image Occlusion (Tutorial Visual)\|04B - Importación a Anki e Image Occlusion (Tutorial Visual)]]**.
+> * ***(Opcional / Secundario)* Cómo cargar el Tutor de 27k caracteres en NotebookLM:** está explicado con capturas dentro de **[[20. Áreas/Sistema de Estudio con IA/02 - Tutor Personal Cognitivo\|02 - Tutor Personal Cognitivo]]**.
 
 ---
 
@@ -313,5 +319,131 @@ Además de las herramientas paso a paso, tenés tres secciones de consulta para 
 
 Armé este sistema durante mis cursadas de Ingeniería Mecánica con una sola idea: **ayudar de forma 100% gratuita a cualquier estudiante universitario a estudiar mejor**, usando la IA para pensar más y no para pensar menos.
 
-- **Libre y abierto:** Compartilo con tus compañeros, usalo en grupos de estudio o adaptá los prompts a tu propia carrera (sea otra ingeniería, ciencias exactas, medicina o derecho).
-- **Contacto y sugerencias:** No uso redes sociales, pero si tenés alguna duda implementando el flujo, encontraste algún error o querés sugerir una mejora, escribime a **[duiliobtorres@gmail.com](mailto:duiliobtorres@gmail.com)**. ¡Muchos éxitos!
+* **Libre y abierto:** Compartilo con tus compañeros o adaptalo a tu propia carrera (otra ingeniería, exactas, medicina, derecho, económicas o idiomas).
+* **Contacto y sugerencias:** Si tenés dudas implementándolo, encontrás algún error o querés sugerir una mejora, escribime a **[duiliobtorres@gmail.com](mailto:duiliobtorres@gmail.com)**.
+
+<script>
+(function(){
+var app=document.getElementById("dgQuizApp");
+if(app){
+app.classList.add("is-interactive");
+var modeBtns=app.querySelectorAll(".dgq-mode-btn");
+var quizView=document.getElementById("dgqQuizView");
+var directView=document.getElementById("dgqDirectView");
+var step2=document.getElementById("dgqStep2");
+var progress=document.getElementById("dgqProgress");
+var resetBtn=document.getElementById("dgqReset");
+var showAllBtn=document.getElementById("dgqShowAll");
+var q1Btns=app.querySelectorAll("[data-q1]");
+var q2Btns=app.querySelectorAll("[data-q2]");
+var panels=app.querySelectorAll(".dgq-panel");
+var allShown=false;
+
+function hidePanels(){
+panels.forEach(function(p){p.classList.remove("is-visible");});
+}
+function showRoute(route){
+allShown=false;
+showAllBtn.textContent="Ver las 5 rutas juntas";
+panels.forEach(function(p){
+p.classList.toggle("is-visible",p.getAttribute("data-route")===route);
+});
+progress.textContent="Tu ruta lista";
+resetBtn.classList.remove("dgq-hidden");
+}
+function resetQuiz(){
+allShown=false;
+q1Btns.forEach(function(b){b.classList.remove("is-picked");});
+q2Btns.forEach(function(b){b.classList.remove("is-picked");});
+step2.classList.add("dgq-hidden");
+resetBtn.classList.add("dgq-hidden");
+showAllBtn.textContent="Ver las 5 rutas juntas";
+progress.textContent="Paso 1 de 2";
+hidePanels();
+}
+
+modeBtns.forEach(function(btn){
+btn.addEventListener("click",function(){
+var m=btn.getAttribute("data-mode");
+modeBtns.forEach(function(b){b.classList.toggle("is-active",b===btn);});
+if(m==="direct"){
+quizView.classList.add("dgq-hidden");
+directView.classList.remove("dgq-hidden");
+hidePanels();
+progress.textContent="Acceso directo";
+}else{
+directView.classList.add("dgq-hidden");
+quizView.classList.remove("dgq-hidden");
+progress.textContent=step2.classList.contains("dgq-hidden")?"Paso 1 de 2":"Paso 2 de 2";
+}
+});
+});
+
+q1Btns.forEach(function(btn){
+btn.addEventListener("click",function(){
+var val=btn.getAttribute("data-q1");
+q1Btns.forEach(function(b){b.classList.toggle("is-picked",b===btn);});
+q2Btns.forEach(function(b){b.classList.remove("is-picked");});
+if(val==="materia"){
+hidePanels();
+step2.classList.remove("dgq-hidden");
+resetBtn.classList.remove("dgq-hidden");
+progress.textContent="Paso 2 de 2";
+}else{
+step2.classList.add("dgq-hidden");
+showRoute(val);
+}
+});
+});
+
+q2Btns.forEach(function(btn){
+btn.addEventListener("click",function(){
+q2Btns.forEach(function(b){b.classList.toggle("is-picked",b===btn);});
+showRoute(btn.getAttribute("data-q2"));
+});
+});
+
+resetBtn.addEventListener("click",resetQuiz);
+
+showAllBtn.addEventListener("click",function(){
+allShown=!allShown;
+if(allShown){
+panels.forEach(function(p){p.classList.add("is-visible");});
+showAllBtn.textContent="Ocultar lista de rutas";
+progress.textContent="Todas las rutas";
+}else{
+hidePanels();
+showAllBtn.textContent="Ver las 5 rutas juntas";
+progress.textContent="Paso 1 de 2";
+}
+});
+
+var internalLinks=document.querySelectorAll("table a.internal-link, a.internal-link");
+var bentoLinks=app.querySelectorAll("[data-note-match]");
+bentoLinks.forEach(function(bl){
+var needle=bl.getAttribute("data-note-match");
+for(var i=0;i<internalLinks.length;i++){
+var txt=(internalLinks[i].textContent||"")+" "+(internalLinks[i].getAttribute("href")||"");
+if(txt.indexOf(needle)!==-1&&internalLinks[i].getAttribute("href")&&internalLinks[i].getAttribute("href")!=="/404"){
+bl.setAttribute("href",internalLinks[i].getAttribute("href"));
+break;
+}
+}
+});
+}
+
+var pipe=document.getElementById("dgPipeExplorer");
+if(pipe){
+pipe.classList.add("is-interactive");
+var sBtns=pipe.querySelectorAll(".dgq-stepbtn");
+var pCards=pipe.querySelectorAll(".dgq-pcard");
+sBtns.forEach(function(sb){
+sb.addEventListener("click",function(){
+var id=sb.getAttribute("data-step");
+sBtns.forEach(function(x){x.classList.toggle("is-active",x===sb);});
+pCards.forEach(function(c){c.classList.toggle("is-active",c.getAttribute("data-step-panel")===id);});
+});
+});
+}
+})();
+</script>

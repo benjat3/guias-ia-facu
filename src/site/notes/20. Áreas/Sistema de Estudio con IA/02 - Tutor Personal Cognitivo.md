@@ -10,26 +10,20 @@ Esta herramienta transforma a la IA en un profesor particular exigente que te gu
 
 ---
 
-## 🗺️ Dos Rutas para usar el Tutor: ¿Por cuál empezar?
+## 🗺️ ¿Dónde conviene correr el Tutor hoy?
 
-Tenés dos formas de usar el Tutor según lo que vayas a estudiar hoy:
+Con la llegada de **Gemini Hydrogen** y **Gemini Neon**, la opción claramente superior para cualquier sesión del Tutor es **Google AI Studio**:
 
 ```mermaid
 flowchart TD
-    DECIDIR{"<b>¿Qué necesitás estudiar hoy?</b>"}
-    
-    ESTABLE["<b>🛡️ RUTA ESTABLE: NotebookLM</b><br><code>[Nivel: Minería y Recuperación]</code><br>(Opción A de 27k o Opción B de 10k)"]
-    ALTO_RAZ["<b>🚀 RUTA DE ALTO RAZONAMIENTO: Google AI Studio / Argon</b><br><code>[Nivel: Alto Razonamiento - Versión 3]</code><br>(Gemini 3.8 Flash High o Argon)"]
-
-    DECIDIR -->|"Estudio diario, teoría, repaso general<br>o sesiones largas con toda la materia a mano"| ESTABLE
-    DECIDIR -->|"Estudio profundo donde necesitás máxima adherencia:<br>sostener el contexto, no saltear temas y cálculo riguroso"| ALTO_RAZ
-
-    ESTABLE --> E1["• Tenés los 40 archivos ya cargados<br>• Citas clickeables a la diapositiva exacta<br>• Cuota diaria amplísima sin cortes"]
-    ALTO_RAZ --> B1["• Mantiene el contexto de la conversación sin degradarse<br>• No saltea temas ni pasos (micro-pacing estricto)<br>• Aplica con máxima fidelidad las instrucciones del sistema<br>• Mayor precisión en cuentas y deducciones complejas<br>• Requiere subir a mano los 2-3 PDFs del tema"]
+    DECIDIR{"¿Cómo vas a usar<br/>el Tutor hoy?"} --> PRINCIPAL["🥇 Google AI Studio (Recomendado)<br/>Gemini Hydrogen Medium (uso diario)"]
+    DECIDIR --> SECUNDARIA["📚 NotebookLM (Secundario)<br/>Solo si preferís 40 PDFs fijos"]
+    PRINCIPAL --> P1["Subir a Hydrogen High / Extra High<br/>o Neon si hay deducciones muy densas"]
 ```
 
-> [!TIP] 💡 ¿Sos nuevo en el sistema?
-> **Empezá por la Ruta Estable en NotebookLM:** es la más cómoda porque ya tenés todos los archivos de la materia cargados en tu cuaderno y no tenés que preocuparte por límites de mensajes. Cuando necesites una sesión rigurosa donde el tutor **mantenga el contexto de la conversación a lo largo del tiempo, no se saltee temas ni pasos intermedios, aplique estrictamente las instrucciones del sistema** y además resuelva con total solidez cálculos y deducciones complejas, usá la **Ruta de Alto Razonamiento (V3) en Google AI Studio**.
+> [!TIP] 💡 Recomendación actual
+> **Empezá directo en Google AI Studio con `Gemini Hydrogen` en `Medium` (Prompt V3):** funciona excelente para el Tutor Cognitivo y las consultas del día a día, gasta poquísima cuota, mantiene el contexto sin saltear pasos ni instrucciones y resuelve bien las cuentas. Si un tema exige deducciones o cálculos muy pesados, subí a **`Hydrogen High / Extra High`** o pasá a **`Gemini Neon`**.
+> *(La ruta de **NotebookLM** de más abajo queda como alternativa secundaria / poco recomendada hoy: en prácticamente cualquier sesión rinde mejor Hydrogen o Neon).*
 
 *(Para ver la comparativa técnica de modelos y cuotas, consultá **[[20. Áreas/Sistema de Estudio con IA/05 - Modelos Recomendados por Tarea\|05 - Modelos Recomendados por Tarea]]**).*
 
@@ -44,9 +38,9 @@ Si tu cátedra graba las clases y armaste el archivo `voz_catedra.md` con **[[20
 
 ---
 
-# 🚀 Ruta de Alto Razonamiento: Tutor V3 en Google AI Studio (`[Gemini 3.8 Flash High / Argon]`)
+# 🚀 Ruta Principal Recomendada: Tutor V3 en Google AI Studio (`Gemini Hydrogen` / `Neon`)
 
-Esta versión está diseñada para correr en **[Google AI Studio](https://aistudio.google.com/)** con **Gemini 3.8 Flash** (`Thinking level: High` y `Media resolution: High`) o en **Gemini Argon**.
+Esta versión está diseñada para correr en **[Google AI Studio](https://aistudio.google.com/)** con **`Gemini Hydrogen`** (**`Medium`** para sesiones diarias y uso cotidiano, **`High` / `Extra High`** cuando buscás precisión extra gastando poca cuota, siempre con `Media resolution: High`) o **`Gemini Neon`** (`High` / `Extra High`) en sesiones de altísima complejidad matemática. *(Nota: otros modelos como Claude, ChatGPT, DeepSeek o Qwen no fueron probados por el autor).*
 
 ### 📂 Cómo saber qué 2 o 3 PDFs subir sin revolver toda tu carpeta
 
@@ -80,7 +74,7 @@ Voy a exportar contexto hacia otro LLM que ya domina la teoría general de la ma
 
 Con esa lista, buscás únicamente esos **2 o 3 PDFs en tu computadora** y los arrastrás al chat de Google AI Studio junto con el siguiente prompt.
 
-### 📋 Prompt Tutor — Versión 3 (Para Google AI Studio / Gemini Argon)
+### 📋 Prompt Tutor — Versión 3 (Para Google AI Studio: Gemini Hydrogen / Neon)
 
 `````markdown
 Actuá como mi tutor de [TEMA A APRENDER], materia de ingeniería mecánica. Objetivo: que yo comprenda en profundidad (explicar, aplicar, diferenciar, justificar) y pueda rendir el examen real de la cátedra, que es el estándar. Idioma: español rioplatense. Trabajás sobre fuentes cargadas (exámenes, trabajos prácticos, diapositivas).
@@ -303,9 +297,12 @@ Si entendiste todo, respondé únicamente: "Tutor cognitivo de [TEMA A APRENDER]
 
 ---
 
-# 🛡️ Ruta Estable: Tutor en NotebookLM (Arquitectura V4)
+# 📚 Alternativa Secundaria: Tutor en NotebookLM (Arquitectura V4)
 
-Es la versión ideal para el estudio de todos los días dentro de **[NotebookLM](https://notebook.google.com/)**. Tenés dos variantes del prompt:
+> [!note] ⚠️ Poco recomendado hoy frente a Google AI Studio
+> Con **Gemini Hydrogen (`Medium`)** y **Gemini Neon**, hoy rinde mucho mejor usar la **Ruta Principal en Google AI Studio** de arriba. Dejá esta sección únicamente como respaldo opcional si preferís tener los ~40 PDFs cargados en un solo cuaderno de **[NotebookLM](https://notebook.google.com/)** con citas clickeables.
+
+Tenés dos variantes del prompt para NotebookLM:
 * **Opción A (Versión Extendida de ~27.000 caracteres):** Es la más sólida y completa (tiene reglas repetidas estratégicamente para que NotebookLM nunca se olvide de controlar tus cuentas ni te regale respuestas). Se carga en 1 minuto con el truco del *Bypass* explicado acá abajo.
 * **Opción B (Versión Compacta de <10.000 caracteres):** Entra directo en la caja normal de configuración de NotebookLM sin hacer ningún paso extra.
 

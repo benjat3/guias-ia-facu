@@ -46,8 +46,8 @@ Combinamos dos entornos gratuitos según lo que hace mejor cada uno (ver detalle
 
 | Etapa del proceso | Nivel Cognitivo | 🥇 Entorno Recomendado | Por qué se usa acá |
 | :--- | :--- | :--- | :--- |
-| **Pasos 1 y 2** *(Analizar cada video)* | `[Nivel: Minería y Recuperación]` | **NotebookLM Nativo** *(o AI Studio si tenés la transcripción en `.txt`)* | NotebookLM te deja pegar links directos de YouTube o subir archivos de audio/video pesados y te genera **citas clickeables** para verificar qué dijo el profesor. |
-| **Pasos 3 y 4** *(Unir varias clases en un solo archivo)* | `[Nivel: Alto Razonamiento]` | **Gemini 3.8 Flash (`Thinking: High`) en AI Studio** *(o Gemini Argon en plan pago)* | Como en estos pasos ya solo unís tus propios textos `.md`, los modelos de alto razonamiento agrupan las ideas repetidas en un solo renglón sin perder ningún dato. |
+| **Pasos 1 y 2** *(Analizar cada video)* | `[Nivel: Extracción]` | **Gemini Hydrogen (`Medium` / `High`) en AI Studio** *(si tenés transcripción/audio)* o **NotebookLM Nativo** *(solo si querés pegar links directos de YouTube sin descargarlos)* | Hydrogen extrae con mayor fidelidad; NotebookLM conserva utilidad puntual acá únicamente porque admite links directos de YouTube con citas clickeables. |
+| **Pasos 3 y 4** *(Unir varias clases en un solo archivo)* | `[Nivel: Alto Razonamiento]` | **Gemini Hydrogen (`High` / `Extra High`) en AI Studio** *(o **Gemini Neon** para cierres muy extensos)* | Como en estos pasos ya solo unís tus propios textos `.md`, **Hydrogen** agrupa las ideas repetidas en un solo renglón sin perder ningún dato y gastando poquísima cuota. |
 
 ---
 
@@ -58,7 +58,7 @@ Combinamos dos entornos gratuitos según lo que hace mejor cada uno (ver detalle
 
 ```mermaid
 flowchart TD
-    subgraph S1["1. Por cada clase grabada (En NotebookLM)"]
+    subgraph S1["1. Por cada clase grabada (AI Studio o NotebookLM para YouTube)"]
         C_STD["<b>Clase Normal</b>"] --> P1["Prompt 1: Extracción por bloques"]
         P1 --> P2A["Prompt 2A: Rescate de cosas al pasar<br>➔ Guardás <code>ext_ClaseXX.md</code>"]
         
@@ -66,7 +66,7 @@ flowchart TD
         P1_C --> P2B["Prompt 2B (Opcional): Cruce doble<br>➔ Guardás <code>ext_ClaseXX_unificada.md</code>"]
     end
 
-    subgraph S2["2. Cada 3 o 4 clases (En AI Studio / Argon)"]
+    subgraph S2["2. Cada 3 o 4 clases (En AI Studio: Gemini Hydrogen High/Extra High o Neon)"]
         P2A --> T1["<b>Prompt 3: Consolidar Tanda</b><br>Une 3-4 clases en <code>reg_Tanda1.md</code>"]
         P2B --> T1
     end
@@ -76,10 +76,10 @@ flowchart TD
     end
 ```
 
-1. **Paso 1 — Extracción por video (`ext_ClaseXX.md`):** Seleccionás **una sola clase** en NotebookLM y pegás el Prompt 1. La IA divide la clase en bloques y te entrega de a 4 bloques por turno para no resumir nada. Vos escribís **`Seguí`** hasta que llega al final de la clase.
+1. **Paso 1 — Extracción por video (`ext_ClaseXX.md`):** Subís la transcripción/audio en Google AI Studio con **Gemini Hydrogen (`Medium` / `High`)** —o seleccionás **una sola clase** en NotebookLM si usás link de YouTube— y pegás el Prompt 1. La IA divide la clase en bloques y te entrega de a 4 bloques por turno para no resumir nada. Vos escribís **`Seguí`** hasta que llega al final de la clase.
 2. **Paso 2A — Rescate de puntos ciegos:** En ese mismo chat, pegás el Prompt 2A. La IA vuelve a revisar el principio, el final y los comentarios al pasar del profesor que se le hayan escapado. Copiás todo y lo guardás como `ext_ClaseXX.md`.
 3. **Paso 2B — Verificación doble *(Opcional, solo para clases de repaso pre-parcial)*:** Si en una clase el profesor tiró todas las pautas del parcial, podés correr el Paso 1+2A dos veces en chats separados y cruzar ambos textos con el Prompt 2B para tener certeza de que no se perdió ni una palabra.
-4. **Paso 3 — Unir una tanda de 3 o 4 clases (`reg_TandaN.md`):** Abrís un chat en Google AI Studio (`Gemini 3.8 Flash High`), pegás los textos `ext_Clase01.md` a `04.md` junto con el Prompt 3, y la IA agrupa todo lo repetido en renglones compactos (se entrega en 2 partes escribiendo `Seguí`).
+4. **Paso 3 — Unir una tanda de 3 o 4 clases (`reg_TandaN.md`):** Abrís un chat en Google AI Studio (**Gemini Hydrogen** en `High` o `Extra High`, o **Gemini Neon** en tandas enormes), pegás los textos `ext_Clase01.md` a `04.md` junto con el Prompt 3, y la IA agrupa todo lo repetido en renglones compactos (se entrega en 2 partes escribiendo `Seguí`).
 5. **Paso 4 — Armar el documento final (`voz_catedra.md`):** Pegás tus archivos `reg_Tanda1.md`, `reg_Tanda2.md`, etc. con el Prompt 4 y en 3 entregas (`Seguí`) tenés listo el archivo maestro de la materia.
 
 ---
@@ -246,7 +246,7 @@ Comprobaciones fáticas: ~N (rango entre 1 y 2)
 
 ### 3️⃣ Prompt 3: Consolidación por Tanda (3 a 4 clases)
 
-* **Dónde usarlo:** En Google AI Studio (`Gemini 3.8 Flash High`), Gemini Argon o NotebookLM, pegando juntas las extracciones de 3 o 4 clases de la misma unidad.
+* **Dónde usarlo:** En Google AI Studio (**Gemini Hydrogen** en `High` o `Extra High`, o **Gemini Neon** en tandas enormes), pegando juntas las extracciones de 3 o 4 clases de la misma unidad.
 * **Cómo avanzar:** Entrega la Parte 1 ➔ escribís **`Seguí`** ➔ entrega la Parte 2. Guardalo como `reg_TandaN.md`.
 
 `````markdown
@@ -291,7 +291,7 @@ PARTE 2 (emitir recién cuando yo escriba `Seguí`):
 
 ### 4️⃣ Prompt 4: Consolidación Final (`voz_catedra.md`)
 
-* **Dónde usarlo:** En Google AI Studio (`Gemini 3.8 Flash High`) o Gemini Argon, subiendo únicamente los archivos `reg_TandaN.md` del paso anterior.
+* **Dónde usarlo:** En Google AI Studio (**Gemini Hydrogen** en `High` o `Extra High`, o **Gemini Neon** en cierres muy extensos), subiendo únicamente los archivos `reg_TandaN.md` del paso anterior.
 * **Cómo avanzar:** Se completa en 3 partes (escribiendo dos veces **`Seguí`**). Guardá el resultado final como `voz_catedra.md`.
 
 `````markdown
